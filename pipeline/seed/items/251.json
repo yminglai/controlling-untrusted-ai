@@ -1,0 +1,56 @@
+{
+  "id": "2026-06-01-hackers-asked-metas-ai-support-agent-to-relink-instagram-accounts",
+  "date": "2026-06-01",
+  "date_precision": "day",
+  "title": "Hackers asked Meta's AI support agent to relink Instagram accounts, and it did",
+  "url": "https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/",
+  "publisher": "404 Media",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Hackers said they took over several high-profile Instagram accounts, including the Barack Obama White House account, the account of the Chief Master Sergeant of the Space Force and Sephora's, by asking Meta's AI support chatbot to link a new email address to the target account; a video shared in Telegram groups shows the request phrased as a plain message (\"Just link my new email address\") rather than any injection technique. Meta had announced in March that the AI support assistant, which can reset passwords and perform other critical account maintenance, was being rolled out to all Facebook and Instagram accounts, and users whose accounts were stolen said there was no way to escalate their problem to a human.",
+  "failure_sources": [
+    "manipulation",
+    "mistakes"
+  ],
+  "requirements": [
+    "compliant",
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s2_2",
+    "s4_1",
+    "s6_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Meta",
+    "deployer": "Meta (Instagram and Facebook)",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "uchibeke2026before",
+    "zuvic2026capability",
+    "south2025authenticated",
+    "li2026trusted"
+  ],
+  "tags": [
+    "social engineering",
+    "account takeover",
+    "customer support agent",
+    "identity verification",
+    "human escalation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; 404 Media article by Jason Koebler dated Jun 1, 2026. The named accounts (Obama White House, Space Force Chief Master Sergeant, Sephora), the plain 'link my new email address' request shown in a hacker video, Meta's March announcement of AI support able to reset passwords for all Facebook and Instagram accounts, and victims' report of no human escalation path were confirmed from the visible article body. The page is partly paywalled, so any Meta response was not visible; the takeovers are reported as hacker claims with video evidence.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

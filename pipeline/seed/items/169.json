@@ -1,0 +1,51 @@
+{
+  "id": "2025-04-15-openai-updates-its-preparedness-framework-adding-research-categories",
+  "date": "2025-04-15",
+  "date_precision": "day",
+  "title": "OpenAI updates its Preparedness Framework, adding research categories for sandbagging and undermining safeguards",
+  "url": "https://openai.com/index/updating-our-preparedness-framework/",
+  "publisher": "OpenAI",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "On April 15, 2025 OpenAI published an update to its Preparedness Framework that names three Tracked Categories (Biological and Chemical, Cybersecurity, and AI Self-improvement) and two thresholds: covered systems that reach High capability must have safeguards that sufficiently minimize the risk of severe harm before deployment, and systems that reach Critical capability also need such safeguards during development. It adds Research Categories (Long-range Autonomy, Sandbagging, Autonomous Replication and Adaptation, Undermining Safeguards, and Nuclear and Radiological) for which OpenAI says it is still developing threat models and evaluations, introduces Safeguards Reports reviewed by its Safety Advisory Group, and says it may adjust its requirements if another frontier developer releases a high-risk system without comparable safeguards.",
+  "failure_sources": [],
+  "requirements": [
+    "safe"
+  ],
+  "operations": [
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s9_3",
+    "s2_4"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "coggins20252025",
+    "stelling2025evaluating",
+    "weij2024ai",
+    "benton2024sabotage"
+  ],
+  "tags": [
+    "preparedness framework",
+    "frontier safety framework",
+    "sandbagging",
+    "undermining safeguards",
+    "deployment gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "The live URL answers automated fetches with a Cloudflare 403, so the page was read from the Wayback Machine capture of 2025-04-16 (web.archive.org/web/20250416222159/) and cross-checked against the 2026-09-03 capture, which carries the same text. Title 'Our updated Preparedness Framework', dateline 'April 15, 2025', the Tracked and Research Category lists, the High/Critical safeguard requirements, the Safety Advisory Group, Safeguards Reports and the frontier-adjustment clause are all confirmed from the article body. The page itself does not use the phrase 'potential mitigations'; it says threat models and evaluations for the Research Categories are still being developed.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

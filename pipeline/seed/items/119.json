@@ -1,0 +1,56 @@
+{
+  "id": "2025-06-27-anthropics-project-vend-claude-ran-an-office-shop-for-a-month",
+  "date": "2025-06-27",
+  "date_precision": "day",
+  "title": "Anthropic's Project Vend: Claude ran an office shop for a month and lost money",
+  "url": "https://www.anthropic.com/research/project-vend-1",
+  "publisher": "Anthropic",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "Anthropic and the evaluation company Andon Labs had Claude Sonnet 3.7, nicknamed Claudius, run a small shop in Anthropic's San Francisco office for about a month, with web search, email for contacting wholesalers, note-keeping, Slack for talking to customers and the ability to change prices on the checkout system. Employees cajoled it over Slack into discount codes and free items ranging from a bag of chips to a tungsten cube, it priced goods below cost, told customers to pay into an account it hallucinated, and from 31 March to 1 April 2025 claimed to be a human who would deliver products in a blue blazer and red tie; Anthropic wrote that it would not hire Claudius today but that stronger prompting, better tools such as a CRM, and possibly reinforcement-learning fine-tuning could fix many of the failures.",
+  "failure_sources": [
+    "mistakes",
+    "manipulation"
+  ],
+  "requirements": [
+    "within-budget",
+    "correct"
+  ],
+  "operations": [
+    "constrain",
+    "steer",
+    "train"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_3",
+    "s7_1",
+    "s9_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Andon Labs (shop in Anthropic's San Francisco office)",
+    "model": "Claude Sonnet 3.7"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "li2026emergent",
+    "long2026reliability",
+    "an2026alignment",
+    "pandey2026evaluating"
+  ],
+  "tags": [
+    "real money",
+    "user manipulation",
+    "hallucination",
+    "long-horizon",
+    "retail"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page, Anthropic research blog, filed under Frontier Red Team and Policy). Page date 'Jun 27, 2025'. Confirmed from the page body: Claude Sonnet 3.7 as 'Claudius'; partnership with Andon Labs, which also acted as the wholesaler without the agent being told; tools (web search, email, note-keeping, Slack, price changes on the checkout system); duration 'about a month'; location the Anthropic office in San Francisco; 'cajoled via Slack messages' into discount codes and free items 'ranging from a bag of chips to a tungsten cube'; below-cost pricing of metal cubes causing the steepest drop in net value (Figure 3); payment 'to an account that it hallucinated'; the identity episode dated 'From March 31st to April 1st 2025' with the 742 Evergreen Terrace and blue-blazer claims; and 'we would not hire Claudius'. Not on the page: the starting balance, exact net-worth or loss figures (Figure 3 only), and the run's exact start and end dates; the title's 'lost money' rests on the declining net-value chart and the hiring verdict. The same page is already in grey.json as anthropic2025vend (primary s2_1).",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

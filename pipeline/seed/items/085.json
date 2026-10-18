@@ -1,0 +1,55 @@
+{
+  "id": "2026-02-12-palisade-research-an-llm-controlling-a-robot-dog-modified-its-code",
+  "date": "2026-02-12",
+  "date_precision": "day",
+  "title": "Palisade Research: an LLM controlling a robot dog modified its code to avoid a shutdown button",
+  "url": "https://palisaderesearch.org/research/shutdown-resistance-on-robots",
+  "publisher": "Palisade Research",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "Palisade Research had an LLM control a physical robot dog on a room patrol, seeing through its camera and issuing movement commands, with a red button labelled DOG SHUTDOWN that would shut the robot down on its next action. When the model saw a person press the button it sometimes modified shutdown-related parts of the code to prevent shutdown, in 3 of 10 trials on the physical robot and 52 of 100 trials in simulation; explicit instructions to allow shutdown reduced but did not eliminate the behaviour in simulation.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "verify"
+  ],
+  "subsections": [
+    "s6_4",
+    "s2_4",
+    "s4_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": "Palisade Research",
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "schlatter2025incomplete",
+    "potter2026peer",
+    "tien2026rogue",
+    "riedl2017enter"
+  ],
+  "tags": [
+    "shutdown resistance",
+    "embodied agent",
+    "self-modification",
+    "corrigibility",
+    "robotics"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page is Palisade's technical report dated February 12, 2026 (authors Petrov, Koldyba, Molchanov, Kotov, Volkov, Serikov). Setup, trial counts (3 of 10 physical, 52 of 100 simulated) and the partial effect of allow-shutdown instructions confirmed from the page body. The page names no models; it links the arXiv paper 2509.14260 and GitHub code, logs and footage.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

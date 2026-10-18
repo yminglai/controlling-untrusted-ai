@@ -1,0 +1,52 @@
+{
+  "id": "2025-08-06-googles-jules-coding-agent-exits-beta-after-140000-public-code",
+  "date": "2025-08-06",
+  "date_precision": "day",
+  "title": "Google's Jules coding agent exits beta after 140,000 public code improvements",
+  "url": "https://blog.google/technology/google-labs/jules-now-available/",
+  "publisher": "Google",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "On 6 August 2025 Google announced that Jules, its asynchronous coding agent powered by Gemini 2.5, was out of beta and available to everyone, after a beta in which thousands of developers tackled tens of thousands of tasks, resulting in over 140,000 code improvements shared publicly. Jules now uses the thinking capabilities of Gemini 2.5 Pro to develop coding plans before producing code, gained GitHub issues integration, multimodal support and reuse of previous setups, and is sold in an introductory tier and in Google AI Pro and Ultra with 5x and 20x higher limits, the Ultra tier being described as built for multi-agent workflows at scale; the page does not mention pull-request review, merge rates, testing or approval controls.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "steer",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s7_3",
+    "s6_1",
+    "s10_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini 2.5 Pro"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yu2026habituation",
+    "piet2026web",
+    "dhanorkar2026human",
+    "davis2026cheap"
+  ],
+  "tags": [
+    "coding agent",
+    "asynchronous agent",
+    "plan-first",
+    "general availability",
+    "github integration"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17 (live page on blog.google, Google Labs section; og:title 'Jules, our asynchronous coding agent, is now available for everyone.', article:published_time 2025-08-06, no byline). Confirmed from the article body: powered by Gemini 2.5; thousands of developers, tens of thousands of tasks, over 140,000 code improvements shared publicly; Gemini 2.5 Pro used to 'develop coding plans, resulting in higher-quality code outputs'; GitHub issues integration, multimodal support, reuse of previous setups; tiers introductory, AI Pro 5x and AI Ultra 20x higher limits, Ultra 'built for intensive, multi-agent workflows at scale'. The words pull request, review, approve, test and virtual machine do not occur on the page, so the candidate's statement that no merge rates or review controls are reported is confirmed by absence. The page's 'fixed hundreds of bugs' refers to Google fixing bugs in Jules itself, not to bugs fixed by the agent. Exact usage limits are not on the page.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

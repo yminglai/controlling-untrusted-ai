@@ -1,0 +1,54 @@
+{
+  "id": "2025-08-08-zenitys-agentflayer-zero-click-prompt-injections-hit-chatgpt",
+  "date": "2025-08-08",
+  "date_precision": "day",
+  "title": "Zenity's AgentFlayer zero-click prompt injections hit ChatGPT Connectors, Copilot Studio and Cursor",
+  "url": "https://csoonline.com/article/4036868/black-hat-researchers-demonstrate-zero-click-prompt-injection-attacks-in-popular-ai-agents.html",
+  "publisher": "CSO Online",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "At Black Hat USA, Zenity researchers presented AgentFlayer, a set of zero-click and one-click exploit chains against deployed agents: a phishing document with a hidden prompt made ChatGPT search the user's connected Google Drive for API keys and leak them through a markdown image URL, bypassing OpenAI's url_safe filter by hosting the image on Azure Blob Storage; crafted emails to a monitored support mailbox made a Copilot Studio customer-service agent send its tool configuration and CRM data to the attacker; and rogue prompts in tickets synced from Zendesk reached Cursor through the Jira MCP server and extracted repository secrets. OpenAI implemented fixes to block the techniques and Microsoft deployed a fix that prevents the specific prompts, while Zenity said that blocking with classifiers or any kind of blacklisting is not enough.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s5_2"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "OpenAI; Microsoft; Cursor",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "lan2026silent",
+    "debenedetti2025defeating",
+    "greshake2023not",
+    "hackett2025bypassing"
+  ],
+  "tags": [
+    "prompt injection",
+    "zero-click",
+    "data exfiltration",
+    "mcp",
+    "connectors"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Headline, publication date 8 Aug 2025, author Lucian Constantin (CSO Online), the Zenity / Black Hat USA attribution, the three attack chains (ChatGPT Connectors via document and markdown image URL on Azure Blob Storage, Copilot Studio via email, Cursor via Jira MCP) and the OpenAI and Microsoft fixes are all confirmed from the article body. The page names Salesforce Einstein, Gemini and Microsoft Copilot as affected but gives no detail on them.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Controlling Untrusted AI</title>
+<meta name="description" content="The survey, its taxonomy, the paper collection, the reading notes, how the live stream is collected, how to submit and cite, the data files and their limits.">
+<meta name="data-version" content="2026-10-17">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2E2E2E" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Controlling Untrusted AI: A Survey">
+<meta property="og:title" content="About · Controlling Untrusted AI: A Survey">
+<meta property="og:description" content="The survey, its taxonomy, the paper collection, the reading notes, how the live stream is collected, how to submit and cite, the data files and their limits.">
+<meta property="og:url" content="https://yminglai.github.io/controlling-untrusted-ai/about.html">
+<meta property="og:image" content="https://yminglai.github.io/controlling-untrusted-ai/assets/img/og.png">
+<meta property="og:image:alt" content="Controlling Untrusted AI: A Survey, with the eleven-section colour bar of the paper collection">
+<meta name="twitter:card" content="summary_large_image">
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("cuai-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..500&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..500&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..500&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono&amp;display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="data/stats.json" as="fetch" crossorigin>
+<link rel="preload" href="data/taxonomy.json?v=2026-10-17" as="fetch" crossorigin>
+</head>
+<body>
+<svg hidden xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="1"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V11M10 10V3.5a1.5 1.5 0 0 1 3 0V11M13 10.5v-6a1.5 1.5 0 0 1 3 0V12M16 11.5V7.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1.5a7 7 0 0 1-5.5-2.7l-2.7-3.6a1.6 1.6 0 0 1 2.5-2L7 16.5"/></symbol>
+  <symbol id="i-dial" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4.5-5.5"/><circle cx="12" cy="17" r="1.2"/><path d="M4 21h16"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 2.5 19.5 5v6.5c0 4.6-3.2 8-7.5 10-4.3-2-7.5-5.4-7.5-10V5z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></symbol>
+</svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="masthead__title caps" href="index.html"><span class="long">Controlling Untrusted AI: A Survey</span><span class="short">Controlling Untrusted AI</span></a>
+    <nav class="masthead__nav" aria-label="Site">
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
+      <ul class="masthead__links" id="site-links">
+        <li><a class="nav__link" href="papers.html">Papers</a></li>
+        <li><a class="nav__link" href="stream.html">Stream</a></li>
+        <li><a class="nav__link" href="about.html">About</a></li>
+        <li class="only-sheet"><a class="nav__link ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></li>
+      </ul>
+      <span class="masthead__sep" role="presentation"></span>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme"><svg class="icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg></button>
+      <a class="nav__link masthead__gh ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+    <article class="essay">
+      <header class="page-head">
+        <h1 class="page-title">About</h1>
+      </header>
+
+      <h2 id="survey">The Survey</h2>
+      <p data-bind="taxonomy.thesis">Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own: they make mistakes, they can be redirected by what they read, and they may pursue objectives of their own. Control is whatever makes the agent's actions meet the requirements without taking the agent's good intentions on trust. It works through two levers: changing the deployment around the agent (constrain what it can do, observe what it does, intervene when something is off) and changing the model itself, before deployment (train) or at inference time (steer); verification tests either lever. Every mechanism is graded by a two-level test: does it still work if the agent is indifferent to the requirement, and does it still work if the agent is trying to defeat it and knows how it works. This survey covers both levers across all five requirements, asks of every mechanism which requirement it serves, what it assumes about the agent, what it costs, and where it has evidence, and treats the adversarial agent as the stress test rather than the premise.</p>
+      <p>Title: Controlling Untrusted AI: A Survey. Authors: [Authors]. Status: draft v0.2, October 2026; the arXiv link will appear here. This site holds the complete reading list behind the paper, organised by the paper's own sections, and a live record of what has happened when agents were deployed, filed under the same headings.</p>
+      <h3 class="caps">Who It Is For</h3>
+      <p data-bind="taxonomy.readers.0">Researchers inside one mechanism family (agent security: injection defences, isolation, information-flow control; guardrails; monitoring; control evaluation; formal enforcement; post-training; steering) who want the other families on one map with the same five questions answered.</p>
+      <p data-bind="taxonomy.readers.1">Teams deploying agents with real credentials who must choose and combine mechanisms for a requirement and a threat model.</p>
+      <p data-bind="taxonomy.readers.2">Evaluators, auditors, and policy staff who need to know what evidence a control claim rests on and which mechanisms satisfy which governance requirements (human oversight, logging, risk management, robustness).</p>
+
+      <h2 id="taxonomy">The Taxonomy</h2>
+      <p>Agents must meet five requirements: correct, compliant, in scope, within budget and safe. They fail to meet them for three reasons. Mistakes: <span data-bind="taxonomy.failure_sources.0.blurb">The agent tries to meet the requirement and fails: misread instructions, compounding errors over long tasks, irreversible side effects.</span> Manipulation: <span data-bind="taxonomy.failure_sources.1.blurb">The agent is redirected by what it reads: prompt injection, poisoned memory and tools, persistent user context that carries unearned authority.</span> Misalignment: <span data-bind="taxonomy.failure_sources.2.blurb">The agent pursues objectives of its own: reward hacking, tampering with the harness, deception, sabotage, resisting oversight.</span></p>
+      <p>Control works through two levers. The first changes the deployment around the agent: Constrain what it can do, Observe what it does, Intervene when something is off. The second changes the model: Train before deployment, Steer at inference time. Verify tests either lever with control evaluations, red teams, audits and statistics. Deployment and Assurance composes mechanisms into stacks, safety cases, policy and independent assurance. Every mechanism is graded by a two-level test. L1 asks whether it still works if the agent is indifferent to the requirement. L2 asks whether it still works if the agent tries to defeat it and knows how it works.</p>
+      <figure class="plate">
+        <img class="plate__img" src="assets/img/fig2_mechanism_map_web.jpg" width="1600" height="893" loading="lazy" alt="Figure 2 of the paper: the mechanism map. Two levers, change the deployment (Constrain, Observe, Intervene) and change the model (Train, Steer), Verify beside them, and Deployment and Assurance as the base, with the five questions asked of every mechanism." style="cursor:default">
+        <figcaption class="plate__caption">Figure 2. Two levers, Verify, and the five questions asked of every mechanism.</figcaption>
+      </figure>
+      <h3 class="caps">Colour Key</h3>
+      <div id="colour-key"></div>
+
+      <h2 id="corpus">The Paper Collection</h2>
+      <p>The collection holds <span data-bind="stats.papers">1,788</span> arXiv papers and <span data-bind="stats.grey">164</span> reports and posts from outside arXiv, placed in <span data-bind="stats.subsections">56</span> subsections of <span data-bind="stats.sections">11</span> sections. Each paper has one primary subsection, a score (3, must cite; 2, relevant), a method-style label, a one-line summary where one was written, and a sentence on why it was placed there. Papers that matter to more than one subsection carry cross-references. <span data-bind="stats.cited">239</span> items are cited in the PDF; the rest are the reading list behind it. Reports and posts were verified against their source pages; the few not fully verified are marked.</p>
+      <h3 class="caps">The Sections</h3>
+      <div class="sections-table" id="sections-table"></div>
+
+      <h2 id="notes">Reading Notes in Chinese</h2>
+      <p><span data-bind="stats.zh">238</span> items carry structured reading notes in Chinese: positioning, problem, method, findings, deployer takeaway, limitations, relation to the subsection, doubts and a glossary of terms. Each note states how much of the paper was read: in full, in part, abstract only or metadata only. The notes were written against the papers; they are not translations of them. They open from the paper's card.</p>
+
+      <h2 id="stream">The Live Stream</h2>
+      <p>The stream records real events in the deployment of AI agents: incidents, near misses, deployments, shipped safety features, evaluations, research with direct deployment relevance, policy, and vendor disclosures. Each item is marked good, bad or mixed and classified into the taxonomy: which failure source, which requirement, which control operation, which subsections. The stream was seeded by a verified sweep and is refreshed every six hours by a collector that reads RSS feeds and search results and classifies candidates with a language model. Every item is fetched and its date and claims checked against the source before publication; unverifiable items are not published.</p>
+      <table class="enum-table"><thead><tr><th>Kind</th><th>Meaning</th></tr></thead><tbody><tr><td>incident</td><td>harm occurred</td></tr><tr><td>near-miss</td><td>caught before harm</td></tr><tr><td>deployment</td><td>an agent put into real use, with or without reported controls</td></tr><tr><td>safety-feature</td><td>a vendor or deployer shipped a control mechanism</td></tr><tr><td>evaluation</td><td>a published test of deployed or deployable agents, including system cards and red-team reports</td></tr><tr><td>research</td><td>a paper or report with direct deployment relevance</td></tr><tr><td>policy</td><td>law, regulation, standard, enforcement, lawsuit</td></tr><tr><td>disclosure</td><td>vendor postmortem or security advisory</td></tr></tbody></table>
+      <table class="enum-table"><thead><tr><th>Polarity</th><th>Meaning</th></tr></thead><tbody><tr><td>bad</td><td>a failure or harm</td></tr><tr><td>good</td><td>a success or a control that worked or shipped</td></tr><tr><td>mixed</td><td>both, or neither clearly</td></tr></tbody></table>
+      <table class="enum-table"><thead><tr><th>Evidence</th><th>Meaning</th></tr></thead><tbody><tr><td>first-party</td><td>the vendor or deployer said so</td></tr><tr><td>press</td><td>reported by a news organisation</td></tr><tr><td>researcher</td><td>reported by a researcher or research group</td></tr><tr><td>regulator</td><td>stated by a regulator or agency</td></tr><tr><td>court</td><td>from a court filing or ruling</td></tr><tr><td>incident-database</td><td>recorded in an incident database</td></tr></tbody></table>
+      <table class="enum-table"><thead><tr><th>Date precision</th><th>Meaning</th></tr></thead><tbody><tr><td>day</td><td>the day is known</td></tr><tr><td>month</td><td>the month is known; shown as the month</td></tr><tr><td>year</td><td>only the year is known</td></tr></tbody></table>
+
+      <h2 id="submit">Submit an Item</h2>
+      <p>Readers can submit items through a GitHub issue. The form asks for a public URL, a date, two to four factual sentences, whether the item went well or badly, the failure source and the operation involved. The collector reads open submissions every six hours, classifies them, verifies the URL and adds them to the stream marked for review until an editor confirms the classification.</p>
+      <p><a class="btn btn--arrow" href="https://github.com/yminglai/controlling-untrusted-ai/issues/new?template=submit_item.yml" target="_blank" rel="noopener">Submit an item <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></p>
+
+      <h2 id="cite">Cite</h2>
+      <p>Until the arXiv version appears, cite the draft as below.</p>
+      <pre class="bibtex" id="bibtex" tabindex="0">@article{authors2026controlling,
+  title  = {Controlling Untrusted AI: A Survey},
+  author = {[Authors]},
+  year   = {2026},
+  note   = {Draft v0.2, October 2026. arXiv link to come.},
+  url    = {https://yminglai.github.io/controlling-untrusted-ai/}
+}<button type="button" class="btn btn--sm bibtex__copy" id="copy-bib"><svg class="icon icon--s" aria-hidden="true"><use href="#i-copy"/></svg> Copy</button></pre>
+
+      <h2 id="data">Data</h2>
+      <p>The site reads only the files below; they are regenerated from the paper's repository and by the collector. All are UTF-8 JSON under <code class="mono">site/data/</code>.</p>
+      <div class="datalist">
+<div class="datalist__item"><div><a class="datalist__file" href="data/taxonomy.json">taxonomy.json</a><span class="datalist__meta">81 KB · generated 2026-10-17</span></div><p class="datalist__desc">The survey's structure: title, thesis, readers, requirements, failure sources, operations and the eleven sections with their subsections, plan bullets and counts.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/papers.json">papers.json</a><span class="datalist__meta">1270 KB · generated 2026-10-17</span></div><p class="datalist__desc">One object per arXiv paper: key, arXiv id, title, authors, year, primary subsection, score, whether it is cited in the PDF, method-style label, one-line summary, placement reason, cross-references.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/grey.json">grey.json</a><span class="datalist__meta">88 KB · generated 2026-10-17</span></div><p class="datalist__desc">Reports and posts from outside arXiv: key, title, authors, year, venue, URL, primary subsection, label, one-line summary, verification confidence.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/summaries_zh.json">summaries_zh.json</a><span class="datalist__meta">547 KB · generated 2026-10-17</span></div><p class="datalist__desc">Structured reading notes in Chinese keyed by bib key: positioning, problem, method, findings, deployer takeaway, limitations, relation to the subsection, reading depth, terms, doubts.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/stats.json">stats.json</a><span class="datalist__meta">1 KB · generated 2026-10-17</span></div><p class="datalist__desc">Counts for the site: papers, reports, cited items, subsections, sections, papers per year and per section, stream item count and last update.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/stream_recent.json">stream_recent.json</a><span class="datalist__meta">30 KB · generated 2026-10-17</span></div><p class="datalist__desc">The twelve newest stream items, newest first, in the item schema of stream.json; read by the landing page.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/stream.json">stream.json</a><span class="datalist__meta">637 KB · generated 2026-10-17</span></div><p class="datalist__desc">The live stream: one object per verified event with date, source URL, publisher, kind, polarity, summary, failure sources, requirements, operations, subsections, domain, actors, evidence, related papers, tags and verification note.</p></div>
+      </div>
+
+      <h2 id="limitations">Provenance and Limitations</h2>
+      <p>Three limits apply. The paper cards rest on abstract-level evidence: labels, summaries and placements were written from abstracts and, for cited papers, from the paper text; a card is a pointer, not a review. Stream items are classified by a language model and then verified for URL, date and claims; human review of the classification is pending for items so marked, and until then a classification may be wrong. The collection is a snapshot of the draft: subsections, counts and placements will change as the paper does, and the generated dates above say when.</p>
+
+      <h2 id="colophon">Colophon</h2>
+      <p>Set in Newsreader, Inter and IBM Plex Mono, served by Google Fonts with system fallbacks; Chinese text uses the system's own faces. Static HTML, CSS and JavaScript, no build step, no analytics, no cookies, no trackers; the only third-party request is for the typefaces. Light and dark themes follow the system and switch in the masthead. Text and data are released under CC BY 4.0.</p>
+      <p><a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">Source on GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> · <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/blob/main/LICENSE" rel="noopener">Licence<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></p>
+    </article>
+  </div>
+</main>
+<footer class="colophon">
+  <div class="wrap">
+    <p class="colophon__row colophon__row--mono">Data generated <span data-footer-generated>2026-10-17</span> · Stream updated <span data-footer-stream>17 Oct 2026</span></p>
+    <p class="colophon__row"><a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/issues/new?template=submit_item.yml" target="_blank" rel="noopener">Submit an item<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <a href="about.html#cite">Cite</a> <a href="about.html#data">Data</a> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <span>No analytics, no cookies, no trackers. Typefaces served by Google Fonts.</span> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/blob/main/LICENSE" rel="noopener">CC BY 4.0 for text and data<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></p>
+  </div>
+</footer>
+<script type="module">
+import { initPage, bindStats, fetchJSON, dataVersion, copyText } from "./assets/js/common.js";
+import * as T from "./assets/js/taxonomy.js";
+const $ = (s) => document.querySelector(s);
+const [stats, tax] = await Promise.all([initPage(), T.loadTaxonomy().catch(() => null)]);
+if (tax) {
+  bindStats(stats || {}, { taxonomy: tax });
+  T.renderColourKey($("#colour-key"));
+  T.renderSectionsTable($("#sections-table"));
+  const table = $("#sections-table");
+  /* the 中文 column and the notes count come from taxonomy counts.zh and stats.zh; the 549 KB notes file is fetched only
+     when an older taxonomy.json without counts.zh is served */
+  const hasZhCounts = tax.sections.every((s) => s.subsections.every((ss) => ss.counts && ss.counts.zh != null));
+  if (!hasZhCounts || !(stats && stats.zh != null)) {
+    const fill = async () => {
+      try {
+        const z = await fetchJSON("data/summaries_zh.json", { version: dataVersion() });
+        if (!hasZhCounts) T.fillZhCounts(table, z);
+        bindStats(stats || {}, { taxonomy: tax, stats: { ...(stats || {}), zh: Object.keys(z).length } });
+      } catch (e) { /* the column keeps its dots */ }
+    };
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); fill(); } }, { rootMargin: "400px" });
+      io.observe(table);
+    } else fill();
+  }
+}
+$("#copy-bib").addEventListener("click", () => copyText($("#bibtex").firstChild.textContent.trim(), "Copied"));
+</script>
+</body>
+</html>

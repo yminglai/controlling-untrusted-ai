@@ -1,0 +1,49 @@
+{
+  "id": "2026-03-03-policy-for-amazon-bedrock-agentcore-becomes-generally-available",
+  "date": "2026-03-03",
+  "date_precision": "day",
+  "title": "Policy for Amazon Bedrock AgentCore becomes generally available in 13 regions",
+  "url": "https://awsinsider.net/blogs/awsinsider-release-radar/2026/03/amazon-bedrock-agentcore.aspx",
+  "publisher": "AWSInsider",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 3 March 2026 AWS announced general availability of Policy for Amazon Bedrock AgentCore in 13 AWS Regions, described as centralized mechanisms that let administrators restrict agent permissions and align deployments with security standards. Policy operates outside the agent code, so stricter security, compliance and operations controls apply without modifying the agent, and AWS treats agents as operational entities subject to the same oversight and policy enforcement as human and application identities.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain"
+  ],
+  "subsections": [
+    "s4_1",
+    "s4_5",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Amazon Web Services",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "shi2025progent",
+    "millstone2026if",
+    "he2026kedgeflow",
+    "zhu2026openport"
+  ],
+  "tags": [
+    "least privilege",
+    "policy enforcement",
+    "agent platform",
+    "tool gateway"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; AWSInsider Release Radar post by AWS Editors dated 03/03/2026 confirms GA of Policy for Amazon Bedrock AgentCore in 13 regions and that Policy operates outside agent code. The page does not mention the December 2025 preview, Cedar policies or Gateway interception, so those candidate claims were dropped from the summary.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

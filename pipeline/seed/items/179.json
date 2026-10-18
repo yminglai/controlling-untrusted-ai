@@ -1,0 +1,52 @@
+{
+  "id": "2025-10-22-uk-ai-security-institute-launches-controlarena-a-library-for-running",
+  "date": "2025-10-22",
+  "date_precision": "day",
+  "title": "UK AI Security Institute launches ControlArena, a library for running AI control experiments",
+  "url": "https://www.aisi.gov.uk/blog/introducing-controlarena-a-library-for-running-ai-control-experiments",
+  "publisher": "UK AI Security Institute",
+  "kind": "research",
+  "polarity": "good",
+  "summary": "The UK AI Security Institute launched ControlArena, a library for running AI control experiments built on its Inspect evaluation platform, intended to make such experiments easy, consistent and repeatable for researchers across AI safety, cybersecurity and machine learning. It ships pre-built settings that pair a main task with a sabotage side task, from simple programming problems to infrastructure codebases, together with implementations of control protocols such as monitors that assign suspicion scores, defer-to-trusted, trusted editing and human approval for consequential actions, and the institute says it has been used by researchers at Anthropic, Google DeepMind and Redwood Research.",
+  "failure_sources": [],
+  "requirements": [
+    "safe"
+  ],
+  "operations": [
+    "verify",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s9_4",
+    "s9_3",
+    "s6_2",
+    "s10_5"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": "UK AI Security Institute",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "storf2026constitutional",
+    "greenblatt2023ai",
+    "korbak2025evaluate",
+    "kaufman2025basharena"
+  ],
+  "tags": [
+    "control evaluation",
+    "tooling",
+    "side tasks",
+    "defer to trusted",
+    "government institute"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; the page is the AISI blog post 'Introducing ControlArena' dated Oct 22, 2025 and opens with 'Today, we're launching ControlArena'. Claims about Inspect, paired main and side tasks, suspicion-scoring monitors, defer-to-trusted, trusted editing and human approval were confirmed from the page text. The page gives no task or setting counts and does not say the library is open source, so the title drops the candidate's word 'open'.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

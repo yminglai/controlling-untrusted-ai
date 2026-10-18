@@ -1,0 +1,55 @@
+{
+  "id": "2026-04-17-google-deepmind-s-frontier-safety-framework-v3-1-folds-misalignment",
+  "date": "2026-04-17",
+  "date_precision": "day",
+  "title": "Google DeepMind's Frontier Safety Framework v3.1 folds misalignment into ML R&D and adds a Stealth and Situational Awareness tracked capability level",
+  "url": "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/strengthening-our-frontier-safety-framework/frontier-safety-framework_3-1.pdf",
+  "publisher": "Google DeepMind",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Version 3.1 of Google DeepMind's Frontier Safety Framework, published April 17, 2026, introduces Tracked Capability Levels (TCLs) for significant risks that appear at a lower capability threshold than the Critical Capability Levels, incorporates the previously exploratory misalignment risk domain into a combined ML R&D and misalignment domain, and raises the recommended security level for the CBRN, cyber and harmful manipulation CCLs to Security Level 2+. Its Stealth and Situational Awareness TCL is reached when a model's instrumental reasoning gives it enough situational awareness (discovering and using details of its deployment setting) and stealth (circumventing basic oversight mechanisms) that, absent additional mitigations, the model significantly undermining human control cannot be ruled out; at that level Google commits to periodic residual risk assessments that cover high-risk internal deployments and to applying additional safeguards such as chain-of-thought monitoring where the assessment finds the residual risk unacceptable.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "observe",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s5_3",
+    "s9_3",
+    "s2_4"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Google DeepMind",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "phuong2025evaluating",
+    "korbak2025chain",
+    "stelling2025evaluating",
+    "pistillo2025frontier"
+  ],
+  "tags": [
+    "frontier safety framework",
+    "tracked capability levels",
+    "situational awareness",
+    "chain-of-thought monitoring",
+    "internal deployment"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the resource is a 20-page PDF with metadata title 'Frontier Safety Framework 3.1' (text extracted with pdftotext). Cover page reads 'Version 3.1' and 'Published: April 17, 2026'; section 5.3 'Past Updates and Changes' lists Version 3.1 (April 17, 2026) with these changes: CBRN TCLs introduced, the previous exploratory misalignment risk domain incorporated into a combined ML R&D and Misalignment risk domain with a mitigation and risk acceptance process for the TCL, and Security Level 2+ for the CBRN, Cyber and Harmful Manipulation CCLs. Section 1.2 confirms that this update introduces Tracked Capability Levels as thresholds below the CCLs. Section 3.2.1 confirms the Stealth and Situational Awareness TCL definition (situational awareness plus stealth such that significantly undermining human control cannot be ruled out), periodic residual risk assessments of misalignment risk, inclusion of high-risk internal deployments, and chain-of-thought monitoring on high-risk deployments as an example additional safeguard. The document refers to 'Google' throughout and is hosted on the deepmind-media bucket; publisher recorded as Google DeepMind, consistent with the v3.0 item (079), whose live blog page carries an 'Updated April 17, 2026' note about FSF 3.1. Candidate summary retained in substance; title given the vendor prefix used by the sibling item and the document's own term 'tracked capability level'.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

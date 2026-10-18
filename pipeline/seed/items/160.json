@@ -1,0 +1,54 @@
+{
+  "id": "2024-04-15-nsa-cisa-and-five-eyes-partners-publish-joint-guidance-on-deploying-ai-systems",
+  "date": "2024-04-15",
+  "date_precision": "day",
+  "title": "NSA, CISA and Five Eyes partners publish joint guidance on deploying AI systems securely",
+  "url": "https://www.cisa.gov/news-events/alerts/2024/04/15/joint-guidance-deploying-ai-systems-securely",
+  "publisher": "CISA and NSA Artificial Intelligence Security Center",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "On April 15, 2024 the NSA's Artificial Intelligence Security Center, in collaboration with CISA, the FBI and the national cyber security centres of Australia, Canada, New Zealand and the United Kingdom, published the joint Cybersecurity Information Sheet 'Deploying AI Systems Securely', which gives best practices for organisations deploying and operating externally developed AI systems. The guidance aims to improve the confidentiality, integrity and availability of AI systems, to ensure appropriate mitigations for known vulnerabilities in them, and to provide methodologies and controls to protect, detect and respond to malicious activity against AI systems and related data and services; CISA encourages deployers to review and apply it as applicable.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_1",
+    "s4_1",
+    "s5_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "he2024security",
+    "narasimha2026containing",
+    "chang2025cisco",
+    "errico2025securing"
+  ],
+  "tags": [
+    "secure deployment",
+    "five eyes",
+    "cybersecurity guidance",
+    "third-party models",
+    "best practices"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17: CISA alert 'Joint Guidance on Deploying AI Systems Securely', release date April 15, 2024. Confirmed from the page text: the NSA Artificial Intelligence Security Center published the joint Cybersecurity Information Sheet 'Deploying AI Systems Securely' in collaboration with CISA, the FBI, ASD ACSC, CCCS, NCSC-NZ and NCSC-UK; audience is organisations deploying and operating externally developed AI systems; the three stated aims (confidentiality, integrity and availability; mitigations for known vulnerabilities; methodologies and controls to protect, detect and respond to malicious activity) are quoted from the page; the page calls the content best practices and 'encourages' review, it does not use the word voluntary. The candidate's specifics about protecting model weights, outputs and logs and verifying artefact integrity come from the guidance PDF, which could not be read (media.defense.gov returned 403, the Wayback Machine is unreachable from this tool, the NSA press release returned 403, the ASD mirror timed out and the CCCS mirror returned 404), so they were dropped from the summary. The page does not mention agents or tool use; relevance rests on this being the official deployer-side security baseline for running externally developed models, the deployment setting of the survey, consistent with the other policy items in the seed. Publisher recorded as CISA (alert host) and NSA AISC (document author).",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": "2025-11-18-microsoft-announces-agent-365-as-a-control-plane",
+  "date": "2025-11-18",
+  "date_precision": "day",
+  "title": "Microsoft announces Agent 365 as a control plane with an agent registry, quarantine and policy templates",
+  "url": "https://www.microsoft.com/en-us/microsoft-365/blog/2025/11/18/microsoft-agent-365-the-control-plane-for-ai-agents/",
+  "publisher": "Microsoft 365 Blog",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 18 November 2025, at Ignite, Microsoft announced Agent 365, which it calls the control plane for AI agents, to deploy, organize and govern agents built on Microsoft platforms, open-source frameworks or third-party platforms, offered at launch through its Frontier early-access programme. A Microsoft Entra registry inventories agents and lets admins quarantine unsanctioned ones; each agent requires a unique agent ID, Agent Policy Templates set standard policies, Entra applies risk-based access policies and blocks compromised agents, a unified dashboard provides logging and reporting, and Defender and Purview cover threat detection and sensitive-data protection.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "kang2026registry",
+    "chan2024visibility",
+    "he2026kedgeflow",
+    "south2025authenticated"
+  ],
+  "tags": [
+    "agent registry",
+    "agent identity",
+    "least privilege",
+    "quarantine",
+    "enterprise it"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; byline Charles Lamanna, dated Nov 18, 2025; registry on Entra, quarantine of unsanctioned agents, unique agent ID, Agent Policy Templates, unified dashboard with logging, Defender and Purview roles, and Frontier early access all confirmed from the page body. The page now also carries a notice that Agent 365 reached general availability, linking a post dated 2026-05-01.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

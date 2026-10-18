@@ -1,0 +1,57 @@
+{
+  "id": "2026-01-12-nists-caisi-requests-information-on-securing-ai-agent-systems",
+  "date": "2026-01-12",
+  "date_precision": "day",
+  "title": "NIST's CAISI requests information on securing AI agent systems",
+  "url": "https://www.nist.gov/news-events/news/2026/01/caisi-issues-request-information-about-securing-ai-agent-systems",
+  "publisher": "NIST Center for AI Standards and Innovation (CAISI)",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "The Center for AI Standards and Innovation (CAISI) at NIST issued a Request for Information on the secure development and deployment of AI agent systems, described as systems capable of planning and taking autonomous actions that impact real-world systems or environments, and framed the risks as models interacting with adversarial data such as indirect prompt injection, the use of insecure models such as those subject to data poisoning, and models that take actions harming security even without adversarial inputs, such as specification gaming or misaligned objectives. The RFI asks about threats unique to agent systems, methods for improving security during development and deployment, gaps in existing cybersecurity approaches, methods for measuring security, and deployment-environment interventions including methods to constrain and monitor the extent of agent access; comments closed on March 9, 2026 under docket NIST-2025-0035 and will inform voluntary guidelines and best practices as well as CAISI's research and evaluations of agent security.",
+  "failure_sources": [
+    "manipulation",
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "constrain",
+    "observe",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s4_1",
+    "s5_2",
+    "s9_2"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "narasimha2026containing",
+    "shi2025progent",
+    "dehghantanha2026sok",
+    "boisvert2025doomarena"
+  ],
+  "tags": [
+    "standards",
+    "agent security",
+    "prompt injection",
+    "data poisoning",
+    "voluntary guidelines"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live NIST page). Page dated January 12, 2026 ('Released January 12, 2026'); headline 'CAISI Issues Request for Information About Securing AI Agent Systems'; publisher the Center for AI Standards and Innovation at the U.S. Department of Commerce's NIST. The named risks (indirect prompt injection, data poisoning, specification gaming or misaligned objectives), the deployment-environment question on constraining and monitoring the extent of agent access, the March 9, 2026 11:59 PM Eastern comment deadline, docket NIST-2025-0035 and the use of comments for voluntary guidelines and CAISI evaluations are confirmed from the page body. The candidate's '8 January 2026' Federal Register date is not on the page (it only links public-inspection document 2026-00206), so it was dropped from the summary.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

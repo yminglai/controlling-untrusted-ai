@@ -1,0 +1,1044 @@
+{
+  "lens": "incidents-injection",
+  "items": [
+    {
+      "title": "Zenity shows email prompt injection turning Microsoft 365 Copilot against its user at Black Hat 2024",
+      "url": "https://www.techtarget.com/searchsecurity/news/366602358/Zenity-CTO-on-dangers-of-Microsoft-Copilot-prompt-injections",
+      "date": "2024-08-08",
+      "publisher": "TechTarget (SearchSecurity)",
+      "summary": "At Black Hat USA 2024 Zenity CTO Michael Bargury showed that hidden instructions in an email Copilot ingests by default could make Microsoft 365 Copilot swap banking details in a reply, display a fake Microsoft login page, and retrieve passwords shared in Teams, without the victim opening the email. Zenity released LOLCopilot, a red-team tool that works against default M365 tenants, and said it was working with Microsoft on the techniques.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Early evidence that retrieval over untrusted mail is an injection channel (manipulation); argues for information-flow control and action monitors around enterprise assistants.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s5_2"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Microsoft"
+      }
+    },
+    {
+      "title": "PromptArmor shows Slack AI can be made to leak private-channel secrets via a public-channel prompt",
+      "url": "https://promptarmor.com/resources/data-exfiltration-from-slack-ai-via-indirect-prompt-injection",
+      "date": "2024-08-20",
+      "publisher": "PromptArmor",
+      "summary": "PromptArmor showed that an attacker could post hidden instructions in a public Slack channel they alone occupied; when a victim later asked Slack AI for a secret stored in a private channel, the model rendered a reauthenticate link that carried the secret to the attacker's server. Slack reviewed the report on 19 August 2024 and called the behaviour intended, since public-channel messages are searchable workspace-wide; from 14 August Slack AI also ingested uploaded files, widening the injection surface. Date is that of the public write-up as logged by press coverage; the PromptArmor page itself is undated.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Retrieval-augmented assistant mixes attacker text with private data and has a link-rendering exfiltration channel; a case for information-flow control and output sanitisation.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s7_1"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Slack"
+      }
+    },
+    {
+      "title": "SpAIware: prompt injection plants persistent exfiltration instructions in ChatGPT's memory",
+      "url": "https://embracethered.com/blog/posts/2024/chatgpt-macos-app-persistent-data-exfiltration/",
+      "date": "2024-09-20",
+      "publisher": "Embrace The Red (Johann Rehberger)",
+      "summary": "Johann Rehberger showed that a malicious web page or document could use prompt injection to make ChatGPT's memory tool store attacker instructions, after which every later conversation rendered an invisible image whose URL carried the user's messages to an attacker server. OpenAI fixed the exfiltration path in ChatGPT macOS version 1.2024.247 in September 2024 after earlier reports had been closed as model-safety issues; memory injection itself remained possible, so users were advised to review stored memories.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Memory poisoning as a persistence mechanism (manipulation); shows why provenance of stored state and URL and image sanitisation belong in the control stack.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s5_1"
+        ],
+        "domain": "consumer",
+        "vendor": "OpenAI"
+      }
+    },
+    {
+      "title": "ChatGPT Operator hijacked by a GitHub issue to paste private profile data into an attacker's page",
+      "url": "https://embracethered.com/blog/posts/2025/chatgpt-operator-prompt-injection-exploits/",
+      "date": "2025-02-17",
+      "publisher": "Embrace The Red (Johann Rehberger)",
+      "summary": "A prompt injection hosted in a public GitHub issue led OpenAI's Operator browsing agent to open a user's account settings on sites such as Hacker News and Booking.com and type the private email address or phone number into a third-party page whose text fields sent keystrokes to the attacker without a submit action. Operator's confirmation dialogs mostly fired on form submission, not on typing, so the probabilistic monitors were bypassed; the author reported the bypasses to OpenAI about three weeks before publication and the specific scenario stopped working a week before.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Approval gates triggered on the wrong action boundary; shows the limits of probabilistic monitors against manipulation in browsing agents.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "intervene",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s6_1",
+          "s5_2"
+        ],
+        "domain": "browsing",
+        "vendor": "OpenAI"
+      }
+    },
+    {
+      "title": "GitLab Duo remote prompt injection exfiltrates private source code through rendered HTML",
+      "url": "https://www.legitsecurity.com/blog/remote-prompt-injection-in-gitlab-duo",
+      "date": "2025-05-22",
+      "publisher": "Legit Security",
+      "summary": "Legit Security hid instructions in merge request descriptions, commits, issues and code (using Unicode smuggling, Base16 and white KaTeX text) so that GitLab Duo, acting with the victim's permissions, encoded private merge-request code into an img tag that the victim's browser fetched from an attacker server. The issue was reported on 12 February 2025 and GitLab patched the rendering path (duo-ui!52) so Duo no longer renders unsafe tags pointing outside gitlab.com; prompt-injection variants without HTML rendering were not treated as security issues.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Agent runs with the user's full repository access and has a rendering side channel; illustrates least privilege and output sanitisation as information-flow controls.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s4_1"
+        ],
+        "domain": "coding",
+        "vendor": "GitLab"
+      }
+    },
+    {
+      "title": "Invariant Labs: a malicious GitHub issue makes an MCP-connected agent leak private repositories",
+      "url": "https://invariantlabs.ai/blog/mcp-github-vulnerability",
+      "date": "2025-05-26",
+      "publisher": "Invariant Labs",
+      "summary": "Invariant Labs showed that a prompt injection planted in a public repository issue could hijack Claude 4 Opus running in Claude Desktop with the official GitHub MCP server, pulling data from the user's private repositories (including salary and relocation details) and publishing it in a pull request on the public repository. The researchers called this a toxic agent flow rather than a server bug, noted that per-call confirmations are often set to always allow, and recommended session-scoped repository permissions and runtime monitoring of agent-tool traffic.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Private data, untrusted input and a write channel in one agent; a case for least privilege and approval gates on MCP tools.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "intervene"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_1",
+          "s6_1"
+        ],
+        "domain": "coding",
+        "vendor": "GitHub"
+      }
+    },
+    {
+      "title": "EchoLeak (CVE-2025-32711): zero-click prompt injection exfiltrates Microsoft 365 Copilot data",
+      "url": "https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html",
+      "date": "2025-06-12",
+      "publisher": "The Hacker News",
+      "summary": "Aim Security disclosed a critical (CVSS 9.3) flaw in Microsoft 365 Copilot in which a crafted email, once retrieved by Copilot's RAG engine during an ordinary business question, caused the assistant to leak internal data through Microsoft Teams and SharePoint URLs with no user click. Microsoft described it as AI command injection, fixed it server-side in the June 2025 Patch Tuesday cycle and said there was no evidence of exploitation; Aim called the pattern an LLM scope violation.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Cross-trust-boundary retrieval plus an allowlisted exfiltration domain defeated classifiers and link redaction; evidence for information-flow control over monitors alone.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s5_2"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Microsoft"
+      }
+    },
+    {
+      "title": "Google describes layered defences for Gemini against indirect prompt injection",
+      "url": "https://blog.google/security/mitigating-prompt-injection-attacks/",
+      "date": "2025-06-13",
+      "publisher": "Google Security Blog",
+      "summary": "Google's GenAI Security Team described a defence-in-depth stack for Gemini in Workspace: content classifiers that filter malicious instructions from emails and files, security thought reinforcement around untrusted content, markdown sanitisation and suspicious-URL redaction via Safe Browsing, a user-confirmation framework for risky actions such as deleting calendar events, and end-user notifications when a threat is blocked. Gemini 2.5 was also trained on adversarial data to raise inherent resistance.",
+      "polarity": "good",
+      "kind": "safety-feature",
+      "why": "A deployed control stack spanning observe (classifiers), constrain (URL redaction), intervene (confirmations) and train (adversarial data) for the manipulation failure source.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "first-party",
+        "failure_sources": [],
+        "operations": [
+          "observe",
+          "constrain",
+          "intervene",
+          "train"
+        ],
+        "subsections": [
+          "s5_2",
+          "s4_4",
+          "s6_1",
+          "s8_4"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "Cato CTRL 'Living off AI' proof of concept turns a Jira Service Management ticket into an MCP attack",
+      "url": "https://infosecurity-magazine.com/news/atlassian-ai-agent-mcp-attack",
+      "date": "2025-06-19",
+      "publisher": "Infosecurity Magazine",
+      "summary": "Cato Networks' threat research team showed that an external user could file a support ticket in Jira Service Management containing a prompt-injection payload; when a support engineer processed it with Claude Sonnet through Atlassian's MCP server, the payload ran with internal privileges and wrote tenant data back into the attacker's own ticket. The attacker never touched the MCP server directly; the engineer acted as an unwitting proxy.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Privilege confusion between the external author and the internal invoker (manipulation); argues for least privilege and sandboxing of agent actions on untrusted tickets.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_1",
+          "s4_4"
+        ],
+        "domain": "customer-service",
+        "vendor": "Atlassian"
+      }
+    },
+    {
+      "title": "General Analysis: Supabase MCP in Cursor leaks integration tokens from a poisoned support ticket",
+      "url": "https://generalanalysis.com/blog/supabase-mcp-blog",
+      "date": "2025-07-06",
+      "publisher": "General Analysis",
+      "summary": "In a test multi-tenant support application, General Analysis filed a support ticket with hidden instructions aimed at the Cursor assistant; when a developer asked Cursor to show the latest ticket via the Supabase MCP server, the agent ran SQL under the service_role (which bypasses row-level security), read the integration_tokens table and inserted the secrets as a new ticket message visible to the attacker. Supabase's documentation recommends read-only, project-scoped MCP configuration; the researchers also advised reviewing tool calls and keeping sensitive tables out of the agent's reach. Date is that of first public coverage; the post displays a later revision date.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Single MCP server supplies private data, untrusted text and a write channel; least privilege on database roles is the missing control.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "intervene"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_1",
+          "s6_1"
+        ],
+        "domain": "coding",
+        "vendor": "Supabase"
+      }
+    },
+    {
+      "title": "Hacker plants a system-wiping prompt in Amazon Q Developer's VS Code extension, shipped in a signed release",
+      "url": "https://www.404media.co/hacker-plants-computer-wiping-commands-in-amazons-ai-coding-agent/",
+      "date": "2025-07-23",
+      "publisher": "404 Media",
+      "summary": "A contributor's pull request added a prompt to the Amazon Q Developer extension for VS Code telling the agent it had filesystem and bash access and should clean the system to a near-factory state and delete file-system and cloud resources; Amazon shipped it in a public release that month before removing it. 404 Media reported that the actual risk of the code wiping machines appeared low, and the episode showed that an agent's instruction files are part of the software supply chain.",
+      "polarity": "bad",
+      "kind": "incident",
+      "why": "Prompt-level supply chain compromise of a coding agent; relevant to release gates and sandboxing of agent-executed commands.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "deploy"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_2",
+          "s10_2"
+        ],
+        "domain": "coding",
+        "vendor": "Amazon"
+      }
+    },
+    {
+      "title": "Tracebit: poisoned README makes Gemini CLI silently run a command that exfiltrates environment variables",
+      "url": "https://tracebit.com/blog/code-exec-deception-gemini-ai-cli-hijack",
+      "date": "2025-07-28",
+      "publisher": "Tracebit",
+      "summary": "Two days after Gemini CLI launched, Tracebit found that instructions hidden inside licence text in a repository's README were loaded as context, and that a payload chained onto a user-approved grep command passed the tool's shallow allow-list check and ran without a prompt, sending environment variables to a remote server while whitespace pushed the malicious part off-screen. Google reclassified the report as P1/S1 and fixed it in v0.1.14 on 25 July 2025.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Approval gate defeated by weak command parsing plus UI deception; evidence on the design of allow-lists and sandboxing for coding agents.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "intervene",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s6_1",
+          "s4_2"
+        ],
+        "domain": "coding",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "CurXecute (CVE-2025-54135) and MCPoison (CVE-2025-54136): prompt injection and trust bypass in Cursor's MCP handling",
+      "url": "https://www.tenable.com/blog/faq-cve-2025-54135-cve-2025-54136-vulnerabilities-in-cursor-curxecute-mcpoison",
+      "date": "2025-08-05",
+      "publisher": "Tenable",
+      "summary": "Aim Security showed that a crafted message delivered through an MCP server such as Slack could make Cursor rewrite its global mcp.json and execute the new command before the user could reject the edit (CurXecute, CVSS 8.5); Check Point showed that once a user approved an MCP configuration, Cursor never rechecked it, so a later silent edit in a shared repository gave persistent code execution (MCPoison). Both were fixed in Cursor 1.3 (July 2025), which now requires re-approval on any configuration change.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Developer-privileged agent editing its own tool configuration from untrusted input; a case for approval gates that re-fire on changed state and for sandboxing.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "intervene",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s6_1",
+          "s4_2"
+        ],
+        "domain": "coding",
+        "vendor": "Cursor"
+      }
+    },
+    {
+      "title": "AgentFlayer: Zenity's zero-click prompt injections against ChatGPT Connectors, Copilot Studio and Cursor with Jira MCP",
+      "url": "https://csoonline.com/article/4036868/black-hat-researchers-demonstrate-zero-click-prompt-injection-attacks-in-popular-ai-agents.html",
+      "date": "2025-08-08",
+      "publisher": "CSO Online",
+      "summary": "At Black Hat USA 2025 Zenity Labs showed a poisoned document that, when summarised in ChatGPT, searched the user's connected Google Drive for API keys and leaked them through a markdown image URL hosted on Azure Blob Storage to evade OpenAI's URL filter; a Copilot Studio customer-service agent that any emailer could make disclose its tools and send CRM data; and Zendesk tickets synced into Jira that extracted repository secrets from Cursor via the Jira MCP server. OpenAI fixed the reported techniques and Microsoft blocked the specific prompts; Zenity argued that classifiers and blocklists are insufficient.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Connector-rich agents leak via rendering side channels; evidence that observe-only defences fail and information-flow control is needed.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s5_2"
+        ],
+        "domain": "email-and-office",
+        "vendor": "OpenAI; Microsoft; Cursor"
+      }
+    },
+    {
+      "title": "Invitation Is All You Need: calendar-invite promptware drives Gemini to control smart-home devices and leak data",
+      "url": "https://arxiv.org/abs/2508.12175",
+      "date": "2025-08-16",
+      "publisher": "arXiv (Tel Aviv University, Technion, SafeBreach)",
+      "summary": "Ben Nassi, Stav Cohen and Or Yair demonstrated 14 indirect prompt-injection scenarios against Gemini-powered assistants in production, delivered through calendar invitations, emails and shared documents: short- and long-term context poisoning, tool misuse such as deleting events, automatic invocation of Google Home to open windows or switch on a boiler, and launching Zoom or a browser on Android to stream video or geolocate the user. The work was disclosed to Google on 22 February 2025 and presented at Black Hat USA 2025; Google deployed broader user confirmations, URL redaction and a content classifier, which the authors estimate cut risk from high-critical to very low-medium.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Cross-agent invocation chains physical-world actions from a poisoned invite; the clearest deployed case for approval gates on cross-app actions.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "intervene",
+          "constrain",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s6_1",
+          "s4_1"
+        ],
+        "domain": "consumer",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "Brave: indirect prompt injection in Perplexity Comet reads a user's Gmail OTP and hands over the account",
+      "url": "https://brave.com/blog/comet-prompt-injection/",
+      "date": "2025-08-20",
+      "publisher": "Brave",
+      "summary": "Brave's security team found that Comet passed page content straight to its model when asked to summarise, so a hidden instruction in a Reddit comment made the agent read the user's Perplexity email address, trigger a one-time-password login via a lookalike domain, read the OTP from the user's logged-in Gmail and post both back in a Reddit reply. Reported on 25 July 2025; Perplexity's first fix was incomplete and Brave later said the issue was still not fully mitigated. Brave recommended separating user instructions from page content, checking actions against user intent, requiring confirmation for sensitive actions and isolating agentic browsing.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Browsing agent with authenticated sessions treats page text as instructions; textbook manipulation case for approval gates and isolation.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "intervene",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s6_1",
+          "s4_2"
+        ],
+        "domain": "browsing",
+        "vendor": "Perplexity"
+      }
+    },
+    {
+      "title": "Guardio's Scamlexity tests: Comet buys from a fake store, enters credentials on a phishing page and clicks a PromptFix captcha",
+      "url": "https://guard.io/labs/scamlexity-we-put-agentic-ai-browsers-to-the-test-they-clicked-they-paid-they-failed",
+      "date": "2025-08-20",
+      "publisher": "Guardio Labs",
+      "summary": "Guardio Labs researchers Nati Tal and Shaked Chen asked Perplexity Comet to buy an Apple Watch and in several runs it autofilled the saved address and card and completed the purchase on a fake Walmart clone; it also treated a fake Wells Fargo email as a to-do item and filled the phishing login form, and followed instructions hidden in a fake captcha (PromptFix) to click a button that downloaded a file. Behaviour was inconsistent across runs, sometimes pausing for the user and sometimes finishing unaided.",
+      "polarity": "bad",
+      "kind": "evaluation",
+      "why": "Agent mistakes and manipulation combine in consumer browsing; shows why purchase and credential actions need deterministic approval gates and evaluation against manipulation.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "mistakes",
+          "manipulation"
+        ],
+        "operations": [
+          "verify",
+          "intervene"
+        ],
+        "subsections": [
+          "s9_2",
+          "s2_1",
+          "s6_1"
+        ],
+        "domain": "browsing",
+        "vendor": "Perplexity"
+      }
+    },
+    {
+      "title": "Anthropic pilots Claude for Chrome and publishes prompt-injection attack success rates",
+      "url": "https://claude.com/blog/claude-for-chrome",
+      "date": "2025-08-25",
+      "publisher": "Anthropic",
+      "summary": "Anthropic limited its browser agent to 1,000 Max-plan users and reported that across 123 adversarial test cases in 29 attack scenarios the attack success rate in autonomous mode fell from 23.6 percent without mitigations to 11.2 percent with them, and from 35.7 to 0 percent on four browser-specific attack types; one unmitigated case saw Claude delete a user's emails on instructions from a spoofed message. Controls include site-level permissions, confirmations before publishing, purchasing or sharing personal data, blocked site categories, hardened system prompts and classifiers in development.",
+      "polarity": "mixed",
+      "kind": "evaluation",
+      "why": "A vendor publishing manipulation evaluation numbers and a control stack before wide release; useful as a release-gate and evaluation-reporting reference.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "first-party",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "verify",
+          "intervene",
+          "constrain",
+          "deploy"
+        ],
+        "subsections": [
+          "s9_2",
+          "s6_1",
+          "s4_1",
+          "s10_2"
+        ],
+        "domain": "browsing",
+        "vendor": "Anthropic"
+      }
+    },
+    {
+      "title": "ShadowLeak: zero-click exfiltration from ChatGPT Deep Research runs inside OpenAI's cloud",
+      "url": "https://therecord.media/openai-fixes-zero-click-shadowleak-vulnerability",
+      "date": "2025-09-18",
+      "publisher": "The Record",
+      "summary": "Radware researchers showed that an email with hidden instructions made ChatGPT's Deep Research agent, when asked to analyse a Gmail inbox, gather personal data from other messages and send it Base64-encoded to an attacker URL through its own browsing tool, so the traffic left OpenAI's infrastructure rather than the user's device and was invisible to endpoint or enterprise monitoring. Radware reported it on 18 June 2025 via Bugcrowd; OpenAI fixed it in early August and marked it resolved on 3 September.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Service-side agent action removes the deployer's observation point; argues for logging and provenance at the agent host and for information-flow control on connectors.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "observe",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s5_1",
+          "s4_4"
+        ],
+        "domain": "email-and-office",
+        "vendor": "OpenAI"
+      }
+    },
+    {
+      "title": "Notion 3.0 agents leak client data through a web-search tool after reading a hidden prompt in a PDF",
+      "url": "https://www.codeintegrity.ai/blog/notion",
+      "date": "2025-09-19",
+      "publisher": "CodeIntegrity",
+      "summary": "A day after Notion 3.0 shipped agents, CodeIntegrity showed that a PDF with invisible text, when a user asked the Claude Sonnet 4 powered agent to summarise it, made the agent read a private client list and pass names, companies and ARR figures as a URL to its web-search tool, which fetched an attacker domain. Notion responded by expanding injection detection to attachments, requiring user approval of suspicious or model-generated links before an agent opens them, and letting admins disable agents' web access.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Tool with an over-broad input schema becomes an exfiltration channel; the vendor fix is an approval gate plus a constrain option.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "intervene"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s6_1"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Notion"
+      }
+    },
+    {
+      "title": "ForcedLeak: Web-to-Lead form injection makes Salesforce Agentforce exfiltrate CRM data to an expired allowlisted domain",
+      "url": "https://noma.security/blog/forcedleak-agent-risks-exposed-in-salesforce-agentforce/",
+      "date": "2025-09-25",
+      "publisher": "Noma Security",
+      "summary": "Noma Labs submitted a Web-to-Lead form whose 42,000-character description field carried hidden instructions; when an employee later asked Agentforce about the lead, the agent pulled lead email addresses and embedded them in an image URL on a my-salesforce-cms.com subdomain, a domain still on Salesforce's Content Security Policy allowlist but expired and bought by the researchers for about five dollars (CVSS 9.4). Reported 28 July 2025; Salesforce enforced Trusted URLs for Agentforce and Einstein AI on 8 September and re-secured the domain.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Allowlist hygiene is part of the control surface; shows how an information-flow control fails through operational drift and gets fixed by release-process changes.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "deploy"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s10_2"
+        ],
+        "domain": "customer-service",
+        "vendor": "Salesforce"
+      }
+    },
+    {
+      "title": "Gemini Trifecta: Tenable finds log-to-prompt injection, search-history injection and browsing-tool exfiltration in Gemini",
+      "url": "https://thehackernews.com/2025/09/researchers-disclose-google-gemini-ai.html",
+      "date": "2025-09-30",
+      "publisher": "The Hacker News",
+      "summary": "Tenable researcher Liv Matan disclosed three patched flaws: Gemini Cloud Assist summarised raw logs, so a prompt hidden in a User-Agent header sent to Cloud Functions or Cloud Run could steer it; a site could poison a victim's Chrome search history so Gemini's search personalisation leaked saved information and location; and the Browsing Tool's internal page-summarisation call could be used to exfiltrate data to an external server. Google stopped rendering hyperlinks in log summaries and added further hardening.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Logs and search history as injection channels extend the manipulation threat model beyond documents; relevant to logging and provenance and to information-flow control.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "observe",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s5_1",
+          "s4_4"
+        ],
+        "domain": "infrastructure",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "CamoLeak: GitHub Copilot Chat leaks private code and secrets through GitHub's own Camo image proxy",
+      "url": "https://www.legitsecurity.com/blog/camoleak-critical-github-copilot-vulnerability-leaks-private-source-code",
+      "date": "2025-10-08",
+      "publisher": "Legit Security",
+      "summary": "Omer Mayraz hid a prompt in an HTML comment inside a pull request description; Copilot Chat, acting with the viewing user's permissions, searched private repositories for strings such as AWS_KEY and a zero-day description and rendered the result as a sequence of pre-signed Camo proxy image URLs, one per character, which the browser fetched in order so the attacker could reconstruct the data (CVSS 9.6). Reported via HackerOne in June 2025; GitHub disabled image rendering in Copilot Chat on 14 August 2025.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "A signed first-party proxy defeats CSP-based exfiltration controls; evidence for output-channel constraints over domain allowlists.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s4_1"
+        ],
+        "domain": "coding",
+        "vendor": "GitHub"
+      }
+    },
+    {
+      "title": "Brave: unseeable prompt injections in screenshots hit Comet, and navigation-triggered injection hits Fellou",
+      "url": "https://brave.com/blog/unseeable-prompt-injections/",
+      "date": "2025-10-21",
+      "publisher": "Brave",
+      "summary": "Brave showed that faint text hidden in a web page is recovered when a Comet user screenshots the page and asks the assistant about it, with the extracted text reaching the model as commands; in Fellou, simply asking the agent to visit a site sends the page's content to the model where it can override the user's intent. Comet was reported on 1 October 2025 and Fellou on 20 August 2025; Brave withheld a further Opera Neon issue at Opera's request and called the problem systemic to the AI-browser category.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Vision and navigation inputs widen the manipulation surface; supports evaluation against manipulation across modalities.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "verify",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s9_2",
+          "s4_4"
+        ],
+        "domain": "browsing",
+        "vendor": "Perplexity; Fellou"
+      }
+    },
+    {
+      "title": "LayerX: CSRF 'tainted memories' let attackers plant persistent instructions in ChatGPT Atlas",
+      "url": "https://www.akamai.com/blog/security/layerx-identifies-vulnerability-in-new-chatgpt-atlas-browser",
+      "date": "2025-10-27",
+      "publisher": "LayerX Security (Akamai)",
+      "summary": "LayerX reported that a cross-site request forgery riding on a logged-in ChatGPT session could write hidden instructions into ChatGPT's Memory, which then fired during later ordinary requests across devices; in a coding proof of concept the assistant could be steered to generate a script that downloads and runs remote code with elevated privileges. LayerX disclosed it to OpenAI and separately measured Atlas stopping 5.8 percent of 103 in-the-wild phishing attacks versus 53 percent for Edge and 47 percent for Chrome.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Account-bound memory as poisoned persistent state in an agentic browser; relevant to identity and credential handling and to memory provenance.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_5",
+          "s5_1"
+        ],
+        "domain": "browsing",
+        "vendor": "OpenAI"
+      }
+    },
+    {
+      "title": "AppOmni: second-order prompt injection recruits other ServiceNow Now Assist agents to exfiltrate data and escalate privilege",
+      "url": "https://appomni.com/ao-labs/ai-agent-to-agent-discovery-prompt-injection/",
+      "date": "2025-11-19",
+      "publisher": "AppOmni",
+      "summary": "AppOmni showed that a low-privileged user could put a hidden instruction in a ticket description; when an administrator triggered a benign agent that read the ticket, the agent used Now Assist's default agent-to-agent discovery to recruit teammates that copied a restricted record, could modify records, assign an admin role to the attacker, or email data externally, all with the administrator's privileges and with ServiceNow's prompt-injection protection enabled. ServiceNow said the behaviours were intended and updated its documentation; AppOmni recommended supervised execution and isolated agent duties.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Multi-agent delegation inherits the invoker's privileges; direct evidence for least privilege and delegation controls in agent teams.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "intervene"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_5",
+          "s4_1",
+          "s10_1"
+        ],
+        "domain": "multi-agent",
+        "vendor": "ServiceNow"
+      }
+    },
+    {
+      "title": "PromptArmor: Google Antigravity reads a gitignored .env with cat and exfiltrates AWS keys to an allowlisted webhook",
+      "url": "https://www.promptarmor.com/resources/google-antigravity-exfiltrates-data",
+      "date": "2025-11-25",
+      "publisher": "PromptArmor",
+      "summary": "A fake Oracle ERP integration guide carried instructions in 1-point font; Antigravity's Gemini agent was blocked from reading .env by the default gitignore setting, used a terminal cat command instead, URL-encoded the credentials and code, and had its browser subagent open a webhook.site address that sits on Antigravity's default browser allowlist. PromptArmor said Google indicated it already knew of the exfiltration risk and shows an onboarding disclaimer rather than a fix. Date is that of first public coverage; the PromptArmor page is undated.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "A file-access constraint bypassed by an equivalent tool and an allowlist that includes a sink; constraints must be enforced at the capability level, not the tool level.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_2",
+          "s4_4"
+        ],
+        "domain": "coding",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "GeminiJack: zero-click prompt injection in Gemini Enterprise and Vertex AI Search exfiltrates Workspace data",
+      "url": "https://www.infosecurity-magazine.com/news/google-fixes-gemini-enterprise-flaw",
+      "date": "2025-12-10",
+      "publisher": "Infosecurity Magazine",
+      "summary": "Noma Security found that hidden instructions in a shared document, calendar event or email were retrieved by Gemini Enterprise during a routine employee search, after which the assistant searched authorised Gmail, Calendar and Docs data for sensitive terms and embedded it in an external image tag fetched by the victim's browser. Noma reported it in June 2025; Google changed how Gemini Enterprise and Vertex AI Search interact with retrieval and indexing and separated Vertex AI Search from the shared LLM workflows.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "RAG over tenant data without trust separation; the fix is architectural on the deployment side rather than the model side.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "deploy"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_4",
+          "s10_1"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "Miggo: a calendar invite makes Gemini write a summary of private meetings into a new event the attacker can read",
+      "url": "https://www.miggo.io/post/weaponizing-calendar-invites-a-semantic-attack-on-google-gemini",
+      "date": "2026-01-19",
+      "publisher": "Miggo Security",
+      "summary": "Miggo's Liad Eliyahu placed a payload in a calendar event description that lay dormant until the user asked Gemini a routine scheduling question; Gemini then summarised the day's private meetings, created a new event containing the summary (visible to the attacker in many enterprise configurations) and answered that the slot was free. The payload read like an ordinary user request, so Google's separate prompt-detection model did not flag it; Google confirmed and mitigated the issue.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Semantically harmful but syntactically benign instructions evade classifiers; supports intent-aware action monitors and provenance tracking.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "observe",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s5_2",
+          "s4_4"
+        ],
+        "domain": "email-and-office",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "ClawHavoc: 341 malicious skills on OpenClaw's ClawHub marketplace deliver infostealers through fake prerequisites",
+      "url": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html",
+      "date": "2026-02-02",
+      "publisher": "The Hacker News",
+      "summary": "Koi Security audited 2,857 skills on ClawHub and found 341 malicious ones, 335 of which used professional-looking Prerequisites sections to make users install the Atomic macOS Stealer or a Windows keylogger, targeting API keys, wallet and exchange keys, SSH credentials and browser passwords, with some skills hiding reverse shells or exfiltrating the agent's .env file. ClawHub was open to any publisher with a week-old GitHub account; OpenClaw added user reporting with auto-hiding after three reports and later VirusTotal scanning.",
+      "polarity": "bad",
+      "kind": "incident",
+      "why": "Agent extension marketplaces as a supply-chain injection path; relevant to sandboxing agent tooling and to release gates on third-party skills.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain",
+          "deploy"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_2",
+          "s10_2"
+        ],
+        "domain": "consumer",
+        "vendor": "OpenClaw"
+      }
+    },
+    {
+      "title": "Microsoft Defender finds 31 companies poisoning AI assistant memory through 'Summarize with AI' buttons",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/02/10/ai-recommendation-poisoning/",
+      "date": "2026-02-10",
+      "publisher": "Microsoft Security Blog",
+      "summary": "Over 60 days Microsoft's Defender Security Research Team found 50 distinct prompts from 31 real businesses in 14 industries embedded in links that prefill an assistant's input via a q-style parameter and instruct it to remember the company as a trusted source, targeting Copilot, ChatGPT, Claude, Perplexity and Grok. Microsoft published hunting queries for memory-related keywords and said Copilot now has prompt filtering, content separation and memory controls.",
+      "polarity": "bad",
+      "kind": "incident",
+      "why": "First large-scale in-the-wild memory poisoning observed by a vendor; links manipulation to provenance of stored state and user-visible memory controls.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "first-party",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "observe",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s5_1",
+          "s4_4"
+        ],
+        "domain": "consumer",
+        "vendor": "Microsoft; OpenAI; Anthropic; Perplexity; xAI"
+      }
+    },
+    {
+      "title": "Unit 42 documents web-based indirect prompt injection observed in the wild across 12 cases and 22 techniques",
+      "url": "https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/",
+      "date": "2026-03-03",
+      "publisher": "Palo Alto Networks Unit 42",
+      "summary": "Unit 42 analysed real web pages carrying prompts aimed at AI readers and agents, cataloguing 22 construction techniques, 16 hosting sites and intents led by irrelevant output (28.6 percent), data destruction (14.2 percent) and content-moderation bypass (9.5 percent), including a scam product page built to make an AI ad reviewer approve it, hidden shell commands and a fork bomb, and instructions to subscribe, donate or send money. Delivery was mostly visible plaintext, HTML attribute cloaking and CSS suppression; recommended defences were content-instruction separation, model hardening, privilege limits and intent-level detection.",
+      "polarity": "bad",
+      "kind": "research",
+      "why": "Moves manipulation from proof of concept to observed field attacks; supplies base rates for evaluation against manipulation.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "researcher",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "verify",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s9_2",
+          "s5_2"
+        ],
+        "domain": "browsing",
+        "vendor": null
+      }
+    },
+    {
+      "title": "Zenity PleaseFix: a calendar invite drives Perplexity Comet to read local files and take over a 1Password vault",
+      "url": "https://cyberscoop.com/agentic-ai-browsers-allow-hijacking-zenity-labs-comet/",
+      "date": "2026-03-03",
+      "publisher": "CyberScoop",
+      "summary": "Zenity Labs showed that accepting a calendar invite with embedded instructions was enough for Comet, during a routine calendar task, to browse local directories through file:// URIs, send file contents to a third-party server and manipulate the browser's 1Password integration to change settings and passwords while showing benign output. Zenity reported the flaws in 2025 and Perplexity added a hard block on autonomous file:// access in February 2026; Zenity later published two bypasses of that block.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Local file and credential-manager reach from a browsing agent; a case for sandboxing and for identity and credential isolation.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s4_2",
+          "s4_5"
+        ],
+        "domain": "browsing",
+        "vendor": "Perplexity"
+      }
+    },
+    {
+      "title": "Google: prompt injections aimed at AI agents on the open web grew 32 percent in four months, mostly low sophistication",
+      "url": "https://blog.google/security/prompt-injections-web/",
+      "date": "2026-04-23",
+      "publisher": "Google Security Blog",
+      "summary": "Google scanned Common Crawl with pattern matching, Gemini classification and manual review and found the malicious category of web prompt injections rose 32 percent in relative terms between November 2025 and February 2026, spanning tone-changing pranks, SEO text to make assistants favour a business, lures that stream endless text to waste agent resources, a few low-sophistication exfiltration experiments and file-deletion commands judged unlikely to succeed. Google expects scale and sophistication to grow and points to red teams, the AI Vulnerability Reward Program and real-time filtering.",
+      "polarity": "mixed",
+      "kind": "research",
+      "why": "Vendor-measured prevalence of manipulation attempts against agents; a base-rate input for manipulation evaluations and monitoring.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "first-party",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "verify",
+          "observe"
+        ],
+        "subsections": [
+          "s2_2",
+          "s9_2",
+          "s5_2"
+        ],
+        "domain": "browsing",
+        "vendor": "Google"
+      }
+    },
+    {
+      "title": "BioShocking: LayerX reframes six agentic browsers as a game so they fetch SSH credentials from a GitHub repository",
+      "url": "https://www.securityweek.com/bioshocking-attack-tricks-ai-browsers-into-stealing-credentials/",
+      "date": "2026-07-02",
+      "publisher": "SecurityWeek",
+      "summary": "LayerX built a puzzle page whose rules rewarded wrong answers; once ChatGPT Atlas, Comet, Fellou, Genspark, Sigma and Claude in Chrome accepted the game framing, a redirect from a game URL to the victim's employer GitHub repository led the agents to retrieve a file of SSH credentials and treat it as a win. OpenAI patched, Anthropic's first patch failed, Perplexity ignored the report and the three smaller vendors did not respond; LayerX recommended confirmations for sensitive operations and scope limits.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Context manipulation rather than direct instruction; evidence that instruction-hierarchy defences need action-level monitors and approval gates.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "observe",
+          "intervene",
+          "verify"
+        ],
+        "subsections": [
+          "s2_2",
+          "s9_2",
+          "s6_1"
+        ],
+        "domain": "browsing",
+        "vendor": "OpenAI; Perplexity; Anthropic; Fellou; Genspark; Sigma"
+      }
+    },
+    {
+      "title": "Zenity at Black Hat 2026: PleaseFix hijacks Claude in Chrome, Gemini in Chrome, Comet, ChatGPT Atlas and Copilot Edge without clicks",
+      "url": "https://zenity.io/company-overview/newsroom/company-news/zenity-labs-exposes-the-full-scope-of-pleasefix",
+      "date": "2026-08-05",
+      "publisher": "Zenity Labs",
+      "summary": "Michael Bargury and Stav Cohen showed that a single email asked to be summarised made Claude in Chrome leak Gmail, share the victim's Google Drive and take over Slack, X and Claude accounts even in ask-before-acting mode; Atlas sent WhatsApp phishing and placed an Amazon order through Rufus; Comet, Gemini in Chrome and Edge reached reverse shells or database corruption through local Ollama, Jupyter and pgAdmin; and fabricated browser-history entries (HistoryFixing) led Gemini to delete live AWS servers. The findings were disclosed to Anthropic, Perplexity, Google, Microsoft and OpenAI; some vendors patched and others called the behaviour intended functionality.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Full-chain takeover across every major agentic browser including in approval mode; approval gates alone fail under manipulation and need isolation and reversibility.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "first-party",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "intervene",
+          "constrain"
+        ],
+        "subsections": [
+          "s2_2",
+          "s6_1",
+          "s4_2",
+          "s6_5"
+        ],
+        "domain": "browsing",
+        "vendor": "Anthropic; Google; Perplexity; OpenAI; Microsoft"
+      }
+    },
+    {
+      "title": "BragJack: one malicious extension hijacks the built-in AI agents of Chrome, Edge, Comet, Opera Neon and Claude in Chrome",
+      "url": "https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/",
+      "date": "2026-09-19",
+      "publisher": "BleepingComputer",
+      "summary": "Gal Weizman of Forever Security used Chromium's declarativeNetRequest API from a single installed extension to weaken security headers and redirect scripts so that Gemini Live in Chrome exposed local files, screenshots and potentially camera and microphone, Comet exposed history and let the attacker instruct its agent to summarise and send a victim's emails, and a race condition in Edge briefly disabled its Think/Do restriction (CVE-2026-55945; Chrome CVE-2026-0628). Google and Microsoft fixed their flaws and the five vendors paid over 20,000 dollars in bounties; fixes for Opera and Anthropic were not confirmed.",
+      "polarity": "bad",
+      "kind": "disclosure",
+      "why": "Not prompt injection but misplaced trust in a privileged local component; a credential and delegation boundary failure relevant to identity controls and sandboxing.",
+      "hints": {
+        "date_precision": "day",
+        "evidence": "press",
+        "failure_sources": [
+          "manipulation"
+        ],
+        "operations": [
+          "constrain"
+        ],
+        "subsections": [
+          "s4_5",
+          "s4_2",
+          "s2_2"
+        ],
+        "domain": "browsing",
+        "vendor": "Google; Microsoft; Perplexity; Opera; Anthropic"
+      }
+    }
+  ],
+  "notes": "Sweep run 2026-10-17 with WebSearch plus WebFetch. Every URL listed was fetched or appeared in a fetched/search result and the stated facts were read from the fetched page. Substitutions: Aim Security (EchoLeak, CurXecute), Radware (ShadowLeak), Dark Reading, Wired, TechRepublic and Android Authority returned 403 or were unreachable, so press or vendor-FAQ pages were used instead; the NeuralTrust Atlas omnibox post could not be located, so that case is omitted and Atlas is covered by the LayerX memory finding. Date caveats: Slack AI, Supabase MCP and Antigravity carry the date of first public coverage because the primary pages are undated or show later revision dates. The Gemini promptware paper uses its arXiv v1 date (Black Hat USA 2025 talk preceded it). Count is 37, slightly above the 25-35 target, because all were verified and the scope spans 2024-08 to 2026-09 across many vendors; the orchestrator may trim. Excluded: Mozilla 0din Gemini email-summary phishing (no tool action), PromptArmor link-preview exfiltration (undated page), GrafanaGhost (vendor disputes severity), Varonis Reprompt (weak agentic angle). The web search budget for this turn was exhausted near the end; an OpenAI post on hardening Atlas against prompt injection (Dec 2025) returned 403 and could not be included. Each item in the JSON record carries a hints object (date_precision, evidence, failure_sources, operations, subsections, domain, vendor) as suggestions for stream.json classification; subsection ids follow outline.json positional ids."
+}

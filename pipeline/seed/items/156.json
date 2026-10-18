@@ -1,0 +1,52 @@
+{
+  "id": "2025-01-16-nvidia-adds-content-safety-topic-control-and-jailbreak-detection-nim",
+  "date": "2025-01-16",
+  "date_precision": "day",
+  "title": "NVIDIA adds content-safety, topic-control and jailbreak-detection NIM microservices to NeMo Guardrails for agents",
+  "url": "https://blogs.nvidia.com/blog/nemo-guardrails-nim-microservices/",
+  "publisher": "NVIDIA",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 16 January 2025 NVIDIA released three NIM microservices for NeMo Guardrails, framed as safeguards for agentic AI applications: a content safety service trained on the Aegis Content Safety Dataset of over 35,000 human-annotated samples, a topic control service that keeps conversations on approved topics, and a jailbreak detection service that protects against attempts to bypass the system's restrictions. NVIDIA described them as small language models that offer lower latency, named Amdocs, Cerence AI and Lowe's as NeMo Guardrails users, and pointed to its open-source Garak toolkit for scanning LLM applications for prompt injection and jailbreak vulnerabilities.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_2",
+    "s6_2",
+    "s9_2"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "NVIDIA",
+    "deployer": "Amdocs; Cerence AI; Lowe's",
+    "model": "NeMo Guardrails NIM microservices (content safety, topic control, jailbreak detection)"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "rebedea2023nemo",
+    "ghosh2024aegis",
+    "inan2023llama",
+    "chennabasappa2025llamafirewall"
+  ],
+  "tags": [
+    "guardrails",
+    "input-output classifiers",
+    "jailbreak detection",
+    "topic control",
+    "content safety"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated January 16, 2025 and published on the NVIDIA blog under the title 'NVIDIA Releases NIM Microservices to Safeguard Applications for Agentic AI'. The three microservices (content safety, topic control, jailbreak detection), the Aegis dataset size (over 35,000 human-annotated samples), the small-language-model and lower-latency framing, the explicit AI-agent framing, the named users Amdocs, Cerence AI and Lowe's, and the Garak mention confirmed from the article body. Specific model names (Llama 3.1 NemoGuard 8B) appear only in link URLs, not in the body, so actors.model uses the collection name.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

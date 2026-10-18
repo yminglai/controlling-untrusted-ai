@@ -1,0 +1,53 @@
+{
+  "id": "2026-08-20-binance-agent-os-lets-chatgpt-claude-code-and-cursor-agents-trade",
+  "date": "2026-08-20",
+  "date_precision": "day",
+  "title": "Binance opens Agent OS so ChatGPT, Claude Code and Cursor agents can trade; limits are left to users",
+  "url": "https://techcrunch.com/2026/08/20/binance-now-lets-ai-agents-trade-but-keeping-them-in-check-is-largely-up-to-users/",
+  "publisher": "TechCrunch",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Binance launched Agent OS, which bundles its APIs, Wallet Agentic Hub, x402 payment facilitator API, Skill Hub and new Model Context Protocol support so that users can authorise agents in OpenAI's ChatGPT and Codex, Anthropic's Claude Code and Cursor to read market and account data and execute trades. Controls sit at the account level: agents run in dedicated subaccounts configured for specific activities such as spot or futures trading with withdrawals blocked by default, users choose between approval for every order and autonomous trading, the Agentic Wallet carries daily limits of $50,000 for swaps, $100,000 for DeFi transactions and $20 for x402 payments, but Binance sets no separate cap on how much an agent can trade or lose on the exchange beyond the amount funded into the subaccount, and its VP of product Jeff Li said the exchange cannot see the agent's reasoning and relies on the subaccount as the main line of defence if an agent is manipulated or compromised.",
+  "failure_sources": [],
+  "requirements": [
+    "within-budget",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s4_1",
+    "s6_1",
+    "s4_5",
+    "s5_2"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Binance",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "yin2026safety",
+    "wang2026sok",
+    "yan2026user",
+    "marino2025giving"
+  ],
+  "tags": [
+    "trading agent",
+    "least privilege",
+    "approval gate",
+    "mcp",
+    "crypto exchange"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; TechCrunch article by Jagmeet Singh, published 2026-08-20. Confirmed from the page text: Agent OS launch bundling Binance APIs, Wallet Agentic Hub, x402 facilitator API, Skill Hub and MCP support; supported platforms ChatGPT, Codex, Claude Code and Cursor; agents assigned to subaccounts scoped to activities such as spot or futures with withdrawals blocked by default; user choice between per-order approval and autonomous trading; Agentic Wallet daily limits of $50,000 swaps, $100,000 DeFi and $20 x402; no separate cap on exchange trading or losses beyond the funded subaccount; Jeff Li quoted that Binance cannot see the reasoning behind a user's action and points to the subaccount when asked about a manipulated or compromised agent. The candidate's phrase 'prompt injection' does not appear on the page; the article says 'manipulated or compromised', which the summary uses. Not a failure item, so failure_sources is empty.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

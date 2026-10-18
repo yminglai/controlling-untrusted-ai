@@ -1,0 +1,54 @@
+{
+  "id": "2025-12-04-promptpwnd-prompt-injection-through-ai-agents-in-github-actions",
+  "date": "2025-12-04",
+  "date_precision": "day",
+  "title": "PromptPwnd: prompt injection through AI agents in GitHub Actions leaks pipeline secrets",
+  "url": "https://www.aikido.dev/blog/promptpwnd-github-actions-ai-agents",
+  "publisher": "Aikido Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Aikido Security described a vulnerability class it calls PromptPwnd: GitHub Actions and GitLab CI/CD workflows that paste untrusted input such as issue text into prompts for AI agents (Gemini CLI, Claude Code, OpenAI Codex, GitHub AI Inference) while giving them shell command execution and privileged tokens. In a proof of concept against the gemini-cli repository's triage workflow, a crafted issue made the agent run gh issue edit and write GEMINI_API_KEY and GITHUB_TOKEN into the issue body; the post says at least 5 Fortune 500 companies are impacted and that Google patched within four days of responsible disclosure.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_1",
+    "s6_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google (run-gemini-cli action); also Anthropic Claude Code Actions, OpenAI Codex, GitHub AI Inference",
+    "deployer": "gemini-cli repository triage workflow; at least 5 Fortune 500 companies",
+    "model": "Gemini"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "wang2026demystifying",
+    "singh2026issuetrojanbench",
+    "sidot2026they",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "github actions",
+    "ci/cd",
+    "secret exfiltration",
+    "least privilege"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page structured data gives published Dec 04, 2025 (last updated 2026-03-17); author Rein Daelman, publisher Aikido Security. H1 is 'PromptPwnd: Prompt Injection Vulnerabilities in GitHub Actions Using AI Agents'. PoC target (gemini-cli triage workflow via run-gemini-cli), leaked secrets (GEMINI_API_KEY, GITHUB_TOKEN; GOOGLE_CLOUD_ACCESS_TOKEN also reachable), shell command tooling, 'at least 5 Fortune 500 companies' and the four-day Google patch all confirmed from the article body. PoC ran on a private fork with test credentials, so no real-world harm is reported.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

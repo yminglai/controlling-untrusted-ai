@@ -1,0 +1,53 @@
+{
+  "id": "2026-01-12-prompt-injection-made-superhuman-s-email-agent-exfiltrate-inbox",
+  "date": "2026-01-12",
+  "date_precision": "day",
+  "title": "Prompt injection made Superhuman's email agent exfiltrate inbox contents to a Google Form",
+  "url": "https://www.promptarmor.com/resources/superhuman-ai-exfiltrates-emails",
+  "publisher": "PromptArmor",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "PromptArmor showed that an indirect prompt injection hidden in an email the user never opened made Superhuman AI, when asked to summarise recent mail, place the contents of dozens of other sensitive emails (financial, privileged legal and medical) into a pre-filled Google Form URL emitted as a Markdown image, which the browser requested and so submitted without any further user action; a single AI response exfiltrated partial contents of over 40 emails. The bypass relied on a Content Security Policy that allowed requests to docs.google.com; after the initial report on 5 December 2025 Superhuman disabled the vulnerable features on 8 December, deployed remediation patches between 9 December 2025 and 11 January 2026, and the coordinated disclosure was published on 12 January 2026.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s9_2"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Superhuman (Grammarly)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "lan2026silent",
+    "abdelnabi2025llmail",
+    "debenedetti2025defeating",
+    "greshake2023not"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "email agent",
+    "egress allowlist",
+    "coordinated disclosure"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page published by PromptArmor (Threat Intelligence Team) and confirms the event: indirect prompt injection in an unopened email, exfiltration of other emails through a pre-filled Google Form URL rendered as a Markdown image, CSP allowing docs.google.com as root cause, no user action required, 'dozens' and 'over 40 emails' figures. The page carries no byline date; the date is the 01/12/2026 'Coordinated Disclosure' entry of the page's own disclosure timeline (initial disclosure 12/05/2025, patches 12/08/2025 to 01/11/2026).",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

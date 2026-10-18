@@ -1,0 +1,55 @@
+{
+  "id": "2024-08-08-microsoft-copilot-turned-into-an-automated-phishing-machine-at-black-hat-2024",
+  "date": "2024-08-08",
+  "date_precision": "day",
+  "title": "Microsoft Copilot turned into an automated phishing machine at Black Hat 2024",
+  "url": "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/microsoft-copilot-can-be-turned-into-automated-phishing-machine",
+  "publisher": "AIAAIC Repository",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "The AIAAIC Repository records that former Microsoft security architect Michael Bargury, of Zenity, demonstrated at the Black Hat USA 2024 conference that Microsoft Copilot could be exploited for automated phishing and data extraction: Copilot was made to analyse a user's communication patterns, imitate their writing style down to emoji use, and generate and send hundreds of personalised phishing emails within minutes, and specific \"magic words\" circumvented Microsoft's existing security controls on Copilot. AIAAIC files the entry as a Security issue that occurred in August 2024 (system Microsoft Copilot, developer Microsoft, operator Zenity), notes that the demonstrations were proofs of concept mirroring known techniques for manipulating large language models, and lists privacy, corporate confidentiality and financial manipulation as the harms at stake.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "verify"
+  ],
+  "subsections": [
+    "s2_2",
+    "s5_2",
+    "s4_4",
+    "s9_2"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Microsoft (Copilot)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "greshake2023not",
+    "abdelnabi2025llmail",
+    "hackett2025bypassing",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "phishing",
+    "enterprise assistant",
+    "data exfiltration",
+    "red team"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIAAIC page fetched 2026-10-17 (WebFetch returned only the Google Sites navigation; the raw HTML was downloaded with curl, HTTP 200, and the entry body parsed) and confirmed to be about Michael Bargury's Black Hat USA 2024 Copilot demonstrations. Page fields: 'Occurred: August 2024', 'Page info Type: Issue, Published: August 2024' (month precision); System Microsoft Copilot, Operator Zenity, Developer Microsoft, Country Global, Sector Technology, Issue Security. The body confirms automated phishing and data extraction, mimicking writing style including emoji usage, 'hundreds of personalised phishing emails within minutes', 'magic words' circumventing Microsoft's security controls, and the proof-of-concept caveat. Day fixed at 2024-08-08 from the linked press coverage: TechTarget (Published 08 Aug 2024) reports 'the Thursday Black Hat session', and Fortune (13 Aug 2024, fetched) places the demo at Black Hat USA 'last week' and quotes Microsoft's Phillip Misner saying the company is working with Bargury to address the vulnerabilities. NOT on the AIAAIC page: Copilot Studio bots exposed without authentication, any count of exposed bots, calendar invites, bank-detail changes, automated spear-phishing of contacts, MITRE ATLAS AML.CS0037, or any link to The Register; the entry's sources are Zenity's Black Hat demo playlist, Fortune and Wired (Wired and the Wayback Machine were not reachable from this environment). The candidate's claim 'Primary source: The Register' is therefore unsupported by this page. Same Black Hat talk as the TechTarget-sourced item 2024-08-08-zenity-shows-email-prompt-injection-turning-microsoft-365-copilot (seed 029); this entry is the incident-database record of it.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

@@ -1,0 +1,52 @@
+{
+  "id": "2026-08-26-epic-announces-agent-factory-a-no-code-platform-for-building-running",
+  "date": "2026-08-26",
+  "date_precision": "day",
+  "title": "Epic announces Agent Factory, a no-code platform for building, running and monitoring AI agents",
+  "url": "https://www.advisory.com/daily-briefing/2026/08/26/epic-ugm-ab-oi-ec",
+  "publisher": "Advisory Board",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "At its 2026 user group meeting Epic introduced Agent Factory, described as a new platform for building, running and monitoring AI agents that reason and act across different workflows, which lets healthcare organizations create agents without writing code. According to Optum Advisory's Ben Isenhour, Epic has partnered with a select group of health systems to develop and deploy AI-powered workflow automations and plans to make proven automations broadly available to its client community; the article gives no adoption numbers, release date or control detail beyond the word monitoring.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_2",
+    "s10_1",
+    "s10_2"
+  ],
+  "domain": "healthcare",
+  "actors": {
+    "vendor": "Epic",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "maiti2026caging",
+    "noori2025global",
+    "he2026kedgeflow",
+    "bellibatlu2026same"
+  ],
+  "tags": [
+    "healthcare",
+    "ehr",
+    "agent platform",
+    "monitoring",
+    "no-code"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Advisory Board Daily Briefing 'What happened at this year's Epic user group meeting', posted 2026-08-26 (date also in the URL path). Page text confirms Agent Factory as a no-code platform for 'building, running, and monitoring AI agents' across workflows, and Optum Advisory's statement that Epic partnered with a select group of health systems to develop and deploy workflow automations before making proven ones broadly available. Not confirmed from the page: the candidate's claim that Agent Factory draws on EHR, MyChart and Cosmos (the page names those as the data foundation of Ergo, a separate project). No usage numbers, release timeline or control detail beyond the word monitoring appear. Deployer left null because the partner health systems are unnamed. Title is the item's own wording; the page is a UGM round-up. Members-only prompts appear but the full text was readable.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

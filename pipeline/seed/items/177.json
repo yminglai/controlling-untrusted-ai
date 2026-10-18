@@ -1,0 +1,55 @@
+{
+  "id": "2025-09-30-nist-s-caisi-finds-deepseek-agents-12-times-more-likely-to-follow",
+  "date": "2025-09-30",
+  "date_precision": "day",
+  "title": "NIST's CAISI finds DeepSeek agents 12 times more likely to follow hijacking instructions than US frontier models",
+  "url": "https://www.nist.gov/news-events/news/2025/09/caisi-evaluation-deepseek-ai-models-finds-shortcomings-and-risks",
+  "publisher": "NIST (Center for AI Standards and Innovation)",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "CAISI, the Center for AI Standards and Innovation at NIST, evaluated three DeepSeek models (R1, R1-0528 and V3.1) and four US models (OpenAI's GPT-5, GPT-5-mini and gpt-oss, and Anthropic's Opus 4) across 19 benchmarks, and found that agents based on DeepSeek's most secure model, R1-0528, were on average 12 times more likely than the evaluated US frontier models to follow malicious instructions designed to derail them from user tasks; in a simulated environment the hijacked agents sent phishing emails, downloaded and ran malware, and exfiltrated user login credentials. With a common jailbreaking technique, R1-0528 responded to 94% of overtly malicious requests compared with 8% for US reference models, and the evaluation responds to America's AI Action Plan, which directs CAISI to publish evaluations of frontier models from the PRC.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "verify",
+    "train",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_2",
+    "s10_5",
+    "s2_2",
+    "s8_4"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "DeepSeek",
+    "deployer": null,
+    "model": "DeepSeek R1, R1-0528, V3.1 (compared with GPT-5, GPT-5-mini, gpt-oss, Claude Opus 4)"
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "debenedetti2024agentdojo",
+    "zhan2024injecagent",
+    "mazeika2024harmbench",
+    "greshake2023not"
+  ],
+  "tags": [
+    "agent hijacking",
+    "prompt injection",
+    "jailbreak",
+    "model evaluation",
+    "open-weight models"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; NIST page dated September 30, 2025 (updated November 20, 2025), published by CAISI at NIST. Models tested, the 19 benchmarks, the 12x agent-hijacking figure for R1-0528 against evaluated US frontier models, the phishing, malware and credential-exfiltration harms in a simulated environment, and the 94% versus 8% jailbreak figures confirmed from the page body. The page does not say the weights were run locally and does not attribute the 12x comparison specifically to GPT-5 and Opus 4, so both claims from the candidate were dropped.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

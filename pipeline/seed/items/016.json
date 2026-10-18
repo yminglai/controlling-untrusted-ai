@@ -1,0 +1,53 @@
+{
+  "id": "2025-10-08-camoleak-critical-github-copilot-chat-flaw-exfiltrated-private-code",
+  "date": "2025-10-08",
+  "date_precision": "day",
+  "title": "CamoLeak: critical GitHub Copilot Chat flaw exfiltrated private code through invisible comments",
+  "url": "https://www.legitsecurity.com/blog/camoleak-critical-github-copilot-vulnerability-leaks-private-source-code",
+  "publisher": "Legit Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "A Legit Security researcher hid a prompt in an invisible comment inside a pull-request description so that GitHub Copilot Chat followed it for any user who viewed the page, and showed it could pull the description of a zero-day from a private issue and search a victim's code for AWS_KEY. Because Copilot Chat rendered images, a pre-generated dictionary of GitHub Camo proxy URLs let the response leak data as a sequence of image requests; the flaw was rated CVSS 9.6, reported through HackerOne in June 2025, and GitHub fixed it on 14 August 2025 by turning off image rendering in Copilot Chat.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s4_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "GitHub",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "lan2026silent",
+    "greshake2023not",
+    "debenedetti2025defeating",
+    "zhong2025rtbas"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "copilot",
+    "covert channel",
+    "egress"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; post dated October 08, 2025 (updated February 12, 2026) by Omer Mayraz at Legit Security; CVSS 9.6, June 2025 HackerOne report, invisible-comment injection, Camo image-URL exfiltration, and the August 14 fix by disabling image rendering all confirmed from the post body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

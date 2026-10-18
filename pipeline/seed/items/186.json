@@ -1,0 +1,53 @@
+{
+  "id": "2026-02-05-nist-nccoe-drafts-a-project-on-identity-and-authorization",
+  "date": "2026-02-05",
+  "date_precision": "day",
+  "title": "NIST NCCoE drafts a project on identity and authorization for software and AI agents",
+  "url": "https://csrc.nist.gov/pubs/other/2026/02/05/accelerating-the-adoption-of-software-and-ai-agent/ipd",
+  "publisher": "NIST National Cybersecurity Center of Excellence",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "NIST's National Cybersecurity Center of Excellence published an initial public draft concept paper, 'Accelerating the Adoption of Software and Artificial Intelligence Agent Identity and Authorization', outlining a potential project that applies existing identity standards and best practices to AI agents. It requests feedback on the identification, authorization, auditing and non-repudiation of AI agents and on controls to prevent and mitigate prompt injection; the public comment period closed on 2 April 2026.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1",
+    "s10_4"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "south2025authenticated",
+    "garzon2025ai",
+    "tallam2026authorization",
+    "chan2024visibility"
+  ],
+  "tags": [
+    "agent identity",
+    "authorization",
+    "iam",
+    "non-repudiation",
+    "nist"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. The CSRC page lists the item as an initial public draft concept paper by NIST authors (Booth, Fisher, Galluzzo, Roberts), published 2026-02-05, comments due 2026-04-02 and the comment period marked closed; the feedback areas (identification, authorization, auditing, non-repudiation, prompt-injection controls) are quoted from the page. Least privilege is not mentioned on the page.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

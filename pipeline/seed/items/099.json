@@ -1,0 +1,56 @@
+{
+  "id": "2025-08-31-taco-bell-rethinks-voice-ai-drive-thru-after-2-million-orders-and-viral-failures",
+  "date": "2025-08-31",
+  "date_precision": "day",
+  "title": "Taco Bell rethinks voice AI drive-thru after 2 million orders and viral failures",
+  "url": "https://gigazine.net/gsc_news/en/20250831-taco-bell-rethinks-voice-ai-drive-through",
+  "publisher": "GIGAZINE (reporting a Wall Street Journal interview)",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Taco Bell has used a voice AI ordering system at more than 500 drive-thrus since 2024 and the system has handled more than 2 million customer orders, but social media posts show glitches and slow responses, and some customers try to disrupt it with absurd orders such as 18,000 cups of water. Chief digital and technology officer Dane Mathews said the chain is rethinking where voice AI fits, that a human staff member may serve very busy locations with long lines better, and that it will guide franchisees on when to use the system while stores monitor the AI and step in when needed, with voice AI staying on the product roadmap.",
+  "failure_sources": [
+    "mistakes",
+    "manipulation"
+  ],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_6",
+    "s6_4",
+    "s10_2",
+    "s2_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": null,
+    "deployer": "Taco Bell",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "turan2026oversight",
+    "menkes2025trust",
+    "yao2024bench",
+    "chiodo2025formalising"
+  ],
+  "tags": [
+    "voice ai",
+    "human takeover",
+    "prank orders",
+    "drive-thru",
+    "deployment scope"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; GIGAZINE page dated August 31, 2025, reporting a Wall Street Journal interview with Dane Mathews. The 500+ drive-thrus, 2024 rollout, 2 million orders, 18,000 cups of water prank, reassessment of where voice AI fits, and the plan for stores to monitor the AI and step in confirmed from the article body. The voice AI vendor and model are not named on the page.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

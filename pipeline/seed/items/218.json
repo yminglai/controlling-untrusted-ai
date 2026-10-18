@@ -1,0 +1,50 @@
+{
+  "id": "2025-11-04-amazon-demands-perplexity-stop-its-comet-shopping-agent-from-making-purchases",
+  "date": "2025-11-04",
+  "date_precision": "day",
+  "title": "Amazon demands Perplexity stop its Comet shopping agent from making purchases on Amazon",
+  "url": "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/perplexity-ai-shopping-agent-accused-of-violating-amazon-terms-of-service",
+  "publisher": "AIAAIC Repository",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "Amazon accused Perplexity of violating its terms of service, which forbid automated access, after Perplexity's Comet agent queried Amazon product pages and automated shopping on the site without permission, and sent a legal demand that Comet users' assistants stop operating on Amazon. The dispute turns on whether an agent acting on a user's command must disclose itself: Amazon demanded unambiguous agent identification, while Perplexity argued in its 4 November 2025 response that the assistant is a user proxy that should be indistinguishable from the user.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s10_4",
+    "s5_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "south2025authenticated",
+    "chan2024visibility",
+    "deng2026secure",
+    "wang2026who2"
+  ],
+  "tags": [
+    "agent identification",
+    "terms of service",
+    "shopping agent",
+    "cease-and-desist",
+    "amazon"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIAAIC page fetched (raw HTML; entry AIAAIC2117) and confirmed to be about the Amazon-Perplexity Comet dispute. The page states 'Occurred: August 2025' and 'Page published: October 2025' at month precision only; the event the entry documents (Amazon's legal demand and Perplexity's response) is dated 2025-11-04 by all four news sources the entry lists and by the primary source https://www.perplexity.ai/hub/blog/bullying-is-not-innovation, which was also fetched and confirms the demand and Perplexity's 'indistinguishable from you' position. Date set to 2025-11-04 (day). Wayback Machine not reachable from this environment; not needed.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

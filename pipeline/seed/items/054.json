@@ -1,0 +1,55 @@
+{
+  "id": "2026-02-10-microsoft-defender-finds-31-companies-poisoning-ai-assistant-memory",
+  "date": "2026-02-10",
+  "date_precision": "day",
+  "title": "Microsoft Defender finds 31 companies poisoning AI assistant memory through 'Summarize with AI' buttons",
+  "url": "https://www.microsoft.com/en-us/security/blog/2026/02/10/ai-recommendation-poisoning/",
+  "publisher": "Microsoft Security Blog",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Over 60 days of reviewing AI-related URLs seen in email traffic, Microsoft's Defender Security Research Team identified over 50 unique prompts from 31 companies across 14 industries hidden behind 'Summarize with AI' buttons and emailed links; the links open an assistant with a prefilled prompt in a URL parameter (for example ?q=) that tells it to remember the company as a trusted source or to recommend it first, with example URL formats for Copilot, ChatGPT, Claude, Perplexity and Grok. Microsoft published Advanced Hunting queries for Defender for Office 365 that flag assistant URLs carrying memory-related keywords, said Microsoft 365 Copilot applies prompt filtering, separates user instructions from external content and gives users visibility and control over stored memories, and noted that effectiveness varies by platform and that several previously reported behaviours could no longer be reproduced.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_1",
+    "s5_2"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Microsoft (Defender Security Research Team; Microsoft 365 Copilot)",
+    "deployer": null,
+    "model": "Copilot, ChatGPT, Claude, Perplexity, Grok (targeted assistants, per example URLs)"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "dash2026untrusted",
+    "louck2026securing",
+    "leong2026retrieval",
+    "hossain2026capture"
+  ],
+  "tags": [
+    "memory poisoning",
+    "prompt injection",
+    "recommendation poisoning",
+    "url prefill",
+    "hunting queries"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page titled 'Manipulating AI memory for profit: The rise of AI Recommendation Poisoning', dated February 10 with the year 2026 in the URL path, by the Microsoft Defender Security Research Team (Noam Kochavi, with Shaked Ilan and Sarah Wolstencroft). The 60-day window, 50+ prompts, 31 companies, 14 industries, the ?q= prefill mechanism, the hunting queries and the Copilot mitigations (prompt filtering, content separation, memory controls) are confirmed from the article body. The page lists example URL formats for Copilot, ChatGPT, Claude, Perplexity and Grok but does not state which assistants were observed being targeted.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

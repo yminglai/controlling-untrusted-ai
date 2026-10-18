@@ -1,0 +1,53 @@
+{
+  "id": "2025-09-25-gemini-robotics-1-5-lets-robots-plan-call-google-search-and-act",
+  "date": "2025-09-25",
+  "date_precision": "day",
+  "title": "Gemini Robotics 1.5 lets robots plan, call Google Search and act",
+  "url": "https://deepmind.google/discover/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
+  "publisher": "Google DeepMind",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "On 25 September 2025 Google DeepMind released Gemini Robotics 1.5, a vision-language-action model available to select partners, and Gemini Robotics-ER 1.5, an embodied-reasoning model available to developers through the Gemini API in Google AI Studio that can natively call tools such as Google Search and third-party functions and that DeepMind reports scoring highest among compared models across 15 academic embodied reasoning benchmarks. DeepMind says Gemini Robotics 1.5 thinks about safety before acting under the existing Gemini Safety Policies, triggers on-board low-level safety sub-systems such as collision avoidance when needed, transfers skills across ALOHA 2, Apptronik's Apollo humanoid and a bi-arm Franka robot, and the company released an upgraded ASIMOV benchmark for evaluating semantic safety.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "verify",
+    "steer"
+  ],
+  "subsections": [
+    "s4_3",
+    "s9_1",
+    "s7_1",
+    "s10_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Google DeepMind",
+    "deployer": null,
+    "model": "Gemini Robotics 1.5 / Gemini Robotics-ER 1.5"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "sermanet2025generating",
+    "or2026silent",
+    "yin2024safeagentbench",
+    "buurmeijer2026observing"
+  ],
+  "tags": [
+    "robotics",
+    "embodied agent",
+    "tool use",
+    "semantic safety",
+    "benchmark"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated September 25, 2025, published by Google DeepMind (byline Carolina Parada). Access tiers (1.5 to select partners, ER 1.5 via the Gemini API in Google AI Studio), native Google Search and third-party function calling, safety-before-acting under Gemini Safety Policies, on-board collision-avoidance sub-systems, cross-embodiment transfer across ALOHA 2, Apollo and Franka, the 15-benchmark claim and the ASIMOV upgrade are all confirmed from the page body. The page does not mention the Frontier Safety Framework.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

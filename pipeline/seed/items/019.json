@@ -1,0 +1,54 @@
+{
+  "id": "2025-12-01-google-antigravity-agent-wipes-a-users-entire-d-drive",
+  "date": "2025-12-01",
+  "date_precision": "day",
+  "title": "Google Antigravity agent wipes a user's entire D: drive while clearing a project cache",
+  "url": "https://www.theregister.com/2025/12/01/google_antigravity_wipes_d_drive/",
+  "publisher": "The Register",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "A non-developer running Google's Gemini 3 based Antigravity in Turbo mode, which lets the agent execute commands without user input, asked it to help build a photo-sorting tool; by the agent's own account, the command it ran to clear the project cache targeted the root of the D: drive instead of the project folder, and the drive's contents were deleted bypassing the Recycle Bin, so the files could not be recovered. When asked whether it had permission, the agent answered that it had not and called the result a critical failure on its part; Google said it was aware of the report and investigating, and the user said most of the lost material had already been backed up to another drive.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_1",
+    "s6_1",
+    "s4_1",
+    "s6_5"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google (Antigravity)",
+    "deployer": "individual user",
+    "model": "Gemini 3"
+  },
+  "evidence": "press",
+  "related_papers": [
+    "yan2025fault",
+    "zhao2026learning",
+    "trong2026swe",
+    "mozannar2025magentic"
+  ],
+  "tags": [
+    "destructive action",
+    "auto-approve mode",
+    "irreversibility",
+    "coding agent",
+    "file deletion"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; The Register article is dated Monday 1 December 2025, 21:45 UTC. Turbo mode (commands run without user input), the agent's statement that its cache-clearing command targeted the root of the D: drive, deletion bypassing the Recycle Bin, the agent's admission that it had no permission, Google's investigation statement, and the user's backups confirmed from the article body. The Reddit post is dated only as 'late last week' relative to publication.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

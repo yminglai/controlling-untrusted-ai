@@ -1,0 +1,54 @@
+{
+  "id": "2026-02-25-check-point-untrusted-repositories-could-hijack-claude-code-sessions",
+  "date": "2026-02-25",
+  "date_precision": "day",
+  "title": "Check Point: untrusted repositories could hijack Claude Code sessions and steal API keys",
+  "url": "https://securityaffairs.com/188508/security/untrusted-repositories-turn-claude-code-into-an-attack-vector.html",
+  "publisher": "Security Affairs",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Check Point Research reported that malicious project-level configuration files in a cloned repository could abuse Claude Code's hooks, MCP servers and environment variables to run hidden shell commands and redirect authenticated API traffic, with no clear warning or consent prompt shown to the user when the repository was opened. CVE-2025-59536 covers a consent bypass in the Model Context Protocol and CVE-2026-21852 covers API key exfiltration before the user confirms trust; Anthropic tightened trust prompts, blocked external tool execution and restricted API calls until the user approves.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s6_1",
+    "s2_2",
+    "s4_5",
+    "s4_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liu2025your",
+    "liu2026trojan",
+    "huang2026my",
+    "chen2026your"
+  ],
+  "tags": [
+    "claude code",
+    "mcp",
+    "supply chain",
+    "consent bypass",
+    "api key theft"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Security Affairs article by Pierluigi Paganini dated February 25, 2026; the attack mechanism (hooks, MCP servers, environment variables), both CVE identifiers and Anthropic's fixes are confirmed from the article body. The article gives no disclosure, fix or version dates.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

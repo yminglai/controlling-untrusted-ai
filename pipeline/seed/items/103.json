@@ -1,0 +1,51 @@
+{
+  "id": "2024-08-01-amazon-says-q-developer-agent-upgraded-tens-of-thousands-of-java",
+  "date": "2024-08-01",
+  "date_precision": "day",
+  "title": "Amazon says Q Developer agent upgraded tens of thousands of Java apps, saving 4,500 developer-years",
+  "url": "https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/",
+  "publisher": "AWS DevOps & Developer Productivity Blog",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "AWS reported that Amazon used the Amazon Q Developer code-transformation agent to upgrade tens of thousands of production applications from Java 8 or 11 to Java 17 with over a thousand developers, a saving it put at over 4,500 years of development work plus performance improvements worth $260 million in annual cost savings. The post describes the Q Developer agent workflow as letting developers review and iterate on the plan before the agent implements it, and says dependency migrations that take a day or more by hand were completed in minutes.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s6_1",
+    "s5_6",
+    "s10_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Amazon Web Services",
+    "deployer": "Amazon",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yu2026habituation",
+    "mozannar2025magentic",
+    "dhanorkar2026human",
+    "bhati2026beyond"
+  ],
+  "tags": [
+    "code migration",
+    "coding agent",
+    "plan review",
+    "human review"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; byline date 01 AUG 2024 confirmed. The tens-of-thousands-of-apps, Java 8/11 to 17, 4,500 developer-years, $260M annual savings and 1,000+ developers figures all appear on the page. The candidate's 79% shipped-without-changes figure is not on this page (it comes from a later Andy Jassy social post) and was dropped; plan review is stated as a general Q Developer agent feature rather than specifically for the migration.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

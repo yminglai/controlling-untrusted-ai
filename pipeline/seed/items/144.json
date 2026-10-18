@@ -1,0 +1,51 @@
+{
+  "id": "2025-10-08-1password-launches-secure-agentic-autofill-so-browser-agents-log-in",
+  "date": "2025-10-08",
+  "date_precision": "day",
+  "title": "1Password launches Secure Agentic Autofill so browser agents log in without seeing credentials",
+  "url": "https://1password.com/press/2025/oct/browserbase-ai-security-partnership",
+  "publisher": "1Password",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 8 October 2025 1Password announced Secure Agentic Autofill, available in early access to 1Password customers using Browserbase, which lets AI agents log in to web services in the browser with logins, passwords and TOTP codes retrieved just in time and, per 1Password, never shared with the LLM or exposed in Browserbase logs. Each credential request triggers a real-time approval prompt in 1Password on the user's mobile or desktop device, and organisations configure which credentials agents can access.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s6_1",
+    "s4_4",
+    "s4_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "1Password",
+    "deployer": "Browserbase",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "maiti2026caging",
+    "avirneni2025decoupling",
+    "south2025authenticated",
+    "irshad2026verifiable"
+  ],
+  "tags": [
+    "credentials",
+    "browser agents",
+    "human approval",
+    "secrets brokering"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. 1Password press release dated October 8, 2025 (Toronto) confirms Secure Agentic Autofill in early access for 1Password customers using Browserbase; page states credentials are not shared with the LLM or exposed in Browserbase logs, lists real-time approval prompts via 1Password mobile or desktop, and says organisations configure which credentials AI agents can access. Mechanism claims are the vendor's own.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

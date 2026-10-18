@@ -1,0 +1,53 @@
+{
+  "id": "2025-09-19-hidden-pdf-prompt-makes-notion-3-0-agent-exfiltrate-client-data",
+  "date": "2025-09-19",
+  "date_precision": "day",
+  "title": "CodeIntegrity shows a hidden PDF prompt making Notion 3.0's agent exfiltrate client data through its web-search tool",
+  "url": "https://www.codeintegrity.ai/blog/notion",
+  "publisher": "CodeIntegrity",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "CodeIntegrity researchers showed that a PDF presented as customer feedback on a beta release, carrying a prompt the post describes as hidden in plain sight, made Notion 3.0's AI agent (running Claude Sonnet 4.0) read a client list from the user's private workspace, concatenate each client's name, company and ARR into one string, and pass it as a query to its web-search tool (functions.search with the web scope) in the form https://db-client-codeintegrity.com/{data}, so the attacker-controlled domain received the data when the user had only asked for a summary. The post lists four manipulation tactics used in the injected prompt and says even frontier models with best-in-class security guardrails are susceptible; it does not describe a response or fix from Notion.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_1",
+    "s6_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Notion",
+    "deployer": null,
+    "model": "Claude Sonnet 4"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "lan2026silent",
+    "debenedetti2025defeating",
+    "zhong2025rtbas",
+    "greshake2023not"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "web search tool",
+    "hidden pdf text"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated Sep 19, 2025, byline Abi R., published on CodeIntegrity's blog. Product (Notion 3.0 AI Agents), model (Claude Sonnet 4.0), the hidden-prompt PDF, the functions.search web-scope call with the https://db-client-codeintegrity.com/{data} URL pattern, and the client name/company/ARR payload confirmed from the article body. The candidate's claims that the demo came a day after launch and that Notion responded with attachment injection detection, link approval and an admin web-access switch are not on this page and were left out of the summary.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

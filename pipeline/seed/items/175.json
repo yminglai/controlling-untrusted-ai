@@ -1,0 +1,49 @@
+{
+  "id": "2025-09-26-european-commission-consults-on-draft-guidance-and-template-for",
+  "date": "2025-09-26",
+  "date_precision": "day",
+  "title": "European Commission consults on draft guidance and template for reporting serious AI incidents",
+  "url": "https://digital-strategy.ec.europa.eu/en/consultations/ai-act-commission-issues-draft-guidance-and-reporting-template-serious-ai-incidents-and-seeks",
+  "publisher": "European Commission",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "On 26 September 2025 the European Commission published draft guidance on Article 73 of the AI Act, under which providers of high-risk AI systems must report serious incidents to national authorities, together with a draft reporting template, and opened a stakeholder consultation that closed on 7 November 2025. The guidance clarifies definitions, offers practical examples and explains how the reporting duty relates to other legal obligations; the rules become applicable from August 2026.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "deploy",
+    "observe"
+  ],
+  "subsections": [
+    "s10_2",
+    "s10_4"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "pustozerova2026beyond",
+    "mumtaz2026post",
+    "wei2025designing",
+    "mokander2021conformity"
+  ],
+  "tags": [
+    "eu ai act",
+    "incident reporting",
+    "high-risk systems",
+    "consultation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page headline, publication date (26 September 2025), consultation closing date (7 November 2025) and August 2026 application date confirmed from the page body. The page does not mention AI agents specifically; relevance rests on mandatory serious-incident reporting as the regulatory incident-feedback loop for deployed high-risk systems, agents included.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

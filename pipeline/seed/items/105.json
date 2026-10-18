@@ -1,0 +1,52 @@
+{
+  "id": "2025-09-04-coinbase-says-about-40-of-its-daily-code-is-ai-generated",
+  "date": "2025-09-04",
+  "date_precision": "day",
+  "title": "Coinbase says about 40% of its daily code is AI-generated, with mandatory review",
+  "url": "https://www.theblock.co/post/369460/brian-armstrong-coinbase-ai",
+  "publisher": "The Block",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Coinbase CEO Brian Armstrong said on X that about 40% of the code written daily at Coinbase is AI-generated, set a target of over 50% by October, and added that the code needs to be reviewed and understood and that not all areas of the business can use AI-generated code. The Block reports that Coinbase tracks adoption through DORA metrics and AI-specific signals, manages the higher bug risk with a repository sensitivity matrix built with its security and privacy teams, and that Armstrong said some engineers who did not onboard to the AI coding tools within a week were fired.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s6_1",
+    "s4_1",
+    "s5_6"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor, GitHub Copilot",
+    "deployer": "Coinbase",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yu2026habituation",
+    "ye2026coding",
+    "monperrus2026end",
+    "davis2026cheap"
+  ],
+  "tags": [
+    "ai-generated code",
+    "code review",
+    "finance",
+    "adoption mandate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; byline date September 4, 2025 confirmed from the article and its JSON-LD metadata. The 40% figure, the over-50% target, the review requirement, the scope exclusion, the repository sensitivity matrix and the dismissal of engineers who did not onboard are all stated in the article body; the claims originate from Armstrong's own X post and podcast remarks as quoted by The Block.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

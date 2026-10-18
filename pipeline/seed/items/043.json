@@ -1,0 +1,54 @@
+{
+  "id": "2025-09-18-shadowleak-zero-click-exfiltration-from-chatgpt-deep-research-runs",
+  "date": "2025-09-18",
+  "date_precision": "day",
+  "title": "ShadowLeak: zero-click exfiltration from ChatGPT Deep Research runs inside OpenAI's cloud",
+  "url": "https://therecord.media/openai-fixes-zero-click-shadowleak-vulnerability",
+  "publisher": "The Record",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Radware researchers Gabi Nakibly, Zvika Babo and Maor Uziel showed that an email carrying hidden instructions in tiny or white-on-white text could make ChatGPT's Deep Research agent, working through its Gmail connector, send personal data such as an employee's name and address to an attacker-controlled URL with no user interaction, with the actions running on OpenAI's cloud servers rather than the user's device. Radware reported the flaw to OpenAI through Bugcrowd on 18 June; OpenAI said it was fixed in early August and marked it resolved on 3 September, and Radware said it had not seen the vulnerability exploited in the wild.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_1",
+    "s4_2"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": "ChatGPT Deep Research agent"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "lan2026silent",
+    "debenedetti2025defeating",
+    "abdelnabi2025llmail",
+    "bhler2026agentspy"
+  ],
+  "tags": [
+    "prompt injection",
+    "zero-click",
+    "data exfiltration",
+    "gmail connector",
+    "bug bounty"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; headline, byline (Jonathan Greig), date 18 September 2025, Radware attribution, Gmail connector, zero-click behaviour, cloud-side execution and the June/August/September timeline confirmed from the article body. The Base64-encoding detail in the sweep summary is not on the page and was dropped.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

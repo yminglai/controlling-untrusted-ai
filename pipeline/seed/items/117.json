@@ -1,0 +1,52 @@
+{
+  "id": "2025-06-24-xbows-autonomous-penetration-tester-tops-hackerones-us-leaderboard",
+  "date": "2025-06-24",
+  "date_precision": "day",
+  "title": "XBOW's autonomous penetration tester tops HackerOne's US leaderboard with human-reviewed submissions",
+  "url": "https://xbow.com/blog/top-1-how-xbow-did-it/",
+  "publisher": "XBOW",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "XBOW reported on 24 June 2025 that its autonomous penetration tester had reached the top spot on HackerOne's US leaderboard after submitting nearly 1,060 vulnerabilities, of which bug bounty programs resolved 130 and marked 303 as triaged, with program owners rating the past 90 days' submissions as 54 critical, 242 high, 524 medium and 65 low. Each finding is confirmed by automated validators, for example a headless browser that visits the target to check that an XSS payload actually executed, and XBOW's security team reviewed all findings before submission to comply with HackerOne's policy on automated tools; one program that disallows automatic scanners removed XBOW.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s6_1",
+    "s5_2",
+    "s5_6",
+    "s10_1"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "XBOW",
+    "deployer": "XBOW",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "barbosa2026capability",
+    "caldwell2026scopejudge",
+    "aljumaily2026responsible",
+    "yu2026habituation"
+  ],
+  "tags": [
+    "penetration testing",
+    "bug bounty",
+    "human review",
+    "automated validators",
+    "offensive security"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated 6/24/2025, authored by Nico Waisman and filed under XBOW 'Company News'. Leaderboard claim, submission counts (nearly 1,060 submitted; 130 resolved; 303 triaged; 54 critical, 242 high, 524 medium, 65 low over the past 90 days), the automated-validator mechanism (headless-browser XSS check) and the security-team review before submission to comply with HackerOne's automated-tools policy confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

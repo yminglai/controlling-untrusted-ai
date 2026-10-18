@@ -1,0 +1,54 @@
+{
+  "id": "2025-03-18-aixbt-crypto-agent-sends-55-eth-to-an-attacker-after-its-dashboard",
+  "date": "2025-03-18",
+  "date_precision": "day",
+  "title": "AIXBT crypto agent sends 55 ETH to an attacker after its dashboard is breached",
+  "url": "https://www.theblock.co/post/346911/",
+  "publisher": "The Block",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "AIXBT, an AI agent built on Virtuals Protocol that posts crypto market commentary, sent about 55 ETH (roughly $100,000) from its simulation wallet to an attacker after two malicious replies, following what its maintainer 0rxbt called a dashboard access hack that did not reach core systems. The team paused the dashboard, swapped servers and migrated keys; the maintainer said the loss was not a result of agent manipulation, and no detailed technical breakdown had been published.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "within-budget"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s2_2",
+    "s4_1",
+    "s6_1"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Virtuals Protocol",
+    "deployer": "AIXBT",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "marino2025giving",
+    "yin2026safety",
+    "wang2026sok",
+    "uchibeke2026before"
+  ],
+  "tags": [
+    "crypto wallet",
+    "credential compromise",
+    "fund transfer",
+    "no postmortem"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; headline, publication date 2025-03-18 (The Block, Daniel Kuhn), the 55 ETH / $100,000 figures, the two malicious replies, and the dashboard pause, server swap and key migration are confirmed from the article body. The article is internally inconsistent on cause: the maintainer says the loss was not agent manipulation (a dashboard access hack), while the article's Quick Take describes malicious prompting reaching the simulation wallet; no technical postmortem existed at publication.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": "2024-02-01-mitre-atlas-cs0040-hidden-google-doc-prompt-injection-poisoned-chatgpts-memory",
+  "date": "2024-02-01",
+  "date_precision": "month",
+  "title": "MITRE ATLAS CS0040: hidden Google Doc prompt injection poisoned ChatGPT's memory",
+  "url": "https://atlas.mitre.org/studies/AML.CS0040",
+  "publisher": "MITRE ATLAS",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "MITRE ATLAS case study AML.CS0040 records an exercise by Embrace the Red in which a prompt injection hidden in the header of a shared Google Doc, in tiny font matching the background colour, was placed into ChatGPT's context through the Connected App feature and made ChatGPT store a list of false facts as memories. The chat window reported the memory as set without human verification or intervention, the poisoned memories persisted across chat sessions, and the payload remained in the shared document where it could spread to other users and was hard to trace or remove.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s6_1",
+    "s5_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "huang2026malicious",
+    "dash2026untrusted",
+    "louck2026securing",
+    "greshake2023not"
+  ],
+  "tags": [
+    "memory poisoning",
+    "prompt injection",
+    "chatgpt",
+    "connected apps",
+    "persistence"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched: atlas.mitre.org is a client-rendered SPA that returns HTTP 404 with the app shell to plain fetchers (every /studies/ link does, root is 200), so WebFetch failed twice and the Wayback Machine was offline; rendered in headless Chrome the page shows 'Hacking ChatGPT's Memories with Prompt Injection', ID AML.CS0040, Type Exercise, Date February 2024, Actor Embrace the Red, Target OpenAI ChatGPT, Created 07 November 2025. Content, incident-date 2024-02 (MONTH granularity) and the reference (embracethered.com chatgpt-hacking-memories, posted 2024-05-22) were also confirmed from the official mitre-atlas/atlas-data dist/ATLAS.yaml; the file first appears in release v5.1.0 (2025-11-07). The candidate's title, date 2024-09-20 and summary described the researcher's separate SpAIware disclosure (image-URL exfiltration, fix in macOS app 1.2024.247), which this case study does not cover; title, date and summary were corrected to the page content.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

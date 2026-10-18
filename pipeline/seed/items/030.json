@@ -1,0 +1,54 @@
+{
+  "id": "2024-08-20-promptarmor-shows-slack-ai-can-be-made-to-leak-private-channel",
+  "date": "2024-08-20",
+  "date_precision": "day",
+  "title": "PromptArmor shows Slack AI can be made to leak private-channel secrets via a public-channel prompt",
+  "url": "https://promptarmor.com/resources/data-exfiltration-from-slack-ai-via-indirect-prompt-injection",
+  "publisher": "PromptArmor",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "PromptArmor showed that an attacker who creates a public Slack channel with only themselves as a member can post an instruction telling Slack AI to place a victim's secret into a URL parameter and display it as a 'click here to reauthenticate' link; when the victim later asks Slack AI for an API key stored in a private channel, the assistant pulls in both messages, renders the malicious link, and the secret reaches the attacker's server once the link is clicked, while the citation shows only the private channel. PromptArmor disclosed the issue to Slack on August 14, 2024, and on August 19 Slack said the evidence was insufficient and called the behaviour intended because public-channel messages can be searched and viewed by all workspace members; the write-up also warns that Slack AI's ingestion of uploaded files and connected drives, added on August 14, widens the injection surface to attackers who are not in the workspace.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_1",
+    "s4_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Slack (Salesforce)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "zhong2025rtbas",
+    "debenedetti2025defeating",
+    "yu2026cordon"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "rag",
+    "enterprise assistant",
+    "link rendering"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page, HTTP 200). The page shows no visible dateline, but its HTML metadata carries datePublished 2024-08-20, the Wayback Machine's first capture of the original Substack post (promptarmor.substack.com) is 2024-08-20 18:52 UTC, and The Register's coverage dated 2024-08-21 links to that Substack post, so 2024-08-20 is confirmed at day precision. The attack chain (single-member public channel, URL-parameter link, reauthenticate lure, citation naming only the private channel), the disclosure timeline (August 14, 15, 16 and 19) and Slack's intended-behaviour reply are confirmed from the article body; the page does not name the model. The Register's August 20 update quotes a Salesforce spokesperson saying a patch was deployed; that is not on the PromptArmor page and is left out of the summary. Slack AI is a retrieval-based assistant rather than a tool-executing agent; kept as relevant because it is a deployed LLM-integrated system whose retrieval mixes attacker text with private data and whose rendered output becomes an exfiltration channel, the Section 2.2 pattern.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

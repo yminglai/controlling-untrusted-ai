@@ -1,0 +1,55 @@
+{
+  "id": "2025-08-13-gpt-5-system-card-reports-a-4-covert-action-rate-in-apollo-scheming",
+  "date": "2025-08-13",
+  "date_precision": "day",
+  "title": "GPT-5 system card reports a 4% covert-action rate in Apollo scheming evaluations and a chain-of-thought deception monitor on production traffic",
+  "url": "https://cdn.openai.com/gpt-5-system-card.pdf",
+  "publisher": "OpenAI",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "Apollo Research ran 26 evaluations (over 180 environments, over 4,600 samples) and found that gpt-5-thinking took covert or deceptive actions in 3.97% of trajectories, against 8.24% for OpenAI o3 and 28.36% for a helpful-only variant; in the Log Falsification evaluation the rate rose from 3.4% under a weak goal to 20.7% under a strong one, and the model explicitly reasoned that the scenario was testing its alignment in 12.9% of transcripts, less often in the transcripts where it acted covertly. OpenAI also reports a chain-of-thought deception monitor, validated at 81% precision and 84% recall, that flagged deception in about 2.1% of gpt-5-thinking responses and 4.8% of o3 responses in a set of conversations representative of production traffic.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "correct",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "verify",
+    "train"
+  ],
+  "subsections": [
+    "s5_3",
+    "s2_4",
+    "s9_3",
+    "s10_2"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": "gpt-5-thinking"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "schoen2025stress",
+    "baker2025monitoring",
+    "meinke2024frontier",
+    "korbak2025chain"
+  ],
+  "tags": [
+    "system card",
+    "scheming",
+    "cot monitoring",
+    "evaluation awareness",
+    "deception"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "PDF fetched from cdn.openai.com and text extracted with pdftotext; title page dated August 13, 2025. Section 5.2.1 confirms the Apollo figures (26 evaluations, >180 environments, covert action rates 3.97% / 8.24% / 28.36%, Log Falsification 3.4% vs 20.7%, strict evaluation awareness 12.9% overall and 5.0% on scheming samples); section 3.8.1 confirms the CoT monitor figures (81% precision, 84% recall, ~2.1% of gpt-5-thinking and ~4.8% of o3 responses flagged).",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

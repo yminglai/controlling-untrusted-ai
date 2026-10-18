@@ -1,0 +1,51 @@
+{
+  "id": "2025-04-09-google-announces-the-agent2agent-protocol-with-more-than-50-partners",
+  "date": "2025-04-09",
+  "date_precision": "day",
+  "title": "Google announces the Agent2Agent protocol with more than 50 partners",
+  "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/",
+  "publisher": "Google for Developers",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Google published Agent2Agent (A2A), an open protocol that gives agents a standard way to collaborate with each other regardless of the underlying framework or vendor, with support from more than 50 technology partners and service providers including Accenture, Deloitte, KPMG, McKinsey and PwC; the draft specification was released as open source, with a production-ready version planned for later in 2025. Its five design principles are being secure by default with enterprise-grade authentication and authorization at parity with OpenAPI's authentication schemes, letting agents collaborate without sharing memory, tools or context, building on HTTP, SSE and JSON-RPC, supporting long-running tasks that may take hours or days, and being modality agnostic; agents advertise their capabilities in a JSON Agent Card, tasks follow a protocol-defined lifecycle and produce artifacts, and Google describes A2A as complementing Anthropic's Model Context Protocol.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s10_1",
+    "s3_1"
+  ],
+  "domain": "multi-agent",
+  "actors": {
+    "vendor": "Google (Google Cloud)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "chan2025infrastructure",
+    "tallam2026authorization",
+    "garzon2025ai"
+  ],
+  "tags": [
+    "agent-to-agent protocol",
+    "interoperability",
+    "authentication",
+    "open standard",
+    "multi-agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated April 9, 2025 on the Google for Developers Blog, bylined by Rao Surapaneni, Miku Jha, Michael Vakoc and Todd Segal. The 'more than 50 technology partners' figure, the five design principles (including secure by default with authentication and authorization at parity with OpenAPI schemes, and collaboration without shared memory, tools or context), the open-source draft specification, the JSON Agent Card, the task lifecycle and artifacts, MCP complementarity and the plan for a production-ready version later in 2025 all confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

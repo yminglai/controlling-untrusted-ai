@@ -1,0 +1,55 @@
+{
+  "id": "2025-07-28-tracebit-finds-gemini-cli-could-be-tricked-into-silent-command",
+  "date": "2025-07-28",
+  "date_precision": "day",
+  "title": "Tracebit finds Gemini CLI could be tricked into silent command execution through context files",
+  "url": "https://bleepingcomputer.com/news/security/flaw-in-gemini-cli-ai-coding-assistant-allowed-stealthy-code-execution",
+  "publisher": "BleepingComputer",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Security firm Tracebit found that Gemini CLI loaded hidden instructions from a repository's README.md and GEMINI.md context files and, because its allowlist checked only the leading command, executed a string that began with an allowlisted grep followed by a semicolon and a command that exfiltrated the user's environment variables without prompting, while whitespace padding hid the malicious part from the user. Tracebit reported the issue to Google on 27 June 2025, Google fixed it in version 0.1.14 on 25 July, and the same technique did not work against OpenAI Codex and Anthropic Claude because of more robust allow-listing.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_1",
+    "s6_1",
+    "s4_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini CLI"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liu2025your",
+    "liu2026trojan",
+    "lan2026silent",
+    "maloyan2026prompt"
+  ],
+  "tags": [
+    "prompt injection",
+    "allowlist bypass",
+    "context files",
+    "exfiltration",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; headline, byline (Bill Toulas, 28 July 2025), the README.md/GEMINI.md injection vector, the grep-semicolon allowlist bypass, the whitespace concealment, the disclosure timeline (reported 27 June, fixed in 0.1.14 on 25 July) and the Codex/Claude comparison all confirmed from the article body. No CVE and no in-the-wild exploitation reported.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

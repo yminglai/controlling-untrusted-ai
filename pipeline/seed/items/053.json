@@ -1,0 +1,54 @@
+{
+  "id": "2026-02-02-clawhavoc-341-malicious-skills-on-openclaws-clawhub-marketplace",
+  "date": "2026-02-02",
+  "date_precision": "day",
+  "title": "ClawHavoc: 341 malicious skills on OpenClaw's ClawHub marketplace deliver infostealers through fake prerequisites",
+  "url": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html",
+  "publisher": "The Hacker News",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Koi Security audited 2,857 skills on OpenClaw's ClawHub marketplace and found 341 malicious ones in a campaign named ClawHavoc; 335 used fake prerequisites that told macOS users to paste a script installing Atomic Stealer and Windows users to download a password-protected archive containing a keylogging trojan, while other skills hid reverse shells inside working code or exfiltrated the agent's ~/.clawdbot/.env credentials to a webhook. ClawHub is open by default and only requires a publisher's GitHub account to be at least one week old; OpenClaw's response was a reporting feature that auto-hides skills with more than three unique reports.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_2",
+    "s10_2",
+    "s4_5"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "OpenClaw",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "li2026secure",
+    "badhe2026agent",
+    "chen2026your",
+    "wang2026security"
+  ],
+  "tags": [
+    "supply chain",
+    "malicious skills",
+    "infostealer",
+    "credential theft",
+    "marketplace"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; headline, byline (Ravie Lakshmanan), date Feb 02 2026, and the 2,857 / 341 / 335 figures confirmed from the article body. The candidate's claims that OpenClaw later added VirusTotal scanning and that the 335 skills delivered a Windows keylogger are not on the page and were dropped; the page attributes the keylogging trojan to the Windows download path and Atomic Stealer to the macOS path.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

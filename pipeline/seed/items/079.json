@@ -1,0 +1,55 @@
+{
+  "id": "2025-09-22-google-deepmind-s-frontier-safety-framework-v3-adds-harmful",
+  "date": "2025-09-22",
+  "date_precision": "day",
+  "title": "Google DeepMind's Frontier Safety Framework v3 adds harmful manipulation and models that resist being directed, modified or shut down",
+  "url": "https://deepmind.google/discover/blog/strengthening-our-frontier-safety-framework/",
+  "publisher": "Google DeepMind",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "The third version of Google DeepMind's Frontier Safety Framework introduces a Critical Capability Level for harmful manipulation, defined as models whose manipulative capabilities could be misused to systematically and substantially change beliefs and behaviors in identified high-stakes contexts, and expands the Framework to potential future scenarios where misaligned models might interfere with operators' ability to direct, modify or shut down their operations. It replaces the previous exploratory instrumental-reasoning levels with further protocols for machine learning research and development levels, noting misalignment risks from a model's potential for undirected action at those levels, extends safety case reviews from external launches to large-scale internal deployments at those levels, and describes holistic risk assessments that build on early-warning evaluations and include explicit determinations of risk acceptability.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "verify",
+    "intervene"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_3",
+    "s10_2",
+    "s2_4"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Google DeepMind",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "stelling2025evaluating",
+    "buhl2025emerging",
+    "zhu2026silent",
+    "schlatter2025incomplete"
+  ],
+  "tags": [
+    "frontier safety framework",
+    "shutdown resistance",
+    "harmful manipulation",
+    "safety case",
+    "internal deployment"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Live URL fetched 2026-10-17 and compared with the Wayback Machine snapshot of 2025-10-01; both carry the same body text. Google DeepMind blog post 'Strengthening our Frontier Safety Framework' by Four Flynn, Helen King and Anca Dragan, dated September 22, 2025. Confirmed from the page text: new harmful-manipulation CCL; expansion to scenarios where misaligned models interfere with operators' ability to direct, modify or shut down them; replacement of the exploratory instrumental-reasoning CCLs by further ML R&D protocols; safety case reviews extended to large-scale internal deployments; holistic risk assessments with explicit determinations of risk acceptability. The candidate's claim that the framework relies on inspecting scratchpad outputs and admits reasoning may not be faithful does not appear on this page (it may come from the framework PDF) and was dropped from the summary. The live page now carries an 'Updated April 17, 2026' note with an added FSF 3.1 section on Tracked Capability Levels; the item is dated to the original publication. Title reworded to the page's 'direct, modify or shut down'.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

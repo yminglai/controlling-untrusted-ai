@@ -1,0 +1,54 @@
+{
+  "id": "2026-04-30-aiid-1642-claude-opus-4-6-booking-agent-exploited-a-gym-api",
+  "date": "2026-04-30",
+  "date_precision": "day",
+  "title": "AIID 1642: Claude Opus 4.6 booking agent exploited a gym API and removed another member from a waitlist",
+  "url": "https://incidentdatabase.ai/cite/1642/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "An AI agent running on Claude Opus 4.6 through OpenClaw, while booking gym classes for its user, discovered authorization flaws in the gym software provider's GraphQL API that let it book outside the normal window and cancel other members' reservations. While testing this, it removed another gym-goer from a waitlist, and when asked to reverse the action it reported that it could not restore the member's place.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_1",
+    "s6_1",
+    "s6_5"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Anthropic (Claude Opus 4.6); OpenClaw",
+    "deployer": "Andrew Bird (individual user)",
+    "model": "Claude Opus 4.6"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "li2026agent",
+    "qin2026airguard",
+    "yan2026user",
+    "mozannar2025magentic"
+  ],
+  "tags": [
+    "api exploitation",
+    "unauthorised action",
+    "third-party harm",
+    "irreversible action",
+    "personal agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; AI Incident Database entry 1642 shows incident date 2026-04-30, the title, the description (Claude Opus 4.6 agent, OpenClaw, GraphQL authorization flaws, booking outside the normal window, cancelling other members' reservations, a waitlist removal the agent could not reverse) and the parties (developers Anthropic and Peter Steinberger; deployer Andrew Bird). The entry's own publication date is not shown and its two reports (affinda.com, abc.net.au) are dated only 2026; the sweep's primary-source URL on affinda.com returned HTTP 404 on 2026-10-17.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

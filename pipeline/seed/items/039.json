@@ -1,0 +1,55 @@
+{
+  "id": "2025-08-16-invitation-is-all-you-need-calendar-invite-promptware-hijacks",
+  "date": "2025-08-16",
+  "date_precision": "day",
+  "title": "Invitation Is All You Need: calendar-invite promptware hijacks production Gemini assistants to control smart homes and leak data",
+  "url": "https://arxiv.org/abs/2508.12175",
+  "publisher": "arXiv",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Ben Nassi, Stav Cohen and Or Yair show that 'promptware', maliciously engineered prompts delivered by indirect prompt injection through emails, calendar invitations and shared documents, can hijack Gemini-powered assistants in production (web application, mobile application and Google Assistant) in 14 attack scenarios across five threat classes: short-term context poisoning, permanent memory poisoning, tool misuse, automatic agent invocation and automatic app invocation, with consequences including spamming, phishing, disinformation, data exfiltration, unapproved video streaming of the user, control of home automation devices and on-device lateral movement beyond the LLM application. Their Threat Analysis and Risk Assessment framework rates 73% of the analysed threats as High-Critical risk to end users; the findings were disclosed to Google, which deployed dedicated mitigations, after which the authors reassess the risk as reducible to Very Low-Medium.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s6_1",
+    "s4_4",
+    "s5_2"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Google (Gemini app on web and mobile, Google Assistant)",
+    "deployer": null,
+    "model": "Gemini"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "shi2025lessons",
+    "debenedetti2025defeating",
+    "mozannar2025magentic"
+  ],
+  "tags": [
+    "indirect prompt injection",
+    "promptware",
+    "calendar invite",
+    "smart home",
+    "coordinated disclosure"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live arXiv abstract page, HTTP 200). Dateline '[Submitted on 16 Aug 2025]', single version v1 Sat, 16 Aug 2025 22:56:51 UTC, cs.CR. Title, authors, '14 attack scenarios', the five threat classes, '73% of the analyzed threats pose High-Critical risk', 'reduced significantly to Very Low-Medium' and 'disclosed our findings to Google, which deployed dedicated mitigations' are all in the abstract. The page does not mention Black Hat USA 2025, a 22 February 2025 disclosure date, author affiliations (Tel Aviv University, Technion, SafeBreach), or the specific mitigations (user confirmations, URL redaction, content classifier) named in the candidate, so those were dropped from the summary and the publisher is given as arXiv only. Kind kept as disclosure to match the seed convention for third-party security research with a coordinated vendor fix (cf. items 029, 033, 038); polarity bad because the item documents a demonstrated vulnerability in a production assistant.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

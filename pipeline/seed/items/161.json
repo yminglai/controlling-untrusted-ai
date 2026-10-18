@@ -1,0 +1,54 @@
+{
+  "id": "2024-09-25-ftc-operation-ai-comply-donotpay-untested-robot-lawyer-claims",
+  "date": "2024-09-25",
+  "date_precision": "day",
+  "title": "FTC's Operation AI Comply settles with DoNotPay over untested 'robot lawyer' claims",
+  "url": "https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-announces-crackdown-deceptive-ai-claims-schemes",
+  "publisher": "Federal Trade Commission",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "On September 25, 2024 the FTC announced five enforcement actions under a sweep it called Operation AI Comply, including a proposed order against DoNotPay, which had marketed an AI service as the world's first robot lawyer that could generate valid legal documents and let consumers sue without a lawyer; the complaint alleged the company never tested whether the chatbot's output matched a human lawyer's work and did not hire or retain any attorneys. The proposed order requires DoNotPay to pay $193,000, notify consumers who subscribed between 2021 and 2023 about the limitations of its law-related features, and stop claiming it can substitute for any professional service without evidence to support the claim.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "compliant"
+  ],
+  "operations": [
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s9_1",
+    "s2_1"
+  ],
+  "domain": "legal",
+  "actors": {
+    "vendor": "DoNotPay",
+    "deployer": "DoNotPay",
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "mokander2021conformity",
+    "salvador2024certified",
+    "liang2026acceptance",
+    "mumtaz2026post"
+  ],
+  "tags": [
+    "enforcement",
+    "untested deployment",
+    "consumer protection",
+    "legal services",
+    "deceptive claims"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; FTC press release dated September 25, 2024. DoNotPay allegations (no testing against a lawyer's work, no attorneys retained), the $193,000 payment, the 2021-2023 subscriber notices and the ban on unsupported professional-substitution claims are all confirmed from the page body. The product is a document-drafting legal service rather than a tool-using agent; kept as a governance precedent that regulators treat a missing pre-deployment Verify step as a legal defect.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

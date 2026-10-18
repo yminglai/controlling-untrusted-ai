@@ -1,0 +1,49 @@
+{
+  "id": "2025-05-14-deepmind-s-alphaevolve-runs-in-google-production-recovering-0-7-of",
+  "date": "2025-05-14",
+  "date_precision": "day",
+  "title": "DeepMind's AlphaEvolve runs in Google production, recovering 0.7% of worldwide compute with evaluator-verified code",
+  "url": "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+  "publisher": "Google DeepMind",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Google DeepMind's AlphaEvolve pairs Gemini Flash and Gemini Pro with automated evaluators that verify, run and score every candidate program, and an evolutionary loop over a programs database decides which candidates feed future prompts. Its outputs are in production at Google: a Borg scheduling heuristic deployed for over a year recovers on average 0.7% of Google's worldwide compute, a Verilog rewrite that had to pass functional-correctness verification was integrated into an upcoming TPU, and a 23% kernel speedup cut Gemini training time by 1%.",
+  "failure_sources": [],
+  "requirements": [
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s10_2",
+    "s9_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Google DeepMind",
+    "deployer": "Google",
+    "model": "Gemini Flash and Gemini Pro"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "nguyen2026verify",
+    "soni2026falsifiable",
+    "wang2026verification",
+    "guo2026self"
+  ],
+  "tags": [
+    "automated evaluators",
+    "release gate",
+    "coding agent",
+    "evolutionary search"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page is the Google DeepMind blog post dated May 14, 2025. The 0.7% worldwide compute figure, over-a-year production of the Borg heuristic, the TPU Verilog change passing functional-correctness verification, and the 23% kernel speedup with 1% Gemini training-time reduction all appear in the page text. The page describes automated evaluator gating but no human review step or safety controls.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

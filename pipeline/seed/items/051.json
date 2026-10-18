@@ -1,0 +1,54 @@
+{
+  "id": "2025-12-10-geminijack-zero-click-prompt-injection-in-gemini-enterprise",
+  "date": "2025-12-10",
+  "date_precision": "day",
+  "title": "GeminiJack: zero-click prompt injection in Gemini Enterprise exfiltrates Workspace data through RAG search",
+  "url": "https://www.infosecurity-magazine.com/news/google-fixes-gemini-enterprise-flaw",
+  "publisher": "Infosecurity Magazine",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Noma Security researchers found that hidden instructions planted in a shared Google Doc, Calendar event or Gmail message were retrieved by Gemini Enterprise's RAG-based search when an employee ran a routine query, after which the assistant scanned authorised Gmail, Calendar and Docs data for sensitive terms and embedded them in an attacker-controlled image URL that the victim's browser fetched, with no click required and no security control triggered. Noma reported the flaw to Google in June 2025 and published its proof of concept on 8 December; Google changed how Gemini Enterprise and Vertex AI Search interact with their retrieval and indexing systems and fully separated Vertex AI Search from Gemini Enterprise's LLM and RAG workflows.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s10_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "lan2026silent",
+    "debenedetti2025defeating",
+    "zhong2025rtbas"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "rag",
+    "zero-click",
+    "enterprise search"
+  ],
+  "relevant": true,
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Infosecurity Magazine article by Kevin Poireault dated 10 December 2025 confirms GeminiJack (Noma Security): zero-click indirect prompt injection via poisoned Docs, Calendar or Gmail content retrieved by Gemini Enterprise RAG search, exfiltration through an attacker image URL, report to Google in June 2025, Noma PoC published 8 December, and Google's fix separating Vertex AI Search from Gemini Enterprise LLM/RAG workflows. No CVE on the page.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection"
+}

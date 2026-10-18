@@ -1,0 +1,54 @@
+{
+  "id": "2026-01-19-miggo-a-calendar-invite-makes-gemini-write-private-meeting-summaries",
+  "date": "2026-01-19",
+  "date_precision": "day",
+  "title": "Miggo: a calendar invite makes Gemini write private meeting summaries into an event the attacker can read",
+  "url": "https://www.miggo.io/post/weaponizing-calendar-invites-a-semantic-attack-on-google-gemini",
+  "publisher": "Miggo Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Miggo Security researcher Liad Eliyahu placed a prompt-injection payload in the description of a calendar event sent to a target; it stayed dormant until the user asked Gemini a routine scheduling question, at which point Gemini summarised the user's meetings for that day, including private ones, created a new event titled \"free\" with the summary in its description, and told the user the slot was free. The post states that in many enterprise calendar setups the new event was visible to the attacker, that the payload ran solely through natural language and so got past a separate model Google had already deployed to detect malicious prompts, and that Google confirmed the findings and mitigated the vulnerability after responsible disclosure.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s5_2",
+    "s4_4",
+    "s5_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "shi2025lessons",
+    "szczepaniak2026defusing",
+    "hackett2025bypassing",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "calendar",
+    "detector evasion",
+    "dormant payload"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17. Post dated January 19, 2026, by Liad Eliyahu, Head of Research at Miggo Security. Attack steps, the evasion of Google's separate prompt-detection model, and Google's confirmation and mitigation are all stated in the post body. No CVE, bounty, or mitigation date appears on the page.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

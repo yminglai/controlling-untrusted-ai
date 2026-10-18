@@ -1,0 +1,57 @@
+{
+  "id": "2025-06-13-google-describes-layered-defences-for-gemini-against-indirect-prompt",
+  "date": "2025-06-13",
+  "date_precision": "day",
+  "title": "Google describes layered defences for Gemini against indirect prompt injection",
+  "url": "https://blog.google/security/mitigating-prompt-injection-attacks/",
+  "publisher": "Google Keyword blog",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Google's GenAI Security Team described a layered defence for Gemini against indirect prompt injection: model hardening through adversarial training in the Gemini 2.5 models, purpose-built prompt injection content classifiers that filter malicious instructions out of emails and files before a response is generated, security thought reinforcement that adds security instructions around the prompt content and a second reasoning step that checks whether a response should be blocked, markdown sanitisation that does not render external image URLs, and redaction of suspicious URLs identified by Google Safe Browsing. A user confirmation framework requests explicit confirmation before potentially risky operations such as deleting a calendar event, end users see a security notification with a Learn more link when a defence has acted, and the post notes that not rendering external images made the EchoLeak zero-click exfiltration vulnerability (CVE-2025-32711) not applicable to Gemini.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "constrain",
+    "steer",
+    "train"
+  ],
+  "subsections": [
+    "s5_2",
+    "s6_1",
+    "s7_1",
+    "s10_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Google",
+    "deployer": "Google (Gemini in Google Workspace)",
+    "model": "Gemini 2.5"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "hines2024defending",
+    "hackett2025bypassing",
+    "chen2024secalign",
+    "lan2026silent"
+  ],
+  "tags": [
+    "prompt injection",
+    "defence in depth",
+    "classifiers",
+    "user confirmation",
+    "url redaction"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page). Page dated Jun 13, 2025; byline Google GenAI Security Team on Google's Keyword blog, Security section; headline 'Mitigating prompt injection attacks with a layered defense strategy'. The five defence layers (model hardening via adversarial training in Gemini 2.5, prompt injection content classifiers, security thought reinforcement, markdown sanitisation and Safe Browsing URL redaction, user confirmation framework) and the end-user security notifications are confirmed from the page body; the calendar-deletion example and the EchoLeak (CVE-2025-32711) remark are taken from the page. The page frames these as defences for Gemini in Google Workspace and does not use the word 'agent' except in a linked white paper title; the item is kept as relevant because the mechanisms gate an assistant that reads email and files and performs actions such as deleting calendar events. The page gives no effectiveness numbers for the defences; the only figure on it is Gmail's 99.9% spam, phishing and malware block rate, which is not about Gemini.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

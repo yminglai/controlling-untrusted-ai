@@ -1,0 +1,53 @@
+{
+  "id": "2026-04-26-google-cloud-unveils-agent-identity-agent-gateway-and-model-armor-at-next-2026",
+  "date": "2026-04-26",
+  "date_precision": "day",
+  "title": "Google Cloud unveils Agent Identity, Agent Gateway and Model Armor at Next 2026",
+  "url": "https://itwire.com/business-it-news/security/google-cloud-unveils-agentic-defence-innovations-at-next-2026",
+  "publisher": "iTWire",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "At Google Cloud Next 2026, Google Cloud unveiled new governance and security controls within its Gemini Enterprise Agent Platform, named Agent Identity, Agent Gateway and Model Armor, which it describes as helping organisations manage and secure autonomous agents operating within their environments, and made remote MCP server support generally available so organisations can build their own custom security agents. The same announcement turned reCAPTCHA into Google Cloud Fraud Defense, a platform for verifying the legitimacy and intent of bots, humans and AI agents, and added three AI-powered agents for threat hunting, detection engineering and third-party risk in Google Security Operations; the report gives no availability status or mechanism detail for the three agent-platform controls.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_2",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Google Cloud",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "south2025authenticated",
+    "zhu2026openport",
+    "li2026zero",
+    "malik2026decentralized"
+  ],
+  "tags": [
+    "agent identity",
+    "tool gateway",
+    "mcp",
+    "cloud platform",
+    "governance"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; iTWire page headed 'Google Cloud unveils agentic defence innovations at Next 2026', dated 26 Apr 2026, no author named. The page names Agent Identity, Agent Gateway and Model Armor as new governance and security controls in the Gemini Enterprise Agent Platform and states remote MCP server support is generally available, but gives no mechanism detail; the candidate's claims about scoped credentials, delegated human authority, MCP/A2A policy enforcement and prompt-injection or tool-poisoning screening do not appear on the page and were removed from the title and summary.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

@@ -1,0 +1,52 @@
+{
+  "id": "2025-03-15-openai-ships-the-agents-sdk-with-guardrails-handoffs-and-tracing",
+  "date": "2025-03-15",
+  "date_precision": "day",
+  "title": "OpenAI ships the Agents SDK with guardrails, handoffs and tracing as built-in primitives",
+  "url": "https://www.infoq.com/news/2025/03/openai-responses-api-agents-sdk",
+  "publisher": "InfoQ",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "OpenAI launched the Responses API, with built-in web search, local file search and computer control, and an Agents SDK for orchestrating agentic workflows that supersedes its experimental orchestration agent Swarm and works with any Chat Completions-style API. The SDK defines distinct agents, manages control transfer between them (handoffs), defines safety checks on input and output to prevent irrelevant, harmful or undesirable behaviour (guardrails), and visualises traces so developers can observe agents (tracing).",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_2",
+    "s5_1",
+    "s6_2",
+    "s10_1"
+  ],
+  "domain": "multi-agent",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "rebedea2023nemo",
+    "chennabasappa2025llamafirewall",
+    "dong2024agentops",
+    "hossain2026channelguard"
+  ],
+  "tags": [
+    "guardrails",
+    "tracing",
+    "handoffs",
+    "agent framework",
+    "sdk"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (direct fetch, full article). InfoQ news item by Sergio De Simone, page metadata datePublished 2025-03-15, headline 'OpenAI Launches New API, SDK, and Tools to Develop Custom Agents'. Confirmed from the body: Responses API with web search, local file search and computer control; Agents SDK with agents, handoffs, guardrails (safety checks on input and output) and tracing; SDK supersedes Swarm and is compatible with any Chat Completions-style API. The page does not state the 11 March 2025 announcement date given by the sweep and does not call the SDK open-source, so the item uses the article's publication date and the open-source claim was dropped from the summary.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

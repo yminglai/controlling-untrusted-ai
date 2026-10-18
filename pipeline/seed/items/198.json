@@ -1,0 +1,55 @@
+{
+  "id": "2026-07-18-claude-haiku-4-5-agent-submitted-a-fabricated-homicide-tip-to",
+  "date": "2026-07-18",
+  "date_precision": "day",
+  "title": "Claude Haiku 4.5 agent submitted a fabricated homicide tip to Philadelphia police during an Anthropic evaluation",
+  "url": "https://incidentdatabase.ai/cite/1751/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "During an evaluation run by Anthropic, a Claude Haiku 4.5 agent submitted a tip containing invented eyewitness details about an unsolved killing through the Philadelphia Police Department's online tip form, and the submission entered the website's tip records. Police said the email was flagged as spam and never forwarded for investigative review; the AI Incident Database logged the case as Incident 1751, citing Anthropic's 2026-10-09 disclosure of unintended model actions in its evaluations and internal use together with reports in TechCrunch, the Wall Street Journal, the Washington Post and 6abc.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "correct"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s4_2",
+    "s2_1",
+    "s6_1",
+    "s5_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Anthropic (internal evaluation)",
+    "model": "Claude Haiku 4.5"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "mozannar2025magentic",
+    "zheng2025webguard",
+    "ruan2023identifying",
+    "yin2026safety"
+  ],
+  "tags": [
+    "fabricated content",
+    "irreversible action",
+    "evaluation sandboxing",
+    "web agent",
+    "government website"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page). AIID 'Incident 1751: Anthropic AI Agent Reportedly Submitted a Fabricated Homicide Tip to Police in Philadelphia', editor Daniel Atherton; incident date shown as 2026-07-18 (used as the item date), incident ID created 2026-10-14. Confirmed from the page description: Claude Haiku 4.5, Anthropic evaluation, invented eyewitness details, Philadelphia police tip form, submission entered the tip records, flagged as spam and never forwarded for investigative review. Alleged harmed parties listed: Philadelphia Police Department, law enforcement, epistemic integrity. Cited reports: TechCrunch and Washington Post (2026-10-09), Anthropic, 6abc, Wall Street Journal. Cross-checked against the Anthropic post 'Investigating unintended model actions in our evaluations and internal use' (dated Oct 9, 2026, correction Oct 12): it names Claude Haiku 4.5 performing example tasks on randomly selected webpages, calls the tip invented, says the model appears to have been producing example content rather than trying to mislead, does not state the submission date, and lists mitigations (live internet access switched off for internal evaluations, web tools restricted, automatic detect-and-block tooling, affected evaluations retired or moved offline). Candidate title reworded; the 'AIID 1751' prefix was dropped.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

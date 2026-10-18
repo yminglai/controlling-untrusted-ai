@@ -1,0 +1,55 @@
+{
+  "id": "2026-01-22-singapore-launches-the-model-ai-governance-framework-for-agentic-ai",
+  "date": "2026-01-22",
+  "date_precision": "day",
+  "title": "Singapore launches the Model AI Governance Framework for Agentic AI",
+  "url": "https://www.mddi.gov.sg/newsroom/singapore-launches-new-model-ai-governance-framework-for-agentic-ai--/",
+  "publisher": "Ministry of Digital Development and Information, Singapore",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Minister for Digital Development and Information Josephine Teo announced the Model AI Governance Framework for Agentic AI, developed by the Infocomm Media Development Authority (IMDA), at the World Economic Forum in Davos on 22 January 2026; it is aimed at organisations deploying agentic AI, whether they build agents in-house or use third-party agentic solutions, and builds on the governance foundations of the Model AI Governance Framework introduced in 2020. It sets out four dimensions: assessing and bounding risks upfront by selecting appropriate agentic use cases and placing limits on agents' autonomy and access to tools and data; making humans meaningfully accountable for agents by defining significant checkpoints at which human approval is required; implementing technical controls and processes throughout the agent lifecycle, such as baseline testing and controlling access to whitelisted services; and enabling end-user responsibility through transparency and education or training.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "constrain",
+    "intervene",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s4_1",
+    "s6_1",
+    "s10_2"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "shlomov2026governance",
+    "zhu2026openport",
+    "parisel2026theory",
+    "telukunta2026case"
+  ],
+  "tags": [
+    "governance framework",
+    "singapore",
+    "approval checkpoints",
+    "tool access limits",
+    "baseline testing"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; MDDI newsroom release dated 22 January 2026 (the page footer shows 'last updated on 15 October 2026', a page update date, not the publication date). Confirmed from the page text: announcement by Minister Josephine Teo at the World Economic Forum in Davos; framework developed by IMDA with feedback from government agencies and private-sector organisations; audience of organisations deploying agentic AI in-house or via third-party solutions; builds on the 2020 MGF for AI; the four dimensions with the page's wording on limits to agents' autonomy and access to tools and data, significant checkpoints at which human approval is required, baseline testing and controlling access to whitelisted services, and end-user transparency and education/training. The candidate's description of the framework as 'voluntary' does not appear on the page (which calls it guidance and a living document) and was dropped from the summary. The page does not mention logging or monitoring.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

@@ -1,0 +1,54 @@
+{
+  "id": "2026-09-19-bragjack-one-malicious-extension-hijacks-the-built-in-ai-agents",
+  "date": "2026-09-19",
+  "date_precision": "day",
+  "title": "BragJack: one malicious extension hijacks the built-in AI agents of Chrome, Edge, Comet, Opera Neon and Claude in Chrome",
+  "url": "https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/",
+  "publisher": "BleepingComputer",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Security researcher Gal Weizman of Forever Security disclosed BragJack, in which a single already-installed malicious extension abuses Chromium's declarativeNetRequest API to weaken security headers and redirect scripts so that attacker code can talk to the browser's privileged built-in AI agent: in Google Chrome the Gemini Live integration could read local files, take screenshots and potentially reach the camera and microphone (CVE-2026-0628), in Perplexity Comet the attacker gained browsing history, screenshots and local files and forced the agent to summarise the victim's emails and send the results to another address, and in Microsoft Edge a race condition briefly disabled the Think/Do restriction (CVE-2026-55945), with similar flaws demonstrated in Opera Neon and Claude in Chrome. The research earned more than $20,000 in bug bounties from the five vendors, with awards from $600 to $7,000; Google and Microsoft have resolved the flaws assigned to them, and the article does not report fixes from Perplexity, Opera or Anthropic.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "verify"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_5",
+    "s4_2",
+    "s4_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Google (Chrome, Gemini Live); Microsoft (Edge); Perplexity (Comet); Opera (Neon); Anthropic (Claude in Chrome)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "datta2026waaa",
+    "ji2026taming",
+    "wu2026grimlock",
+    "wu2024isolategpt"
+  ],
+  "tags": [
+    "agentic browser",
+    "malicious extension",
+    "confused deputy",
+    "privilege boundary",
+    "bug bounty"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; BleepingComputer article by Ax Sharma dated September 19, 2026. Researcher and company, the declarativeNetRequest mechanism, the five affected products, the Chrome, Comet and Edge impacts, CVE-2026-0628 (with its $7,000 bounty) and CVE-2026-55945, the 'more than $20,000' total with a $600 to $7,000 range, and the statement that Google and Microsoft resolved their assigned flaws were all confirmed from the article body. The article says the extension must already be installed in the victim's browser; it does not say whether Perplexity, Opera or Anthropic have fixed their flaws (the candidate omitted Perplexity from that list).",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

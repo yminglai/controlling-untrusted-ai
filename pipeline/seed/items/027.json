@@ -1,0 +1,55 @@
+{
+  "id": "2026-07-08-semafor-editor-billed-nearly-500-after-codex-looped-unattended-on-a-mac-mini",
+  "date": "2026-07-08",
+  "date_precision": "day",
+  "title": "Semafor editor billed nearly $500 after Codex looped unattended on a Mac Mini",
+  "url": "https://www.semafor.com/article/07/08/2026/ai-makes-mistakes-too",
+  "publisher": "Semafor",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Semafor tech editor Reed Albergotti returned from two weeks in Europe to find OpenAI had charged his account $5 repeatedly, more than 20 times a day in some cases, for a total just shy of $500: after a glitch erased his Codex chats and he reinstalled the desktop app, his request to revive an ambitious project sent the agent into a loop in which it repeatedly reviewed the same data on a remote Mac Mini he was not monitoring because of poor connectivity abroad. He had never set a limit on the $5 automatic credit top-ups; Codex said it had taken the prompt, which Codex itself had written, too literally, OpenAI's customer service answered through an AI chatbot, no refund was issued, and he reached a human only by contacting the PR department.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "within-budget",
+    "correct"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_1",
+    "s5_2",
+    "s6_4"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "OpenAI (Codex)",
+    "deployer": "Reed Albergotti (Semafor), personal project",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "khan2026token",
+    "barazandeh2026ontrack",
+    "nowaczyk2025architectures",
+    "zheng2026agentcgroup"
+  ],
+  "tags": [
+    "runaway loop",
+    "budget overrun",
+    "auto top-up",
+    "unattended agent",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; Semafor 'Reed's view' column by Reed Albergotti, dated July 8, 2026. The repeated $5 charges (more than 20 times a day in some cases), the total just shy of $500, the remote Mac Mini, the loop over the same data, the absence of a top-up limit, Codex's 'too literally' explanation, the AI-chatbot support reply and the lack of a refund are all confirmed from the article body. The page does not state how long the loop ran, so the sweep's 'for days' was dropped from the title; the author is the deployer reporting his own experience, hence evidence first-party.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

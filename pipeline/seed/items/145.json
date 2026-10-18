@@ -1,0 +1,54 @@
+{
+  "id": "2025-10-10-openai-launches-agentkit-at-devday-2025-with-a-connector-registry",
+  "date": "2025-10-10",
+  "date_precision": "day",
+  "title": "OpenAI launches AgentKit at DevDay 2025 with a Connector Registry, guardrails, evals and tracing",
+  "url": "https://infoq.com/news/2025/10/openai-dev-day",
+  "publisher": "InfoQ",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "At DevDay on 6 October 2025 OpenAI introduced AgentKit, which bundles a visual Agent Builder, a Connector Registry for governing data sources, ChatKit for embeddable agent UIs, and integrated evaluation and tracing, alongside an open-source Agents SDK whose primitives include agents, handoffs, guardrails and sessions. InfoQ reports that OpenAI's guidance for connectors stresses least privilege, explicit consent and defense in depth, and warns that MCP-style connectors expand the attack surface and raise exfiltration risk, recommending that teams keep audit trails and assume prompt injection will reach deployed agents.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "verify"
+  ],
+  "subsections": [
+    "s4_1",
+    "s5_2",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "chennabasappa2025llamafirewall",
+    "rebedea2023nemo",
+    "wang2026agent",
+    "zhu2026openport"
+  ],
+  "tags": [
+    "agentkit",
+    "connectors",
+    "guardrails",
+    "tracing",
+    "least privilege"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; InfoQ article by Andrew Hoblitzell with byline date 2025-10-10, covering OpenAI DevDay held 2025-10-06. The page confirms AgentKit (Agent Builder, Connector Registry, ChatKit, built-in evals and tracing), guardrails as an Agents SDK primitive, and OpenAI guidance on least privilege, explicit consent and defense in depth for connectors. It does not describe a standalone Guardrails library or list PII, jailbreak or prompt-injection checks, so the candidate title and summary were narrowed to what the page states; date set to the article's publication date rather than the event date.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

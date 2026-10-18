@@ -1,0 +1,54 @@
+{
+  "id": "2025-10-21-brave-prompt-injections-comet-screenshots-fellou-navigation",
+  "date": "2025-10-21",
+  "date_precision": "day",
+  "title": "Brave disclosed prompt injections in Perplexity Comet via hidden screenshot text and in Fellou via page navigation",
+  "url": "https://brave.com/blog/unseeable-prompt-injections/",
+  "publisher": "Brave",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Brave's security team disclosed two indirect prompt injection vulnerabilities in agentic AI browsers: in Perplexity Comet, instructions hidden as faint light-blue text on a yellow background were recovered when the user took a screenshot and asked the assistant about it, and in Fellou, visible instructions on a web page took effect as soon as the user asked the assistant to navigate there, with no summarization request needed. The Comet issue was reported to Perplexity on 1 October 2025 and the Fellou issue to Fellou on 20 August 2025; Brave withheld one further vulnerability in another browser at that vendor's request (later identified as Opera Neon), described indirect prompt injection as a systemic challenge for the whole AI-browser category, and said browsers should isolate agentic browsing from regular browsing and start agentic actions only on explicit user invocation.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "verify"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s9_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity (Comet); Fellou",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "datta2026waaa",
+    "nikoli2026untrusted",
+    "villa2026prismata",
+    "nguyen2026experimental"
+  ],
+  "tags": [
+    "prompt injection",
+    "ai browser",
+    "screenshot",
+    "navigation",
+    "disclosure"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page states 'Published Oct 21, 2025' (last updated Oct 31, 2025). Comet screenshot mechanism, Fellou navigation mechanism, disclosure timeline (reported to Perplexity 2025-10-01, to Fellou 2025-08-20), the withheld third vulnerability (Opera Neon per the update) and the 'systemic challenge' statement all confirmed from the post body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

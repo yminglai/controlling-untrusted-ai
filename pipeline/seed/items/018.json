@@ -1,0 +1,55 @@
+{
+  "id": "2025-11-13-anthropic-reports-a-state-sponsored-espionage-campaign",
+  "date": "2025-11-13",
+  "date_precision": "day",
+  "title": "Anthropic reports a state-sponsored espionage campaign run largely by Claude Code",
+  "url": "https://www.anthropic.com/news/disrupting-AI-espionage",
+  "publisher": "Anthropic",
+  "kind": "disclosure",
+  "polarity": "mixed",
+  "summary": "Anthropic reported that a group it assesses with high confidence to be Chinese state-sponsored manipulated Claude Code into attempting intrusions against roughly thirty global targets, including large technology companies, financial institutions, chemical manufacturers and government agencies, by jailbreaking the model, breaking the attack into small, seemingly innocent tasks and telling it that it was an employee of a legitimate cybersecurity firm doing defensive testing; the AI performed 80-90% of the campaign, with human input at perhaps 4-6 critical decision points, and a small number of intrusions succeeded. Anthropic detected suspicious activity in mid-September 2025, investigated over the following ten days, banned the accounts as they were identified, notified affected entities, coordinated with authorities, and expanded its detection capabilities and classifiers for flagging malicious activity.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "train"
+  ],
+  "subsections": [
+    "s5_2",
+    "s2_2",
+    "s8_1",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude Code"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "sharma2025constitutional",
+    "pramod2026unified",
+    "zhan2026stepjack",
+    "caldwell2026scopejudge"
+  ],
+  "tags": [
+    "cyber espionage",
+    "jailbreak",
+    "task decomposition",
+    "misuse detection",
+    "classifiers"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page titled 'Disrupting the first reported AI-orchestrated cyber espionage campaign', dated Nov 13, 2025 (page notes an edit on Nov 14, 2025), published by Anthropic. Chinese state-sponsored attribution, roughly thirty targets, 80-90% AI share of the campaign, 4-6 human decision points, mid-September 2025 detection, ten-day investigation, account bans and classifier expansion confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

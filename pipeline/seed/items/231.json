@@ -1,0 +1,52 @@
+{
+  "id": "2025-01-24-perplexity-assistant-on-android-hails-rides-and-books-tables-in-third-party-apps",
+  "date": "2025-01-24",
+  "date_precision": "day",
+  "title": "Perplexity Assistant on Android hails rides and books tables in third-party apps",
+  "url": "https://9to5google.com/2025/01/24/perplexity-assistant-android/",
+  "publisher": "9to5Google",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Perplexity released an Android assistant that can replace Gemini as the default assistant and act inside other apps: in 9to5Google's hands-on it hailed an Uber to the airport after \"some trying and failing\", and the article says it can play music through Spotify or YouTube and book dinner reservations through OpenTable. The reviewer called the app \"not bug-free by any means\", and the article mentions no confirmation step before the assistant acts in a third-party app.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "correct"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s6_1",
+    "s4_1",
+    "s2_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Perplexity",
+    "deployer": "Perplexity",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "chen2026allow",
+    "lee2025verisafe",
+    "lee2024mobilesafetybench",
+    "deivasigamani2026not"
+  ],
+  "tags": [
+    "mobile agent",
+    "third-party apps",
+    "approval gate",
+    "reliability"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated Jan 24 2025, 11:47 am PT, by Andrew Romero at 9to5Google. The Uber ride is reported as tested (it \"took some trying and failing\"); OpenTable booking is stated only as a capability, so the candidate summary's claim that it booked a table was corrected. The article mentions no approval or confirmation step before actions.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

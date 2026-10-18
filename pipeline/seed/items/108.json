@@ -1,0 +1,53 @@
+{
+  "id": "2024-09-26-wellspan-pilots-hippocratic-ai-phone-agent-for-cancer-screening-outreach",
+  "date": "2024-09-26",
+  "date_precision": "day",
+  "title": "WellSpan pilots Hippocratic AI phone agent for cancer-screening outreach with clinician monitoring",
+  "url": "https://www.hcinnovationgroup.com/analytics-ai/generative-ai/news/55142832/wellspan-piloting-genai-agents-for-patient-outreach",
+  "publisher": "Healthcare Innovation",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "WellSpan Health, an eight-hospital system based in York, Pennsylvania, is piloting a Hippocratic AI conversational agent that telephones English- and Spanish-speaking patients who have not engaged with colorectal cancer screening, with a second agent preparing low-risk patients for scheduled colonoscopies and following up afterwards. Initial pilot calls are monitored by a human clinician, Hippocratic AI provides WellSpan clinicians with a complete transcript of each conversation for review, and some calls are transferred live to a clinician or followed up by one later.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "correct"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_6",
+    "s6_1",
+    "s5_1",
+    "s10_2"
+  ],
+  "domain": "healthcare",
+  "actors": {
+    "vendor": "Hippocratic AI",
+    "deployer": "WellSpan Health",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "joshi2021learning",
+    "noori2025global",
+    "turan2026oversight",
+    "wang2026budgeted"
+  ],
+  "tags": [
+    "healthcare",
+    "voice agent",
+    "human monitoring",
+    "transcript review",
+    "escalation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17. Article by David Raths, dated Sept. 26, 2024, confirms the pilot, live clinician monitoring of initial calls, complete transcripts delivered to WellSpan clinicians, and live transfer of some calls to a clinician. The page gives no escalation criteria, call volumes, monitoring period or model name. The agent acts by placing outbound patient calls and transferring them, not by tool or code execution.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

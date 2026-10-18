@@ -1,0 +1,54 @@
+{
+  "id": "2026-05-04-morse-code-prompt-induced-a-grok-linked-trading-bot-to-transfer",
+  "date": "2026-05-04",
+  "date_precision": "day",
+  "title": "Morse-code prompt induced a Grok-linked trading bot to transfer about $200,000 in tokens",
+  "url": "https://incidentdatabase.ai/cite/1556/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "An X user reportedly sent a Bankr Club Membership NFT to Grok's wallet, then asked Grok to translate a Morse-code message and relay it to Bankrbot; the decoded instruction directed a transfer of 3 billion DRB tokens, then valued at about $200,000, which was executed on Base. The recipient reportedly sold the tokens soon afterward, and linked funds were later returned or converted.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s6_1",
+    "s4_1"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "xAI (Grok); Bankr (Bankrbot)",
+    "deployer": "Bankr",
+    "model": "Grok"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "lee2024prompt",
+    "yin2026safety",
+    "costa2025securing",
+    "marino2025giving"
+  ],
+  "tags": [
+    "prompt injection",
+    "crypto wallet",
+    "multi-agent",
+    "encoded payload",
+    "irreversible transfer"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17; incident 1556 title, description, and incident date 2026-05-04 confirmed from the page. The two linked reports (Dexerto, Giskard) show only the year 2026; Giskard's headline says $150,000 while the AIID description says about $200,000.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

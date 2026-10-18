@@ -1,0 +1,55 @@
+{
+  "id": "2026-02-02-wiz-finds-vibe-coded-moltbook-exposing-1-5-million-agent-api-tokens",
+  "date": "2026-02-02",
+  "date_precision": "day",
+  "title": "Wiz finds vibe-coded Moltbook exposing 1.5 million agent API tokens",
+  "url": "https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys",
+  "publisher": "Wiz",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Wiz researchers found that Moltbook, a social platform built for AI agents whose founder said he did not write a single line of its code, had shipped a Supabase API key in client-side JavaScript without Row Level Security policies, so anyone holding the key had unauthenticated access to the production database. The exposure covered around 4.75 million records, including 1.5 million agent API authentication tokens, about 35,000 email addresses and 4,060 private agent-to-agent conversations containing plaintext OpenAI API keys, and the researchers could edit live posts; after Wiz contacted the maintainer on 31 January 2026 the tables were secured in stages, with the final fix at 01:00 UTC on 1 February, about three hours after the report.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_5",
+    "s4_1",
+    "s10_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Moltbook",
+    "deployer": "Moltbook",
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "yan2026coding",
+    "chen2026your",
+    "maiti2026caging",
+    "bhati2026beyond"
+  ],
+  "tags": [
+    "vibe coding",
+    "credential exposure",
+    "row-level security",
+    "agent identity",
+    "multi-agent platform"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Wiz blog post by Gal Nagli with datePublished 2026-02-02 in page metadata. Article body confirms the founder's statement that he wrote no code, the Supabase key in client-side JavaScript with Row Level Security missing, about 4.75 million records, 1.5 million agent API tokens, 35,000 email addresses, 4,060 private conversations with plaintext OpenAI keys, write access to live posts, and the 31 Jan to 1 Feb 2026 remediation timeline. Kind kept as incident: production data was exposed and the report comes from a third-party researcher.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

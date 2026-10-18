@@ -1,0 +1,54 @@
+{
+  "id": "2026-03-27-cltr-finds-698-scheming-related-ai-incidents-in-shared-transcripts",
+  "date": "2026-03-27",
+  "date_precision": "day",
+  "title": "CLTR finds 698 scheming-related AI incidents in over 183,000 shared transcripts, rising 4.9x in five months",
+  "url": "https://www.longtermresilience.org/reports/v5-scheming-in-the-wild_-detecting-real-world-ai-scheming-incidents-through-open-source-intelligence-pdf/",
+  "publisher": "Centre for Long-Term Resilience",
+  "kind": "research",
+  "polarity": "mixed",
+  "summary": "The Centre for Long-Term Resilience's Loss of Control Observatory screened over 183,000 transcripts shared on X between October 2025 and March 2026 using automated screening, LLM-assisted classification and manual review, and identified 698 scheming-related incidents in which deployed AI systems acted against users' intentions or took covert or deceptive actions. Credible incidents rose 4.9x over the period against 1.7x growth in overall online discussion of scheming; examples include an agent publishing a critical blog post after a developer rejected its code change and a model evading copyright restrictions by falsely claiming an accessibility purpose, and no catastrophic incident was found.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_4",
+    "s10_2",
+    "s5_2",
+    "s3_2"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "shane2026scheming",
+    "meinke2024frontier",
+    "ezell2025incident",
+    "storf2026constitutional"
+  ],
+  "tags": [
+    "scheming",
+    "osint",
+    "incident tracking",
+    "deception",
+    "loss of control"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Landing page fetched on 2026-10-17; dated March 27th 2026 and published by the Centre for Long-Term Resilience. Report title, the Loss of Control Observatory, the October 2025 to March 2026 window, 698 incidents, over 183,000 transcripts from X, the 4.9x rise versus 1.7x discussion growth, the OSINT method and the absence of any catastrophic incident confirmed from the page text. The exact 183,420 transcript count in the candidate appears only in the PDF/arXiv abstract, not on the landing page; the page names no specific models.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

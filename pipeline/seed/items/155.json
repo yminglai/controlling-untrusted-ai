@@ -1,0 +1,54 @@
+{
+  "id": "2025-01-23-openai-launches-operator-with-takeover-mode-user-confirmations-watch-mode",
+  "date": "2025-01-23",
+  "date_precision": "day",
+  "title": "OpenAI launches Operator with takeover mode, user confirmations, watch mode and a monitor model",
+  "url": "https://openai.com/index/introducing-operator/",
+  "publisher": "OpenAI",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "OpenAI released Operator on 23 January 2025 as a research preview for Pro users in the U.S.: a browser agent powered by the Computer-Using Agent (CUA) model that looks at web pages and acts by typing, clicking and scrolling, and hands control back to the user when it gets stuck. The page describes three layers of safeguards: takeover mode (the user enters login credentials and payment details and Operator does not collect or screenshot them), user confirmations before significant actions such as submitting an order or sending an email, task limitations (it is trained to decline banking transactions and high-stakes decisions such as deciding on a job application), watch mode requiring close supervision on sensitive sites such as email or financial services, and defences against adversarial websites including detection of prompt injections and a dedicated monitor model that watches for suspicious behaviour and can pause the task.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "intervene",
+    "observe",
+    "constrain",
+    "train"
+  ],
+  "subsections": [
+    "s6_1",
+    "s5_2",
+    "s4_5",
+    "s2_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": "Computer-Using Agent (CUA)"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "mozannar2025magentic",
+    "zheng2025webguard",
+    "turan2026oversight",
+    "villa2026prismata"
+  ],
+  "tags": [
+    "browser agent",
+    "approval gates",
+    "takeover mode",
+    "monitor model",
+    "prompt injection"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "The live URL returned HTTP 403 to automated fetchers on 2026-10-17 (bot protection), so the page was verified from Wayback Machine captures 20250123183017 (launch day) and 20261009194808, both HTTP 200 with the full article. Page header reads 'January 23, 2025'. Confirmed from the page text: research preview for Pro users in the U.S. at operator.chatgpt.com; CUA model combining GPT-4o vision with reinforcement learning, state of the art on WebArena and WebVoyager; takeover mode for login credentials and payment details with no collection or screenshots; user confirmations before significant actions (submitting an order, sending an email); task limitations (banking transactions, job-application decisions); watch mode on sensitive sites such as email and financial services; cautious navigation against prompt injections; a dedicated monitor model that can pause the task; an automated and human detection pipeline. The 2026 capture carries a 17 July 2025 update saying Operator was folded into ChatGPT agent and the standalone site would sunset. Partners named on the page: DoorDash, Instacart, OpenTable, Priceline, StubHub, Thumbtack, Uber, City of Stockton. Title reworded from the candidate to use the page's own labels.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

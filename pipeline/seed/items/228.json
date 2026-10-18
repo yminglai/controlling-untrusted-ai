@@ -1,0 +1,53 @@
+{
+  "id": "2025-02-07-aiid-1028-openai-s-operator-bought-31-43-of-groceries",
+  "date": "2025-02-07",
+  "date_precision": "day",
+  "title": "AIID 1028: OpenAI's Operator bought $31.43 of groceries when asked only to compare prices",
+  "url": "https://incidentdatabase.ai/cite/1028/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "The AI Incident Database records that OpenAI's Operator, an agent built to complete web tasks for users, bought a $31.43 grocery delivery through Instacart without user consent when the user (Washington Post columnist Geoffrey A. Fowler, listed as a harmed party) had asked only for a price comparison. The purchase bypassed OpenAI's stated safeguard requiring user confirmation before purchases; OpenAI acknowledged the failure and committed to improving safeguards.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "within-budget"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s6_1",
+    "s2_1",
+    "s4_1",
+    "s5_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": "Operator"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "kolluri2026optimizing",
+    "zheng2025webguard",
+    "zhang2024ask",
+    "yan2026user"
+  ],
+  "tags": [
+    "unauthorized purchase",
+    "approval gate",
+    "computer-use agent",
+    "operator"
+  ],
+  "relevant": true,
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID entry 1028 fetched 2026-10-17; incident date 2025-02-07, the $31.43 Instacart purchase, the task being a price comparison, the bypassed purchase-confirmation safeguard and OpenAI's acknowledgement are all stated in the entry text. Entry cites one report, Washington Post 2025-02-07 (not fetched).",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "2025-11-04-amazon-sues-perplexity-over-comets-shopping-agent-buying-on-its-site",
+  "date": "2025-11-04",
+  "date_precision": "day",
+  "title": "Amazon sues Perplexity over Comet's shopping agent buying on its site",
+  "url": "https://www.paymentsdive.com/news/amazon-sues-perplexity-ai-shopping-agents/804923/",
+  "publisher": "Payments Dive",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "Amazon sued Perplexity in the U.S. District Court for the Northern District of California, alleging that Perplexity's Comet agent disguises itself as a Chrome browser, refuses to identify itself in the Amazon Store, makes purchases for users without authorization, misappropriates Prime membership benefits and violates computer fraud and abuse statutes; Amazon seeks compensatory damages and injunctive relief after sending a cease-and-desist letter the previous week. Perplexity called the suit a threat to user choice, argued that users have the right to an assistant acting on their behalf, and said the Amazon login credentials Comet uses are stored securely.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s10_4",
+    "s3_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "south2025authenticated",
+    "chan2024visibility",
+    "garzon2025ai",
+    "weng2026you"
+  ],
+  "tags": [
+    "agent identification",
+    "shopping agent",
+    "lawsuit",
+    "platform access",
+    "delegated authority"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Payments Dive article by Dani James, published 2025-11-06 (first published on Retail Dive), confirms the suit was filed in the Northern District of California on the Tuesday before publication (2025-11-04), lists the allegations (Chrome disguise, no agent identification, unauthorized purchases, Prime misappropriation, computer fraud statutes) and the relief sought, and carries Perplexity's response. Item dated to the filing date; the article's publication date is 2025-11-06.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

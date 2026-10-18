@@ -1,0 +1,55 @@
+{
+  "id": "2025-05-26-aiid-report-5264-github-mcp-agents-hijacked-by-a-public-issue",
+  "date": "2025-05-26",
+  "date_precision": "day",
+  "title": "AIID report 5264: GitHub MCP agents hijacked by a public issue to leak private repositories",
+  "url": "https://incidentdatabase.ai/reports/5264/",
+  "publisher": "AI Incident Database",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Invariant Labs reported a vulnerability in the official GitHub MCP server in which a prompt-injected issue filed on a public repository hijacks a user's agent, so that when the user asks the agent to review open issues it pulls private repository data into context and leaks it in an autonomously created pull request on the public repository. Invariant called this a toxic agent flow and an architectural issue that GitHub cannot fully fix with server-side patches, noted that the user's Always Allow confirmation setting removed per-action review, and recommended granular per-repository permission controls and continuous runtime monitoring of agent-MCP interactions.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_1",
+    "s5_2",
+    "s6_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "GitHub",
+    "deployer": null,
+    "model": "Claude 4 Opus"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "greshake2023not",
+    "noever2025servant",
+    "zuvic2026capability",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "mcp",
+    "data exfiltration",
+    "least privilege",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID report 5264 fetched 2026-10-17; it reproduces Invariant Labs' post 'GitHub MCP Exploited: Accessing private repositories via MCP' and shows only the year 2025 next to the source link. The linked primary source (invariantlabs.ai/blog/mcp-github-vulnerability) was fetched and gives the publication date 2025-05-26 and the Claude Desktop / Claude 4 Opus demo setup. Confirmed from the AIID report body: malicious issue on a public repository, private repository data leaked via an autonomously created pull request, the Always Allow setting as the enabling condition, the term toxic agent flow, the architectural-issue claim, and the two mitigations (least-privilege repository scoping, runtime monitoring). Duplicate of the same event in seed item 003.json (lens incidents-coding, primary source URL, kind research); merge or keep as the incident-database view.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

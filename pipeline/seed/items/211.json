@@ -1,0 +1,54 @@
+{
+  "id": "2026-02-17-aiid-1680-prompt-injection-in-cline-s-claude-powered-issue-triager",
+  "date": "2026-02-17",
+  "date_precision": "day",
+  "title": "AIID 1680: Prompt injection in Cline's Claude-powered issue triager led to an unauthorised npm release",
+  "url": "https://incidentdatabase.ai/cite/1680/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "An unknown actor used prompt injection against Cline's Claude-powered GitHub issue-triage workflow, together with a GitHub Actions cache-poisoning path, to obtain npm publication credentials, and on February 17, 2026 a still-valid npm token was used to publish an unauthorised cline@2.3.0 whose postinstall script installed OpenClaw without user intent. Cline deprecated the release and revoked the token the same day and reported no evidence of user-data exposure; the database entry attaches five reports, including Cline's post-mortem and a GitHub security advisory listing 2.3.0 as affected and 2.4.0 as patched.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_5",
+    "s4_1",
+    "s6_4"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Cline Bot Inc.",
+    "model": "Claude"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "wang2026demystifying",
+    "sidot2026they",
+    "avirneni2025decoupling",
+    "liu2025your"
+  ],
+  "tags": [
+    "prompt injection",
+    "supply chain",
+    "ci/cd",
+    "credential revocation",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID entry fetched 2026-10-17; incident date 2026-02-17 and the claims (prompt injection into the Claude-powered triage workflow, cache poisoning, cline@2.3.0 installing OpenClaw, same-day deprecation and token revocation, no user-data exposure) confirmed on the page. Cline's post-mortem (published 2026-02-24) was also fetched and is consistent. The AIID page does not state when the entry was added, so date is the incident date.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

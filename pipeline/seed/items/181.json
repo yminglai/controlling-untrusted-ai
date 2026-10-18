@@ -1,0 +1,55 @@
+{
+  "id": "2025-12-08-uk-ncsc-prompt-injection-may-never-be-fully-mitigated-so-an-llm-s-privileges",
+  "date": "2025-12-08",
+  "date_precision": "day",
+  "title": "UK NCSC: prompt injection may never be fully mitigated, so an LLM's privileges should drop to those of the content it reads",
+  "url": "https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection",
+  "publisher": "UK National Cyber Security Centre",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "In a post published on 8 December 2025, the UK National Cyber Security Centre argues that prompt injection should not be treated like SQL injection: because an LLM has no inherent distinction between data and instructions and only predicts the next token, prompt injection attacks may never be totally mitigated the way parameterised queries mitigate SQL injection, so the model should be viewed as an 'inherently confusable deputy' whose compromise is a residual risk to be reduced rather than eliminated. The guidance tells developers to rely on deterministic, non-LLM safeguards that constrain the actions of the system, to drop an LLM's privileges to those of the party whose content it is processing (for example, not giving an LLM that processes external emails access to privileged tools), to log full LLM inputs and outputs together with tool use and API calls, and it states that if a system's security cannot tolerate the remaining risk, it may not be a good use case for LLMs.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_1",
+    "s2_2",
+    "s10_4",
+    "s4_4"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "debenedetti2025defeating",
+    "beurerkellner2025design",
+    "shi2025progent",
+    "greshake2023not"
+  ],
+  "tags": [
+    "prompt injection",
+    "least privilege",
+    "confused deputy",
+    "government guidance",
+    "deterministic safeguards"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page, first attempt). Page title 'Prompt injection is not SQL injection (it may be worse)'; shown publication date '8 December 2025'; byline Dave Chismon, CTO for Architecture (sign-off 'David C, NCSC Technical Director for Platforms Research'). Quotes confirmed from the body: 'prompt injection attacks may never be totally mitigated in the way that SQL injection attacks can be', 'inherently confusable deputy', 'when an LLM processes information from a party, the privileges it has drops to that of the party', 'don't let an LLM processing emails from random external people have access to privileged tools', 'deterministic (non-LLM) safeguards that constrain the actions of the system', logging 'tool use, API calls etc.', and 'If the system's security cannot tolerate the remaining risk, it may not be a good use case for LLMs.' The body never uses the words 'agent', 'agentic' or 'assume compromise' (it speaks of LLM systems that call tools or use APIs), so the candidate title was reworded to match the page. The post also cites OWASP's #1 ranking of prompt injection, ETSI TS 104 223, and the 2025 papers by Debenedetti et al. and Beurer-Kellner et al., both of which are in the corpus and listed as related papers.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

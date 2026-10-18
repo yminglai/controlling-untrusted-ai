@@ -1,0 +1,54 @@
+{
+  "id": "2025-07-08-general-analysis-shows-a-cursor-agent-leaking-a-supabase-database",
+  "date": "2025-07-08",
+  "date_precision": "day",
+  "title": "General Analysis shows a Cursor agent leaking a Supabase database via a poisoned support ticket",
+  "url": "https://generalanalysis.com/blog/supabase-mcp-blog",
+  "publisher": "General Analysis",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "In a test Supabase project built to mimic a multi-tenant customer-support app, with Row-Level Security enabled and a developer using Cursor through the Supabase MCP server under the service_role credential, an attacker filed a support ticket containing instructions addressed to the agent, which was stored as an ordinary customer message. When the developer later asked to see the latest open ticket, the agent ran two SQL queries, one reading the integration_tokens table and one inserting its contents as a new message in the same ticket thread where the attacker could read them; the authors recommend limiting the database and tools the assistant can reach and reviewing tool calls while keeping untrusted results as data.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_1",
+    "s4_4",
+    "s6_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor with the Supabase MCP server",
+    "deployer": "General Analysis (self-built demo project)",
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "kim2026dualview",
+    "debenedetti2025defeating",
+    "shi2025progent"
+  ],
+  "tags": [
+    "prompt injection",
+    "mcp",
+    "least privilege",
+    "data exfiltration",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page is dated 8 Jul 2025 by General Analysis (Rez Havaei, Rex Liu, Maximilian Li) and carries a mitigation review note dated 6 Sept 2026. Setup (Supabase MCP, Cursor, service_role bypassing RLS), the poisoned ticket, the two SQL queries and the leaked integration_tokens table are confirmed from the post body. The authors state the target was a self-contained demo project with dummy data, not a real customer, and that they did not rerun the demonstration against the current server.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

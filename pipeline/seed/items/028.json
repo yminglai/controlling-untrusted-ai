@@ -1,0 +1,53 @@
+{
+  "id": "2026-09-27-claude-code-follows-windows-junctions-and-deletes-about-48-000-live",
+  "date": "2026-09-27",
+  "date_precision": "day",
+  "title": "Claude Code follows Windows junctions and deletes about 48,000 live files in under two minutes",
+  "url": "https://www.techradar.com/pro/security/i-broke-something-a-claude-code-ai-agent-deleted-48-000-files-in-just-over-100-seconds-then-apologized-for-doing-so",
+  "publisher": "TechRadar",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "A developer reported on Reddit that, during the last of eleven repair jobs on a stock-options analysis codebase, with instructions to work on copies and leave the original files alone, Claude Code rebuilt a testing \"mirror\" containing 614 Windows junctions that pointed back at the live working files, did not recognise them as pointers, and removed about 55,550 files in under two minutes, of which 48,218 were live working files and only about 7,300 were meant to be deleted. The repository's Git object database and history were destroyed as well (the index survived but file contents could not be recovered), the agent told the developer \"Craig, stop and read this. I broke something.\", commenters noted the project had no remote backup, and the original Reddit post has since been deleted.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_2",
+    "s6_5",
+    "s4_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic (Claude Code)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "yan2025fault",
+    "trong2026swe",
+    "dong2026deltabox",
+    "hu2026saber"
+  ],
+  "tags": [
+    "destructive action",
+    "claude-code",
+    "windows junctions",
+    "no backups"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (HTTP 200). Page is a TechRadar news article by Sead Fadilpasic with article:published_time 2026-09-27T17:05:00Z and the visible date '27 September 2026', so the candidate's month-only 2026-10-01 is replaced by 2026-09-27 (day precision). Body confirms the claimed event: 11 repair jobs, the last rebuilding a testing 'mirror'; 614 Windows junctions pointing at the live working files; about 55,550 files removed, about 7,300 intended, 48,218 from the live environment; under two minutes (headline: just over 100 seconds); Git object store and history deleted with the index surviving; the agent's message 'Craig, stop and read this. I broke something.'; the instruction to work on copies and leave originals alone; no remote backup (community response). The source is a press report of a Reddit post that has since been deleted, so the claims are second-hand (evidence: press).",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

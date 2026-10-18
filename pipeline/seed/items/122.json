@@ -1,0 +1,51 @@
+{
+  "id": "2025-08-28-cloudflare-introduces-signed-agents-so-sites-can-identify-and-allow",
+  "date": "2025-08-28",
+  "date_precision": "day",
+  "title": "Cloudflare introduces signed agents so sites can identify and allow or block user-directed AI agents",
+  "url": "https://blog.cloudflare.com/signed-agents/",
+  "publisher": "Cloudflare",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Cloudflare introduced signed agents, an extension of its verified bots program, as a new bot class for agents directed by end users rather than by a single company: the agent's infrastructure or remote-browsing platform signs each HTTP request with Web Bot Auth and Cloudflare validates the signature, with ChatGPT agent, Block's Goose, Browserbase and Anchor Browser as the first cohort and Cloudflare's own Browser Rendering also listed in the class. Signed agents and the traffic patterns Cloudflare observes for them appear in the public Radar Bots Directory, and Cloudflare said Enterprise customers will soon be able to allow or block signed agents as a group in their firewall rules.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s5_1",
+    "s4_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Cloudflare",
+    "deployer": "OpenAI (ChatGPT agent); Block (Goose); Browserbase; Anchor Browser (first cohort)",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "garzon2025ai",
+    "chan2025infrastructure",
+    "malik2026decentralized"
+  ],
+  "tags": [
+    "agent identity",
+    "web bot auth",
+    "http message signatures",
+    "browsing agents",
+    "bot management"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; the page shows no visible byline date, so the date is taken from the page's JSON-LD datePublished 2025-08-28 (dateModified 2026-07-15; a Radar caption covers 21-27 August 2025). Signed-agents class, Web Bot Auth request signing validated by Cloudflare, the first cohort (ChatGPT agent, Goose, Browserbase, Anchor Browser) and the Radar Bots Directory listing confirmed from the article body. Group allow/block in firewall rules is announced as coming soon for Enterprise customers, not shipped at publication.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

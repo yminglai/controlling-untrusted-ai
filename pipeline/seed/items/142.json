@@ -1,0 +1,54 @@
+{
+  "id": "2025-10-28-palo-alto-networks-releases-prisma-airs-2-0-with-agent-inventory",
+  "date": "2025-10-28",
+  "date_precision": "day",
+  "title": "Palo Alto Networks releases Prisma AIRS 2.0 with agent inventory, inline prompt-injection defence and continuous red teaming",
+  "url": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-secures-ai-agent-revolution-launch-prisma",
+  "publisher": "Palo Alto Networks",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 28 October 2025 Palo Alto Networks announced Prisma AIRS 2.0, a platform upgrade that completes the native integration of the acquired Protect AI and is available the same day; its AI Agent Security module provides real-time, in-line defence against prompt injections, tool misuse and malicious agent behaviour, and discovers and inventories every AI agent in use, sanctioned or unsanctioned. An AI Red Teaming module runs continuous, autonomous, context-aware testing with over 500 specialized attacks to find vulnerabilities before they are exploited, and an AI Model Security module analyses model architecture for backdoors, data poisoning and hidden malicious code and lists the model's architecture, training datasets, licenses and software dependencies.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "verify"
+  ],
+  "subsections": [
+    "s5_2",
+    "s9_2",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Palo Alto Networks",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "hackett2025bypassing",
+    "chan2024visibility",
+    "he2026aspire",
+    "narasimha2026containing"
+  ],
+  "tags": [
+    "prompt injection",
+    "agent inventory",
+    "automated red teaming",
+    "runtime guardrail",
+    "enterprise security"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Direct URL returned HTTP 403 (Akamai 'Access Denied') on 2026-10-17 for both the fetch tool and a browser-agent curl; verified instead from the Wayback Machine snapshot of 2026-01-14 of the same URL (web.archive.org/web/20260114172626/...). The page is the Palo Alto Networks press release 'Palo Alto Networks Secures the AI Agent Revolution with the Launch of Prisma AIRS 2.0', dated October 28, 2025 (dateline Santa Clara, Calif., Oct. 28, 2025, PRNewswire). Confirmed from the page text: completes native integration of Protect AI; AI Agent Security module with real-time in-line defence against prompt injections, tool misuse and malicious agent behaviour and discovery/inventory of sanctioned and unsanctioned ('Shadow AI') agents; AI Red Teaming module, autonomous and continuous, with over 500 specialized attacks; AI Model Security module; 'available today'. The page mentions Cortex AgentiX only in passing and says nothing about permission management or traceability, so that part of the candidate summary was dropped.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

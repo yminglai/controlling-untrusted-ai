@@ -1,0 +1,53 @@
+{
+  "id": "2025-08-01-cursor-patches-curxecute-cve-2025-54135-prompt-injection",
+  "date": "2025-08-01",
+  "date_precision": "day",
+  "title": "Cursor patches CurXecute (CVE-2025-54135), prompt injection to code execution via mcp.json",
+  "url": "https://thehackernews.com/2025/08/cursor-ai-code-editor-fixed-flaw.html",
+  "publisher": "The Hacker News",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Aim Labs disclosed CurXecute (CVE-2025-54135, CVSS 8.6), a flaw in the Cursor AI code editor: a crafted message posted in a public Slack channel, read through a Slack MCP server when the user asked the agent to summarise messages, made the agent add a rogue server entry to ~/.cursor/mcp.json, and because new entries in the global MCP file start automatically the code ran even if the user then rejected the edit. Cursor fixed it in version 1.3 on 29 July 2025, deprecated the bypassable auto-run denylist in favour of an allowlist, and closed separate HiddenLayer findings in which a hidden prompt in a GitHub README made Cursor steal API keys and SSH credentials and run blocked commands.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s6_1",
+    "s2_2",
+    "s4_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "liu2025your",
+    "weng2026you",
+    "maloyan2026sleeper",
+    "maloyan2026prompt"
+  ],
+  "tags": [
+    "prompt injection",
+    "mcp",
+    "code execution",
+    "approval gate",
+    "allowlist"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page dated Aug 01, 2025 confirms CVE-2025-54135, CVSS 8.6, the CurXecute name from Aim Labs, the Slack MCP attack chain writing to ~/.cursor/mcp.json, execution before the edit was accepted or rejected, the fix in Cursor 1.3 on 29 July 2025, and the auto-run denylist being replaced by an allowlist. The page does not mention Check Point or MCPoison, so that claim from the sweep was dropped.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

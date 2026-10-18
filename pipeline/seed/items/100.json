@@ -1,0 +1,53 @@
+{
+  "id": "2024-06-17-mcdonalds-ends-ibm-automated-order-taking-test-after-accuracy-fell",
+  "date": "2024-06-17",
+  "date_precision": "day",
+  "title": "McDonald's ends IBM automated order-taking test after accuracy fell short",
+  "url": "https://www.nbcnews.com/business/business-news/mcdonalds-end-ai-drive-test-ibm-rcna157603",
+  "publisher": "NBC News (CNBC)",
+  "kind": "deployment",
+  "polarity": "bad",
+  "summary": "McDonald's told franchisees in a memo that it would shut off IBM's Automated Order Taker, tested in more than 100 drive-thru restaurants under a partnership that began in 2021, no later than July 26, 2024, while stating that a voice ordering solution will be part of its restaurants' future and that it would make an informed decision on one by the end of the year. BTIG analyst Peter Saleh wrote that accuracy remained in the low-to-mid 80% range with high operating costs, that the system would have to be at least 95% accurate to be worthwhile, and that franchisees were frustrated by infrequent updates.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s10_2",
+    "s9_1",
+    "s2_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "IBM",
+    "deployer": "McDonald's",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "soni2026falsifiable",
+    "liang2026acceptance",
+    "yao2024bench",
+    "madad2025invisiblebench"
+  ],
+  "tags": [
+    "deployment withdrawn",
+    "accuracy threshold",
+    "release gate",
+    "voice ordering",
+    "pilot"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; NBC News page carrying a CNBC report by Kate Rogers dated June 17, 2024 (no update date shown). Confirmed from the page text: memo to franchisees, Automated Order Taker to be shut off no later than July 26, test in more than 100 restaurants, IBM partnership began in 2021, BTIG analyst Peter Saleh's low-to-mid 80% accuracy figure and 95% threshold, high operating costs, franchisee frustration at infrequent updates, and McDonald's statement that voice ordering will be part of its future with a decision by year end. The system is a speech order-taker rather than an LLM agent; included as field evidence of a multi-year pilot with an accuracy threshold acting as the release gate before broad rollout.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

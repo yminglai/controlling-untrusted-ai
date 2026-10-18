@@ -1,0 +1,53 @@
+{
+  "id": "2025-07-16-aws-previews-bedrock-agentcore-with-session-isolation-scoped",
+  "date": "2025-07-16",
+  "date_precision": "day",
+  "title": "AWS previews Bedrock AgentCore with session isolation, scoped identity, gateway and tracing for agents",
+  "url": "https://aws.amazon.com/blogs/aws/introducing-amazon-bedrock-agentcore-securely-deploy-and-operate-ai-agents-at-any-scale/",
+  "publisher": "AWS News Blog",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 16 July 2025 AWS announced the preview of Amazon Bedrock AgentCore, a set of services for deploying and operating agents: a Runtime that runs each user session in its own isolated environment, an Identity service with a secure token vault that lets agents act on AWS services and third-party tools such as GitHub, Salesforce and Slack on a user's behalf or on their own, a Gateway that turns existing APIs and Lambda functions into agent tools (including over MCP) with authentication, authorization and throttling, an isolated Code Interpreter, a managed Browser, Memory, and Observability with step-by-step execution views and OpenTelemetry export to CloudWatch, Datadog, LangSmith and Langfuse. The preview launched in four regions and was free to try until 16 September 2025; an update on the page states that AgentCore became generally available on 13 October 2025 with VPC, PrivateLink, CloudFormation and resource-tagging support.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_2",
+    "s5_1",
+    "s4_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "AWS (Amazon Bedrock AgentCore)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "narasimha2026containing",
+    "south2025authenticated",
+    "zhu2026openport",
+    "pathak2026governance"
+  ],
+  "tags": [
+    "session isolation",
+    "scoped credentials",
+    "tool gateway",
+    "opentelemetry",
+    "cloud infrastructure"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; AWS News Blog post by Danilo Poccia dated July 16, 2025. Confirmed from the page text: Runtime with per-session isolation, Identity service with a secure token vault for user tokens and tool API keys, Gateway with authentication, authorization and throttling and MCP support, isolated Code Interpreter, managed Browser, Memory, Observability with OpenTelemetry integration (CloudWatch, Datadog, LangSmith, Langfuse), four preview regions, free until 2025-09-16 with billing from 2025-09-17, and the 2025-10-13 update noting general availability with VPC, PrivateLink, CloudFormation and tagging. No per-unit prices on the page.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

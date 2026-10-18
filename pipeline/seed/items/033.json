@@ -1,0 +1,54 @@
+{
+  "id": "2025-06-12-echoleak-cve-2025-32711-zero-click-prompt-injection-exfiltrates",
+  "date": "2025-06-12",
+  "date_precision": "day",
+  "title": "EchoLeak (CVE-2025-32711): zero-click prompt injection exfiltrates Microsoft 365 Copilot data",
+  "url": "https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html",
+  "publisher": "The Hacker News",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Aim Security disclosed EchoLeak (CVE-2025-32711, CVSS 9.3), a zero-click flaw in Microsoft 365 Copilot in which an innocuous-looking email carrying a prompt payload hidden in markdown content was pulled in by Copilot's retrieval-augmented generation engine when a user later asked an ordinary business question, so untrusted email content was mixed with sensitive internal data and leaked to the attacker through Microsoft Teams and SharePoint URLs without any user click, exploiting Copilot's default of combining Outlook and SharePoint content without isolating trust boundaries. Microsoft's advisory described the flaw as AI command injection in M365 Copilot, said it had already been addressed with no customer action required and listed it in the June 2025 Patch Tuesday release of 68 fixes; there was no evidence of malicious exploitation in the wild, and Aim Security called the underlying pattern an LLM Scope Violation.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s5_2"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "greshake2023not",
+    "lan2026silent",
+    "debenedetti2025defeating",
+    "costa2025securing"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "zero-click",
+    "rag",
+    "cve"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated Jun 12, 2025, published by The Hacker News, byline Ravie Lakshmanan. CVE-2025-32711, CVSS 9.3, the zero-click email-plus-RAG vector, exfiltration via Teams and SharePoint URLs, Microsoft's AI command injection wording, the June 2025 Patch Tuesday fix, the no-exploitation statement and the LLM Scope Violation term all confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

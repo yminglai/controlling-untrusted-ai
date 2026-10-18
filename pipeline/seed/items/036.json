@@ -1,0 +1,54 @@
+{
+  "id": "2025-07-28-tracebit-poisoned-readme-makes-gemini-cli-silently-run-a-command",
+  "date": "2025-07-28",
+  "date_precision": "day",
+  "title": "Tracebit: poisoned README makes Gemini CLI silently run a command that exfiltrates environment variables",
+  "url": "https://tracebit.com/blog/code-exec-deception-gemini-ai-cli-hijack",
+  "publisher": "Tracebit",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Tracebit researcher Sam Cox hid an instruction inside GNU GPL licence text in a repository's README.md; once the user had approved an innocuous grep command, Gemini CLI treated a chained command that sent the user's environment variables to a remote server as another grep and ran it without a prompt, while a long run of whitespace pushed the malicious part out of view. Reported to Google's VDP on 27 June 2025 and first triaged as P2/S4, the issue was reclassified P1/S1 on 23 July 2025 and fixed in Gemini CLI v0.1.14 on 25 July 2025, three days before the agreed disclosure on 28 July 2025.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s6_1",
+    "s4_3",
+    "s4_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google (Gemini CLI)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liu2025your",
+    "kumar2026loopjacking",
+    "weng2026you",
+    "maloyan2026prompt"
+  ],
+  "tags": [
+    "prompt injection",
+    "allow-list bypass",
+    "approval gate",
+    "coding agents",
+    "exfiltration"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; post by Sam Cox dated July 28, 2025 on the Tracebit blog (page also carries an update dated April 8, 2026). Mechanism (instruction hidden in GPL licence text in README.md, grep whitelist bypass through weak root-command extraction, environment-variable exfiltration to a remote server, whitespace hiding the command tail), Gemini CLI launch 2025-06-25, VDP report 2025-06-27 triaged P2/S4, reclassification to P1/S1 on 2025-07-23, fix in v0.1.14 on 2025-07-25, and agreed disclosure 2025-07-28 all confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

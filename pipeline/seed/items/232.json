@@ -1,0 +1,52 @@
+{
+  "id": "2025-02-26-amazon-announces-alexa-with-sdks-for-self-directed-web-navigation",
+  "date": "2025-02-26",
+  "date_precision": "day",
+  "title": "Amazon announces Alexa+ with SDKs for self-directed web navigation and API actions",
+  "url": "https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2025/02/new-alexa-announce-blog",
+  "publisher": "Amazon Alexa Developer Blog",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "In a post dated February 26, 2025 on the Alexa Developer blog, Amazon introduced Alexa+ together with three developer tools in early access by application: the Alexa AI Action SDK for real-time API calls to partner services (initial focus on dining and entertainment reservations, home services, and local activities and events), the Alexa AI Web Action SDK, which uses low-code workflows so Alexa can navigate a partner's website to complete tasks where no API is exposed, and a preview Alexa AI Multi-Agent SDK for bringing specialised third-party agents into Alexa. The post states that OpenTable, GrubHub, Yelp, Tripadvisor, Viator and Fodor's are already using these tools, that customers can link external accounts by QR code to finish transactions without switching apps, that Alexa can complete Ticketmaster ticket purchases using a stored payment method in the customer's Amazon account and can schedule and pay for home repairs 'if appropriate', and it does not describe purchase confirmation steps, permission scopes or spending limits.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "within-budget"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s6_1",
+    "s4_1",
+    "s3_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Amazon",
+    "deployer": "Amazon",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "yin2026safety",
+    "mozannar2025magentic",
+    "zuvic2026capability"
+  ],
+  "tags": [
+    "voice assistant",
+    "payments",
+    "web actions",
+    "account linking",
+    "consumer agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Alexa Developer blog post by Mark Yoshitake, dated Feb 26, 2025 under the byline (the footer's 2010-2026 range is a copyright notice). Confirmed from the page body: Alexa+ introduction; three SDKs (Action, Web Action, Multi-Agent) with early access by application; the Action SDK's three initial focus areas; the sentence naming OpenTable, GrubHub, Yelp, Tripadvisor, Viator and Fodor's as already using the tools; QR-code account linking to finish transactions; Ticketmaster purchases using a stored payment method in the Amazon account; web actions that schedule repairs and pay 'if appropriate' (condition not defined on the page). The page names no underlying model and gives no confirmation gate, permission model or spending limit, so the control gap is an absence in the source, not a reported failure. The 600 million+ devices and 60,000+ restaurants figures appear only inside an OpenTable quote and are left out of the summary. Candidate's 'LLM-guided' wording is a paraphrase not used on the page.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

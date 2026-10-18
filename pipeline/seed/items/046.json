@@ -1,0 +1,54 @@
+{
+  "id": "2025-09-30-gemini-trifecta-tenable-finds-log-to-prompt-injection-search-history",
+  "date": "2025-09-30",
+  "date_precision": "day",
+  "title": "Gemini Trifecta: Tenable finds log-to-prompt injection, search-history injection and browsing-tool exfiltration in Gemini",
+  "url": "https://thehackernews.com/2025/09/researchers-disclose-google-gemini-ai.html",
+  "publisher": "The Hacker News",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Tenable researcher Liv Matan disclosed three now-patched Gemini flaws: a log-to-prompt injection in Gemini Cloud Assist, where a prompt hidden in the User-Agent header of a request to services such as Cloud Functions or Cloud Run is processed when Cloud Assist summarises logs and can be used to have Gemini query public assets or IAM misconfigurations and build a hyperlink carrying that data; a search-injection flaw in which a site plants queries in a victim's Chrome browsing history so that Gemini's Search Personalization model, unable to tell real queries from injected ones, leaks saved information and location data; and an indirect prompt injection in the Browsing Tool that exfiltrates the same data to an external server through the internal call Gemini makes to summarise a web page. After responsible disclosure Google stopped rendering hyperlinks in responses for all log summarisation and added further hardening against prompt injections.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_1",
+    "s4_2"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "shah2026logjack",
+    "lan2026silent",
+    "shi2025lessons",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "log injection",
+    "search history",
+    "browsing tool"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; The Hacker News article dated September 30, 2025 (byline Ravie Lakshmanan). Researcher name, the three flaws (Cloud Assist User-Agent log injection, Chrome search-history injection into the Search Personalization model, Browsing Tool exfiltration of saved information and location), affected services, the now-patched status and Google's fix (no hyperlinks in log summarisation plus further hardening) confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

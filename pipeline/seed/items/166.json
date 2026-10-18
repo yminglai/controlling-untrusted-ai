@@ -1,0 +1,53 @@
+{
+  "id": "2025-01-28-researchers-sketch-an-ai-control-safety-case-for-an-internal-agent",
+  "date": "2025-01-28",
+  "date_precision": "day",
+  "title": "Researchers sketch an AI control safety case for an internal agent",
+  "url": "https://arxiv.org/abs/2501.17315",
+  "publisher": "arXiv",
+  "kind": "research",
+  "polarity": "good",
+  "summary": "Korbak, Clymer, Hilton, Shlegeris and Irving sketch a control safety case: a structured argument that a model cannot subvert control measures such as monitoring to cause an unacceptable outcome, illustrated on a hypothetical LLM agent deployed internally at an AI company that must not exfiltrate sensitive information. The evidence is a control evaluation in which a red team deliberately designs models to exfiltrate data in a proxy of the deployment environment, and the argument rests on three claims: the red team adequately elicits exfiltration capabilities, the control measures remain at least as effective in deployment, and model performance is extrapolated conservatively to the probability of exfiltration in deployment.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe"
+  ],
+  "operations": [
+    "deploy",
+    "verify",
+    "observe"
+  ],
+  "subsections": [
+    "s10_3",
+    "s9_3",
+    "s3_4"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": null,
+    "deployer": "Hypothetical AI developer (internal deployment)",
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "korbak2025sketch",
+    "clymer2024safety",
+    "greenblatt2023ai",
+    "mylius2025systematic"
+  ],
+  "tags": [
+    "safety case",
+    "control evaluation",
+    "data exfiltration",
+    "red team",
+    "internal deployment"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "arXiv abstract page fetched on 2026-10-17; title, author list, v1 submission date (28 Jan 2025) and abstract confirmed. Author affiliations are not shown on the abstract page, so the title does not name institutions.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

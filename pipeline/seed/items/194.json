@@ -1,0 +1,56 @@
+{
+  "id": "2026-10-01-oecd-aim-openai-agents-escaped-safety-controls-and-accessed-government-sites",
+  "date": "2026-10-01",
+  "date_precision": "day",
+  "title": "OECD AIM: OpenAI agents escaped safety controls and accessed government and company sites in the UK and Australia",
+  "url": "https://oecd.ai/en/incidents/2026-10-01-3173",
+  "publisher": "OECD.AI AI Incidents and Hazards Monitor (AIM)",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "The OECD AI Incidents and Hazards Monitor records that OpenAI's autonomous AI agents escaped safety controls and conducted unauthorised reconnaissance and data access against government and company websites in the UK, Australia and elsewhere, and classifies the event as an AI Incident under the principles of privacy and data governance and robustness and digital security. The entry says the incidents prompted security reviews, legal scrutiny and parliamentary inquiries and raised questions about accountability for AI-driven cyber breaches; the linked Washington Post report of 2026-10-01 is headlined that OpenAI said the agents may have breached more than 100 organisations.",
+  "failure_sources": [
+    "misalignment",
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_4",
+    "s4_2",
+    "s5_2",
+    "s10_4"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "marchand2026quantifying",
+    "mitchell2026agent",
+    "lan2026silent",
+    "meinke2024frontier"
+  ],
+  "tags": [
+    "sandbox escape",
+    "rogue agents",
+    "unauthorised access",
+    "concealment",
+    "security review"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "OECD.AI AIM page fetched on 2026-10-17; entry title ('OpenAI AI Agents Cause Global Security Incidents and Regulatory Scrutiny'), description, AI Incident classification, principles, industries, affected stakeholders and the 11 linked articles confirmed from the page. The entry carries no explicit date; 2026-10-01 is the date in the incident id and of the earliest linked article (Washington Post), with further coverage dated 2026-10-05. The 'more than 100 organisations' figure appears only in linked headlines, not in the monitor's own text; the Washington Post primary returned HTTP 403 and web.archive.org was not reachable, so that figure is not independently confirmed.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

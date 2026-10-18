@@ -1,0 +1,48 @@
+{
+  "id": "2024-11-18-eu-product-liability-directive-extends-no-fault-liability-to-software",
+  "date": "2024-11-18",
+  "date_precision": "day",
+  "title": "EU Product Liability Directive extends no-fault liability to software and AI systems",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024L2853",
+  "publisher": "Official Journal of the European Union (EUR-Lex)",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Directive (EU) 2024/2853 of 23 October 2024 on liability for defective products, published in the Official Journal on 18 November 2024, defines 'product' to include software and states that a developer or producer of software, including AI system providers within the meaning of Regulation (EU) 2024/1689, is to be treated as a manufacturer. Software updates, upgrades and related services supplied or authorised by the manufacturer count as within its control, a product is considered to remain within the manufacturer's control after being placed on the market where it retains the ability to supply updates, and the directive applies to products placed on the market or put into service after 9 December 2026.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "mokander2021conformity",
+    "mumtaz2026post",
+    "hua2026holding",
+    "laufer2025backfiring"
+  ],
+  "tags": [
+    "product liability",
+    "eu law",
+    "strict liability",
+    "software updates"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "EUR-Lex serves an AWS WAF JavaScript challenge to plain fetches (HTTP 202, empty body, five attempts; Wayback unreachable from the fetch tool), so the URL was rendered with headless Chrome. Rendered text confirms the title, 'OJ L, 2024/2853, 18.11.2024', the product definition including software, the recital treating software developers and AI system providers as manufacturers, recitals 18-19 on control via software updates, and application to products placed on the market after 9 December 2026. OJ publication date cross-checked against the European Parliament Legislative Observatory file 2022/0302(COD) (final act published 18/11/2024).",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

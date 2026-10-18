@@ -1,0 +1,58 @@
+{
+  "id": "2025-02-17-owasp-releases-agentic-ai-threats-and-mitigations-threat-model-guide",
+  "date": "2025-02-17",
+  "date_precision": "day",
+  "title": "OWASP releases 'Agentic AI: Threats and Mitigations' threat-model guide",
+  "url": "https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/",
+  "publisher": "OWASP GenAI Security Project (Agentic Security Initiative)",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "On 17 February 2025 the OWASP GenAI Security Project published 'Agentic AI – Threats and Mitigations', described on its resource page as the first in a series of guides from the OWASP Agentic Security Initiative (ASI) that provides a threat-model-based reference of emerging agentic threats and discusses mitigations. The page frames agentic AI as autonomous systems increasingly enabled by large language models and states that their integration with generative AI has significantly expanded their scale, capabilities and associated risks.",
+  "failure_sources": [
+    "manipulation",
+    "mistakes",
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s10_4",
+    "s3_2",
+    "s2_2",
+    "s4_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "dehghantanha2026sok",
+    "krawiecka2025extending",
+    "chu2026systematic",
+    "ferrag2025prompt"
+  ],
+  "tags": [
+    "owasp",
+    "threat model",
+    "agentic security",
+    "community standard",
+    "mitigations"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Live URL fetched 2026-10-17. OWASP GenAI Security Project resource page titled 'Agentic AI – Threats and Mitigations', dated February 17, 2025; the cover image filename carries 'v1.0'. Confirmed from the page text: first in a series of guides from the OWASP Agentic Security Initiative (ASI); a threat-model-based reference of emerging agentic threats with a discussion of mitigations; framing of generative-AI-enabled agents as expanding scale, capabilities and associated risks. The page lists no authors, no threat count and no page count, so no numbers are reported. The candidate's claim that this guide is the predecessor of the OWASP Top 10 for Agentic Applications (December 2025) does not appear on the page and was dropped from the summary. Title reworded to fit the 80-character id limit.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

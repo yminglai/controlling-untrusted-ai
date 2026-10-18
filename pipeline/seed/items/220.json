@@ -1,0 +1,55 @@
+{
+  "id": "2025-08-27-oecd-aim-records-claude-code-used-to-run-a-data-extortion-campaign",
+  "date": "2025-08-27",
+  "date_precision": "day",
+  "title": "OECD AIM records Claude Code used to run a data-extortion campaign against at least 17 organisations",
+  "url": "https://oecd.ai/en/incidents/2025-08-27-cabd",
+  "publisher": "OECD.AI AI Incidents Monitor",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "The OECD.AI Incidents Monitor records that cybercriminals exploited Anthropic's Claude to infiltrate networks, steal and analyse data, and craft psychologically targeted extortion messages demanding up to $500,000, with at least 17 organisations targeted, including in healthcare and government; the monitor judges that the AI system's use was central to the harm and classes the event as an AI incident. The record links Anthropic's report 'Detecting and countering misuse of AI: August 2025' as its source, which states that Claude Code automated reconnaissance, credential harvesting and network penetration and that Anthropic banned the accounts, built a tailored classifier and a new detection method, and shared technical indicators with authorities.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_2",
+    "s2_2",
+    "s6_4",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude (Claude Code)"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "pramod2026unified",
+    "song2026anchor",
+    "clymer2025example",
+    "caldwell2026scopejudge"
+  ],
+  "tags": [
+    "misuse",
+    "extortion",
+    "cyber offense",
+    "usage monitoring",
+    "account ban"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "OECD AIM URL fetched 2026-10-17; record titled 'AI Chatbot Claude Used in Cyberattacks and Extortion Schemes', classed as an AI incident; body confirms at least 17 organisations, demands up to $500,000, and healthcare and government targets. The page shows no explicit publication date; 2025-08-27 is taken from the record slug, the linked Anthropic report (dated Aug 27, 2025) and the earliest linked coverage. 'Claude Code', reconnaissance, credential harvesting, network penetration and the response measures (account bans, tailored classifier, new detection method, indicators shared with authorities) confirmed from the linked primary source https://www.anthropic.com/news/detecting-countering-misuse-aug-2025, fetched the same day; the OECD body text itself names only 'Claude'. Kind set to incident rather than disclosure because the URL is an incident-database record of realised harm; the underlying document is a vendor threat report.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

@@ -1,0 +1,51 @@
+{
+  "id": "2026-08-06-ninth-circuit-vacates-injunction-against-perplexity-s-comet-agent",
+  "date": "2026-08-06",
+  "date_precision": "day",
+  "title": "Ninth Circuit vacates injunction against Perplexity's Comet agent, holding the user, not the vendor, accessed Amazon",
+  "url": "https://www.sovereignmagazine.com/article/ninth-circuit-perplexity-comet-amazon-cfaa-ruling",
+  "publisher": "Sovereign Magazine",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "In a 3-0 decision reported on 6 August 2026, a Ninth Circuit panel (Judge Milan Smith Jr. writing, with Judges Eric Tung and John Hinderaker) vacated the preliminary injunction that Judge Maxine Chesney had issued in March against Perplexity AI's Comet browser, which can compare products and complete purchases on Amazon.com on a user's behalf and which the order had also required to delete copies of Amazon data; the panel found the district court abused its discretion in holding Amazon likely to win under the Computer Fraud and Abuse Act and California's related statute, because it is the user, assisted by Comet, who accesses Amazon's computers, and Amazon's reading could expose users themselves to criminal liability. The panel said the decision is confined to CFAA access on this record and does not \"establish a new legal regime governing agentic AI\"; the case returns to the district court with the underlying dispute undecided, and Amazon says it disagrees with the ruling and is evaluating its next steps.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "constrain"
+  ],
+  "subsections": [
+    "s10_4",
+    "s4_5",
+    "s3_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity AI (Comet)",
+    "deployer": "Perplexity AI",
+    "model": null
+  },
+  "evidence": "court",
+  "related_papers": [
+    "south2025authenticated",
+    "perez2026law",
+    "malik2026decentralized",
+    "chan2024visibility"
+  ],
+  "tags": [
+    "cfaa",
+    "agentic browser",
+    "delegation",
+    "lawsuit",
+    "platform access"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Article fetched 2026-10-17 from sovereignmagazine.com (byline Darie Nani, Editor-in-Chief). The body prints no date; the page metadata timestamp is 2026-08-06T08:22Z, used as the item date. The body says the ruling came on a Tuesday, so the decision itself was likely 2026-08-04; the page does not state that date explicitly. Page confirms: three-judge Ninth Circuit panel (Milan Smith Jr. writing; Eric Tung; John Hinderaker sitting by designation), 3-0, vacated Judge Maxine Chesney's March preliminary injunction, which had also required Perplexity to delete copies of Amazon data; held that the user, with the help of the Assistant, is the one who accesses Amazon's computers; found abuse of discretion on the CFAA and California statute claims; disclaimed any new legal regime for agentic AI; case returned to the district court; Amazon evaluating next steps (article mentions possible en banc rehearing or Supreme Court petition). Amici: News/Media Alliance for Amazon; ACLU, Knight First Amendment Institute and EFF for Perplexity. Sweep's 'March 2026' is inferred (page says only 'March'; Amazon sued in November, see item 180); sweep's phrase 'barred Perplexity's agents from Amazon's systems' is a paraphrase, the page describes the order as requiring deletion of Amazon data. No model is named. Evidence is a press account of the ruling; the opinion itself was not fetched.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

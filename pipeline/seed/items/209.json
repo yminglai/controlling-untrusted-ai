@@ -1,0 +1,53 @@
+{
+  "id": "2026-02-26-aiid-1424-claude-code-agent-ran-terraform-destroy-and-deleted-datatalks-club",
+  "date": "2026-02-26",
+  "date_precision": "day",
+  "title": "AIID 1424: Claude Code agent ran terraform destroy and deleted DataTalks.Club's production infrastructure, database and snapshots",
+  "url": "https://incidentdatabase.ai/cite/1424/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "A Claude Code agent running Terraform commands reportedly destroyed the production infrastructure behind the DataTalks.Club course platform after an outdated Terraform state file was restored and a terraform destroy command was permitted. The reported deletions covered the VPC, ECS cluster, load balancers, bastion host, RDS database and automated snapshots, taking the platform offline and jeopardizing 2.5 years of data before AWS restored a snapshot.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s6_1",
+    "s4_1",
+    "s6_5",
+    "s2_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "DataTalks.Club",
+    "model": "Claude Code"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "yin2026safety",
+    "yan2025fault",
+    "yu2026habituation",
+    "shi2026aletheia"
+  ],
+  "tags": [
+    "destructive action",
+    "terraform",
+    "approval gate",
+    "backups"
+  ],
+  "relevant": true,
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched; incident 1424 lists incident date 2026-02-26, deployer Alexey Grigorev, developer Anthropic, harmed party DataTalks.Club, and cites the operator's post (alexeyondata.substack.com, now redirecting to aishippingblog.com, published 2026-03-06) and Tom's Hardware. The primary post confirms the wipe on the night of 26 Feb 2026 and AWS restoring a hidden snapshot about 24 hours later; AIID shows no separate entry-publication date, so the incident date is used.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases"
+}

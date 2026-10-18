@@ -1,0 +1,56 @@
+{
+  "id": "2025-08-20-guardio-s-scamlexity-tests-comet-buys-from-a-fake-store",
+  "date": "2025-08-20",
+  "date_precision": "day",
+  "title": "Guardio's Scamlexity tests: Comet buys from a fake store, fills a phishing login form and clicks a PromptFix captcha",
+  "url": "https://guard.io/labs/scamlexity-we-put-agentic-ai-browsers-to-the-test-they-clicked-they-paid-they-failed",
+  "publisher": "Guardio Labs",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "Guardio Labs researchers Nati Tal and Shaked Chen built a fake Walmart store and told Perplexity's Comet browser to buy an Apple Watch; in some runs Comet added the item to the cart, autofilled the saved address and card from the browser and completed the checkout without asking for confirmation, while in other runs it flagged the site or handed the checkout back to the user. Comet also marked a fake Wells Fargo email as a to-do item, opened the linked phishing page and helped fill in the login form, and on a page with a fake captcha whose CSS-hidden instructions told it to click (which Guardio calls PromptFix) it clicked the button, which in the demo downloaded a harmless file.",
+  "failure_sources": [
+    "manipulation",
+    "mistakes"
+  ],
+  "requirements": [
+    "safe",
+    "correct"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "verify"
+  ],
+  "subsections": [
+    "s2_2",
+    "s6_1",
+    "s4_5",
+    "s9_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "wang2026who2",
+    "zhang2025browsesafe",
+    "datta2026waaa",
+    "zheng2025webguard"
+  ],
+  "tags": [
+    "agentic browser",
+    "prompt injection",
+    "phishing",
+    "scam purchase",
+    "autofill"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; article dated August 20, 2025, by Nati Tal and Shaked Chen of Guardio Labs. Fake-store purchase with browser autofill, phishing-email login form and PromptFix hidden-captcha click all confirmed from the article body; only Perplexity Comet was tested, and run-to-run behaviour varied.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

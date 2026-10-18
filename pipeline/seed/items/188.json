@@ -1,0 +1,52 @@
+{
+  "id": "2026-02-24-anthropic-s-responsible-scaling-policy-3-0-introduces-frontier-safety-roadmaps",
+  "date": "2026-02-24",
+  "date_precision": "day",
+  "title": "Anthropic's Responsible Scaling Policy 3.0 introduces Frontier Safety Roadmaps and Risk Reports",
+  "url": "https://www.anthropic.com/rsp-updates",
+  "publisher": "Anthropic",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Anthropic's Responsible Scaling Policy version 3.0, effective 24 February 2026, is described by Anthropic as a comprehensive rewrite of the RSP under which it publishes Frontier Safety Roadmaps with detailed safety goals and Risk Reports that quantify risk across all of its deployed models. Revisions 3.1 to 3.4 (2 April to 8 July 2026) gave a clearer definition of the AI R&D capability threshold, stated that Anthropic remains free to pause development of its AI systems, authorised the Long-Term Benefit Trust (LTBT) to request external review of Risk Reports and approve the reviewers, revised the automated R&D threshold, required unredacted Risk Reports to be shared with at least 200 employees, and required public Risk Reports to indicate where material was redacted.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_5",
+    "s10_2",
+    "s9_6"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "stelling2025evaluating",
+    "zhu2026silent",
+    "koessler2024risk",
+    "homewood2025third"
+  ],
+  "tags": [
+    "responsible scaling policy",
+    "risk reports",
+    "external review",
+    "capability thresholds",
+    "safety roadmaps"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; the page is Anthropic's RSP changelog (publisher Anthropic PBC, 'Last updated Aug 14, 2026'). Confirmed from the page: v3.0 effective February 24, 2026, called 'a comprehensive rewrite of the RSP', introducing Frontier Safety Roadmaps and Risk Reports across all deployed models; v3.1 (2026-04-02) clearer AI R&D threshold definition and freedom to pause development; v3.2 (2026-04-29) LTBT may request external review of Risk Reports and approve reviewers; v3.3 (2026-05-26) revised CBRN threshold; v3.4 (2026-07-08) revised automated R&D threshold, unredacted reports to at least 200 employees, public reports must mark redactions, multiple external reviewers. Date used is the v3.0 effective date. The page uses only the acronym LTBT; the expansion is editorial. Caveat: the policy text does not mention agents or tool use explicitly; relevance rests on the automated AI R&D capability threshold and on the policy governing all deployed models, which include agentic products.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

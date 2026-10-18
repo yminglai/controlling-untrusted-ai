@@ -1,0 +1,51 @@
+{
+  "id": "2025-05-06-servicenow-launches-ai-control-tower-to-inventory-and-govern-agents",
+  "date": "2025-05-06",
+  "date_precision": "day",
+  "title": "ServiceNow launches AI Control Tower to inventory and govern first- and third-party agents",
+  "url": "https://www.silicon.co.uk/press-release/servicenow-launches-ai-control-tower-a-centralized-command-center-to-govern-manage-secure-and-realize-value-from-any-ai-agent-model-and-workflow",
+  "publisher": "ServiceNow press release (Business Wire, via Silicon UK)",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "ServiceNow announced AI Control Tower at its Knowledge 2025 event on 6 May 2025 and said the product is now generally available. It is described as a centralized command center to govern, manage and secure any ServiceNow or third-party AI agent, model and workflow, letting customers monitor every agent in one place, assign human managers to oversee their work, and apply integrated governance, risk and compliance capabilities across the AI lifecycle.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "deploy",
+    "observe"
+  ],
+  "subsections": [
+    "s10_2",
+    "s10_1",
+    "s5_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "ServiceNow",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "kang2026registry",
+    "chan2024visibility",
+    "dong2024agentops",
+    "telukunta2026case"
+  ],
+  "tags": [
+    "agent inventory",
+    "fleet governance",
+    "human oversight",
+    "grc",
+    "third-party agents"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Silicon UK press-release page carrying a ServiceNow release distributed by Business Wire, dateline 6 May 2025 (Knowledge 2025). General availability, coverage of native and third-party agents, assignment of human managers, and integrated GRC capabilities confirmed from the page text. Vendor-originated; no independent evaluation of the mechanism.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

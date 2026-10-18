@@ -1,0 +1,55 @@
+{
+  "id": "2026-10-01-apollo-research-proposes-embedded-third-party-evaluators-and-four",
+  "date": "2026-10-01",
+  "date_precision": "day",
+  "title": "Apollo Research proposes embedded third-party evaluators and four claims for a scheming safety case",
+  "url": "https://www.apolloresearch.ai/blog/towards-embedded-evaluations-for-scheming-propensities",
+  "publisher": "Apollo Research",
+  "kind": "research",
+  "polarity": "mixed",
+  "summary": "Apollo Research argues that a safety case against scheming must establish four claims: scheming was not incentivized during training, strong evaluations and red teaming show no propensity to scheme, scheming was never attempted during internal deployment, and scheming reasoning would be detected through legible chain of thought. It proposes embedded evaluators with persistent access to training methods and data, internal deployment traffic and its monitoring, incident records and internal tools, citing Anthropic's statement that its monitoring would likely not detect diffuse research sabotage and OpenAI's that observed aligned actions may not reflect true alignment.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "verify",
+    "observe"
+  ],
+  "subsections": [
+    "s10_5",
+    "s10_3",
+    "s5_3",
+    "s2_4"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": "OpenAI; Anthropic (cited developers)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "charnock2026embedded",
+    "balesni2024evaluations",
+    "brundage2026frontier",
+    "casper2024black"
+  ],
+  "tags": [
+    "safety case",
+    "scheming",
+    "embedded evaluators",
+    "internal deployment",
+    "third-party assurance"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated 01 October 2026 and authored by Apollo Research. The four safety-case claims, the evaluator access list, and the quoted Anthropic and OpenAI statements were confirmed from the post body.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

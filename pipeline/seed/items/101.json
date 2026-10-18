@@ -1,0 +1,52 @@
+{
+  "id": "2025-04-22-salesforce-reports-84-resolution-and-4-human-handoff-for-agentforce",
+  "date": "2025-04-22",
+  "date_precision": "day",
+  "title": "Salesforce reports 84% resolution and 4% human handoff for Agentforce on its help site",
+  "url": "https://www.salesforce.com/news/stories/agentforce-customer-support-lessons-learned/",
+  "publisher": "Salesforce",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Six months after going live on help.salesforce.com on 11 October 2024, Salesforce said Agentforce had handled more than 500,000 conversations, resolved more than 84% of customer questions, and handed 4% of conversations to a human support engineer, a rate the company says it keeps on purpose. The agent is grounded on nearly 740,000 pieces of help-portal content, routes renewal questions to a live engineer, and the team reviews conversations that moved to a human to find knowledge gaps and refine its skills; an editor's note adds that conversations passed 1 million by July 2025.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s6_2",
+    "s5_6",
+    "s10_2",
+    "s7_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Salesforce",
+    "deployer": "Salesforce",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "turan2026oversight",
+    "wang2026budgeted",
+    "omran2026agent",
+    "yao2024bench"
+  ],
+  "tags": [
+    "human handoff",
+    "deferral budget",
+    "customer service",
+    "transcript review"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; publication date 2025-04-22 and all figures (500,000+ conversations, 84%+ resolution, 4% handoff, nearly 740,000 content items, 11 October 2024 go-live, 1 million by July 2025 in an editor's note) confirmed from the article body, a Q&A with Bernard Slowey, SVP Digital Customer Success. The page does not describe tool calls or transactions beyond answering and handing off, so the item sits at the support-assistant end of 'agent'; kept for its deliberate deferral budget, routing rules and handoff-review loop.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

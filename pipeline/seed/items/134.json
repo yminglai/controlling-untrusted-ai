@@ -1,0 +1,54 @@
+{
+  "id": "2026-03-11-databricks-publishes-prompt-injection-mitigations-for-agents-built-on-inherited",
+  "date": "2026-03-11",
+  "date_precision": "day",
+  "title": "Databricks publishes prompt-injection mitigations for agents built on inherited permissions and deny-by-default egress",
+  "url": "https://www.databricks.com/blog/mitigating-risk-prompt-injection-ai-agents-databricks",
+  "publisher": "Databricks",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On March 11, 2026 Databricks published guidance for mitigating prompt injection in AI agents on its platform, framed around Meta's Agents Rule of Two and Simon Willison's lethal trifecta, with nine layered controls grouped by access to sensitive data, untrustworthy inputs, and changing state or communicating externally. The controls include on-behalf-of-user authentication so the agent inherits the end user's Unity Catalog permissions, AI Gateway guardrails with PII detection and Llama Prompt Guard 2 classifiers, deny-by-default serverless egress controls with allowlisted destinations, and monitoring through inference tables and system tables; in an internal test with a few hundred Garak prompts, the guardrails cut attack success by more than 90%.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_1",
+    "s4_2",
+    "s5_2",
+    "s2_2"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Databricks",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "lan2026silent",
+    "malik2026decentralized",
+    "narasimha2026containing",
+    "maiti2026caging"
+  ],
+  "tags": [
+    "prompt injection",
+    "least privilege",
+    "egress control",
+    "guardrails",
+    "rule of two"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page title 'Mitigating The Risk of Prompt Injection for AI Agents on Databricks', dated March 11, 2026, seven named Databricks authors. On-behalf-of-user auth, Unity Catalog privileges and ABAC, AI Gateway guardrails with PII detection and Llama Prompt Guard 2, deny-by-default serverless egress controls, inference and system table monitoring, and the Rule of Two / lethal trifecta framing all confirmed from the page body.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": "2026-07-01-suspected-china-linked-hackers-used-a-hermes-and-openclaw-multi-agent-framework",
+  "date": "2026-07-01",
+  "date_precision": "day",
+  "title": "Suspected China-linked hackers used a Hermes and OpenClaw multi-agent framework to breach Taiwanese government systems",
+  "url": "https://incidentdatabase.ai/cite/1646/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "From 1 to 4 July 2026, suspected China-linked hackers reportedly used a multi-agent framework built on Hermes and OpenClaw to compromise Taiwanese government systems, compromising 85 credentials and exfiltrating more than 2,564 personnel records. Taiwan later confirmed an overseas AI-assisted campaign against government agencies without attributing it to China; the AIID entry (incident 1646) collects four reports from CyberScoop, Dream Group, Reuters and The Guardian.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "train",
+    "deploy",
+    "observe"
+  ],
+  "subsections": [
+    "s10_1",
+    "s8_1",
+    "s10_4",
+    "s3_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Nous Research (Hermes); OpenClaw",
+    "deployer": "Suspected China-linked threat actors",
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "phuong2024evaluating",
+    "li2024wmdp",
+    "tamirisa2024tamper",
+    "barbosa2026capability"
+  ],
+  "tags": [
+    "cyber offence",
+    "open-weight agents",
+    "multi-agent",
+    "exfiltration",
+    "misuse"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17: title, 1-4 July 2026 window, 85 credentials, 2,564 records, Hermes and OpenClaw, and Taiwan's confirmation all appear on the page. The sweep's MITRE ATLAS AML.CS0071 claim is not on the page and was dropped. Date is the incident start date used by AIID; the Reuters and Guardian reports are dated 2026-08-13. A hostile operator running open agent frameworks is coded as manipulation (misuse entering through the deployment's inputs, Section 1.1 narrowing) with tag 'misuse'; no Section 2 failure family fits, so s3_2 is the threat-model home.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

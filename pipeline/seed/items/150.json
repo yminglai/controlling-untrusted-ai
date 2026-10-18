@@ -1,0 +1,51 @@
+{
+  "id": "2025-06-23-okta-introduces-cross-app-access-to-route-agent-to-app-access",
+  "date": "2025-06-23",
+  "date_precision": "day",
+  "title": "Okta introduces Cross App Access to route agent-to-app access through the identity provider",
+  "url": "https://www.okta.com/newsroom/press-releases/okta-introduces-cross-app-access-to-help-secure-ai-agents-in-the/",
+  "publisher": "Okta",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On June 23, 2025 Okta announced Cross App Access, a protocol it describes as an extension of OAuth that routes an AI tool's requests for access to enterprise applications through the identity provider: Okta checks each request against enterprise policy and, if permitted, issues a token that the target app validates and accepts without further user interaction. Okta said this replaces per-integration user consents that were invisible to the enterprise with IT visibility into when an AI tool accesses an app on a user's behalf and control over which apps connect and what information agents can reach; it was developing the protocol with ISVs and anticipated availability for select Okta Platform customers in Q3 2025.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Okta",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "avirneni2025decoupling",
+    "li2026zero",
+    "he2026kedgeflow"
+  ],
+  "tags": [
+    "oauth",
+    "identity provider",
+    "agent credentials",
+    "access policy",
+    "visibility"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Okta press release datelined San Francisco, June 23, 2025 confirms the Cross App Access announcement, the OAuth-extension framing, the identity-provider token flow and policy check, the IT visibility and control claims, work with unnamed ISVs, and anticipated Q3 2025 availability for select Okta Platform customers. Announced protocol with ISV early access rather than general availability at this date; no partner names or numbers appear on the page.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

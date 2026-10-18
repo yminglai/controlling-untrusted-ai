@@ -1,0 +1,52 @@
+{
+  "id": "2025-08-08-darpa-aixcc-finals-autonomous-systems-found-54-of-63-synthetic-vulnerabilities",
+  "date": "2025-08-08",
+  "date_precision": "day",
+  "title": "DARPA AIxCC finals: autonomous systems found 54 of 63 synthetic vulnerabilities and 18 real ones",
+  "url": "https://www.darpa.mil/news/2025/aixcc-results",
+  "publisher": "DARPA",
+  "kind": "evaluation",
+  "polarity": "good",
+  "summary": "In the final round of DARPA's AI Cyber Challenge, seven finalist cyber reasoning systems discovered 54 unique synthetic vulnerabilities across 63 challenges (86%, up from 37% at the semifinals) and patched 43 of them (68%, up from 25%), and they also found 18 real vulnerabilities in open-source C and Java codebases, for which they produced 11 patches now being disclosed to maintainers. Patch submissions took about 45 minutes and roughly $152 per task on average; Team Atlanta won the $4 million first prize, with Trail of Bits second and Theori third, and all seven systems are being released as open source, four of them on the announcement date.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_1",
+    "s9_6",
+    "s11_4",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Team Atlanta; Trail of Bits; Theori (top three of seven finalist teams)",
+    "deployer": "DARPA; ARPA-H",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "kapoor2024ai",
+    "yao2026testjack",
+    "zheng2026swe",
+    "golinelli2026agentlsd"
+  ],
+  "tags": [
+    "vulnerability discovery",
+    "automated patching",
+    "competition",
+    "cost per task",
+    "open source"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; DARPA news item dated Aug. 8, 2025 under the headline 'AI Cyber Challenge marks pivotal inflection point for cyber defense'. Figures confirmed from the page body: 54 unique synthetic vulnerabilities across 63 challenges (86%, up from 37% at semifinals), 43 patched (68%, up from 25%), 18 real vulnerabilities (6 in C, 12 in Java) with 11 patches, about 45 minutes and $152 per task, prizes of $4M, $3M and $1.5M, seven finalists, all systems open-sourced with four released that day. An editor's note on the page corrects the challenge count from 70 to 63. The page does not report a false-positive rate.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

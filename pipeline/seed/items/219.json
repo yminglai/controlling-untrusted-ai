@@ -1,0 +1,55 @@
+{
+  "id": "2025-11-07-mitre-atlas-data-v5-1-adds-six-ai-agent-mitigations-and-nine-new-case-studies",
+  "date": "2025-11-07",
+  "date_precision": "day",
+  "title": "MITRE ATLAS Data v5.1 adds six AI agent mitigations and nine new case studies",
+  "url": "https://github.com/mitre-atlas/atlas-website/blob/main/public/content/update-files/2025-11.md",
+  "publisher": "MITRE ATLAS",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "MITRE's November 2025 ATLAS update (website v4.8.0 and v4.8.1 on ATLAS Data v5.1.0 and v5.1.1) added six mitigations, AML.M0026 to AML.M0031: Privileged AI Agent Permissions Configuration, Single-User AI Agent Permissions Configuration, AI Agent Tools Permissions Configuration, Human In-the-Loop for AI Agent Actions, Restrict AI Agent Tool Invocation on Untrusted Data, and Memory Hardening. The same release added a Lateral Movement tactic, nine techniques including Delay Execution of LLM Instructions and Manipulate User LLM Chat History, and nine case studies (AML.CS0033 to AML.CS0041), among them data exfiltration from Slack AI via indirect prompt injection, data exfiltration via agent tools in Copilot Studio, planted instructions for delayed automatic agent tool invocation, prompt injection via Jira Service Management, hacking ChatGPT's memories, and the Rules File Backdoor against AI coding assistants, bringing the data set to 84 techniques, 32 mitigations and 42 case studies.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_1",
+    "s6_1",
+    "s4_4",
+    "s3_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "MITRE",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "dehghantanha2026sok",
+    "qin2026airguard",
+    "debenedetti2025defeating",
+    "shlomov2026governance"
+  ],
+  "tags": [
+    "mitre atlas",
+    "threat framework",
+    "agent permissions",
+    "human-in-the-loop",
+    "memory hardening"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17 (GitHub blob page and the raw file). The file is headed 'November 2025' and names website v4.8.0/v4.8.1 and Data v5.1.0/v5.1.1; the six mitigations AML.M0026 to AML.M0031, the nine case studies AML.CS0033 to AML.CS0041, the nine new techniques and the counts (84 techniques, 32 mitigations, 42 case studies) are confirmed from the file text. The file carries no day, so the day is taken from its first commit in the repository history, 'Release v4.8.0' on 2025-11-07 (later commits: 'Release v4.8.1' 2025-11-26, 'Release 5.3.0' 2026-09-01). The candidate title said 'nine agent case studies'; three of the nine (two deepfake KYC fraud cases, one attack on LLM desktop applications) are not agent cases, so the title was corrected.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

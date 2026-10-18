@@ -1,0 +1,53 @@
+{
+  "id": "2025-06-30-microsofts-mai-dxo-orchestrates-a-panel-of-agents-to-diagnose-nejm",
+  "date": "2025-06-30",
+  "date_precision": "day",
+  "title": "Microsoft's MAI-DxO orchestrates a panel of agents to diagnose NEJM cases",
+  "url": "https://microsoft.ai/news/the-path-to-medical-superintelligence/",
+  "publisher": "Microsoft AI",
+  "kind": "research",
+  "polarity": "good",
+  "summary": "Microsoft AI introduced MAI-DxO, a model-agnostic orchestrator that turns a language model into a virtual panel of clinicians which asks follow-up questions, orders (virtual) tests or delivers a diagnosis, and runs a cost check and verifies its own reasoning before deciding whether to proceed. On the Sequential Diagnosis Benchmark built from 304 recent NEJM cases it solved 85.5% of cases when paired with OpenAI's o3, against a mean of 20% for 21 practising US and UK physicians working without references, at lower testing cost; Microsoft states the system is a research demonstration that is not yet approved for clinical use and would only be approved after rigorous safety testing, clinical validation and regulatory reviews.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "verify",
+    "steer",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_1",
+    "s7_3",
+    "s10_2",
+    "s9_6"
+  ],
+  "domain": "healthcare",
+  "actors": {
+    "vendor": "Microsoft AI",
+    "deployer": null,
+    "model": "OpenAI o3 (orchestrated by MAI-DxO; GPT, Llama, Claude, Gemini, Grok and DeepSeek also tested)"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "kapoor2024ai",
+    "bellibatlu2026same",
+    "bashir2025many",
+    "gou2023critic"
+  ],
+  "tags": [
+    "healthcare",
+    "multi-agent",
+    "cost budget",
+    "self-verification",
+    "benchmark"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated June 30, 2025, written by Dominic King and Harsha Nori on microsoft.ai. The MAI-DxO description (virtual physician panel, question/test/diagnose actions, cost check and self-verification), the Sequential Diagnosis Benchmark of 304 NEJM cases, 85.5% accuracy with o3 against 20% for 21 physicians, the lower-testing-cost claim and the statement that the system is a research demonstration not yet approved for clinical use were all confirmed from the page body. No per-case dollar figures appear on the page.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

@@ -1,0 +1,53 @@
+{
+  "id": "2025-09-16-crowdstrike-to-acquire-pangea-to-secure-every-layer-of-enterprise-ai",
+  "date": "2025-09-16",
+  "date_precision": "day",
+  "title": "CrowdStrike to Acquire Pangea to Secure Every Layer of Enterprise AI",
+  "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-pangea-secure-every-layer-enterprise-ai",
+  "publisher": "CrowdStrike",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "At Fal.Con 2025 on 16 September 2025, CrowdStrike announced a definitive agreement to acquire AI-security company Pangea to extend the Falcon platform with what it calls AI Detection and Response (AIDR), covering data, models, agents, identities, infrastructure and interactions from development through workforce use. The release says Pangea's technology gives visibility and control of AI agents and their workflows, blocks direct and indirect prompt injection and model jailbreak attempts (up to 99 percent efficacy at sub-30ms latency, footnoted as CrowdStrike's internal benchmark testing), and lets security teams monitor and govern enterprise-built AI with governance policies that stop risky AI use; it gives no deal terms or closing date.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_2",
+    "s6_2",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "CrowdStrike (acquiring Pangea)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "wang2025sok",
+    "shamsujjoha2024swiss",
+    "rebedea2023nemo",
+    "chan2024visibility"
+  ],
+  "tags": [
+    "prompt injection",
+    "jailbreak",
+    "runtime guardrail",
+    "agent visibility",
+    "acquisition"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Live URL returns HTTP 403 (Akamai 'Access Denied') to automated fetchers; verified from the Wayback Machine snapshot of the same URL captured 2026-01-03 (web.archive.org/web/20260103011633/). Date (September 16, 2025, 12:37 PM EDT; Business Wire dateline Austin, Texas, Fal.Con 2025 Las Vegas) and all claims confirmed from the release body. The candidate summary's mentions of shadow AI, Charlotte AI AgentWorks and Threat AI agents do not appear on this page and were dropped; the 99 percent and sub-30ms figures are footnoted as internal benchmark testing. CrowdStrike's own site lists the same release dated 16 Sep 2025 at https://www.crowdstrike.com/en-us/press-releases/crowdstrike-to-acquire-pangea-to-secure-every-layer-of-enterprise-ai/.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

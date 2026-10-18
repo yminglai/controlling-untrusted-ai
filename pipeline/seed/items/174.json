@@ -1,0 +1,53 @@
+{
+  "id": "2025-08-14-nist-proposes-sp-800-53-control-overlays-for-securing-ai-systems",
+  "date": "2025-08-14",
+  "date_precision": "day",
+  "title": "NIST proposes SP 800-53 control overlays for securing AI systems, including single- and multi-agent use cases",
+  "url": "https://csrc.nist.gov/projects/cosais",
+  "publisher": "NIST",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "NIST's Control Overlays for Securing AI Systems (COSAiS) project released a concept paper for public comment on August 14, 2025, proposing overlays that adapt NIST SP 800-53 security controls to five AI use cases: generative AI assistants, predictive AI, single-agent AI systems, multi-agent AI systems, and security controls for AI developers. As of the page's January 8, 2026 update, only the predictive AI use case had an annotated outline (a discussion draft with feedback due February 13, 2026); the single-agent and multi-agent overlays remained proposed use cases without a published draft.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "deploy",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_1",
+    "s4_1",
+    "s5_1"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "errico2025securing",
+    "narasimha2026containing",
+    "mumtaz2026post",
+    "krawiecka2025extending"
+  ],
+  "tags": [
+    "nist",
+    "sp 800-53",
+    "security controls",
+    "standards",
+    "multi-agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. The NIST CSRC project page confirms the COSAiS concept paper was made available for comment on August 14, 2025, lists single-agent and multi-agent AI systems among five proposed SP 800-53 overlay use cases, and shows only the predictive AI annotated outline (January 8, 2026) published so far.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

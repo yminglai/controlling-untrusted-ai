@@ -1,0 +1,53 @@
+{
+  "id": "2025-09-25-okta-announces-okta-for-ai-agents-bringing-agent-discovery",
+  "date": "2025-09-25",
+  "date_precision": "day",
+  "title": "Okta announces Okta for AI Agents, bringing agent discovery, identities and governance into its identity fabric",
+  "url": "https://www.okta.com/newsroom/press-releases/new-okta-innovations-secure-the-ai-driven-enterprise-and-combat-/",
+  "publisher": "Okta",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "In a press release datelined Las Vegas on 25 September 2025, Okta announced Okta for AI Agents, which brings AI agents into its identity security fabric: Identity Security Posture Management discovers agents and flags risks tied to service accounts, API keys and OAuth tokens, Universal Directory assigns each agent identity an owner and a risk classification, Okta Privileged Access limits agents that use static credentials to access that lasts only as long as needed, and Okta Identity Governance keeps audit trails of agent actions. Cross App Access, a new open protocol for connecting agents and applications, is already in early access, while Okta for AI Agents itself is scheduled for early access in Okta's fiscal Q1 2027 and general availability later in FY27.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Okta",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "avirneni2025decoupling",
+    "maiti2026caging",
+    "li2026zero"
+  ],
+  "tags": [
+    "non-human identity",
+    "least privilege",
+    "credentials",
+    "audit trail",
+    "enterprise"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; dateline 'LAS VEGAS - September 25, 2025', the Okta for AI Agents feature list (ISPM, Universal Directory, OPA, OIG), XAA early access and the FY27 phasing confirmed from the release body. Phase 1 was not yet shipped at announcement; XAA was.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

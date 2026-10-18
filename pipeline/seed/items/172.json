@@ -1,0 +1,50 @@
+{
+  "id": "2025-07-10-european-commission-publishes-the-final-general-purpose-ai-code-of",
+  "date": "2025-07-10",
+  "date_precision": "day",
+  "title": "European Commission publishes the final General-Purpose AI Code of Practice",
+  "url": "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+  "publisher": "European Commission",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "The European Commission's General-Purpose AI Code of Practice, published on 10 July 2025, is a voluntary tool prepared by independent experts in a multi-stakeholder process to help providers of general-purpose AI models comply with the AI Act, and it has three chapters: Transparency, Copyright, and Safety and Security. The Safety and Security chapter is relevant only to the small number of providers of the most advanced models (those with systemic risk under Article 55) and outlines state-of-the-art practices for managing systemic risks; the Commission and the AI Board confirmed the Code as an adequate voluntary tool for demonstrating compliance, with Anthropic, Google, Microsoft, Mistral AI and OpenAI among the signatories and xAI signing only the Safety and Security chapter.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s10_5"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": "Signatories include Anthropic, Google, Microsoft, Mistral AI, OpenAI; xAI signed the Safety and Security chapter only",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "stelling2025mapping",
+    "stelling2025evaluating",
+    "mokander2021conformity",
+    "buhl2025emerging"
+  ],
+  "tags": [
+    "eu ai act",
+    "code of practice",
+    "systemic risk",
+    "safety framework",
+    "regulation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. The Commission page (last updated 7 October 2026) states the Code was published on July 10, 2025, names the three chapters, limits the Safety and Security chapter to providers of models with systemic risk, records the Commission and AI Board adequacy confirmation, and lists signatories including xAI's Safety-and-Security-only signature. The page does not mention agents specifically or detail incident reporting or evaluation; relevance rests on the Code governing the frontier models agents are built on, which the survey's Section 10.4 treats as the regulatory arm of Deploy and Assure.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

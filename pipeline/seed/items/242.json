@@ -1,0 +1,55 @@
+{
+  "id": "2025-10-20-six-frontier-models-trade-10000-each-autonomously-in-nof1-alpha-arena",
+  "date": "2025-10-20",
+  "date_precision": "day",
+  "title": "Six frontier models trade $10,000 each autonomously in nof1's Alpha Arena",
+  "url": "https://finance.yahoo.com/news/ai-crypto-trading-showdown-deepseek-202512124.html",
+  "publisher": "Decrypt (via Yahoo Finance)",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "Nof1, an AI research firm, is running a contest called Alpha Arena in which six AI models, each given a starting capital of $10,000, trade cryptocurrency perpetual contracts on the Hyperliquid exchange from 17 October to 3 November 2025 under rules that require each model to generate its own trading ideas, size and time its trades and manage its own risk, with model outputs and trades published. By 20 October, Grok, DeepSeek and Claude Sonnet 4.5 were each up more than 25% while GPT-5, which had placed only a few small trades, had lost more than 28% and Gemini 2.5 Pro had engaged in frequent, erratic trading, switching between bearish and bullish stances at a loss; the article cautions that the rankings are in flux and possibly too preliminary to matter.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "within-budget",
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s9_1",
+    "s2_1",
+    "s5_1",
+    "s4_1"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Nof1 (Alpha Arena)",
+    "deployer": "Nof1",
+    "model": "GPT-5; Claude Sonnet 4.5; Gemini 2.5 Pro; Grok; DeepSeek"
+  },
+  "evidence": "press",
+  "related_papers": [
+    "wang2026sok",
+    "chen2025standard",
+    "jia2026finharness",
+    "marino2025giving"
+  ],
+  "tags": [
+    "live trading",
+    "crypto",
+    "autonomous agents",
+    "model comparison",
+    "capital cap"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (Yahoo Finance republication of a Decrypt article by Josh Quittner, dated October 20, 2025; page shows a harmless 'something went wrong' banner but the full body loads). Confirmed from the text: Nof1 and founder Jay Azhang, the Alpha Arena contest, six contenders with $10,000 starting capital each, crypto perpetual contracts on Hyperliquid, Season 1 from October 17 to November 3, rules emphasising autonomy and self-managed risk, published outputs and trades, Grok/DeepSeek/Claude up over 25%, GPT-5 down more than 28% with few small trades, Gemini's erratic bearish-bullish switching, and the article's caveat that rankings are in flux. Not on the page and therefore dropped from the summary: the sixth model's name (Qwen3 Max is not mentioned), the phrase 'no human in the loop', and any 'real-world decision making, not investment skill' statement. Grok and DeepSeek version numbers are not given.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

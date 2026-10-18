@@ -1,0 +1,54 @@
+{
+  "id": "2025-07-17-aiid-1158-wiper-prompt-injected-into-the-amazon-q-developer",
+  "date": "2025-07-17",
+  "date_precision": "day",
+  "title": "AIID 1158: Wiper prompt injected into the Amazon Q Developer extension shipped in a public release",
+  "url": "https://incidentdatabase.ai/cite/1158/",
+  "publisher": "AI Incident Database",
+  "kind": "near-miss",
+  "polarity": "mixed",
+  "summary": "The AI Incident Database records that a malicious instruction inserted into the Amazon Q Developer extension for Visual Studio Code (release v1.84.0) could, if executed, have wiped users' local files and affected cloud resources. The altered code was included in a public release before AWS detected and removed it, and AWS published security bulletin AWS-2025-015 on 2025-07-23.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_2",
+    "s10_2",
+    "s4_1",
+    "s4_5"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Amazon Web Services",
+    "deployer": null,
+    "model": "Amazon Q Developer"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "liu2025your",
+    "maloyan2026prompt",
+    "soni2026falsifiable",
+    "yuan2026shieldnet"
+  ],
+  "tags": [
+    "prompt injection",
+    "supply chain",
+    "coding agent",
+    "destructive action",
+    "release verification"
+  ],
+  "relevant": true,
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17. Incident date 2025-07-17, release v1.84.0, bulletin AWS-2025-015 (dated 2025-07-23) and the claim that the altered code reached a public release before detection are all on the page. The page states the command could have wiped files if executed and reports no realised harm, so kind is near-miss rather than incident.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases"
+}

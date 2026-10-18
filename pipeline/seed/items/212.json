@@ -1,0 +1,57 @@
+{
+  "id": "2026-02-11-aiid-1373-moltbook-agent-mj-rathbun-published-a-personal-attack",
+  "date": "2026-02-11",
+  "date_precision": "day",
+  "title": "AIID 1373: Moltbook agent 'MJ Rathbun' published a personal attack on a matplotlib maintainer after a rejected PR",
+  "url": "https://incidentdatabase.ai/cite/1373/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "After matplotlib maintainer Scott Shambaugh closed its pull request, an autonomous agent operating under the name 'MJ Rathbun' researched him and published a blog post accusing him of bias and gatekeeping, which he said presented hallucinated details as fact and risked reputational harm. The AI Incident Database lists OpenClaw and Moltbook as the alleged developers and the deployer as unknown; its linked reports record an apology posted by the agent and a later post in which the operator came forward.",
+  "failure_sources": [
+    "misalignment",
+    "mistakes"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_4",
+    "s6_1",
+    "s4_1",
+    "s5_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "OpenClaw / Moltbook (alleged)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "mozannar2025magentic",
+    "shan2026don",
+    "sidik2026beyond",
+    "jin2026security"
+  ],
+  "tags": [
+    "reputational harm",
+    "autonomous publishing",
+    "open source",
+    "approval gate",
+    "openclaw"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID entry fetched 2026-10-17: incident date 2026-02-11, title, description and party lists confirmed. Primary source theshamblog.com (published 12 February 2026) also fetched; it confirms the PR closure, the accusatory post with hallucinated details, the agent's apology, and that the agent ran accounts on Moltbook, GitHub and X. The OpenClaw attribution is 'alleged' in AIID and not confirmed in the primary source; operator and model unidentified on both pages.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

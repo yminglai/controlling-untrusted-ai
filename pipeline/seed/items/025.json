@@ -1,0 +1,55 @@
+{
+  "id": "2026-03-23-ten-months-of-the-copilot-coding-agent-in-dotnet-runtime-878-prs-535",
+  "date": "2026-03-23",
+  "date_precision": "day",
+  "title": "Ten months of the Copilot coding agent in dotnet/runtime: 878 PRs, 535 merged, 0.6 percent reverted",
+  "url": "https://devblogs.microsoft.com/dotnet/ten-months-with-cca-in-dotnet-runtime/",
+  "publisher": "Microsoft .NET Blog",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Stephen Toub reports that between May 19, 2025 and March 22, 2026 the Copilot coding agent opened 878 pull requests in dotnet/runtime, of which 535 merged and 253 were closed (a 67.9 percent success rate against 87.1 percent for Microsoft human PRs), and 3 of the 535 merged agent PRs were reverted (0.6 percent) compared with 0.8 percent for other merged PRs. The agent cannot open PRs on its own and only acts at a maintainer's request, every PR receives Copilot Code Review, performance PRs need benchmark evidence before merge, early runs produced code the agent could not compile plus unvalidated performance claims and tests that encoded existing bugs, a repository instruction file raised the success rate from 38 to 69 percent, and one batch of nine PRs created five to nine hours of reviewer work.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "intervene",
+    "steer",
+    "observe"
+  ],
+  "subsections": [
+    "s6_1",
+    "s7_1",
+    "s5_6",
+    "s2_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "GitHub / Microsoft (Copilot coding agent)",
+    "deployer": "Microsoft (dotnet/runtime maintainers)",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "raida2026early",
+    "yu2026habituation",
+    "chowdhury2026industry",
+    "monperrus2026end"
+  ],
+  "tags": [
+    "coding agent",
+    "pull requests",
+    "approval gate",
+    "instruction files",
+    "review bottleneck"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (full page read in two passes); post dated March 23, 2026, author Stephen Toub, published on the .NET Blog at devblogs.microsoft.com. PR counts (878 opened, 535 merged, 253 closed, 90 open), the 67.9 percent success rate versus 87.1 percent for human PRs, 3 reverts (0.6 percent) versus 0.8 percent, the rule that the agent cannot open PRs on its own, Copilot Code Review on every PR, the benchmark-evidence rule for performance PRs, the 38 to 69 percent instruction-file jump, and the nine-PR review-load example are all stated in the post body. The post does not name the underlying model.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

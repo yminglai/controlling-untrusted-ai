@@ -1,0 +1,54 @@
+{
+  "id": "2025-08-05-curxecute-and-mcpoison-prompt-injection-and-trust-bypass-in-cursor",
+  "date": "2025-08-05",
+  "date_precision": "day",
+  "title": "CurXecute (CVE-2025-54135) and MCPoison (CVE-2025-54136): prompt injection and trust bypass in Cursor's MCP handling",
+  "url": "https://www.tenable.com/blog/faq-cve-2025-54135-cve-2025-54136-vulnerabilities-in-cursor-curxecute-mcpoison",
+  "publisher": "Tenable",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Tenable's FAQ covers two Cursor IDE flaws disclosed in August 2025: CurXecute (CVE-2025-54135, CVSSv3 8.5, reported by Aim Security), where a crafted message read through an MCP-connected Slack instance makes Cursor modify its global mcp.json and execute the added command immediately, before the user can reject the suggested edit; and MCPoison (CVE-2025-54136, CVSSv3 7.2, reported by Check Point Research), where an already-approved project MCP configuration is trusted by its name rather than its contents, so later silent edits run commands without re-approval. Cursor released fixed versions (1.3.9 and 1.3 respectively); neither flaw was exploited as a zero-day, and the researchers published proof-of-concept details.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s6_1",
+    "s4_2",
+    "s4_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "song2025beyond",
+    "weng2026you",
+    "xie2025queryipi",
+    "wang2025mcptox"
+  ],
+  "tags": [
+    "prompt injection",
+    "mcp",
+    "approval gate",
+    "coding agent",
+    "cve"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated Aug 5 2025, byline Satnam Narang (Tenable). CVSS scores (8.5, 7.2), discoverers (Aim Security, Check Point Research), mechanisms and fixed versions (1.3.9, 1.3) confirmed from the FAQ body. The page does not state that the fix adds re-approval on configuration change, so that sweep claim was dropped.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

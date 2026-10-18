@@ -1,0 +1,52 @@
+{
+  "id": "2025-10-20-anthropic-introduces-os-level-sandboxing-for-claude-code",
+  "date": "2025-10-20",
+  "date_precision": "day",
+  "title": "Anthropic introduces OS-level sandboxing for Claude Code",
+  "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+  "publisher": "Anthropic",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Anthropic's engineering post, dated October 20, 2025, describes a sandbox runtime that Claude Code uses to confine its bash tool and any scripts or subprocesses it spawns: filesystem isolation lets Claude read and write only its current working directory, and all network access goes through a proxy outside the sandbox that restricts reachable domains and asks the user before allowing new ones, built on Linux bubblewrap and macOS seatbelt. Anthropic states that with both isolations in place even a successful prompt injection is isolated, that Claude Code on the web runs each session in a cloud sandbox where git credentials and signing keys stay outside and a proxy checks each git operation before attaching the real token, that internal use reduced permission prompts by 84 percent, and that the runtime was open sourced as a research preview.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_2",
+    "s4_5",
+    "s6_1",
+    "s4_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "lan2026silent",
+    "rashidi2026balkanization",
+    "yan2025fault",
+    "maiti2026caging"
+  ],
+  "tags": [
+    "sandbox",
+    "network isolation",
+    "prompt injection",
+    "permission prompts",
+    "open source"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page is Anthropic's engineering post 'Beyond permission prompts: making Claude Code more secure and autonomous', dated Oct 20, 2025. Filesystem and network isolation, bubblewrap and seatbelt, subprocess coverage, the domain-restricting proxy with user confirmation for new domains, the cloud-sandbox git credential proxy, the 84% reduction in permission prompts, and the open-source sandbox-runtime research preview confirmed from the page body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

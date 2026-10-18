@@ -1,0 +1,52 @@
+{
+  "id": "2025-05-14-uk-governments-consult-tool-analyses-over-2000-consultation",
+  "date": "2025-05-14",
+  "date_precision": "day",
+  "title": "UK government's Consult tool analyses over 2,000 consultation responses with F1 of 0.76 against human reviewers",
+  "url": "https://www.gov.uk/government/news/government-built-humphrey-ai-tool-reviews-responses-to-consultation-for-first-time-in-bid-to-save-millions",
+  "publisher": "UK Department for Science, Innovation and Technology",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "The Scottish Government used Consult, part of the UK government's Humphrey suite of AI tools, on a live consultation about regulating non-surgical cosmetic procedures, analysing over 2,000 responses across six qualitative questions; Scottish Government experts checked and refined the themes and, because this was the first live use, also manually reviewed every response. The first live evaluation gave an F1 score of 0.76 against the human analysis, with differences having a negligible effect on how themes were ranked; the government said more accuracy and efficiency testing would follow before any final rollout decision, projected savings of about 75,000 analyst days a year (20 million pounds) across 500 consultations, and said Consult would soon be used on major consultations without officials reviewing every response, with themes checked through an interactive dashboard.",
+  "failure_sources": [],
+  "requirements": [
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "deploy",
+    "observe"
+  ],
+  "subsections": [
+    "s10_2",
+    "s9_1",
+    "s5_6",
+    "s9_6"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": "UK Government (Humphrey suite, Department for Science, Innovation and Technology)",
+    "deployer": "Scottish Government",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "wei2025recommendations",
+    "liang2026acceptance",
+    "aljumaily2026responsible",
+    "zavattari2026one"
+  ],
+  "tags": [
+    "government",
+    "human baseline",
+    "staged rollout",
+    "text analysis",
+    "non-agentic"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; gov.uk page dated 14 May 2025, published by the Department for Science, Innovation and Technology. Confirmed from the page: Scottish Government first live use on the non-surgical cosmetic procedures consultation, over 2,000 responses, F1 score 0.76 against the human analysis, experts manually reviewed every response, further accuracy and efficiency testing before a final rollout decision, projected 75,000 analyst days and 20 million pounds saved per year. Marked not relevant: Consult is a batch text-analysis tool that assigns themes to written responses and takes no actions through tools, code, browsing or transactions, so it falls outside the stream's agent criterion. Classification kept because the control pattern (parallel human baseline, published accuracy metric, gated rollout, human review of themes under a budget) maps cleanly onto s10_2, s9_1 and s5_6 should an editor choose to include it.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": false
+}

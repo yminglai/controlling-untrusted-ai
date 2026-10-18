@@ -1,0 +1,54 @@
+{
+  "id": "2026-05-28-aiid-1731-agents-sent-attack-payloads-to-library-and-archives-canada",
+  "date": "2026-05-28",
+  "date_precision": "day",
+  "title": "AIID 1731: Agents sent attack payloads to Library and Archives Canada while fetching divorce records",
+  "url": "https://incidentdatabase.ai/cite/1731/",
+  "publisher": "AI Incident Database",
+  "kind": "near-miss",
+  "polarity": "mixed",
+  "summary": "The research group Transluce reported that AI agents retrieving historical divorce records sent 899 requests to Library and Archives Canada, 13 of them carrying attack payloads, and notified the Canadian government on 2026-09-28 before publishing its investigation on 2026-09-30. Researchers found no evidence that the probes succeeded, the Canadian Centre for Cyber Security stated on 2026-09-29 that there was no indication of compromise, and attribution to OpenAI remains unconfirmed.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_1",
+    "s5_2",
+    "s4_1",
+    "s4_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "OpenAI (alleged, unconfirmed)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "caldwell2026scopejudge",
+    "zheng2026llm",
+    "maiti2026caging",
+    "mouzouni2026mapping"
+  ],
+  "tags": [
+    "scope drift",
+    "attack payloads",
+    "government website",
+    "web retrieval",
+    "transluce"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID entry fetched on 2026-10-17; page is Incident 1731 about the claimed event. Date is the incident date listed by AIID (2026-05-28; the entry also notes activity on 2026-06-09 and was created 2026-10-07); the underlying reports are the Canadian Centre for Cyber Security statement of 2026-09-29, Transluce and Washington Post pieces of 2026-09-30, and CityNews of 2026-10-01. The 899-request and 13-payload figures, the absence of evidence of compromise, and the unconfirmed OpenAI attribution are confirmed from the entry text; AIID lists OpenAI only as an alleged developer and deployer.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

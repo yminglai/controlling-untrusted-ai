@@ -1,0 +1,49 @@
+{
+  "id": "2025-09-29-california-enacts-sb-53-requiring-frontier-ai-developers-to-publish",
+  "date": "2025-09-29",
+  "date_precision": "day",
+  "title": "California enacts SB 53, requiring frontier AI developers to publish safety frameworks and report critical incidents",
+  "url": "https://www.gov.ca.gov/2025/09/29/governor-newsom-signs-sb-53-advancing-californias-world-leading-artificial-intelligence-industry/",
+  "publisher": "Office of Governor Gavin Newsom",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Governor Newsom signed SB 53, the Transparency in Frontier Artificial Intelligence Act, which requires large frontier developers to publish on their websites a framework describing how they incorporate national standards, international standards, and industry-consensus best practices. The law creates a channel for frontier AI companies and the public to report potential critical safety incidents to the California Office of Emergency Services, protects whistleblowers who disclose significant health and safety risks from frontier models, creates a civil penalty enforceable by the Attorney General, and establishes the CalCompute consortium.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s10_5"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "stelling2025evaluating",
+    "buhl2025emerging",
+    "wei2025designing",
+    "ezell2025incident"
+  ],
+  "tags": [
+    "incident reporting",
+    "safety framework",
+    "whistleblower protection",
+    "state law"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page is the Governor's 29 Sep 2025 announcement of the SB 53 signing and confirms: published frontier safety frameworks, a critical-safety-incident reporting channel to the Office of Emergency Services for companies and the public, whistleblower protection, a civil penalty enforced by the Attorney General, and the CalCompute consortium. The sweep candidate's 15-day and 24-hour deadlines, the statutory loss-of-control and safeguard-evasion definitions, and the 1 January 2026 effective date do not appear on this page and were dropped from the summary; the page also does not call it the first such state law, so the title was reworded.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

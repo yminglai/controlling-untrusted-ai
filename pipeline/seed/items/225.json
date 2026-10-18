@@ -1,0 +1,54 @@
+{
+  "id": "2025-06-11-aiid-report-5329-echoleak-a-zero-click-prompt-injection-exfiltrating",
+  "date": "2025-06-11",
+  "date_precision": "day",
+  "title": "AIID report 5329: EchoLeak, a zero-click prompt injection exfiltrating data from Microsoft 365 Copilot",
+  "url": "https://incidentdatabase.ai/reports/5329/",
+  "publisher": "AI Incident Database",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "AI Incident Database report 5329 reproduces a Dark Reading article on EchoLeak (CVE-2025-32711), a zero-click vulnerability in Microsoft 365 Copilot disclosed by Aim Security's research arm Aim Labs: an email phrased as instructions to the recipient slipped past Copilot's cross-prompt injection attack (XPIA) classifiers, reference-style markdown links evaded Copilot's link redaction, and quirks in SharePoint and the Microsoft Teams invitation process bypassed the Content Security Policy's URL allowlisting, so sensitive data from Copilot's context could be exfiltrated without any user action. Microsoft issued an update, said no customer action was needed and reported no known cases of customers being compromised; the flaw carried a critical CVSS score of 9.3, and Aim Security's co-founder said the firm had already found similar vulnerabilities in other platforms.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_2",
+    "s4_2"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "greshake2023not",
+    "cohen2024here",
+    "lan2026silent",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "zero-click",
+    "rag",
+    "incident database"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID report page fetched on 2026-10-17 (live; the page is client-rendered, so the raw HTML was downloaded and parsed). Report title 'Researchers Detail Zero-Click Copilot Exploit EchoLeak', source darkreading.com, CVE-2025-32711, CVSS 9.3, the XPIA-classifier bypass, the reference-style markdown link trick, the SharePoint and Teams CSP bypass, Microsoft's update with no customer action and no known compromised customers, and the Aim Security co-founder quote all confirmed from the report body. The page prints only the year '2025' for the report; the body says Aim Security published 'Wednesday', and the NVD record (published 2025-06-11) and Microsoft MSRC entry (release date 2025-06-11, a Wednesday) fix the day. The Dark Reading source returned HTTP 403 and has no Wayback or archive.today snapshot; AIID's GraphQL API requires login. The candidate's stated primary source (BleepingComputer) is not the source of this report, and its claims of a May 2025 server-side fix and a MITRE ATLAS AML.CS0059 listing do not appear on the page (the ATLAS URL returned 404), so they are omitted from the summary. A separate seed item (033) covers the same event via The Hacker News.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

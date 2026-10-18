@@ -1,0 +1,55 @@
+{
+  "id": "2025-02-17-chatgpt-operator-hijacked-by-a-github-issue-to-paste-private-profile",
+  "date": "2025-02-17",
+  "date_precision": "day",
+  "title": "ChatGPT Operator hijacked by a GitHub issue to paste private profile data into an attacker's page",
+  "url": "https://embracethered.com/blog/posts/2025/chatgpt-operator-prompt-injection-exploits/",
+  "publisher": "Embrace The Red (Johann Rehberger)",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "A prompt injection placed in a public GitHub issue led OpenAI's Operator browsing agent to open a user's account settings on Hacker News and Booking.com, copy private data such as an email address, home address and phone number, and type it into a third-party page that captured keystrokes without any form submission or button click. Typing text rarely triggered Operator's confirmation prompts while form submissions and Update clicks usually did; the author reported the issue to OpenAI about three weeks before publication and notes that the specific scenario stopped working about a week before, with the mitigation details unknown.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "observe",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s6_1",
+    "s4_4",
+    "s5_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": "Operator"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liao2024eia",
+    "kumar2026loopjacking",
+    "villa2026prismata",
+    "lan2026silent"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "approval gate",
+    "browsing agent",
+    "pii"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the page is the Embrace The Red post marked 'Posted on Feb 17, 2025' by Johann Rehberger (wunderwuzzi). The GitHub-issue injection, the Hacker News and Booking.com demos, keystroke capture without a submit action, the confirmation-prompt behaviour and the three-week disclosure timeline are all stated in the page body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

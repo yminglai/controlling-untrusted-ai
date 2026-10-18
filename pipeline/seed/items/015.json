@@ -1,0 +1,54 @@
+{
+  "id": "2025-09-10-cursor-ships-with-workspace-trust-off-so-repositories-can-run-code-on-open",
+  "date": "2025-09-10",
+  "date_precision": "day",
+  "title": "Cursor ships with Workspace Trust off, so repositories can run code on open",
+  "url": "https://oasis.security/blog/cursor-workspace-trust-vulnerability",
+  "publisher": "Oasis Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Oasis Security researcher Erez Schwartz reported that Cursor disables Visual Studio Code's Workspace Trust feature by default, so a repository containing a .vscode/tasks.json task with runOptions.runOn set to folderOpen executes its command as soon as a developer opens the folder, with no consent prompt; the proof of concept sent the current username to a local listener, and the report states the same mechanism can read environment variables, tokens, API keys and files under the user's privileges. Cursor's response in the report said it does not ship with Workspace Trust enabled because the feature disables AI functionality, that users can enable it, and that updated security guidance would follow; Oasis recommended enabling Workspace Trust, auditing repositories for autorun tasks before opening them, and limiting the secrets exposed to the IDE.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_2",
+    "s4_1",
+    "s2_2",
+    "s4_5"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liu2025your",
+    "rashidi2026balkanization",
+    "shi2026aletheia",
+    "huang2026my"
+  ],
+  "tags": [
+    "workspace trust",
+    "autorun tasks",
+    "supply chain",
+    "credential exposure",
+    "secure defaults"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. The blog URL now serves an undated report landing page, so the date was confirmed from the linked report PDF (cover: 'Published on September 10, 2025', author Erez Schwartz; PDF metadata created 2025-09-10) and from press coverage dated 2025-09-12. Unlike the candidate text, the report includes a vendor response from Cursor. Classified as agent-relevant because the disabled trust boundary belongs to an AI coding agent host and the vendor tied the default to AI features; the execution mechanism is the IDE task runner, not model behaviour.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

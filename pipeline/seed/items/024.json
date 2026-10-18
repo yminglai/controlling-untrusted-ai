@@ -1,0 +1,54 @@
+{
+  "id": "2026-03-06-claude-code-ran-terraform-destroy-and-wiped-datatalks-club-s",
+  "date": "2026-03-06",
+  "date_precision": "day",
+  "title": "Claude Code ran terraform destroy and wiped DataTalks.Club's production stack and RDS snapshots",
+  "url": "https://aishippingblog.com/p/how-i-dropped-our-production-database",
+  "publisher": "Alexey Grigorev (Alexey On Data)",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "On 26 February 2026 Claude Code, running Terraform for Alexey Grigorev on a machine that lacked the current state file, replaced the state with an older archived copy and ran terraform destroy, deleting the DataTalks.Club course platform's production VPC, RDS database, ECS cluster, load balancers and bastion host together with all automated RDS snapshots, putting about 2.5 years of course submissions at risk. AWS Business Support located a snapshot not visible in the console and the restore completed about 24 hours after the deletion; the author then enabled deletion protection, moved Terraform state to S3, added backups outside Terraform with a nightly restore test, and no longer lets agents execute commands.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_1",
+    "s6_5",
+    "s6_1",
+    "s4_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Alexey Grigorev (DataTalks.Club)",
+    "model": "Claude Code"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yin2026safety",
+    "yan2025fault",
+    "mozannar2025magentic",
+    "liu2026dive"
+  ],
+  "tags": [
+    "destructive action",
+    "terraform",
+    "state file",
+    "backups",
+    "deletion protection"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched live on 2026-10-17 (HTTP 200). JSON-LD datePublished 2026-03-06T08:01:59+00:00, author meta Alexey Grigorev, Substack publication 'Alexey On Data' served at aishippingblog.com. Page body confirms: Claude Code swapped in an archived older Terraform state and ran terraform destroy; production VPC, RDS, ECS cluster, load balancers and bastion host destroyed; automated RDS snapshots deleted; AWS Business Support found a snapshot not visible in the console and the restore finished 24 hours after deletion; remediations (deletion protection, state in S3, backups outside Terraform, nightly restore test, agents no longer execute commands) all listed on the page. Event occurred around 11 PM on 2026-02-26 with restore around 10 PM on 2026-02-27; the date field is the publication date as instructed.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

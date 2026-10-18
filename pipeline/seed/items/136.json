@@ -1,0 +1,53 @@
+{
+  "id": "2025-12-08-google-adds-a-user-alignment-critic-and-origin-isolation-to-gemini",
+  "date": "2025-12-08",
+  "date_precision": "day",
+  "title": "Google adds a User Alignment Critic and origin isolation to Gemini agentic browsing in Chrome",
+  "url": "https://bleepingcomputer.com/news/security/google-chrome-adds-new-security-layer-for-gemini-ai-agentic-browsing",
+  "publisher": "BleepingComputer",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 8 December 2025 Google engineer Nathan Parker described a layered security architecture for the Gemini-powered agentic browsing features planned for Chrome, combining deterministic rules, model-level protections, isolation boundaries and user oversight to mitigate indirect prompt injection from page content. A User Alignment Critic, a separate model isolated from untrusted content and treated as a high-trust system component, vets every action the primary agent proposes and orders a retry or returns control to the user when an action is risky or irrelevant to the user's goal; Origin Sets limit the agent to specific sites and elements, withhold unrelated origins and iframes, and require a trusted gating function to approve new origins; a dedicated classifier scans pages for indirect prompt injection alongside Safe Browsing; Chrome pauses for manual confirmation on sensitive sites such as banking portals or Password Manager sign-ins; and Google backs the design with automated red-teaming and bounties of up to $20,000 for breaking it.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_2",
+    "s4_4",
+    "s6_1",
+    "s5_5"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Google",
+    "deployer": "Google",
+    "model": "Gemini"
+  },
+  "evidence": "press",
+  "related_papers": [
+    "villa2026prismata",
+    "gong2026planguard",
+    "nikoli2026untrusted",
+    "irshad2026verifiable"
+  ],
+  "tags": [
+    "prompt injection",
+    "browser agent",
+    "trusted monitor",
+    "origin isolation",
+    "approval gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; BleepingComputer article by Bill Toulas dated December 8, 2025. Confirmed from the page text: Google engineer Nathan Parker announced a layered architecture for Gemini agentic browsing in Chrome; the User Alignment Critic is a separate model isolated from untrusted content, acting as a high-trust system component, that vets each proposed action and orders a retry or returns control to the user if the action is risky or irrelevant to the user's goal; Origin Sets withhold unrelated origins including iframes and a trusted gating function must approve new origins; manual confirmation on sensitive sites such as banking portals and Password Manager sign-ins; a dedicated indirect-prompt-injection classifier running alongside Safe Browsing; automated red-teaming and bounties of up to $20,000. All candidate claims matched; the page also names the injection classifier and red-teaming, now included in the summary. Gemini has been integrated into Chrome since September 2025 per the article.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

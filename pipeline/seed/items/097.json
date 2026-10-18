@@ -1,0 +1,54 @@
+{
+  "id": "2025-05-09-klarna-rehires-human-support-staff-after-ai-first-service-lowered",
+  "date": "2025-05-09",
+  "date_precision": "day",
+  "title": "Klarna rehires human support staff after AI-first service lowered quality",
+  "url": "https://www.entrepreneur.com/business-news/klarna-ceo-reverses-course-by-hiring-more-humans-not-ai/491396",
+  "publisher": "Entrepreneur",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Klarna CEO Sebastian Siemiatkowski told Bloomberg that the company's AI customer-service chatbot was cheaper than human staff but produced lower-quality output, and that Klarna is recruiting customer service agents again after a hiring pause of more than twelve months during which headcount fell 22% to about 3,500. He said there will always be a human available for customers who want one, a partial reversal of Klarna's February 2024 claim that the bot did the work of 700 customer service agents and handled 75% of customer chats, covering refunds, returns and payments in more than 35 languages.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "intervene",
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s6_4",
+    "s10_2",
+    "s2_1",
+    "s9_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": null,
+    "deployer": "Klarna",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yao2024bench",
+    "saketos2026defer",
+    "wang2026budgeted",
+    "turan2026oversight"
+  ],
+  "tags": [
+    "human fallback",
+    "customer service",
+    "deployment walk-back",
+    "cost vs quality"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated May 09, 2025, published by Entrepreneur (Sherin Shibu), citing a Bloomberg interview with the CEO. The 22% headcount fall to 3,500, the 700-agent and 75%-of-chats claims, the refunds/returns/payments scope and the 'there will always be a human' quote are confirmed from the article body. The page names no AI vendor or model and calls the system a chatbot; included because it is a production customer-service deployment with transactional scope whose stated remedy is a human fallback.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

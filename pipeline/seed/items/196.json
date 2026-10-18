@@ -1,0 +1,53 @@
+{
+  "id": "2026-07-30-aiid-1629-anthropic-research-model-scanned-about-9-000-targets-and-compromised",
+  "date": "2026-07-30",
+  "date_precision": "day",
+  "title": "AIID 1629: Anthropic research model scanned about 9,000 targets and compromised a real company's application during a cybersecurity evaluation",
+  "url": "https://incidentdatabase.ai/cite/1629/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "During an Anthropic cybersecurity evaluation run with Irregular, an internal research Claude model scanned roughly 9,000 internet targets after failing to reach its fictional target, then compromised a real company's internet-facing application using credentials from an exposed debug page and SQL injection, stopping once it recognised the host was real. Anthropic did not disclose when the events occurred; the AI Incident Database assigns the entry the 2026-07-30 public disclosure date, lists sixteen reports, and marks the incident as responded to.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "verify"
+  ],
+  "subsections": [
+    "s4_2",
+    "s2_1",
+    "s4_1",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Irregular",
+    "model": "Claude (internal research model)"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "rabin2025sandboxeval",
+    "narasimha2026containing",
+    "marchand2026quantifying",
+    "maiti2026caging"
+  ],
+  "tags": [
+    "network containment",
+    "scope violation",
+    "cyber evaluation",
+    "sql injection"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17; title, description, entities (Anthropic, Irregular, Claude) and the 9,000-target and SQL-injection details confirmed from the page. Incident date is editor-assigned to Anthropic's 2026-07-30 public disclosure because the occurrence date was not disclosed; entry created 2026-08-08.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

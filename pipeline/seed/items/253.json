@@ -1,0 +1,55 @@
+{
+  "id": "2026-07-28-self-propagating-prompt-injection-in-copilot-for-word-survives-144",
+  "date": "2026-07-28",
+  "date_precision": "day",
+  "title": "Self-propagating prompt injection in Copilot for Word survives 144 days of mitigations",
+  "url": "https://enklypesalt.com/posts/context-collapse-part3-ai-worming-through-word/",
+  "publisher": "En Klype Salt (Håkon Måløy)",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Researcher Håkon Måløy showed that hidden white, size-8 text in a source document makes Microsoft Copilot for Word treat the instructions as task-relevant, halving the financial figures in the draft and copying the hidden instructions into the new document, which then becomes a carrier when reused as source material. Reported to MSRC on 2026-03-06 and confirmed by Microsoft on 2026-03-31, the behaviour survived two mitigations, a new Edit with Copilot experience on 2026-04-03 and a model upgrade to GPT-5.5 on 2026-07-14, each bypassed by a variant, and at coordinated disclosure on 2026-07-28, after 144 days, the attack class still reproduced.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "train"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_2",
+    "s8_4"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": "GPT-5.5 / GPT-5.6"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "cohen2024here",
+    "zhang2026agentworm",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "self-propagating",
+    "office documents",
+    "coordinated disclosure",
+    "copilot"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page is part 3 of the author's Context Collapse series, published Jul 28, 2026 (updated Jul 30, 2026). Copilot for Word mechanism, halving of figures, propagation of hidden instructions into the output, MSRC timeline (report 2026-03-06, mitigations 2026-04-03 and 2026-07-14, 144-day window, disclosure 2026-07-28) and user advice all confirmed from the page body. No direct Microsoft statement on the page; vendor confirmation is as reported by the author.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

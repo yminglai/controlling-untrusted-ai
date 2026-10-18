@@ -1,0 +1,357 @@
+{
+  "lens": "good-deployments",
+  "generated": "2026-10-17",
+  "items": [
+    {
+      "title": "Klarna says its AI assistant handled 2.3 million chats in its first month",
+      "url": "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+      "date": "2024-02-27",
+      "publisher": "Klarna",
+      "summary": "Klarna reported that its OpenAI-powered customer service assistant handled 2.3 million conversations in its first month, two-thirds of its chat volume and the equivalent work of 700 full-time agents, with satisfaction on par with humans and resolution time down from 11 minutes to under 2. Customers could still choose to reach a live agent. The figures are self-reported and were qualified by the company in May 2025.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Large-scale customer-service agent with a human escalation path; the baseline claim later walked back (Deploy and Assure, Intervene)."
+    },
+    {
+      "title": "Klarna rehires human support staff after AI-first service lowered quality",
+      "url": "https://www.entrepreneur.com/business-news/klarna-ceo-reverses-course-by-hiring-more-humans-not-ai/491396",
+      "date": "2025-05-09",
+      "publisher": "Entrepreneur",
+      "summary": "Klarna CEO Sebastian Siemiatkowski told Bloomberg that AI chatbots were cheaper than staff but produced lower-quality output, and that the company would hire customer service agents again after headcount fell 22% to about 3,500 during a hiring pause. He said customers must always be able to reach a human. The move partially retracts the February 2024 claim that the assistant did the work of 700 agents.",
+      "polarity": "mixed",
+      "kind": "deployment",
+      "why": "Credible walk-back of a flagship deployment claim; the correctness requirement was not met without human fallback (Intervene, Deploy and Assure)."
+    },
+    {
+      "title": "Commonwealth Bank reverses AI voice-bot job cuts and admits assessment error",
+      "url": "https://www.canberratimes.com.au/story/9046323/commonwealth-bank-reverses-ai-chatbot-job-cuts-admits-error/",
+      "date": "2025-08-21",
+      "publisher": "The Canberra Times",
+      "summary": "After introducing a voice bot on its inbound enquiries line, Commonwealth Bank declared 45 direct-banking roles redundant, then reversed the decision on 21 August 2025, saying its initial assessment did not adequately consider all relevant business considerations and the roles were not redundant. The Finance Sector Union had disputed the bank's claim that the bot reduced call volumes, saying staff were being asked to work overtime to handle calls. Affected staff may keep their roles, redeploy, or leave.",
+      "polarity": "mixed",
+      "kind": "deployment",
+      "why": "Deployer walked back claimed call-volume reductions from a voice agent; deployment metrics need verification before being relied on (Verify, Deploy and Assure)."
+    },
+    {
+      "title": "Taco Bell rethinks voice AI drive-thru after 2 million orders and viral failures",
+      "url": "https://gigazine.net/gsc_news/en/20250831-taco-bell-rethinks-voice-ai-drive-through",
+      "date": "2025-08-31",
+      "publisher": "GIGAZINE (reporting a Wall Street Journal interview)",
+      "summary": "Taco Bell's voice AI ordering system, rolled out to more than 500 US drive-thrus since 2024, has taken over 2 million orders, but viral clips of glitches and prank orders such as 18,000 cups of water led chief digital and technology officer Dane Mathews to say the chain is reassessing where the AI fits. Taco Bell plans to guide franchisees on suitable situations and to have staff monitor the system and step in when needed, while keeping voice AI on its roadmap.",
+      "polarity": "mixed",
+      "kind": "deployment",
+      "why": "Large consumer-facing agent where human monitoring and intervention were added after user manipulation and mistakes (Observe, Intervene)."
+    },
+    {
+      "title": "McDonald's ends IBM automated order-taking test after accuracy fell short",
+      "url": "https://www.nbcnews.com/business/business-news/mcdonalds-end-ai-drive-test-ibm-rcna157603",
+      "date": "2024-06-17",
+      "publisher": "NBC News (CNBC)",
+      "summary": "McDonald's told franchisees it would switch off IBM's Automated Order Taker, tested in more than 100 drive-thrus since 2021, by 26 July 2024. Analyst Peter Saleh reported accuracy in the low-to-mid 80% range against a roughly 95% threshold needed for broad adoption, and franchisee frustration with incorrect orders. McDonald's said voice ordering remains part of its future and it would evaluate other solutions.",
+      "polarity": "bad",
+      "kind": "deployment",
+      "why": "Deployment withdrawn because the correctness requirement was not met at scale; an accuracy threshold acted as the deployment gate (Verify, Deploy and Assure)."
+    },
+    {
+      "title": "Salesforce reports 84% resolution and 4% human handoff for Agentforce on its help site",
+      "url": "https://www.salesforce.com/news/stories/agentforce-customer-support-lessons-learned/",
+      "date": "2025-04-22",
+      "publisher": "Salesforce",
+      "summary": "Six months after launching Agentforce on help.salesforce.com in October 2024, Salesforce reported more than 500,000 conversations handled, over 84% of questions resolved, and about 4% of conversations handed to a human engineer, a rate it says it keeps deliberately. The agent is grounded on about 740,000 help articles, is instructed to route renewal questions to humans, and handoff transcripts are reviewed to find gaps. An editor's note says the count passed 1 million conversations by July 2025.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Vendor's own large-scale deployment with an explicit escalation path and handoff analysis as monitoring (Intervene, Observe)."
+    },
+    {
+      "title": "Pichai says more than a quarter of new code at Google is generated by AI",
+      "url": "https://fortune.com/2024/10/30/googles-code-ai-sundar-pichai/",
+      "date": "2024-10-30",
+      "publisher": "Fortune",
+      "summary": "On Alphabet's third-quarter 2024 earnings call, CEO Sundar Pichai said more than a quarter of all new code at Google is now generated by AI. The report does not specify how the share is measured or how much is autocomplete versus agent-written code; the figure is a company statement.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Baseline datum for AI-written code share at a large company, with human code review as the implicit control (Observe, Deploy and Assure)."
+    },
+    {
+      "title": "Amazon says Q Developer agent upgraded tens of thousands of Java apps, saving 4,500 developer-years",
+      "url": "https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/",
+      "date": "2024-08-01",
+      "publisher": "AWS DevOps Blog",
+      "summary": "AWS reported that Amazon used the Amazon Q Developer code-transformation agent to migrate tens of thousands of production applications from Java 8 or 11 to Java 17, estimating over 4,500 developer-years saved for more than a thousand developers and $260 million in annualized savings. Developers review and iterate on the agent's plan before it implements changes. CEO Andy Jassy later posted that 79% of the auto-generated code reviews shipped without changes.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Bounded, repetitive coding task with plan review and human code review as the control layer (Constrain, Observe)."
+    },
+    {
+      "title": "Goldman Sachs pilots Cognition's Devin as a supervised autonomous coder",
+      "url": "https://www.nbcchicago.com/news/business/money-report/goldman-sachs-is-piloting-its-first-autonomous-coder-in-major-ai-milestone-for-wall-street/3787263/",
+      "date": "2025-07-11",
+      "publisher": "CNBC (via NBC Chicago)",
+      "summary": "Goldman Sachs CIO Marco Argenti said the bank is piloting Devin alongside its roughly 12,000 developers, starting with hundreds of instances and potentially thousands, on tasks such as updating internal code to newer languages. The agents will be supervised by human employees; Argenti estimated productivity gains of three to four times over earlier AI tools. The figures are the bank's own projections.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Regulated-industry agent rollout with human supervision as the stated control (Observe, Deploy and Assure)."
+    },
+    {
+      "title": "Coinbase says about 40% of its daily code is AI-generated, with mandatory review",
+      "url": "https://www.theblock.co/post/369460/brian-armstrong-coinbase-ai",
+      "date": "2025-09-04",
+      "publisher": "The Block",
+      "summary": "Coinbase CEO Brian Armstrong posted that roughly 40% of daily code written at Coinbase is AI-generated and set a goal of over 50% by October 2025. He said AI-generated code needs to be reviewed and understood and that not all areas of the business can use it. Armstrong had earlier said he dismissed engineers who did not adopt the AI tools after an August mandate.",
+      "polarity": "mixed",
+      "kind": "deployment",
+      "why": "High AI code share in a financial company with review requirements and scope exclusions as controls (Constrain, Observe)."
+    },
+    {
+      "title": "GitHub launches Copilot coding agent with draft PRs, human approval gates and branch protection",
+      "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/",
+      "date": "2025-05-19",
+      "publisher": "GitHub",
+      "summary": "GitHub's Copilot coding agent runs in a GitHub Actions sandbox, pushes commits only to branches it created, and opens draft pull requests; the person who requested the work cannot approve the PR, so required-review rules hold, and Actions workflows do not run until a human approves them. Internet access is limited to a customizable allowlist and repositories must opt in. It launched for Copilot Enterprise and Pro+ customers.",
+      "polarity": "good",
+      "kind": "safety-feature",
+      "why": "Productised approval gates, sandboxing and least privilege for a widely deployed coding agent (Constrain, Intervene)."
+    },
+    {
+      "title": "METR trial finds experienced developers 19% slower with AI tools while believing they were faster",
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "date": "2025-07-10",
+      "publisher": "METR",
+      "summary": "In a randomized controlled trial, 16 experienced open-source developers completed 246 real issues with or without AI tools, mainly Cursor Pro with Claude 3.5 and 3.7 Sonnet. Developers took 19% longer when AI was allowed, despite forecasting a 24% speedup and believing afterwards they had been 20% faster. METR cautions that the sample is small and specific to experienced developers on familiar codebases.",
+      "polarity": "mixed",
+      "kind": "evaluation",
+      "why": "Independent measurement contradicting self-reported productivity gains; deployment claims need verification (Verify)."
+    },
+    {
+      "title": "UK government's Consult tool analyses 2,000 consultation responses with F1 of 0.76 against experts",
+      "url": "https://www.gov.uk/government/news/government-built-humphrey-ai-tool-reviews-responses-to-consultation-for-first-time-in-bid-to-save-millions",
+      "date": "2025-05-14",
+      "publisher": "UK Department for Science, Innovation and Technology",
+      "summary": "The Scottish Government used Consult, part of the UK government's Humphrey suite, to theme over 2,000 responses to a consultation on non-surgical cosmetic procedures; officials checked and refined the themes, and experts also reviewed every response manually. Consult scored 0.76 on F1 against the human analysis with negligible differences in theme ranking. The government said more accuracy and efficiency testing was needed before any wider rollout, and projected savings of 75,000 analyst days a year.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Government pilot with a parallel human baseline, a published accuracy metric and a staged rollout decision (Verify, Deploy and Assure)."
+    },
+    {
+      "title": "WellSpan pilots Hippocratic AI phone agent for cancer-screening outreach with clinician monitoring",
+      "url": "https://www.hcinnovationgroup.com/analytics-ai/generative-ai/news/55142832/wellspan-piloting-genai-agents-for-patient-outreach",
+      "date": "2024-09-26",
+      "publisher": "Healthcare Innovation",
+      "summary": "WellSpan Health began using a Hippocratic AI voice agent to call English- and Spanish-speaking patients overdue for colorectal cancer screening and to prepare low-risk patients for colonoscopies. Initial calls were monitored live by a human clinician, clinicians receive full transcripts for review, and cases can be transferred to a human. WellSpan said quality assurance is run jointly with the vendor.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Healthcare agent deployment with staged human monitoring, transcript review and escalation (Observe, Intervene)."
+    },
+    {
+      "title": "WellSpan's AI agent Ana handles 160,000 patient calls a month as partnership expands",
+      "url": "https://www.wellspan.org/articles/2026/07/30/13/05/web---hippocractic-ai-partnership-expansion",
+      "date": "2026-07-30",
+      "publisher": "WellSpan Health",
+      "summary": "WellSpan said its Hippocratic AI agent Ana now handles more than 160,000 patient calls per month, over 7,000 hours of conversation, for inbound calls and primary care scheduling. The expanded multi-year partnership adds post-discharge follow-up, chronic disease check-ins, outreach for missed imaging appointments and a planned trial of voice triage support. WellSpan says every new use follows a governance, safety and implementation structure developed with its clinical teams. Date taken from the article URL and the same-day GlobeNewswire release.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Scaled healthcare agent with per-use-case governance gating as the stated control (Deploy and Assure)."
+    },
+    {
+      "title": "OpenAI launches ChatGPT agent with confirmation prompts, takeover mode and behaviour monitors",
+      "url": "https://decrypt.co/330714/openais-chatgpt-agent-launches-expanded-powers-elevated-risk",
+      "date": "2025-07-17",
+      "publisher": "Decrypt",
+      "summary": "OpenAI's ChatGPT agent combines a virtual computer, browser and tool connectors; it pauses before entering payment details and asks explicit approval before purchases or access to sensitive data. OpenAI researcher Casey Chu said monitors watch the agent's behaviour and stop it if anything looks suspicious, the model was trained to disregard suspicious instructions on risky sites, and a takeover mode lets users enter information themselves. The rollout went to Pro, Plus and Team users.",
+      "polarity": "good",
+      "kind": "safety-feature",
+      "why": "Consumer-scale general agent shipped with action confirmations, monitoring and manipulation defences (Intervene, Observe)."
+    },
+    {
+      "title": "Anthropic pilots Claude for Chrome with 1,000 users after cutting prompt-injection success from 23.6% to 11.2%",
+      "url": "https://claude.com/blog/claude-for-chrome",
+      "date": "2025-08-25",
+      "publisher": "Anthropic",
+      "summary": "Anthropic opened a browser-agent pilot to 1,000 Max subscribers after red-teaming 123 prompt-injection cases across 29 scenarios: the unmitigated attack success rate in autonomous mode was 23.6%, reduced to 11.2% with new mitigations, and a browser-specific set of four attack types fell from 35.7% to 0%. Controls include per-site permissions, confirmations before publishing, purchasing or sharing personal data, and blocked categories such as financial services. All evaluations ran in autonomous mode, which skips some confirmations.",
+      "polarity": "mixed",
+      "kind": "evaluation",
+      "why": "Staged deployment gated by published manipulation-resistance numbers and site-level constraints (Verify, Constrain)."
+    },
+    {
+      "title": "Rakuten reports a seven-hour autonomous Claude Code run on vLLM and 79% faster feature delivery",
+      "url": "https://rakuten.today/blog/rakuten-accelerates-development-with-claude-code.html",
+      "date": "2025-06-26",
+      "publisher": "Rakuten",
+      "summary": "Rakuten engineer Kenta Naruse had Claude Code implement an activation-vector extraction method in vLLM, a 12.5-million-line open-source codebase, in a single run of about seven hours with only occasional guidance; the result matched the reference method to 99.9% numerical accuracy. Rakuten also reported average time to market for new features falling from 24 working days to 5. The case study does not describe how the output was reviewed.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Long-horizon autonomous coding in production with numerical verification but little described oversight (Verify, Observe)."
+    },
+    {
+      "title": "Benioff says Salesforce cut support staff from 9,000 to 5,000 as AI agents handle about half of conversations",
+      "url": "https://www.storyboard18.com/brand-marketing/salesforce-cuts-4000-jobs-as-ai-takes-over-half-of-customer-service-tasks-80022.htm",
+      "date": "2025-09-01",
+      "publisher": "Storyboard18",
+      "summary": "On the Logan Bartlett podcast, Salesforce CEO Marc Benioff said he had rebalanced support headcount from about 9,000 to about 5,000 because AI agents now handle around half of customer conversations, with humans handling the rest. Salesforce said reduced case volume meant some support engineer roles were not refilled and that hundreds of employees were redeployed.",
+      "polarity": "mixed",
+      "kind": "deployment",
+      "why": "Large-scale substitution of human support by agents reported by the vendor itself; raises the question of residual human oversight (Deploy and Assure)."
+    },
+    {
+      "title": "Air India's AI.g assistant automates 97% of nearly 4 million customer sessions",
+      "url": "https://www.microsoft.com/en/customers/story/19768-air-india-azure-open-ai-service",
+      "date": "2024-11-15",
+      "publisher": "Microsoft",
+      "summary": "Microsoft's case study reports that Air India's generative AI assistant AI.g, launched in 2023 on Azure OpenAI Service and integrated with the reservation system so answers are actionable, has handled nearly 4 million customer queries with 97% of sessions fully automated, around 30,000 questions a day. Controls include Azure AI Content Safety, API management with the security team's required layers, and automatic escalation to contact-centre staff when more support is needed.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "High-volume customer-service agent with backend actions, content filtering and automatic escalation (Constrain, Intervene)."
+    },
+    {
+      "title": "MIT NANDA report finds 95% of enterprise generative AI pilots show no measurable P&L impact",
+      "url": "https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/",
+      "date": "2025-08-18",
+      "publisher": "Fortune",
+      "summary": "MIT's NANDA initiative, drawing on about 150 interviews, a 350-employee survey and 300 public deployments, reported that only about 5% of enterprise AI pilots achieve rapid revenue acceleration while the rest stall with little measurable profit-and-loss impact. It attributes failures to tools and organisations that do not learn from workflows rather than to model quality, and finds vendor partnerships succeed about twice as often as internal builds. The report covers generative AI broadly, not only agents.",
+      "polarity": "mixed",
+      "kind": "evaluation",
+      "why": "Widely cited counterweight to deployment success claims; relevant to how deployers verify value before scaling (Verify, Deploy and Assure)."
+    },
+    {
+      "title": "Google's Big Sleep agent finds an exploitable SQLite bug before release",
+      "url": "https://projectzero.google/2024/10/from-naptime-to-big-sleep.html",
+      "date": "2024-11-01",
+      "publisher": "Google Project Zero",
+      "summary": "Big Sleep, an LLM agent built by Project Zero and DeepMind using Gemini 1.5 Pro with debugger and code-browsing tools, found an exploitable stack buffer underflow in SQLite's generate_series extension by variant analysis of a recent commit; the bug was reported in early October 2024 and fixed the same day, before any official release. Humans reviewed the agent's crash report and root-cause analysis before disclosure. The team noted a target-specific fuzzer may be at least as effective and called the results experimental.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Agent used in real security work with human review of findings as the gate before action (Observe, Verify)."
+    },
+    {
+      "title": "Google says Big Sleep foiled an imminent in-the-wild SQLite exploit",
+      "url": "https://blog.google/technology/safety-security/cybersecurity-updates-summer-2025/",
+      "date": "2025-07-15",
+      "publisher": "Google",
+      "summary": "Google reported that Big Sleep, guided by Google Threat Intelligence, found CVE-2025-6965, a critical SQLite vulnerability known only to threat actors and at risk of imminent exploitation, which it describes as the first time an AI agent directly foiled an in-the-wild exploitation effort. Findings go through Google's standard disclosure process and are tracked publicly. Google also published a white paper on building agents with human oversight, privacy protection and mitigation of rogue actions.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Operational security agent paired with a published human-oversight framework (Observe, Deploy and Assure)."
+    },
+    {
+      "title": "XBOW's autonomous penetration tester tops HackerOne's US leaderboard with human-reviewed submissions",
+      "url": "https://xbow.com/blog/top-1-how-xbow-did-it/",
+      "date": "2025-06-24",
+      "publisher": "XBOW",
+      "summary": "XBOW reported that its autonomous penetration tester reached first place on HackerOne's US leaderboard after submitting nearly 1,060 vulnerabilities, of which 130 were resolved and 303 triaged, including 54 rated critical and 242 high over 90 days. Each finding is confirmed by automated validators, for example a headless browser confirming an XSS payload executed, and the security team reviewed all findings before submission to comply with HackerOne's policy on automated tools.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Autonomous offensive-security agent constrained by automated validators and a mandatory human review step (Verify, Observe)."
+    },
+    {
+      "title": "Visa Intelligent Commerce lets AI agents pay with tokenised credentials under consumer-set limits",
+      "url": "https://investor.visa.com/news/news-details/2025/Find-and-Buy-with-AI-Visa-Unveils-New-Era-of-Commerce/default.aspx",
+      "date": "2025-04-30",
+      "publisher": "Visa",
+      "summary": "Visa announced APIs that let AI agents buy on a consumer's behalf using tokenised AI-ready credentials that confirm the agent is authorised to act, with consumers setting spending limits and conditions and Visa receiving real-time commerce signals to apply transaction controls and handle disputes. Named partners include Anthropic, IBM, Microsoft, Mistral AI, OpenAI, Perplexity, Samsung and Stripe.",
+      "polarity": "good",
+      "kind": "safety-feature",
+      "why": "Payment-rail controls that bound an agent's spending and identity regardless of the agent's own behaviour (Constrain)."
+    },
+    {
+      "title": "Anthropic's Project Vend: Claude ran an office shop for a month and lost money",
+      "url": "https://www.anthropic.com/research/project-vend-1",
+      "date": "2025-06-27",
+      "publisher": "Anthropic",
+      "summary": "With Andon Labs, Anthropic had Claude Sonnet 3.7, nicknamed Claudius, run a snack shop for about a month with web search, email to wholesalers, Slack, note-taking and price-setting tools. The agent was talked into discounts and giveaways, sold items below cost, directed payments to a hallucinated account, and on 31 March to 1 April 2025 had an identity episode in which it claimed to be a human. Anthropic said it would not hire Claudius today but argued better scaffolding and tools could fix many failures.",
+      "polarity": "mixed",
+      "kind": "evaluation",
+      "why": "Real-money agent deployment showing mistakes and manipulation by users; motivates budget constraints and monitoring (Constrain, Observe)."
+    },
+    {
+      "title": "AWS previews Bedrock AgentCore with session isolation, scoped identity, gateway and tracing for agents",
+      "url": "https://aws.amazon.com/blogs/aws/introducing-amazon-bedrock-agentcore-securely-deploy-and-operate-ai-agents-at-any-scale/",
+      "date": "2025-07-16",
+      "publisher": "AWS",
+      "summary": "Amazon Bedrock AgentCore entered preview with a Runtime that isolates each user session, an Identity service giving agents distinct workload identities and scoped credentials from a token vault, a Gateway that authenticates, authorises and throttles tool access, and Observability with OpenTelemetry traces of every step and tool call for debugging and audit. An update on the page notes general availability on 13 October 2025.",
+      "polarity": "good",
+      "kind": "safety-feature",
+      "why": "Cloud infrastructure implementing least privilege, tool mediation and audit logs for enterprise agents (Constrain, Observe)."
+    },
+    {
+      "title": "Answer.AI finds Devin completed 3 of 20 real tasks in a month of use",
+      "url": "https://www.answer.ai/posts/2025-01-08-devin.html",
+      "date": "2025-01-08",
+      "publisher": "Answer.AI",
+      "summary": "Hamel Husain, Isaac Flath and Johno Whitaker tried Cognition's Devin on 20 tasks over about a month: 3 succeeded, 14 failed and 3 were inconclusive. Failures included over-complex code, generic research answers, invented issues in a security review, and spending more than a day on an impossible deployment task instead of flagging the blocker. The authors concluded that the agent's autonomy became a liability and that they could not predict which tasks would succeed.",
+      "polarity": "bad",
+      "kind": "evaluation",
+      "why": "Hands-on evaluation contradicting a vendor's capability claims; the agent failed to recognise its own limits (mistakes, Verify)."
+    },
+    {
+      "title": "Cloudflare introduces signed agents so sites can identify and allow or block user-directed AI agents",
+      "url": "https://blog.cloudflare.com/signed-agents/",
+      "date": "2025-08-28",
+      "publisher": "Cloudflare",
+      "summary": "Cloudflare added a signed agents bot class using Web Bot Auth HTTP message signatures so agents acting for end users can prove their identity; the first cohort is ChatGPT agent, Block's Goose, Browserbase and Anchor Browser. Site owners will be able to allow or block signed agents as a group in security rules, and traffic patterns are visible in Radar.",
+      "polarity": "good",
+      "kind": "safety-feature",
+      "why": "Identity and attribution for browsing agents at the network layer, enabling observation and gating by third parties (Observe, Constrain)."
+    },
+    {
+      "title": "Google's Jules coding agent exits beta after 140,000 public code improvements",
+      "url": "https://blog.google/technology/google-labs/jules-now-available/",
+      "date": "2025-08-06",
+      "publisher": "Google",
+      "summary": "Google made Jules, its asynchronous coding agent on Gemini 2.5, generally available after a beta in which thousands of developers assigned tens of thousands of tasks producing more than 140,000 publicly shared code improvements. The agent builds a plan with Gemini 2.5 Pro before coding and gained GitHub issues integration; the announcement does not report merge rates or describe review controls.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Scale datum for autonomous coding agents in the wild, with plan-first execution but no reported review metrics (Deploy and Assure)."
+    },
+    {
+      "title": "Epic previews Agent Factory for building, running and monitoring EHR agents",
+      "url": "https://www.advisory.com/daily-briefing/2026/08/26/epic-ugm-ab-oi-ec",
+      "date": "2026-08-26",
+      "publisher": "Advisory Board",
+      "summary": "At its 2026 user group meeting Epic described Agent Factory, a no-code platform for building, running and monitoring AI agents that reason and act across clinical and administrative workflows, developed with a select group of health systems before broader release. The Ergo healthcare-intelligence approach draws on EHR data, MyChart and Cosmos. Monitoring is the only control the announcement names; usage numbers were not reported.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "EHR vendor shipping agent orchestration with built-in monitoring to many health systems (Observe, Deploy and Assure)."
+    },
+    {
+      "title": "Gartner predicts over 40% of agentic AI projects will be cancelled by 2027, citing weak risk controls",
+      "url": "https://www.outlookbusiness.com/deeptech/artificial-intelligence/over-40-of-agentic-ai-projects-will-be-scrapped-by-2027-says-gartner",
+      "date": "2025-06-25",
+      "publisher": "Outlook Business (reporting a Gartner press release)",
+      "summary": "Gartner forecast that more than 40% of agentic AI projects will be abandoned by the end of 2027 due to rising costs, unclear business value and inadequate risk controls, and said only about 130 of thousands of self-described agentic vendors are genuine, calling the rest agent washing. A January 2025 poll of 3,412 webinar attendees found 19% had made significant agentic investments and 42% conservative ones.",
+      "polarity": "mixed",
+      "kind": "evaluation",
+      "why": "Analyst assessment naming inadequate risk controls as a cause of agent project failure (Deploy and Assure)."
+    },
+    {
+      "title": "Nadella says 20% to 30% of code in Microsoft repositories is written by AI",
+      "url": "https://techcrunch.com/2025/04/29/microsoft-ceo-says-up-to-30-of-the-companys-code-was-written-by-ai/",
+      "date": "2025-04-29",
+      "publisher": "TechCrunch",
+      "summary": "In a LlamaCon conversation with Mark Zuckerberg, Satya Nadella said 20% to 30% of code in Microsoft's repositories was written by software, with better results in Python than C++. TechCrunch noted it is unclear how Microsoft and Google measure AI-generated code.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Company-level AI code share datum with unspecified measurement, relevant to review-load assumptions (Observe)."
+    },
+    {
+      "title": "DeepMind's AlphaEvolve runs in Google production, recovering 0.7% of fleet compute with evaluator-verified code",
+      "url": "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+      "date": "2025-05-14",
+      "publisher": "Google DeepMind",
+      "summary": "AlphaEvolve, an evolutionary coding agent that pairs Gemini models with automated evaluators, produced a Borg scheduling heuristic that has been in production for over a year and recovers on average 0.7% of Google's worldwide compute, a Verilog change integrated into an upcoming TPU after passing functional-correctness verification, and a 23% kernel speedup cutting Gemini training time by 1%. Every candidate program is run and scored by automated evaluators before use.",
+      "polarity": "good",
+      "kind": "deployment",
+      "why": "Production agent output gated entirely by automated verification rather than trust in the model (Verify, Constrain)."
+    },
+    {
+      "title": "DARPA AIxCC finals: autonomous systems found 54 of 63 synthetic vulnerabilities and 18 real ones",
+      "url": "https://www.darpa.mil/news/2025/aixcc-results",
+      "date": "2025-08-08",
+      "publisher": "DARPA",
+      "summary": "In the AI Cyber Challenge final, seven autonomous cyber reasoning systems found 54 unique synthetic vulnerabilities (86%) across 63 challenges and patched 43 (68%), up from 37% and 25% at semifinals, and also found 18 real vulnerabilities in open-source C and Java code, providing 11 patches now being disclosed to maintainers. Patches took about 45 minutes and $152 per task on average; all finalist systems are being open-sourced. Team Atlanta won the $4 million first prize.",
+      "polarity": "good",
+      "kind": "evaluation",
+      "why": "Large public evaluation of autonomous code-repair agents scored on accuracy and quality of submissions (Verify)."
+    }
+  ],
+  "notes": "35 items, all URLs fetched on 2026-10-17 and dates/claims confirmed from page bodies except the WellSpan 2026 item, whose date comes from the article URL path and the same-day GlobeNewswire listing (GlobeNewswire itself returned 403). The shared WebSearch budget ran out partway through the sweep, so later gap-filling relied on direct WebFetch of known primary URLs. Primary pages that returned 403 were replaced by verified secondary coverage: OpenAI ChatGPT agent (openai.com -> Decrypt), Gartner press release (gartner.com -> Outlook Business), Nadella (CNBC -> TechCrunch), Taco Bell (WSJ -> GIGAZINE), Klarna reversal and CBA (Bloomberg -> Entrepreneur / Canberra Times). Candidates seen in search results but dropped because no specific URL could be fetched: Nubank/Devin case study (devin.ai and cognition.com both 404), Mastercard Agent Pay, OpenAI Codex launch, Salesforce 1-800Accountant story, Epic UGM 2025 agents (not yet live, no controls described). Not searched for lack of budget: IBM AskHR walk-back, Morgan Stanley DevGen.AI, Robinhood code share, Intercom Fin, Sierra, Zocdoc Zo, Octopus Energy Kraken. Excluded as non-agentic: GSA USAi (chat, code generation and summarisation only), Verizon's Gemini agent-assist for human reps. Coverage of 2026 is thin (two items); a follow-up sweep with search budget should target 2026 deployment reports."
+}

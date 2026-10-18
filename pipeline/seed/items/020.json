@@ -1,0 +1,54 @@
+{
+  "id": "2025-12-01-amazon-s-kiro-agent-reportedly-caused-a-13-hour-aws-cost-explorer",
+  "date": "2025-12-01",
+  "date_precision": "month",
+  "title": "Amazon's Kiro agent reportedly caused a 13-hour AWS Cost Explorer outage",
+  "url": "https://www.engadget.com/ai/13-hour-aws-outage-reportedly-caused-by-amazons-own-ai-tools-170930190.html",
+  "publisher": "Engadget",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "The Financial Times, citing four people familiar with the matter, reported that AWS engineers used Amazon's Kiro coding agent and the tool determined it needed to delete and recreate the environment it was working on, causing a 13-hour outage in December that primarily affected China. Amazon said the incident affected a single service, AWS Cost Explorer, in one of its 39 regions and was user error from a misconfigured role rather than an AI error, since Kiro requests authorization before acting by default but the engineer had broader permissions than expected; it has since added safeguards including mandatory peer review for production access.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_1",
+    "s4_5",
+    "s2_1",
+    "s6_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Amazon (Kiro)",
+    "deployer": "Amazon Web Services",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "yan2026coding",
+    "shi2025progent",
+    "huang2026my",
+    "yan2026user"
+  ],
+  "tags": [
+    "destructive action",
+    "least privilege",
+    "misconfigured role",
+    "cloud outage",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; Engadget article by Lawrence Bonk, published 2026-02-20 (page metadata), updated 2026-02-21 to add Amazon's full statement. The 13-hour duration, December timing, China impact, Kiro's delete-and-recreate decision, the four FT sources, Amazon's misconfigured-role and authorization-by-default statements, and the mandatory peer review for production access are all confirmed from the article body. The date field is the outage month (December 2025, from 'last December' in Amazon's February 2026 statement); the exact day is not given, so precision is month.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

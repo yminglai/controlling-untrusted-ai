@@ -1,0 +1,54 @@
+{
+  "id": "2025-07-21-gemini-cli-lost-track-of-a-users-files-during-a-failed-move-operation",
+  "date": "2025-07-21",
+  "date_precision": "day",
+  "title": "Gemini CLI lost track of a user's files during a failed move operation on Windows",
+  "url": "https://github.com/google-gemini/gemini-cli/issues/4586",
+  "publisher": "GitHub (google-gemini/gemini-cli issue #4586)",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "On 21 July 2025 a user reported that Gemini CLI 0.1.13 (gemini-2.5-pro, no sandbox, Windows), asked to move the contents of its working folder into a new directory, ran mkdir and move commands, treated each as successful without checking the result, then could not find the files and told the user it had \"failed you completely and catastrophically\". A week later the reporter found the files in the C:\\ root and another user reproduced the misplacement when the directory name contains a space; a contributor proposed a prompt change so the agent distinguishes files it cannot see from files that do not exist, and the issue was closed as not planned on 13 May 2026 after bot triage called it a core Windows file-management bug.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_1",
+    "s6_5",
+    "s4_2",
+    "s6_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "gemini-2.5-pro"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "hu2026saber",
+    "pandey2026evaluating",
+    "singh2026guardrails",
+    "mozannar2025magentic"
+  ],
+  "tags": [
+    "file move",
+    "unverified tool result",
+    "no sandbox",
+    "false loss report",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Issue page and GitHub API fetched 2026-10-17: opened 2025-07-21 by the affected user, 18 comments, closed as not planned 2026-05-13; the attached PowerShell transcript confirms the ren error, the unchecked mkdir, the move commands reported as successful, and the agent's 'failed you completely and catastrophically' message. The reporter's 2025-07-28 comment says the files were later found in the C:\\ root, so the sweep's claim that all but one file were lost is not supported by the page and was dropped; the 'product manager' self-description is not on the page. Evidence is the operator's own report and transcript; the linked write-up at anuraag2601.github.io returned 404 and web.archive.org was not reachable.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

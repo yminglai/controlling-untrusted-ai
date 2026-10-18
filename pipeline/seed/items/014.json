@@ -1,0 +1,55 @@
+{
+  "id": "2025-08-27-nx-s1ngularity-malware-turns-installed-claude-gemini-and-q-clis",
+  "date": "2025-08-27",
+  "date_precision": "day",
+  "title": "Nx s1ngularity malware turns installed Claude, Gemini and Q CLIs into secret scanners",
+  "url": "https://www.wiz.io/blog/s1ngularity-supply-chain-attack",
+  "publisher": "Wiz",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Malicious versions of the Nx npm packages published on August 26, 2025 carried a post-install script that prompted installed AI command-line tools (Claude, Gemini and Q) with the flags --dangerously-skip-permissions, --yolo and --trust-all-tools to search the host for cryptocurrency wallets, .env files, SSH keys and GitHub and npm tokens, which were uploaded to attacker-created repositories in the victims' own GitHub accounts; Wiz observed this AI-powered activity succeed in hundreds of cases, although AI provider guardrails at times interceded. Wiz counted over a thousand valid GitHub tokens and dozens of valid cloud credentials and npm tokens leaked, and in a second phase on August 28 to 29 the attacker used leaked tokens to make private repositories public, affecting over 400 users or organisations and over 5,500 repositories; the root cause was a GitHub Actions workflow that let unsanitised pull request titles inject code under the pull_request_target trigger.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "train"
+  ],
+  "subsections": [
+    "s6_1",
+    "s2_2",
+    "s4_1",
+    "s8_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic (Claude); Google (Gemini); Amazon (Q)",
+    "deployer": "Nx users (developer machines)",
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "yan2025fault",
+    "ji2026taming",
+    "andriushchenko2024agentharm",
+    "qin2026airguard"
+  ],
+  "tags": [
+    "supply chain",
+    "permission bypass",
+    "credential theft",
+    "coding agents",
+    "npm"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page). Page metadata datePublished 2025-08-27T08:00:54-04:00; byline Merav Bar and Rami McCarthy, Wiz Blog; update notes dated August 28 and 29, 2025. The malicious Nx versions were published on August 26, 2025 (the candidate's date), so the item date is the post's publication date one day later. The bypass flags, 'succeed in hundreds of cases', 'AI provider guardrails at times interceded', 'over a thousand valid Github tokens', 'dozens of valid cloud credentials and NPM tokens', 'over 400 users/organizations' and 'over 5500 repositories' are quoted from the article body. The page names the tools only as 'Claude, Gemini, and Q', not Claude Code, Gemini CLI or Amazon Q; the 5,500 figure is repositories made public in the second phase, and no count of affected machines is on the page.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

@@ -1,0 +1,50 @@
+{
+  "id": "2026-09-23-amazon-blocks-metas-muse-shopping-agent-citing-lack-of-notice",
+  "date": "2026-09-23",
+  "date_precision": "day",
+  "title": "Amazon blocks Meta's Muse shopping agent, citing lack of notice or authorisation",
+  "url": "https://www.paymentsdive.com/news/amazon-meta-muse-ai-agentic-shopping-experience/831052/",
+  "publisher": "Payments Dive",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "Amazon asked to be removed from Meta's Muse AI agent, which Meta launched in September 2026 with the ability to make purchases on users' behalf through Link by Stripe, saying it had not been given advance notice that Muse would access its e-commerce site and had not authorised it; an Amazon spokesperson said third-party apps that make purchases for customers should operate openly and respect service providers' decisions about whether or not to participate. Meta did not immediately respond to a request for comment, and the move extends Amazon's ongoing lawsuit against Perplexity over its Comet agent, in which a US appeals court in August overturned a temporary ruling that had barred Perplexity's shopping tools from accessing Amazon's site.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s10_4",
+    "s5_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Meta",
+    "deployer": "Meta",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "south2025authenticated",
+    "chan2024visibility",
+    "garzon2025ai",
+    "li2026agent"
+  ],
+  "tags": [
+    "shopping agent",
+    "agentic commerce",
+    "platform consent",
+    "agent identification"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Payments Dive article 'Amazon blocks Meta's AI shopper' by Dani James, published Sept. 23, 2026 (first published on Retail Dive). Confirmed from the page text: Amazon's request to be removed from Muse, the no-advance-notice and no-authorisation claim, the spokesperson statement about operating openly and respecting service provider decisions, Muse's September 2026 launch with purchasing via Link by Stripe, Meta's non-response, the ongoing Perplexity Comet lawsuit and the August appeals-court reversal of the temporary ruling. The page gives no exact Muse launch day and no filing date for the lawsuit (it says 'last year'), so neither is asserted in the summary. Title reworded from the page headline to name the agent and Amazon's stated reasons.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

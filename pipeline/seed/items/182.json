@@ -1,0 +1,51 @@
+{
+  "id": "2025-12-09-owasp-publishes-the-top-10-for-agentic-applications-2026",
+  "date": "2025-12-09",
+  "date_precision": "day",
+  "title": "OWASP publishes the Top 10 for Agentic Applications 2026",
+  "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026",
+  "publisher": "OWASP Gen AI Security Project",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "The OWASP Gen AI Security Project published its Top 10 for Agentic Applications 2026 on 9 December 2025, a peer-reviewed list of the most critical security risks for AI systems that plan, act, and make decisions across workflows. More than 100 industry experts, researchers, and practitioners contributed, and the list is meant as a starting point for builders, defenders, and decision-makers working to reduce agentic AI risk.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s3_2",
+    "s2_5",
+    "s1_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "krawiecka2025extending",
+    "dehghantanha2026sok",
+    "chu2026systematic",
+    "ferrag2025prompt"
+  ],
+  "tags": [
+    "owasp",
+    "threat taxonomy",
+    "standard",
+    "agentic security"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the page prints the publication date December 9, 2025, names the OWASP Gen AI Security Project as publisher, and states that more than 100 experts, researchers, and practitioners contributed. The ASI01-ASI10 category names and the EchoLeak and Replit examples from the candidate summary are not on the landing page (only in the downloadable document), so the summary omits them.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

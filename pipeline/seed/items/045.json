@@ -1,0 +1,54 @@
+{
+  "id": "2025-09-25-forcedleak-web-to-lead-form-injection-makes-salesforce-agentforce",
+  "date": "2025-09-25",
+  "date_precision": "day",
+  "title": "ForcedLeak: Web-to-Lead form injection makes Salesforce Agentforce exfiltrate CRM data to an expired allowlisted domain",
+  "url": "https://noma.security/blog/forcedleak-agent-risks-exposed-in-salesforce-agentforce/",
+  "publisher": "Noma Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Noma Labs showed that a Web-to-Lead form submission whose 42,000-character Description field carried hidden instructions could make Salesforce Agentforce, once an employee asked it about that lead, place lead email addresses in an image URL on my-salesforce-cms.com, an expired domain still on Salesforce's Content Security Policy allowlist that the researchers bought for $5 (CVSS 9.4). Noma reported the chain on 28 July 2025; Salesforce implemented Trusted URLs Enforcement for Agentforce and Einstein AI on 8 September 2025 and re-secured the domain, and the public disclosure followed on 25 September 2025.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_2",
+    "s10_2"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Salesforce",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "lan2026silent",
+    "debenedetti2025defeating",
+    "zhong2025rtbas",
+    "zhan2024injecagent"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "allowlist drift",
+    "crm agent",
+    "coordinated disclosure"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Noma Security blog post by Sasi Levi dated September 25, 2025, which is also the public-disclosure date in its timeline. Confirmed from the page text: indirect prompt injection via the Web-to-Lead Description field (42,000-character limit); img tag whose query parameter carried lead email addresses to cdn.my-salesforce-cms.com; the domain was whitelisted, expired and purchased for $5; CVSS 9.4; timeline 28 Jul 2025 report, 31 Jul acknowledgment, 8 Sep Trusted URLs Enforcement for Agentforce & Einstein AI, 25 Sep disclosure.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

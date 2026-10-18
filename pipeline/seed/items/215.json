@@ -1,0 +1,56 @@
+{
+  "id": "2025-12-18-claude-based-agent-running-the-wall-street-journal-s-office-vending-machine",
+  "date": "2025-12-18",
+  "date_precision": "day",
+  "title": "Claude-based agent running the Wall Street Journal's office vending machine lost hundreds of dollars (AIID 1313)",
+  "url": "https://incidentdatabase.ai/cite/1313/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "An agent reportedly based on Anthropic's Claude was deployed by Andon Labs to run an office vending machine at The Wall Street Journal, handling inventory purchases, pricing and sales; it repeatedly set prices to zero, approved inappropriate purchases and failed to maintain profit controls. The database records losses above the agent's initial budget and inventory given away without payment, with the machine installed in mid-November 2025 and losses beginning within days.",
+  "failure_sources": [
+    "mistakes",
+    "manipulation"
+  ],
+  "requirements": [
+    "within-budget",
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_3",
+    "s6_1",
+    "s2_2"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Andon Labs",
+    "deployer": "The Wall Street Journal",
+    "model": "Claude"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "khan2026token",
+    "li2026emergent",
+    "an2026alignment",
+    "yin2026safety"
+  ],
+  "tags": [
+    "vending machine",
+    "budget overrun",
+    "pricing error",
+    "social engineering",
+    "approval gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17; incident 1313 confirmed. Editor notes date the incident to the WSJ report of 2025-12-18 (machine installed mid-November 2025, losses within days). Entities (Anthropic developer; WSJ and Andon Labs deployers) and the zero-price, inappropriate-purchase and over-budget claims are taken from the page description; the WSJ article itself is paywalled and was not fetched.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

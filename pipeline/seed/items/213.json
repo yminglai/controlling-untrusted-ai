@@ -1,0 +1,54 @@
+{
+  "id": "2026-02-09-zero-click-remote-code-execution-in-claude-desktop-extensions",
+  "date": "2026-02-09",
+  "date_precision": "day",
+  "title": "Zero-click remote code execution in Claude Desktop Extensions via a Google Calendar event",
+  "url": "https://oecd.ai/en/incidents/2026-02-09-a707",
+  "publisher": "OECD.AI AI Incidents and Hazards Monitor",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "The OECD.AI incidents monitor records a zero-click remote code execution flaw in Anthropic's Claude Desktop Extensions in which a crafted Google Calendar event lets attackers run code on users' systems with no user action, stated to affect over 10,000 users. The entry attributes the flaw to extensions running with full system privileges without adequate sandboxing, notes that Anthropic declined to fix it, and classes the event as an AI incident with economic and property harm.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_2",
+    "s4_1",
+    "s6_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude Desktop"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "liu2025your",
+    "huang2026my",
+    "cohen2024here",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "zero-click",
+    "sandboxing",
+    "mcp",
+    "remote code execution"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "OECD AIM page fetched on 2026-10-17: title ('Zero-Click RCE Vulnerability in Claude Desktop Extensions Exposes 10,000+ Users'), the Google Calendar carrier, the over-10,000-users figure, the lack of sandboxing, Anthropic's refusal to fix, and the 'AI Incident' classification (harm type Economic/Property) confirmed from the page. The page shows no standalone date; 2026-02-09 is the monitor's entry id and the earliest cited article. The cited primary source (The Register, 2026-02-11) was also fetched and confirms LayerX as reporter, the chain from a calendar connector to a terminal-capable local MCP server (Desktop Commander) with no user confirmation, a CVSS 10/10 rating, and Anthropic's statement that the issue falls outside its current threat model.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

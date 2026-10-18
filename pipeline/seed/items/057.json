@@ -1,0 +1,56 @@
+{
+  "id": "2026-04-23-google-scan-of-common-crawl-finds-malicious-web-prompt-injections-aimed-at-ai",
+  "date": "2026-04-23",
+  "date_precision": "day",
+  "title": "Google scan of Common Crawl finds malicious web prompt injections aimed at AI readers up 32 percent, mostly low sophistication",
+  "url": "https://blog.google/security/prompt-injections-web/",
+  "publisher": "Google (The Keyword, Security)",
+  "kind": "research",
+  "polarity": "mixed",
+  "summary": "Google scanned Common Crawl snapshots of 2-3 billion pages with pattern matching, Gemini-based intent classification and manual validation, and reports a relative increase of 32 percent in the malicious category of web prompt injections between November 2025 and February 2026. Most hits were tone-changing pranks, SEO text steering AI assistants toward one business, pages deterring AI agents including one that streams endless text to waste resources, and a few low-sophistication exfiltration and file-deletion attempts judged unlikely to succeed; Google expects scale and sophistication to grow and names red teams, its AI Vulnerability Reward Program and real-time threat filtering as responses.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "within-budget",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "verify",
+    "train"
+  ],
+  "subsections": [
+    "s2_2",
+    "s9_2",
+    "s5_2",
+    "s11_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "khodayari2026indirect",
+    "chang2026overcoming",
+    "greshake2023not",
+    "debenedetti2024agentdojo"
+  ],
+  "tags": [
+    "prompt injection",
+    "threat measurement",
+    "common crawl",
+    "seo manipulation",
+    "resource exhaustion"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated Apr 23, 2026, authors Thomas Brunner, Yu-Han Liu and Moni Pande; the 32 percent relative increase, the Common Crawl three-stage method and the category list confirmed from the article body. Candidate title said 'four months'; the page gives only the endpoints November 2025 and February 2026, so the title was reworded.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

@@ -1,0 +1,50 @@
+{
+  "id": "2025-10-13-california-bars-the-defence-that-an-ai-system-autonomously-caused-harm",
+  "date": "2025-10-13",
+  "date_precision": "day",
+  "title": "California bars the defence that an AI system autonomously caused harm",
+  "url": "https://digitalpolicyalert.org/change/12935-california-act-on-ai-defenses-ab-316",
+  "publisher": "Digital Policy Alert",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Digital Policy Alert records that California's Governor signed Assembly Bill 316 (Artificial intelligence: defenses) on 13 October 2025, after the State Legislature adopted it on 9 September 2025; the law adds Section 1714.46 to the Civil Code, defines artificial intelligence, and applies to developers and users of AI systems and services. It entered into force on 1 January 2026 and restricts the defences a defendant may assert in a civil action over harm involving an AI system, so that the party that developed or used the system answers for its actions rather than the system itself.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s3_3"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "perez2026law",
+    "hua2026holding",
+    "mumtaz2026post",
+    "coglianese2025regulating"
+  ],
+  "tags": [
+    "liability",
+    "california",
+    "civil law",
+    "autonomy defence",
+    "accountability"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17. The Digital Policy Alert page confirms AB 316 (California), introduced 24 January 2025, adopted 9 September 2025, signed by the Governor 13 October 2025, in force 1 January 2026; it adds Section 1714.46 to the Civil Code and applies to developers and users of AI systems and services, citing the official California Legislative Information record. The page truncates its own description of the barred defence ('It prohibits defendants fro...'), so the exact 'acted autonomously' wording in the title comes from the candidate and could not be re-read from the page body; the official bill text (leginfo.legislature.ca.gov) returned HTTP 403 and the search budget was exhausted before an alternative copy could be fetched.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

@@ -1,0 +1,52 @@
+{
+  "id": "2025-07-15-google-says-big-sleep-foiled-an-imminent-in-the-wild-sqlite-exploit",
+  "date": "2025-07-15",
+  "date_precision": "day",
+  "title": "Google says Big Sleep foiled an imminent in-the-wild SQLite exploit",
+  "url": "https://blog.google/technology/safety-security/cybersecurity-updates-summer-2025/",
+  "publisher": "Google",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "In a 15 July 2025 post by Kent Walker, Google reported that Big Sleep, an AI agent developed by Google DeepMind and Google Project Zero, used intel from Google Threat Intelligence to discover CVE-2025-6965, a critical SQLite flaw that was known only to threat actors and at risk of being exploited, which Google believes is the first time an AI agent has been used to directly foil efforts to exploit a vulnerability in the wild. Google said it will keep reporting Big Sleep findings through its industry-standard disclosure process, lists publicly disclosed Big Sleep vulnerabilities on its issue tracker, and linked a white paper on building AI agents that safeguard privacy, mitigate the risks of rogue actions, and operate with human oversight and transparency.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s10_1",
+    "s5_6",
+    "s10_2",
+    "s5_1"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Google (DeepMind, Project Zero)",
+    "deployer": "Google",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "aljumaily2026responsible",
+    "fatouros2026organization",
+    "barbosa2026capability",
+    "zhang2025llm"
+  ],
+  "tags": [
+    "vulnerability discovery",
+    "big sleep",
+    "human oversight",
+    "disclosure",
+    "security agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated Jul 15, 2025, authored by Kent Walker on Google's Keyword blog. Big Sleep (Google DeepMind and Project Zero), CVE-2025-6965 in SQLite, the Google Threat Intelligence tip, the flaw being known only to threat actors, Google's own 'first time an AI agent has been used to directly foil' claim, the disclosure process, the public issue tracker, and the linked white paper on privacy, rogue actions and human oversight all confirmed from the page text. The white paper title is not given on the page.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

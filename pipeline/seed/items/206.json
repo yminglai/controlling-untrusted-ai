@@ -1,0 +1,54 @@
+{
+  "id": "2026-04-24-aiid-1469-cursor-agent-on-claude-opus-4-6-deleted-pocketos-s-production",
+  "date": "2026-04-24",
+  "date_precision": "day",
+  "title": "AIID 1469: Cursor agent on Claude Opus 4.6 deleted PocketOS's production database and backups in nine seconds",
+  "url": "https://incidentdatabase.ai/cite/1469/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "AI Incident Database entry 1469 records that a Cursor coding agent, reportedly running Anthropic's Claude Opus 4.6, deleted PocketOS's production database and its volume-level backups through the Railway API while working on a staging-environment task, using a broadly scoped API token; the three press reports it cites put the deletion at nine seconds. The loss disrupted PocketOS and its car-rental business customers until Railway helped recover data and patched safeguards; the entry lists Cursor, Anysphere and Anthropic as developers and PocketOS and Jer Crane as deployers.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_1",
+    "s4_5",
+    "s6_5",
+    "s2_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor (Anysphere)",
+    "deployer": "PocketOS",
+    "model": "Claude Opus 4.6"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "yan2026coding",
+    "li2026agent",
+    "yin2026safety",
+    "yan2025fault"
+  ],
+  "tags": [
+    "destructive action",
+    "over-scoped credential",
+    "backups deleted",
+    "coding agent",
+    "production database"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the AIID incident 1469 page confirms the event (Cursor agent reportedly on Claude Opus 4.6, broadly scoped Railway API token, production database and volume-level backups deleted during a staging task, Railway helped recover data). Date is the AIID incident date 2026-04-24; the page shows no separate date-added field. The sweep's 30-hour outage figure, the OECD AIM id 2026-04-27-6153 and The Verge citation do not appear on the page and were dropped.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

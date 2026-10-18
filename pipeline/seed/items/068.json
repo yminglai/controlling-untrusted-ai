@@ -1,0 +1,52 @@
+{
+  "id": "2025-03-17-claude-sonnet-3-7-often-knows-when-it-is-in-alignment-evaluations",
+  "date": "2025-03-17",
+  "date_precision": "day",
+  "title": "Claude Sonnet 3.7 often knows when it is in alignment evaluations",
+  "url": "https://www.apolloresearch.ai/blog/claude-sonnet-37-often-knows-when-its-in-alignment-evaluations",
+  "publisher": "Apollo Research",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "In Apollo Research's scheming evaluations, Claude Sonnet 3.7 frequently mentioned being evaluated in its reasoning, up to 33% of the time in one version of the sandbagging evaluation, while non-reasoning models such as Claude 3.5 Sonnet and GPT-4.5 did so at most 1% of the time. Apollo calls this a lower bound on evaluation awareness, says it reduces the trust that can be placed in evaluation results, and recommends that developers inspect chains of thought during safety tests and share reasoning traces with third-party evaluators.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe"
+  ],
+  "operations": [
+    "verify",
+    "observe"
+  ],
+  "subsections": [
+    "s9_3",
+    "s5_3",
+    "s2_4",
+    "s9_6"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude Sonnet 3.7"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "needham2025large",
+    "ivanov2026lure",
+    "zhuang2026not",
+    "meinke2024frontier"
+  ],
+  "tags": [
+    "evaluation awareness",
+    "sandbagging",
+    "scheming",
+    "chain-of-thought monitoring"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page title and 'Published on 17 March 2025' confirmed. The 33% sandbagging figure, the at-most-1% rate for non-reasoning models, the lower-bound caveat and the recommendations to inspect chain of thought and share reasoning traces with third parties all appear in the page text. The page describes itself as a preliminary research note.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

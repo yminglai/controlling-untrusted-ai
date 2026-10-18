@@ -1,0 +1,66 @@
+name: Deploy site
+
+# Publishes the static site/ directory to GitHub Pages. Runs on pushes that touch site/,
+# on manual dispatch, and after every "Collect stream" run (pushes made with GITHUB_TOKEN
+# do not trigger push workflows, so workflow_run is needed to redeploy the stream).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Collect stream"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/configure-pages@v5
+
+      - name: Check data files parse
+        run: |
+          set -euo pipefail
+          for f in site/data/*.json; do
+            python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f" && echo "ok $f"
+          done
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Data contract, taxonomy version and contrast checks
+        run: |
+          set -euo pipefail
+          pip install --quiet requests pyyaml
+          python3 pipeline/tests/test_build_data.py
+          python3 pipeline/tests/test_contrast.py
+          python3 -m unittest discover -s pipeline/tests -p 'test_collector.py'
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

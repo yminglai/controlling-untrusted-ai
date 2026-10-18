@@ -1,0 +1,54 @@
+{
+  "id": "2024-10-15-anthropic-publishes-its-updated-responsible-scaling-policy",
+  "date": "2024-10-15",
+  "date_precision": "day",
+  "title": "Anthropic publishes its updated Responsible Scaling Policy with capability thresholds and ASL safeguards",
+  "url": "https://www.anthropic.com/news/announcing-our-updated-responsible-scaling-policy",
+  "publisher": "Anthropic",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Anthropic published an updated Responsible Scaling Policy that defines two Capability Thresholds, autonomous AI research and development and CBRN weapons uplift, each tied to Required Safeguards expressed as AI Safety Level standards. All of its models then operated under ASL-2, while ASL-3 adds internal access controls, stronger protection of model weights and multi-layered real-time and asynchronous deployment monitoring, and the policy adds routine capability and safeguard assessments with documentation modelled on safety cases and names Jared Kaplan as Responsible Scaling Officer.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "verify",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s10_3",
+    "s9_3"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "stelling2025evaluating",
+    "buhl2025emerging",
+    "pistillo2025frontier",
+    "koessler2024risk"
+  ],
+  "tags": [
+    "frontier safety framework",
+    "capability thresholds",
+    "safety levels",
+    "safety case",
+    "model weight security"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated Oct 15, 2024. The two Capability Thresholds (autonomous AI R&D, CBRN), the ASL-2 status and ASL-3 safeguards (access controls, model weight protection, real-time and asynchronous deployment monitoring), the routine capability and safeguard assessments, the safety-case-inspired documentation and the Responsible Scaling Officer appointment are all confirmed from the page body.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

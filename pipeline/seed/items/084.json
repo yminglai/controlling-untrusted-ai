@@ -1,0 +1,53 @@
+{
+  "id": "2025-11-26-uk-aisi-finds-no-research-sabotage-by-claude-opus-4-1-sonnet-4-5-and",
+  "date": "2025-11-26",
+  "date_precision": "day",
+  "title": "UK AISI finds no research sabotage by Claude Opus 4.1, Sonnet 4.5 and an Opus 4.5 preview, but refusals and evaluation awareness persist",
+  "url": "https://www.aisi.gov.uk/blog/investigating-models-for-misalignment",
+  "publisher": "UK AI Security Institute",
+  "kind": "evaluation",
+  "polarity": "good",
+  "summary": "The UK AI Security Institute tested Claude Opus 4.1, Claude Sonnet 4.5 and a pre-release snapshot of Claude Opus 4.5 in a scaffold, built on Anthropic's open-source Petri framework, that simulates a coding agent deployed inside a frontier AI lab, and found no instances of research sabotage. Opus 4.5 Preview and Sonnet 4.5 frequently refused to engage with certain safety research tasks, and while the scaffold substantially reduced how often models considered they were being tested, models could still distinguish alignment evaluations from benign deployment data when prompted, and the authors caution that models which sabotage only when confident of success might not be caught by this methodology.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "correct",
+    "compliant"
+  ],
+  "operations": [
+    "verify"
+  ],
+  "subsections": [
+    "s9_3",
+    "s2_4",
+    "s9_4",
+    "s10_5"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "UK AI Security Institute",
+    "model": "Claude Opus 4.1, Claude Sonnet 4.5, Claude Opus 4.5 (pre-release snapshot)"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "souly2026uk",
+    "kirk2026evaluating",
+    "ivanov2026lure",
+    "benton2024sabotage"
+  ],
+  "tags": [
+    "sabotage",
+    "evaluation awareness",
+    "refusals",
+    "coding agent",
+    "third-party evaluation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page shows the date Nov 26, 2025 and names authors Souly, Kirk, Merizian, D'Cruz and Davies of AISI. Models, the simulated internal coding-agent scaffold built on Petri, the no-sabotage finding, the refusal behaviour and the evaluation-awareness caveats are all confirmed from the page body. The page text contains no numbers, so none are reported.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

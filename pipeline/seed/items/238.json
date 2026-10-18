@@ -1,0 +1,51 @@
+{
+  "id": "2025-09-16-albania-appoints-the-ai-system-diella-to-weigh-every-public-tender",
+  "date": "2025-09-16",
+  "date_precision": "day",
+  "title": "Albania appoints the AI system Diella to weigh every public tender",
+  "url": "https://www.globalgovernmentforum.com/albania-introduces-ai-powered-minister-to-end-corruption-in-public-procurement/",
+  "publisher": "Global Government Forum",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Prime Minister Edi Rama appointed Diella, an AI virtual assistant built in partnership with Microsoft that had been helping citizens obtain official documents on the e-Albania platform, to his cabinet as a member not present physically, tasked with weighing every government-contract tender on merit so that ministries cannot unfairly influence awards; Rama said the process would become faster, more efficient, free of corruption and \"totally accountable\". The opposition Democratic Party called the appointment ridiculous and unconstitutional, noting that the constitution requires ministers to be mentally competent citizens aged 18 or over, and the article does not describe any human oversight of Diella's decisions or any safeguard against manipulation of the system by bidders.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "observe"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_5",
+    "s5_1"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": "Government of Albania",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "chan2024visibility",
+    "srinivasan2026stateless",
+    "sterz2024quest",
+    "raji2022outsider"
+  ],
+  "tags": [
+    "public procurement",
+    "government deployment",
+    "accountability",
+    "constitutionality",
+    "decision delegation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated 16/09/2025, byline Jack Aldane, Global Government Forum. Diella's cabinet appointment by Edi Rama, its tender-weighing role, the Microsoft partnership, its prior e-Albania document-assistant role, the 'totally accountable' claim and the Democratic Party's 'unconstitutional' objection confirmed from the article body. The article is silent on human oversight or anti-manipulation safeguards, so the sweep's note on that point is recorded as an absence, not a reported fact.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

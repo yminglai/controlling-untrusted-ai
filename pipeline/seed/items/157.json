@@ -1,0 +1,54 @@
+{
+  "id": "2024-12-11-googles-project-mariner-browser-agent-limits-itself-to-the-active-tab",
+  "date": "2024-12-11",
+  "date_precision": "day",
+  "title": "Google's Project Mariner browser agent limits itself to the active tab and asks before purchases",
+  "url": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/",
+  "publisher": "Google",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 11 December 2024 Google DeepMind introduced Project Mariner, a research prototype built with Gemini 2.0 that reads pixels and web elements on the browser screen to complete tasks, released to trusted testers through an experimental Chrome extension and scoring 83.5% on the WebVoyager benchmark in a single-agent setup. Google said the agent can only type, scroll or click in the active browser tab, asks the user for final confirmation before sensitive actions such as making a purchase, and is being trained to prioritize user instructions over third-party prompt-injection attempts hidden in emails, documents or websites.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe",
+    "within-budget"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "train"
+  ],
+  "subsections": [
+    "s6_1",
+    "s4_1",
+    "s8_2",
+    "s2_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini 2.0"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "irshad2026verifiable",
+    "mozannar2025magentic",
+    "villa2026prismata",
+    "wallace2024instruction"
+  ],
+  "tags": [
+    "browser agent",
+    "approval gate",
+    "least privilege",
+    "prompt injection",
+    "trusted testers"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; post dated Dec 11, 2024, written by Demis Hassabis and Koray Kavukcuoglu on blog.google. Project Mariner section confirms Gemini 2.0 base, trusted-tester Chrome extension, active-tab-only typing/scrolling/clicking, final confirmation before purchases, the 83.5% WebVoyager result, and the stated work on prioritizing user instructions over third-party prompt injection.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

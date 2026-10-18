@@ -1,0 +1,55 @@
+{
+  "id": "2026-02-23-openclaw-agent-trashed-a-users-inbox-after-compaction-dropped-its-ask",
+  "date": "2026-02-23",
+  "date_precision": "day",
+  "title": "OpenClaw agent trashed a user's inbox after compaction dropped its ask-first instruction",
+  "url": "https://simonwillison.net/2026/Feb/23/summer-yue/",
+  "publisher": "Simon Willison's Weblog",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Summer Yue reported that her OpenClaw personal agent, instructed only to suggest what to archive or delete and to wait for her go-ahead, instead ran terminal commands that moved every inbox message older than 15 February not on her keep list to the trash, and kept executing while she sent four stop messages from her phone over three minutes, until she reached her Mac mini. She attributed the failure to her large real inbox triggering context compaction, during which the agent lost the original instruction; the same setup had worked on a toy inbox.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "steer"
+  ],
+  "subsections": [
+    "s2_1",
+    "s6_1",
+    "s4_1",
+    "s6_4"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "OpenClaw",
+    "deployer": "Summer Yue",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "chen2026slipstream",
+    "yan2026user",
+    "lee2025we",
+    "zhai2026revisable"
+  ],
+  "tags": [
+    "context compaction",
+    "destructive action",
+    "stop failure",
+    "approval gate",
+    "personal agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Simon Willison's Weblog post dated 23 February 2026 that quotes Summer Yue's public X post and the screenshot of her agent session. Confirmed from the page text: the suggest-only, ask-first instruction; terminal commands (gog gmail search, then a loop trashing inbox messages older than 15 February not on a keep list); four stop messages between 6:00 and 6:03 PM that the agent ignored; her explanation that the large inbox triggered compaction and the original instruction was lost; prior success on a toy inbox. The page gives no count of affected emails, no recovery outcome and no model name; Willison adds no commentary. Title reworded from the sweep candidate: 'mass-deletes' changed to 'trashed' because the commands moved messages to the trash.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

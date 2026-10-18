@@ -1,0 +1,54 @@
+{
+  "id": "2026-03-23-nists-caisi-reports-every-one-of-13-frontier-models-was-hijacked-in",
+  "date": "2026-03-23",
+  "date_precision": "day",
+  "title": "NIST's CAISI reports every one of 13 frontier models was hijacked in a 250,000-attempt agent red-teaming competition",
+  "url": "https://www.nist.gov/blogs/caisi-research-blog/insights-ai-agent-security-large-scale-red-teaming-competition",
+  "publisher": "NIST Center for AI Standards and Innovation (CAISI)",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "NIST's Center for AI Standards and Innovation worked with Gray Swan, the UK AI Security Institute and several frontier labs on a public red-teaming competition in which over 400 participants made more than 250,000 attack attempts against agents built on 13 frontier models in tool-use, coding and computer-use scenarios. At least one successful attack was found against every model, the number of successful attacks differed sharply across models without tracking capability uniformly, and families of universal attacks transferred across scenarios and models, with attacks developed against more robust models particularly likely to transfer to less robust ones but not the reverse.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "verify",
+    "train"
+  ],
+  "subsections": [
+    "s9_2",
+    "s2_2",
+    "s10_5",
+    "s8_4"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Gray Swan",
+    "deployer": null,
+    "model": "13 unnamed frontier models"
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "abdelnabi2025llmail",
+    "zhan2025adaptive",
+    "debenedetti2024agentdojo",
+    "hofer2026assessing"
+  ],
+  "tags": [
+    "red-teaming",
+    "agent hijacking",
+    "prompt injection",
+    "attack transfer",
+    "competition"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; post dated March 23, 2026 on the NIST CAISI Research Blog. Participant (400+), attempt (250,000+) and model (13) counts, the every-model-breached result and the universal-attack transfer findings are confirmed from the post body. The page gives no scenario count and no per-model success numbers.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

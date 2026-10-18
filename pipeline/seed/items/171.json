@@ -1,0 +1,54 @@
+{
+  "id": "2025-05-22-anthropic-activates-asl-3-deployment-and-security-protections-with-claude-opus-4",
+  "date": "2025-05-22",
+  "date_precision": "day",
+  "title": "Anthropic activates ASL-3 deployment and security protections with Claude Opus 4",
+  "url": "https://www.anthropic.com/news/activating-asl3-protections",
+  "publisher": "Anthropic",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Anthropic activated its ASL-3 Deployment and Security Standards alongside the launch of Claude Opus 4, calling the step precautionary and provisional because it had not yet determined whether the model definitively passed the CBRN capability threshold. The deployment standard adds real-time Constitutional Classifiers that block a narrow class of CBRN information, backed by a bug bounty and offline classification, and the security standard adds more than 100 controls to protect model weights, including two-party authorization for weight access and preliminary egress bandwidth controls.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_2",
+    "s10_2",
+    "s10_4",
+    "s4_4"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Anthropic",
+    "model": "Claude Opus 4"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "sharma2025constitutional",
+    "cunningham2026constitutional",
+    "stelling2025evaluating",
+    "pistillo2025frontier"
+  ],
+  "tags": [
+    "constitutional classifiers",
+    "frontier safety policy",
+    "cbrn",
+    "weight security",
+    "release gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated May 22, 2025. ASL-3 activation as a precautionary and provisional step, Constitutional Classifiers on inputs and outputs, bug bounty, offline classification, more than 100 security controls, two-party authorization and preliminary egress bandwidth controls all confirmed in the page text. The classifiers act on content rather than agent actions; relevance rests on the release gate and weight-security controls applied to a model shipped in agentic products.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

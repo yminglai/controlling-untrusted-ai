@@ -1,0 +1,54 @@
+{
+  "id": "2026-07-23-uk-aisi-s-control-red-team-finds-vulnerabilities-in-every-frontier",
+  "date": "2026-07-23",
+  "date_precision": "day",
+  "title": "UK AISI's Control Red Team finds vulnerabilities in every frontier-lab agent monitor it tested",
+  "url": "https://www.aisi.gov.uk/blog/how-our-new-control-red-team-is-stress-testing-frontier-monitors",
+  "publisher": "UK AI Security Institute",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "The UK AI Security Institute's new Control Red Team adversarially tested Google DeepMind's asynchronous reasoning monitor and successive versions of Anthropic's synchronous agentic coding monitor, found vulnerabilities in every Anthropic monitor version it tested, and traced the weaknesses to gaps in the monitor prompt, weaknesses in the monitor's underlying model, and hard-coded routing rules that let some actions avoid the monitor entirely. In an automated single-step coding test (covertly exposing a private API key) with Claude 4.6 Sonnet as both proposer and monitor, an evolutionary search over three runs of 150k queries drove the monitor's suspicion score down to 3 out of 100, against best-of-N baselines of 14, 15 and 18.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_3",
+    "s5_2",
+    "s5_3",
+    "s10_5"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic; Google DeepMind",
+    "deployer": null,
+    "model": "Claude 4.6 Sonnet"
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "remedios2026red",
+    "jotautait2026monitoringbench",
+    "terekhov2025adaptive",
+    "kale2025reliable"
+  ],
+  "tags": [
+    "monitor red-teaming",
+    "action monitor",
+    "reasoning monitor",
+    "control evaluation",
+    "aisi"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated Jul 23, 2026 and published by the UK AI Security Institute. Confirmed from the article body: Control Red Team tested Google DeepMind's asynchronous reasoning monitor and successive versions of Anthropic's synchronous agentic coding monitor; vulnerabilities found in every Anthropic monitor version tested; weakness classes (monitor prompt gaps, underlying-model weaknesses, hard-coded routing rules that keep actions from reaching the monitor); evolutionary-search numbers (3 runs x 150k queries, minimum suspicion 3/100 vs best-of-N 14/15/18, Claude 4.6 Sonnet as proposer and monitor).",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

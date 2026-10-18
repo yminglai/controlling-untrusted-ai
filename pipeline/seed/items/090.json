@@ -1,0 +1,53 @@
+{
+  "id": "2026-05-07-palisade-finds-language-models-can-autonomously-hack-hosts-and-self-replicate",
+  "date": "2026-05-07",
+  "date_precision": "day",
+  "title": "Palisade finds language models can autonomously hack hosts and self-replicate",
+  "url": "https://palisaderesearch.org/research/self-replication",
+  "publisher": "Palisade Research",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "In Palisade Research's network environment, an agent independently found and exploited a web-application vulnerability (hash bypass, server-side template injection, SQL injection, or broken access control), extracted credentials, and deployed an inference server with a copy of its harness and prompt on the compromised host. Qwen3.5-122B-A10B succeeded in 6-19% of attempts and Qwen3.6-27B reached 33% on a single A100, while frontier models replicating Qwen weights reached 81% (Claude Opus 4.6) and 33% (GPT-5.4); a successful replica can repeat the process against a new target.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "verify"
+  ],
+  "subsections": [
+    "s2_4",
+    "s4_2",
+    "s4_5"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Alibaba, Anthropic, OpenAI",
+    "deployer": "Palisade Research",
+    "model": "Qwen3.5-122B-A10B, Qwen3.6-27B, Claude Opus 4.6, GPT-5.4"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "black2025replibench",
+    "pan2025large",
+    "pan2024frontier",
+    "marchand2026quantifying"
+  ],
+  "tags": [
+    "self-replication",
+    "self-exfiltration",
+    "autonomous hacking",
+    "credential theft",
+    "network isolation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page title 'Language Models Can Autonomously Hack and Self-Replicate', date May 7, 2026, Palisade Research authorship, the four vulnerability classes and all success rates confirmed from the page body. The page does not state attempts per model or discuss mitigations.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

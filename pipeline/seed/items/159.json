@@ -1,0 +1,53 @@
+{
+  "id": "2024-10-29-salesforce-makes-agentforce-generally-available-with-the-einstein",
+  "date": "2024-10-29",
+  "date_precision": "day",
+  "title": "Salesforce makes Agentforce generally available with the Einstein Trust Layer and an agent audit trail",
+  "url": "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+  "publisher": "Salesforce",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 29 October 2024 Salesforce announced the general availability of Agentforce, a platform for building agents that it says can autonomously take action across business functions, with examples including resolving service cases, qualifying leads, and handling orders, reservations, and deliveries. The release describes the Einstein Trust Layer (zero data retention, toxicity detection, secure data retrieval, dynamic grounding), an Audit Trail that gives customers data to track agent actions and outputs for compliance with security, privacy, regulatory, and AI governance policies, and Agent Builder, in which admins define topics, write natural-language instructions per topic, and assemble a library of actions the agent can choose from, with escalation and hand-off to human reps.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_1",
+    "s5_1",
+    "s5_2",
+    "s10_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Salesforce",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "noyan2026dynamic",
+    "he2026kedgeflow",
+    "dong2024agentops",
+    "wang2026agent"
+  ],
+  "tags": [
+    "audit trail",
+    "scoped actions",
+    "guardrails",
+    "enterprise platform"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17. Press release datelined San Francisco, October 29, 2024, announces Agentforce general availability and names the Einstein Trust Layer (zero data retention, toxicity detection, secure data retrieval, dynamic grounding), an Audit Trail for tracking agent actions and outputs, and Agent Builder topics, per-topic natural-language instructions, and an action library, as claimed by the candidate.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

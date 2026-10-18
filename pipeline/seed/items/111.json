@@ -1,0 +1,54 @@
+{
+  "id": "2025-06-26-rakuten-reports-a-seven-hour-autonomous-claude-code-run-on-vllm-and-79-faster",
+  "date": "2025-06-26",
+  "date_precision": "day",
+  "title": "Rakuten reports a seven-hour autonomous Claude Code run on vLLM and 79% faster feature delivery",
+  "url": "https://rakuten.today/blog/rakuten-accelerates-development-with-claude-code.html",
+  "publisher": "Rakuten Today",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "In a 26 June 2025 post on its corporate blog, Rakuten said that machine learning engineer Kenta Naruse asked Anthropic's Claude Code to implement an activation vector extraction method in vLLM, an open-source library with 12.5 million lines of code in multiple programming languages, and that the agent finished the entire job in seven hours of autonomous work in a single run while Naruse wrote no code and only provided occasional guidance; the implementation achieved 99.9% numerical accuracy compared to the reference method. Rakuten also reported that time to market for new features fell by 79%, from 24 days to 5 days, described a test-driven workflow in which Claude Code generates tests and then builds features that pass them, and said AI-powered code review gives feedback on pull requests, but the post does not say whether a human reviewed or merged the vLLM implementation.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "verify",
+    "observe",
+    "steer",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_1",
+    "s5_6",
+    "s7_1",
+    "s1_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic (Claude Code)",
+    "deployer": "Rakuten",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "kwa2025measuring",
+    "desai2026swe",
+    "davis2026cheap",
+    "dhanorkar2026human"
+  ],
+  "tags": [
+    "autonomous coding",
+    "long-horizon",
+    "code review",
+    "test-driven",
+    "self-reported metrics"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; Rakuten Today post dated June 26, 2025, no byline. The vLLM activation-vector task, '12.5 million lines of code', 'seven hours of autonomous work in a single run', 'I just provided occasional guidance', '99.9% numerical accuracy compared to the reference method' and 'Reduced time to market for new features by 79% (from 24 days to 5 days)' are confirmed from the page body. The page names Claude Code but no model version; all metrics are self-reported, and it does not say how the 99.9% figure was measured or whether a human reviewed or merged the vLLM output.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

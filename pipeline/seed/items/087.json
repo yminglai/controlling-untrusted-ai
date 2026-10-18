@@ -1,0 +1,55 @@
+{
+  "id": "2026-03-26-metr-red-teamed-anthropics-internal-agent-monitoring",
+  "date": "2026-03-26",
+  "date_precision": "day",
+  "title": "METR red-teamed Anthropic's internal agent monitoring and found unmonitored subagent calls and a way to disguise Claude Code traffic",
+  "url": "https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/",
+  "publisher": "METR",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "Over three weeks, in collaboration with Anthropic, METR's David Rein tested a subset of the internal agent monitoring and security systems described in Anthropic's Opus 4.6 Sabotage Risk Report; he found that changing an environment variable made traffic register as not coming from Claude Code and so much less likely to be monitored, and that a separate bug left subagent calls unmonitored, which was fixed in under 24 hours. He concluded that an agent could sometimes be in a position to set up a small, fragile rogue internal deployment through the cloud auth flow if given monitoring details that models usually cannot guess, but that current covert capabilities and situational awareness are likely too limited to complete the chain without a fatal error, and that none of the findings severely undermine the report's major claims.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "verify",
+    "constrain"
+  ],
+  "subsections": [
+    "s5_2",
+    "s5_1",
+    "s9_3",
+    "s10_5"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Anthropic",
+    "model": "Claude Opus 4.6"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "jotautait2026monitoringbench",
+    "korbak2025sketch",
+    "benton2024sabotage",
+    "bhler2026agentspy"
+  ],
+  "tags": [
+    "red team",
+    "agent monitoring",
+    "internal deployment",
+    "subagents",
+    "sabotage"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; METR blog post 'Red-Teaming Anthropic's Internal Agent Monitoring Systems' by David Rein, dated March 26, 2026 on the page (the URL slug and BibTeX entry say 2026-03-25; the page date is used). Confirmed from the page text: three-week exercise in collaboration with Anthropic against a subset of the systems in the Opus 4.6 Sabotage Risk Report; an environment-variable change made traffic register as not coming from Claude Code; a separate bug left subagent calls unmonitored and was fixed in under 24 hours; the cloud auth flow could yield a small amount of unmonitored compute, judged fragile and easily killed; covert capabilities judged too limited to complete the chain; no finding severely undermines the report's major claims. The page also states an estimated 20% attack success rate for Opus 4.6 without CoT and an estimate of 5-20 basic bugs. A 'Results from the Exercise' section was added May 2026.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

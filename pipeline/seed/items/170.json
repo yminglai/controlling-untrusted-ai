@@ -1,0 +1,54 @@
+{
+  "id": "2025-06-11-court-certifies-age-bias-collective-action-over-workdays-ai-applicant-screening",
+  "date": "2025-06-11",
+  "date_precision": "day",
+  "title": "Court certifies age-bias collective action over Workday's AI applicant screening",
+  "url": "https://www.lawandtheworkplace.com/2025/06/ai-bias-lawsuit-against-workday-reaches-next-stage-as-court-grants-conditional-certification-of-adea-claim/",
+  "publisher": "Proskauer Rose, Law and the Workplace",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "In Mobley v. Workday, Inc. (N.D. Cal., No. 23-cv-00770-RFL), the court on 16 May 2025 conditionally certified an ADEA collective of job applicants allegedly screened out by Workday's AI-based applicant recommendation system, after having denied Workday's second motion to dismiss in July 2024 and allowed the theory that Workday can be liable as an 'agent' of the employers that use its tools, even though it is not itself the employer. The court found a unified policy in the use of Workday's AI recommendation system to score, sort, rank, or screen applicants, rejected the argument that the tools' impact varies by employer-client, and noted Workday's own filing that 1.1 billion applications were rejected through its tools in the relevant period, so the collective could reach hundreds of millions of members, who will now receive notice.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "compliant",
+    "correct"
+  ],
+  "operations": [
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_5",
+    "s9_1",
+    "s2_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": "Workday",
+    "deployer": "Workday's employer clients (not named)",
+    "model": null
+  },
+  "evidence": "court",
+  "related_papers": [
+    "gharat2025personalization",
+    "zaccour2025access",
+    "mokander2021conformity",
+    "mumtaz2026post"
+  ],
+  "tags": [
+    "hiring",
+    "disparate impact",
+    "vendor liability",
+    "collective action",
+    "automated decisions"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Proskauer Rose 'Law and the Workplace' post by Guy Brenner, Jonathan Slowik and Dixie Morrison dated June 11, 2025 (URL month 2025/06). Case number, N.D. Cal. venue, the July 2024 denial of the second motion to dismiss, the 16 May 2025 conditional certification of the ADEA claims, the 'agent' liability theory, the 'score, sort, rank, or screen' unified-policy finding, the 1.1 billion rejected applications figure and the 'hundreds of millions' estimate confirmed from the page body. The date is the post's publication date; the court order itself is dated 2025-05-16 (the sweep candidate carried that date). Caveat: the system is an automated applicant-recommendation tool rather than a tool-using LLM agent, and 'agent' in the case is a legal agency term; kept as relevant because a court holds the vendor of an automated decision system answerable for its outputs at deployment scale (compliant requirement, s10_4).",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

@@ -1,0 +1,53 @@
+{
+  "id": "2025-09-16-google-announces-agent-payments-protocol-with-signed-intent-and-cart-mandates",
+  "date": "2025-09-16",
+  "date_precision": "day",
+  "title": "Google announces the Agent Payments Protocol with signed Intent and Cart mandates",
+  "url": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+  "publisher": "Google Cloud",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 16 September 2025 Google announced the Agent Payments Protocol (AP2), an open protocol developed with more than 60 organizations for agent-led payments that can be used as an extension of the Agent2Agent (A2A) protocol and the Model Context Protocol (MCP). AP2 uses tamper-proof, cryptographically signed Mandates backed by verifiable credentials: an Intent Mandate records the user's request and, for delegated tasks, conditions such as price limits and timing, a Cart Mandate signed on user approval fixes the exact items and price, and the chain from intent to cart to payment forms a non-repudiable audit trail for authorization, authenticity and accountability.",
+  "failure_sources": [],
+  "requirements": [
+    "within-budget",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_3",
+    "s5_1",
+    "s6_1"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "garzon2025ai",
+    "irshad2026verifiable",
+    "he2026kedgeflow"
+  ],
+  "tags": [
+    "payments",
+    "signed mandates",
+    "verifiable credentials",
+    "audit trail",
+    "delegation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17 (first attempt failed with a network error, second succeeded). Page is the Google Cloud Blog post dated September 16, 2025 by Stavan Parikh and Rao Surapaneni; AP2 name, more than 60 partner organizations, Intent and Cart Mandates signed by verifiable credentials, non-repudiable audit trail, and use as an extension of A2A and MCP all confirmed from the page body.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

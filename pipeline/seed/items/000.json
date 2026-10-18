@@ -1,0 +1,54 @@
+{
+  "id": "2025-03-18-pillar-security-discloses-the-rules-file-backdoor-against-cursor",
+  "date": "2025-03-18",
+  "date_precision": "day",
+  "title": "Pillar Security discloses the Rules File Backdoor against Cursor and GitHub Copilot",
+  "url": "https://www.pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents",
+  "publisher": "Pillar Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Pillar Security researchers showed that rule files read by Cursor and GitHub Copilot can carry instructions concealed with zero-width joiners, bidirectional text markers and other invisible characters, so a reviewer who approves the file does not see them; in the demonstration a poisoned rule made Cursor add a script sourced from an attacker-controlled site to a page it was asked to generate, without mentioning the script, and such instructions often survive project forking. Cursor, notified on 26 February 2025, said the risk falls under the user's responsibility, and GitHub, notified on 12 March 2025, said users are responsible for reviewing Copilot suggestions; on 1 May 2025 GitHub added a warning for hidden Unicode text on github.com.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "correct"
+  ],
+  "operations": [
+    "observe",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s5_6",
+    "s5_1",
+    "s4_4"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor; GitHub (Copilot)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liu2026trojan",
+    "liu2025your",
+    "maloyan2026prompt",
+    "shi2026aletheia"
+  ],
+  "tags": [
+    "prompt injection",
+    "rule files",
+    "hidden unicode",
+    "coding assistants",
+    "supply chain"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated March 18, 2025 and published by Pillar Security. Vulnerability name, invisible-character concealment, the script-tag demonstration, fork persistence, and the disclosure timeline (Cursor 2025-02-26, GitHub 2025-03-12, GitHub hidden-Unicode warning 2025-05-01) confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

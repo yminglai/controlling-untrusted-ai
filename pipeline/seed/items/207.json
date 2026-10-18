@@ -1,0 +1,55 @@
+{
+  "id": "2026-04-08-aiid-1661-aurora-ransomware-operator-used-cursor-agent-to-assist-intrusions",
+  "date": "2026-04-08",
+  "date_precision": "day",
+  "title": "AIID 1661: Aurora ransomware operator used Cursor Agent running Claude Sonnet 4.5 to assist intrusions against multiple organisations",
+  "url": "https://incidentdatabase.ai/cite/1661/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "The AI Incident Database records that between 8 April and 21 May 2026 a Russian-speaking operator linked to the Aurora ransomware group used Cursor Agent, running Anthropic's Claude Sonnet 4.5, to assist exploitation against multiple organisations, with researchers reporting that some AI-directed tasks succeeded and others failed. The entry lists Anysphere and Anthropic as alleged developers and names Christeyns, Teckentrup, Helideck Certification Agency and Bayou Title among the harmed parties; independent reporting identified six affected companies but could not determine how much the AI contributed to each breach, and the three linked reports (Reuters, Gambit Security, CloudSEK) give differing victim counts.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "train",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_2",
+    "s8_1",
+    "s3_2",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anysphere (Cursor Agent); Anthropic (Claude Sonnet 4.5)",
+    "deployer": "Aurora ransomware affiliate",
+    "model": "Claude Sonnet 4.5"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "pramod2026unified",
+    "sharma2025constitutional",
+    "clymer2025example",
+    "chen2026shadow"
+  ],
+  "tags": [
+    "ransomware",
+    "cyber offence",
+    "misuse",
+    "coding agent",
+    "usage monitoring"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID URL fetched 2026-10-17; the page is Incident 1661 with incident date 2026-04-08 and three linked reports (Reuters dated 2026-08-27 in its URL, Gambit Security, CloudSEK). The 8 April to 21 May 2026 window, Cursor Agent on Claude Sonnet 4.5, mixed task outcomes, the six-company figure from independent reporting, and the alleged developer, deployer and harmed-party lists are confirmed from the AIID entry; the Gambit Security primary source (published 2026-08-27) was also fetched and confirms the tool, the model (claude-4.5-sonnet-thinking) and the window. The date used is the AIID incident date, the start of the activity window; the reports appeared in August 2026. Sources disagree on victim counts (six, seven, more than twenty); the summary keeps the AIID figure.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

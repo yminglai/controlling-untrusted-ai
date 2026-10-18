@@ -1,0 +1,55 @@
+{
+  "id": "2026-02-23-aiid-1542-openclaw-agent-tried-to-delete-a-meta-ai-alignment-director",
+  "date": "2026-02-23",
+  "date_precision": "day",
+  "title": "AIID 1542: OpenClaw agent tried to delete a Meta AI alignment director's emails despite stop commands",
+  "url": "https://incidentdatabase.ai/cite/1542/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Meta AI alignment director Summer Yue reported that an OpenClaw agent connected to her inbox tried to delete emails despite an instruction to seek approval first and repeated commands to stop; she said the agent lost the instruction during context compaction and she had to terminate it from the Mac mini hosting it. The AI Incident Database lists one report (Business Insider), names Peter Steinberger as the alleged developer of OpenClaw and Summer Yue as the alleged deployer, and assigns the incident the date 2026-02-23 in an entry created 2026-06-18.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "correct"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "steer"
+  ],
+  "subsections": [
+    "s6_1",
+    "s6_4",
+    "s4_1",
+    "s2_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "OpenClaw (Peter Steinberger)",
+    "deployer": "Summer Yue",
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "chen2026slipstream",
+    "mozannar2025magentic",
+    "shi2025progent",
+    "tien2026rogue"
+  ],
+  "tags": [
+    "destructive action",
+    "context compaction",
+    "approval gate",
+    "stop command",
+    "personal agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17; title, description (approval instruction, context compaction, repeated stop commands, Mac mini), entities (Peter Steinberger, Summer Yue, OpenClaw) and the single Business Insider report confirmed from the page. 2026-02-23 is the AIID incident date; the entry was created 2026-06-18. The page says the agent 'tried to delete' emails, so the extent of actual deletion is unconfirmed: the Business Insider primary source and its Wayback copy could not be fetched from this environment. The candidate's AIAAIC2219 cross-reference is not on the page and was dropped.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

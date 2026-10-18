@@ -1,0 +1,54 @@
+{
+  "id": "2025-10-27-layerx-csrf-tainted-memories-plant-persistent-instructions",
+  "date": "2025-10-27",
+  "date_precision": "day",
+  "title": "LayerX: CSRF 'tainted memories' plant persistent instructions in ChatGPT Atlas",
+  "url": "https://www.akamai.com/blog/security/layerx-identifies-vulnerability-in-new-chatgpt-atlas-browser",
+  "publisher": "LayerX Security (Akamai)",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "LayerX researcher Roy Paz reported that a cross-site request forgery which piggybacks on a victim's logged-in ChatGPT credentials can inject hidden instructions into ChatGPT's Memory without the user's knowledge; once an account's Memory is infected the instructions persist across every device and browser the account is used on and are invoked during later legitimate use, and in a vibe-coding scenario the generated script could fetch code from a hostile server and attempt to run it with elevated privileges while ChatGPT showed only a mild warning in some cases. The exploit was reported to OpenAI under responsible disclosure, and in a separate test of 103 in-the-wild phishing attacks Atlas stopped 5.8 percent, against 53 percent for Edge and 47 percent for Chrome.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_5",
+    "s4_4",
+    "s5_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "OpenAI (ChatGPT Atlas)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "datta2026waaa",
+    "zou2026poison",
+    "dash2026untrusted",
+    "louck2026securing"
+  ],
+  "tags": [
+    "memory poisoning",
+    "csrf",
+    "agentic browser",
+    "persistent injection",
+    "phishing"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated October 27, 2025, written by Roy Paz of LayerX and published on the Akamai blog (the page notes Akamai acquired LayerX). Headline phrase 'ChatGPT Tainted Memories', the CSRF piggybacking on logged-in ChatGPT credentials, Memory persistence across devices and browsers, the vibe-coding proof of concept fetching remote code with elevated privileges, the responsible disclosure to OpenAI (no OpenAI response described), and the 103-attack phishing figures (Atlas 5.8%, Edge 53%, Chrome 47%) confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

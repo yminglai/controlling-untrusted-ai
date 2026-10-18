@@ -1,0 +1,51 @@
+{
+  "id": "2025-09-01-benioff-says-salesforce-cut-support-staff-from-9-000-to-5-000-as-ai",
+  "date": "2025-09-01",
+  "date_precision": "day",
+  "title": "Benioff says Salesforce cut support staff from 9,000 to 5,000 as AI agents handle about half of conversations",
+  "url": "https://www.storyboard18.com/brand-marketing/salesforce-cuts-4000-jobs-as-ai-takes-over-half-of-customer-service-tasks-80022.htm",
+  "publisher": "Storyboard18",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "On the Logan Bartlett podcast, Salesforce CEO Marc Benioff said he had rebalanced the company's support workforce from 9,000 to 5,000 because AI agents now handle around half of customer conversations, with human staff handling the rest. Salesforce coordinates human and AI agents through an omnichannel supervisor platform, and Benioff said the AI can recognise when it cannot handle a task and prompt a human to step in.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s5_6",
+    "s6_1",
+    "s10_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Salesforce",
+    "deployer": "Salesforce",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yao2024bench",
+    "wang2026budgeted",
+    "telukunta2026case",
+    "turan2026oversight"
+  ],
+  "tags": [
+    "customer service",
+    "human handoff",
+    "workforce substitution",
+    "enterprise deployment"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated September 1, 2025 (Storyboard18, no individual byline). The 9,000 to 5,000 headcount figure, the roughly half share of conversations, the Logan Bartlett podcast attribution and the omnichannel supervisor handoff to humans are all in the article body. The article does not mention Agentforce or the redeployment of staff, so those claims from the candidate were dropped.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

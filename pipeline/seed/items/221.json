@@ -1,0 +1,54 @@
+{
+  "id": "2025-08-21-aiid-1210-malicious-nx-npm-packages-turned-local-coding-agents",
+  "date": "2025-08-21",
+  "date_precision": "day",
+  "title": "AIID 1210: Malicious Nx npm packages turned local coding agents into credential scanners",
+  "url": "https://incidentdatabase.ai/cite/1210/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Malicious versions of the Nx monorepo tool and its plugins were published to npm after attackers compromised Nx's CI workflow; the postinstall script harvested credentials and exfiltrated data by invoking local AI coding agents (Claude Code, Gemini CLI and Amazon Q) with unsafe flags that made them scan developer machines for sensitive files, which the database describes as possibly one of the first known AI-assisted supply chain attacks. The entry lists Anthropic, Google and Amazon as developers of the AI systems involved and Nx users installing the compromised packages as harmed parties, and its cited Snyk report says eight malicious Nx and Nx Powerpack releases across two version lines were live for about 5 hours 20 minutes before removal.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_1",
+    "s6_1",
+    "s2_2",
+    "s4_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic; Google; Amazon",
+    "deployer": "Nx npm package users (developer machines)",
+    "model": "Claude Code; Gemini CLI; Amazon Q CLI"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "liu2026trojan",
+    "shi2026aletheia",
+    "yan2026coding",
+    "errico2025securing"
+  ],
+  "tags": [
+    "supply chain",
+    "credential exfiltration",
+    "permission bypass",
+    "coding agent",
+    "npm"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; AI Incident Database incident 1210 'Malicious Nx npm Packages Reportedly Weaponize AI Coding Agents for Data Exfiltration', editor Daniel Atherton, two reports (Snyk; Washington Post). Confirmed from the page: compromised Nx CI workflow, malicious npm versions, postinstall script invoking Claude Code, Gemini and Amazon Q with unsafe flags to scan developer machines, alleged developers Anthropic/Google/Amazon, harmed parties Nx users. Date 2025-08-21 is the incident date shown by AIID; the Snyk primary source (published 2025-08-27, also fetched) dates the malicious releases to 2025-08-26/27 UTC, so the AIID date is a few days earlier than the release window. Snyk confirms the flags --dangerously-skip-permissions, --yolo and --trust-all-tools and exfiltration to public GitHub repositories named s1ngularity-repository-NNNN; these details are not on the AIID page and are kept out of the summary. Title is the sweep's rewording of the AIID title.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

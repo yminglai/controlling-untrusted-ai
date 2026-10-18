@@ -1,0 +1,50 @@
+{
+  "id": "2025-05-19-microsoft-entra-agent-id-extends-identity-management-to-ai-agents",
+  "date": "2025-05-19",
+  "date_precision": "day",
+  "title": "Microsoft Entra Agent ID extends identity management to AI agents",
+  "url": "https://www.microsoft.com/en-us/security/blog/2025/05/19/microsoft-extends-zero-trust-to-secure-the-agentic-workforce/",
+  "publisher": "Microsoft Security Blog",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "In a 19 May 2025 Microsoft Security Blog post, Microsoft announced Microsoft Entra Agent ID, which extends identity management and access capabilities to AI agents; agents created in Microsoft Copilot Studio and Azure AI Foundry are automatically assigned identities in a Microsoft Entra directory. Microsoft also said it will integrate Entra Agent ID with the ServiceNow AI Platform and the Workday Agent System of Record for automated identity provisioning, that Purview data security and compliance controls are enabled natively for agents built in Azure AI Foundry and Copilot Studio, and that Defender posture recommendations and runtime threat protection alerts are integrated into Azure AI Foundry.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "malik2026decentralized",
+    "garzon2025ai",
+    "maiti2026caging"
+  ],
+  "tags": [
+    "agent identity",
+    "zero trust",
+    "access management",
+    "enterprise agents"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; dateline 19 May 2025, author Vasu Jakkal, and the Entra Agent ID, Copilot Studio/Azure AI Foundry, ServiceNow/Workday, Purview and Defender claims confirmed from the post body. The page does not mention public preview, Conditional Access, audit trails or lifecycle policies, so those candidate claims were dropped from title and summary.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

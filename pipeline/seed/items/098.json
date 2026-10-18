@@ -1,0 +1,50 @@
+{
+  "id": "2025-08-21-commonwealth-bank-reverses-ai-voice-bot-job-cuts-and-admits",
+  "date": "2025-08-21",
+  "date_precision": "day",
+  "title": "Commonwealth Bank reverses AI voice-bot job cuts and admits assessment error",
+  "url": "https://www.canberratimes.com.au/story/9046323/commonwealth-bank-reverses-ai-chatbot-job-cuts-admits-error/",
+  "publisher": "The Canberra Times",
+  "kind": "deployment",
+  "polarity": "mixed",
+  "summary": "Commonwealth Bank reversed job cuts it had made after introducing a voice bot on its inbound customer enquiries line, saying its initial assessment \"did not adequately consider all relevant business considerations\" and that the roles were therefore not redundant; the cuts had covered 90 jobs in total, including 45 roles in direct banking, and the bank apologised to the affected employees. The Finance Sector Union called the reversal a win for workers and said the bank had tried to present job cuts as innovation, and affected staff were offered a choice between staying in their roles, redeployment within the bank, or leaving.",
+  "failure_sources": [],
+  "requirements": [
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s10_2",
+    "s9_6",
+    "s3_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": null,
+    "deployer": "Commonwealth Bank of Australia",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "liang2026acceptance",
+    "zhu2026guardrails",
+    "pan2025measuring",
+    "soni2026falsifiable"
+  ],
+  "tags": [
+    "voice bot",
+    "customer service",
+    "workforce",
+    "deployment claims",
+    "reversal"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page). Byline Carla Mascarenhas, The Canberra Times; first published August 21, 2025 at 10:58am, updated August 22, 2025. The voice bot on the inbound customer enquiries line, the 90 jobs cut including 45 direct-banking roles, the bank's statement that its assessment did not adequately consider all relevant business considerations and that the roles were not redundant, the apology, the three staff options and the Finance Sector Union response are confirmed from the article body. The candidate summary's claims that the union disputed call-volume reductions and that staff were working overtime do NOT appear on this page, and no call-volume figures are given. Marked not relevant: the page describes a customer-service voice bot with no tools, actions or transactions, and the event is a deployer's workforce-assessment error and reversal rather than an agent failure, a control mechanism, or an evaluation of an action-taking agent; classification is provided so the parent can override.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": false
+}

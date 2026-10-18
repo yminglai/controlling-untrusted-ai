@@ -1,0 +1,52 @@
+{
+  "id": "2025-08-26-cloudflare-releases-mcp-server-portals-to-put-identity-policy-and",
+  "date": "2025-08-26",
+  "date_precision": "day",
+  "title": "Cloudflare releases MCP Server Portals to put identity policy and tool logging in front of MCP servers",
+  "url": "https://blog.cloudflare.com/zero-trust-mcp-server-portals/",
+  "publisher": "Cloudflare",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On August 26, 2025 Cloudflare released MCP Server Portals in Open Beta for all Cloudflare One customers: a single endpoint placed in front of an organisation's MCP servers, where Cloudflare Access authenticates users through the corporate identity provider, can require multi-factor authentication, device posture and geographic conditions, and shows each user only the servers and tools an administrator has reviewed and approved. Portals aggregate all MCP request logs in one place, recording who accessed which server, which toolsets were used, what prompts ran and which tools were invoked; Cloudflare motivated the product with the confused-deputy case of a highly privileged agent tricked into running SQL embedded in a support ticket, and cited CVE-2025-6514 and the NeighborJack exposure of hundreds of MCP servers, with new accounts offered up to 50 free seats.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Cloudflare",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "li2026zero",
+    "zuvic2026capability",
+    "narasimha2026containing",
+    "dong2024agentops"
+  ],
+  "tags": [
+    "mcp",
+    "zero trust",
+    "identity gateway",
+    "tool allow-list",
+    "tool-call logging"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page). The visible page carries no date; JSON-LD datePublished is 2025-08-26T14:05:00Z (dateModified 2026-07-15), matching the candidate date. Byline Kenny Johnson, Cloudflare Blog. Confirmed from the body: 'MCP Server Portals are now available in Open Beta for all Cloudflare One customers' and 'Server Portals aggregate all MCP request logs into a single place'; identity-provider authentication, MFA, device posture and geographic policies, admin review of servers before they appear, per-user visibility of servers and tools, and logs of who accessed which server, which toolsets, prompts and tools are all stated on the page. The confused-deputy framing (a highly privileged agent tricked into running SQL from a support ticket), CVE-2025-6514, the NeighborJack exposure of hundreds of servers and the 50 free seats appear on the page. WAF-style MCP protection, Cloudflare-hosted MCP servers and ML abuse detection on logs are described as planned, not shipped, and are excluded from the summary.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

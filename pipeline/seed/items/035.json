@@ -1,0 +1,55 @@
+{
+  "id": "2025-06-19-cato-ctrl-living-off-ai-proof-of-concept-turns-a-jira-service",
+  "date": "2025-06-19",
+  "date_precision": "day",
+  "title": "Cato CTRL 'Living off AI' proof of concept turns a Jira Service Management ticket into an MCP attack",
+  "url": "https://infosecurity-magazine.com/news/atlassian-ai-agent-mcp-attack",
+  "publisher": "Infosecurity Magazine",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Cato Networks' threat research team (Cato CTRL) published a proof of concept it calls a 'Living off AI' attack: an external user files a Jira Service Management support ticket carrying a prompt injection, and when a support engineer processes the ticket through Atlassian's MCP server the payload runs with internal privileges and tenant data is written back into the attacker's ticket. Cato said the attacker never accessed the Atlassian MCP directly and the support engineer acted as a proxy, and it recommended rules that block or alert on remote MCP create, add, or edit calls plus audit logs of MCP activity to enforce least privilege on AI-driven actions.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_1",
+    "s5_2"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Atlassian",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "debenedetti2025defeating",
+    "zhong2025rtbas",
+    "ji2026taming",
+    "kravchenko2026appa"
+  ],
+  "tags": [
+    "prompt injection",
+    "mcp",
+    "confused deputy",
+    "data exfiltration",
+    "support tickets"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Infosecurity Magazine article by Kevin Poireault dated 19 June 2025 confirms the Cato CTRL proof of concept against Atlassian's MCP server used with Jira Service Management, the ticket-borne prompt injection, the 'support engineer acted as a proxy' claim, and the block-or-alert mitigation. The page names Claude Sonnet only as an example of MCP tools used by support engineers and does not confirm the PoC model, so model is null; no Atlassian statement appears on the page.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

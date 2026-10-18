@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+design/shots/
+pipeline/seed/_collector_dry_run.json
+site/_shot.html

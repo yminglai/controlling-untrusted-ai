@@ -1,0 +1,51 @@
+{
+  "id": "2025-08-18-mit-nanda-report-finds-95-of-enterprise-generative-ai-pilots-show",
+  "date": "2025-08-18",
+  "date_precision": "day",
+  "title": "MIT NANDA report finds 95% of enterprise generative AI pilots show little or no P&L impact",
+  "url": "https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/",
+  "publisher": "Fortune",
+  "kind": "research",
+  "polarity": "mixed",
+  "summary": "Fortune reports that MIT's NANDA initiative, in its report 'The GenAI Divide: State of AI in Business 2025', drew on 150 interviews with leaders, a survey of 350 employees and an analysis of 300 public AI deployments, and found that only about 5% of enterprise AI pilots achieve rapid revenue acceleration while the rest stall with little to no measurable P&L impact. The report attributes this to a learning gap in tools and organisations rather than to model quality, finds that purchasing from specialised vendors and building partnerships succeeds about 67% of the time while internal builds succeed about one-third as often, and mentions agentic systems only as a next phase that the most advanced organisations are experimenting with.",
+  "failure_sources": [],
+  "requirements": [
+    "within-budget",
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s10_2",
+    "s9_6",
+    "s10_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "liang2026acceptance",
+    "soni2026falsifiable",
+    "pandey2026evaluating",
+    "telukunta2026case"
+  ],
+  "tags": [
+    "enterprise",
+    "pilots",
+    "roi",
+    "buy-vs-build",
+    "learning-gap"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Fortune page dated August 18, 2025 (author Sheryl Estrada), not paywalled. Figures (150 interviews, 350-employee survey, 300 deployments, 5% vs 95%, 67% vendor-partnership success, internal builds one-third as often) confirmed from the article body. Marked not relevant: the report covers enterprise generative AI pilots in general (generic tools such as ChatGPT); agents that take actions appear only as a forward-looking aside, not as the subject of the findings.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": false
+}

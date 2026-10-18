@@ -1,0 +1,52 @@
+{
+  "id": "2026-03-24-anthropic-ships-auto-mode-for-claude-code-a-classifier-that-approves",
+  "date": "2026-03-24",
+  "date_precision": "day",
+  "title": "Anthropic ships auto mode for Claude Code, a classifier that approves or blocks each action",
+  "url": "https://claude.com/blog/auto-mode",
+  "publisher": "Anthropic",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Anthropic introduced auto mode in Claude Code, a permission mode in which a classifier reviews each tool call before it runs: actions it deems safe proceed automatically, while potentially destructive ones such as mass file deletion, sensitive-data exfiltration or malicious code execution are blocked and Claude is redirected to take a different approach, and if Claude keeps attempting actions that are continually blocked it eventually triggers a permission prompt to the user. Anthropic positions it as a middle path between the default mode, where every file write and bash command asks for approval, and the --dangerously-skip-permissions flag; it says auto mode reduces but does not eliminate risk, that the classifier may still allow some risky actions when user intent is ambiguous and may occasionally block benign ones, continues to recommend isolated environments, and launched it as a research preview for Team users working with Claude Sonnet 4.6 and Opus 4.6.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_2",
+    "s6_2",
+    "s6_1",
+    "s5_5"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude Sonnet 4.6; Claude Opus 4.6"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "remedios2026red",
+    "liu2026dive",
+    "zhao2026learning",
+    "chen2026safety2"
+  ],
+  "tags": [
+    "permission mode",
+    "action classifier",
+    "coding agents",
+    "destructive actions",
+    "claude code"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated March 24, 2026 and published by Anthropic (Claude Code blog), with an update line stating general availability on July 10, 2026. The per-tool-call classifier, the blocked action classes (mass file deletion, sensitive data exfiltration, malicious code execution), the redirect and escalation-to-prompt behaviour, the positioning between default approval and --dangerously-skip-permissions, and the stated caveats were confirmed from the page body. Correction to the sweep candidate: the page does not name the model that runs the classifier; it only says auto mode works with Claude Sonnet 4.6 and Opus 4.6.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

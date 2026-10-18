@@ -1,0 +1,52 @@
+{
+  "id": "2025-12-01-aiid-1442-amazon-s-kiro-coding-agent-implicated-in-a-13-hour-aws-cost",
+  "date": "2025-12-01",
+  "date_precision": "month",
+  "title": "AIID 1442: Amazon's Kiro coding agent implicated in a 13-hour AWS Cost Explorer outage in mainland China",
+  "url": "https://incidentdatabase.ai/cite/1442/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "According to the AI Incident Database, AWS Cost Explorer in one mainland China region reportedly experienced an approximately 13-hour interruption in mid-December 2025 after Amazon engineers allegedly allowed Kiro, an internal AI coding tool, to make changes. Amazon disputed that account, calling the interruption an extremely limited event caused by user error and misconfigured access controls rather than AI; the database entry lists five reports, including Amazon's own post-incident response.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "correct"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_1",
+    "s2_1",
+    "s6_5"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Amazon Web Services",
+    "deployer": "Amazon Web Services",
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "malik2026decentralized",
+    "li2026agent",
+    "yan2026coding",
+    "xiao2026air"
+  ],
+  "tags": [
+    "coding agent",
+    "cloud outage",
+    "access control",
+    "destructive action"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID page fetched 2026-10-17: title, approximate incident date (listed 12/15/2025 with the editor note that reporting only says mid-December 2025), the 13-hour figure, Amazon's 'user error and misconfigured access controls' statement and five linked reports (The Verge, Engadget, Gizmodo, aboutamazon.com, singhajit.com) confirmed from the page. Only the month is known, so date is set to 2025-12-01 with month precision. The page does not mention AIAAIC.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

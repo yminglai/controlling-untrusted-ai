@@ -1,0 +1,56 @@
+{
+  "id": "2025-08-04-cymulate-discloses-two-claude-code-flaws-path-restriction-bypass-and",
+  "date": "2025-08-04",
+  "date_precision": "day",
+  "title": "Cymulate discloses two Claude Code flaws: path restriction bypass and command injection",
+  "url": "https://www.cymulate.com/blog/cve-2025-547954-54795-claude-inverseprompt/",
+  "publisher": "Cymulate",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Cymulate security researcher Elad Beber disclosed two vulnerabilities in Anthropic's Claude Code: CVE-2025-54794 (CVSS 7.7), a path restriction bypass in which prefix-based path validation let a sibling directory such as claude_code_evil pass as inside claude_code, and CVE-2025-54795 (CVSS 8.7), a command injection in which crafted input to a whitelisted command such as echo closed the string and ran extra shell commands without a user prompt. Anthropic fixed them in versions 0.2.111 and 1.0.20; the post reports no exploitation in the wild and notes that practical exploitation of the command injection requires Claude Code to run with elevated privileges and be exposed to untrusted input or code.",
+  "failure_sources": [
+    "manipulation",
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "verify"
+  ],
+  "subsections": [
+    "s4_2",
+    "s6_1",
+    "s2_2",
+    "s10_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "zuvic2026capability",
+    "rabin2025sandboxeval",
+    "yan2026coding",
+    "trong2026swe"
+  ],
+  "tags": [
+    "claude-code",
+    "command injection",
+    "path traversal",
+    "approval bypass",
+    "cve"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page is live and matches the claimed event (CVE-2025-54794 CVSS 7.7 path restriction bypass, CVE-2025-54795 CVSS 8.7 command injection, fixed in 0.2.111 and 1.0.20, byline Elad Beber). The page shows only 'Last Updated: April 6, 2026' and no original date; date taken from the Wayback Machine's first capture of this URL (2025-08-04T17:02Z) and from Anthropic's GitHub advisories GHSA-pmw4-pwvc-3hx2 and GHSA-x56v-x2h6-7j34, published 2025-08-04 and crediting Elad Beber (Cymulate). The candidate's 2025-08-05 is the NVD publication timestamp (01:15 UTC). No exploitation in the wild reported.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

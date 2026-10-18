@@ -1,0 +1,51 @@
+{
+  "id": "2026-05-12-hashicorp-vault-adds-native-ai-agent-identities-with-ceiling",
+  "date": "2026-05-12",
+  "date_precision": "day",
+  "title": "HashiCorp Vault adds native AI agent identities with ceiling policies and per-request authorisation",
+  "url": "https://www.hashicorp.com/blog/announcing-native-ai-agent-support-in-hashicorp-vault",
+  "publisher": "HashiCorp",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 12 May 2026 HashiCorp announced native AI agent support in Vault: an agent registry that tracks agents separately from human and other non-human identities, with each agent action authorised as the intersection of the human owner's policies, the agent's baseline policies and ceiling policies that cap the maximum permissions an agent can ever hold when acting on a human's behalf. Per-request authorisation places permissions in the token's authorization_details claim, following the OAuth 2.0 Rich Authorization Requests specification, so access is scoped to one task and lapses when the token expires; the capabilities were in early access with a public beta planned for a summer 2026 release, and the page later notes general availability in Vault 2.1 (September 2026).",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "HashiCorp",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "noyan2026dynamic",
+    "malik2026decentralized",
+    "cai2025who"
+  ],
+  "tags": [
+    "least privilege",
+    "credentials",
+    "delegation",
+    "oauth",
+    "secrets management"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; HashiCorp blog post by Wendy Hua and Violet Hynes dated May 12, 2026. Agent registry, three-layer policy intersection (owner, baseline, ceiling), OAuth 2.0 RAR authorization_details claim and token-bound expiry all confirmed from the article body. No TTL values or metrics appear on the page. The page also states Vault Agentic IAM is generally available with Vault 2.1 (Sept 2026).",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

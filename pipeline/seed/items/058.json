@@ -1,0 +1,55 @@
+{
+  "id": "2026-07-02-bioshocking-layerx-game-framing-leads-agentic-browsers-to-fetch-ssh",
+  "date": "2026-07-02",
+  "date_precision": "day",
+  "title": "BioShocking: LayerX game framing leads agentic browsers to fetch SSH credentials from a GitHub repository",
+  "url": "https://www.securityweek.com/bioshocking-attack-tricks-ai-browsers-into-stealing-credentials/",
+  "publisher": "SecurityWeek",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "LayerX built a BioShock-inspired puzzle page whose rules made incorrect actions acceptable, and reports that the six tested agentic browsers (ChatGPT Atlas, Comet, Fellou, Genspark Browser, Sigma Browser and Claude Chrome) adopted the game framing until a '/code' step redirected to the victim's employer GitHub repository and the malicious instructions fetched a file of SSH login credentials, which the agents treated as winning the game; in the controlled test the file was harmless. LayerX reported the findings to all six vendors: OpenAI patched the issue, Anthropic's patch failed, Perplexity AI ignored the report and Fellou, Genspark and Sigmabrowser OU never responded; LayerX recommends that vendors request confirmation for sensitive operations, perform context checks and limit the scope of agent actions, and that users check what their AI browser can see and revoke its access when the session ends.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "intervene",
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s6_1",
+    "s4_1",
+    "s5_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "OpenAI (ChatGPT Atlas); Perplexity (Comet); Fellou; Genspark; Sigmabrowser OU (Sigma Browser); Anthropic (Claude Chrome)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "datta2026waaa",
+    "villa2026prismata",
+    "zheng2025webguard",
+    "goel2026capable"
+  ],
+  "tags": [
+    "context manipulation",
+    "browser agents",
+    "credential theft",
+    "prompt injection",
+    "vendor response"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live SecurityWeek page). Byline Ionut Arghire, July 2, 2026 (6:45 AM ET); no 'Updated' label on the page. The six browser names, the step '/code redirects to the victim's employer work GitHub repository', 'the malicious instructions fetched sensitive SSH login credentials', 'in the controlled test environment, the file was harmless', and the vendor responses ('OpenAI patched the issue', 'Anthropic's patch failed', 'Perplexity AI ignored the report', 'Fellou, Genspark, and Sigmabrowser OU never responded') are quoted from the article body. The article calls the product 'Claude Chrome' and does not report per-browser success; it describes the tested agents as a group that 'eventually performed a nefarious action'. No success rates or counts beyond the six browsers appear on the page.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

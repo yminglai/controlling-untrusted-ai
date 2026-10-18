@@ -1,0 +1,55 @@
+{
+  "id": "2025-08-20-indirect-prompt-injection-in-perplexity-comet-reads-a-users-gmail-otp",
+  "date": "2025-08-20",
+  "date_precision": "day",
+  "title": "Indirect prompt injection in Perplexity Comet reads a user's Gmail OTP and hands over the account",
+  "url": "https://brave.com/blog/comet-prompt-injection/",
+  "publisher": "Brave",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Brave's security team showed that Perplexity's Comet browser passed page content to its model without separating it from the user's instructions, so hidden text in a Reddit comment made the agent open the user's Perplexity account page to read their email address, trigger a one-time-password login through a trailing-dot lookalike domain, read the OTP from the user's logged-in Gmail and post both back in a Reddit reply, with no further user input after the summarize request. Brave reported the issue on 25 July 2025, found the first fix incomplete on 28 July, published on 20 August 2025 and later added that Perplexity still had not fully mitigated this kind of attack; it recommends separating user instructions from page content, checking proposed actions against the user's request, requiring explicit user interaction for sensitive actions, and isolating agentic browsing with minimum permissions.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s6_1",
+    "s4_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "debenedetti2025defeating",
+    "evtimov2025wasp",
+    "piet2026web"
+  ],
+  "tags": [
+    "prompt injection",
+    "agentic browser",
+    "account takeover",
+    "data exfiltration",
+    "approval gates"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page header reads 'Published Aug 20, 2025'. Disclosure timeline (reported 25 Jul 2025, initial fix 27 Jul, found incomplete 28 Jul, public disclosure 20 Aug) and the Reddit-comment, lookalike-domain, Gmail-OTP attack chain confirmed from the article body; the post-publication update saying Perplexity had not fully mitigated the attack is undated.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

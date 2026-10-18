@@ -1,0 +1,1293 @@
+{
+ "title": "Controlling Untrusted AI: A Survey",
+ "thesis": "Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own. On the attack side the survey distinguishes three tiers: benign loss of control (the agent makes mistakes and no one is attacking), malicious external attacks (an outsider redirects the agent through what it reads, calls, or remembers), and insider threats (a person with partial access to data, weights, pipelines, credentials, or oversight, or the model itself pursuing objectives of its own). On the defence side it separates what is implemented inside the executing model (train, steer) from what is implemented outside it (constrain, observe, intervene), with verification testing either; the survey's position is that guarantees come from outside the model, while inside-the-model measures lower the base rate the outside layer must catch. Every mechanism is graded by a two-level test (does it still work if the agent is indifferent; does it still work if the agent, or an insider, is trying to defeat it and knows how it works) and by how its effectiveness interacts with the attacker's capabilities and incentives. The survey covers both sides across all five requirements, asks of every mechanism which requirement it serves, who can apply it, what it assumes, what it costs, and where it has evidence, and treats the adversarial agent as the stress test rather than the premise.",
+ "readers": [
+  "Researchers inside one mechanism family (agent security: injection defences, isolation, information-flow control; guardrails; monitoring; control evaluation; formal enforcement; post-training; steering) who want the other families on one map with the same five questions answered.",
+  "Teams deploying agents with real credentials who must choose and combine mechanisms for a requirement and a threat model.",
+  "Evaluators, auditors, and policy staff who need to know what evidence a control claim rests on and which mechanisms satisfy which governance requirements (human oversight, logging, risk management, robustness)."
+ ],
+ "generated": "2026-10-17",
+ "requirements": [
+  {
+   "id": "correct",
+   "label": "Correct"
+  },
+  {
+   "id": "compliant",
+   "label": "Compliant"
+  },
+  {
+   "id": "in-scope",
+   "label": "In scope"
+  },
+  {
+   "id": "within-budget",
+   "label": "Within budget"
+  },
+  {
+   "id": "safe",
+   "label": "Safe"
+  }
+ ],
+ "failure_sources": [
+  {
+   "id": "mistakes",
+   "label": "Mistakes",
+   "color": "#D95358",
+   "blurb": "The agent tries to meet the requirement and fails: misread instructions, compounding errors over long tasks, irreversible side effects."
+  },
+  {
+   "id": "manipulation",
+   "label": "Manipulation",
+   "color": "#E09A3B",
+   "blurb": "The agent is redirected by what it reads: prompt injection, poisoned memory and tools, persistent user context that carries unearned authority."
+  },
+  {
+   "id": "misalignment",
+   "label": "Misalignment",
+   "color": "#A37CAD",
+   "blurb": "The agent pursues objectives of its own: reward hacking, tampering with the harness, deception, sabotage, resisting oversight."
+  }
+ ],
+ "operations": [
+  {
+   "id": "failures",
+   "label": "How Agents Fail",
+   "section": "s2",
+   "color": "#D95358",
+   "lever": null
+  },
+  {
+   "id": "constrain",
+   "label": "Constrain",
+   "section": "s4",
+   "color": "#E27553",
+   "lever": "deployment"
+  },
+  {
+   "id": "observe",
+   "label": "Observe",
+   "section": "s5",
+   "color": "#598DD2",
+   "lever": "deployment"
+  },
+  {
+   "id": "intervene",
+   "label": "Intervene",
+   "section": "s6",
+   "color": "#E09A3B",
+   "lever": "deployment"
+  },
+  {
+   "id": "steer",
+   "label": "Steer",
+   "section": "s7",
+   "color": "#65C2B9",
+   "lever": "model"
+  },
+  {
+   "id": "train",
+   "label": "Train",
+   "section": "s8",
+   "color": "#8D86E8",
+   "lever": "model"
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "section": "s9",
+   "color": "#62A16E",
+   "lever": "verify"
+  },
+  {
+   "id": "deploy",
+   "label": "Deploy and Assure",
+   "section": "s10",
+   "color": "#A37CAD",
+   "lever": "assurance"
+  }
+ ],
+ "sections": [
+  {
+   "id": "s1",
+   "number": 1,
+   "title": "Introduction",
+   "slug": "introduction",
+   "operation": null,
+   "color": "#7D7D7D",
+   "purpose": "States the problem (agents that must meet requirements they cannot be trusted to meet), shows that failures span correctness, compliance, scope, budget, and safety rather than safety alone, defines control and its two levers, says who the survey is for and how to read it, and positions it against the adjacent reviews.",
+   "subsections": [
+    {
+     "id": "s1_1",
+     "number": "1.1",
+     "title": "Why Agents Cannot Be Trusted",
+     "slug": "why-agents-cannot-be-trusted",
+     "bullets": [
+      "Name the five requirements a deployer places on an agent: correct (it does what was asked without a wrong consequential action), compliant (it follows the law and the operator's policies), in scope (it stays within its mandate and asks when it should), within budget (its consumption of time, money, tokens, and tool calls), and safe (it causes no unacceptable harm); give one concrete recent failure for each, not only the safety ones. Say that the labels are not disjoint (compliance contains scope; safety overlaps both) and that they come from a hierarchy of principals, law and regulation above the operator's policies above the user's instructions.",
+      "Ground the list rather than assert it: code the incidents and studies of Section 2 with the five labels and report the coverage; relate the labels to the requirement lists already in use (trust, risk, and security management frameworks; the OWASP agentic threat list; human-oversight provisions in regulation). Each requirement gets its metric in Section 3.1.",
+      "Explain why the agent cannot be trusted to meet them, in three tiers borrowed from security practice: benign (it makes mistakes and compounds them with no attacker present; use a documented incident such as the Hugging Face case as the opening example), malicious (an outsider redirects it through what it reads, calls, or remembers), and insider (a person with partial access to data, weights, the fine-tuning pipeline, credentials, or the oversight machinery contributes to loss of control, or the model itself pursues objectives of its own, the case the AI-control literature treats as an insider threat). Relate the tiers to the parent taxonomies (misuse, misalignment, mistakes, and structural risk; malicious use, malfunction, and systemic risk) and say what is narrowed: manipulation is misuse restricted to what enters the deployment, and structural risk is out of scope.",
+      "Introduce the control gap: the number and irreversibility of agent actions grew, the amount a human can check did not (Figure 1)."
+     ],
+     "counts": {
+      "primary": 19,
+      "selected": 0,
+      "cross": 26,
+      "grey": 1,
+      "zh": 1
+     }
+    },
+    {
+     "id": "s1_2",
+     "number": "1.2",
+     "title": "The Control Gap",
+     "slug": "the-control-gap",
+     "bullets": [
+      "Define control once and use the definition everywhere: control is the set of measures a deployer relies on so that the requirements hold without trusting the agent's dispositions. The first cut on the defence side is where a measure is implemented: inside the executing model (train before deployment, steer at inference) or outside it (constrain, observe, intervene), with verification testing either. State the survey's position: guarantees come from outside the model, because only measures outside it can be evaluated against an agent or insider that is trying to defeat them; inside-the-model measures lower the base rate the outside layer must catch and set the attacker's starting point. Grade every mechanism with the two-level test (L1 indifferent agent; L2 subverting agent or insider who knows the mechanism) and record how its effectiveness depends on the attacker's capabilities and incentives, the interaction that the game-theoretic treatments of Section 3.4 make precise.",
+      "Disambiguate the two terms of art in the title. In the AI-control literature 'control' means measures that hold under intentional subversion and 'untrusted' means possibly scheming; in security 'trusted' means a component whose failure can violate the policy. This survey uses control in the wider sense defined above, keeps the AI-control sense as level L2 of the test, and uses 'trusted' in the security sense (Section 3.1). Relate the two levers to the dependability vocabulary: training and steering are fault prevention on the untrusted component; constraints, monitors, and interventions are fault tolerance around it; verification is fault removal and forecasting.",
+      "Explain why tool access, credentials, persistent memory, long horizons, and delegation can turn a local failure into an external or lasting harm, while human review remains budget-limited.",
+      "Introduce the six mechanism families and the two levers (Figure 2) only after the failure examples: train and steer the model, constrain what can happen, observe what happens, intervene when needed, and verify that the arrangement holds under the relevant threat model.",
+      "Keep the three failure sources to one sentence here; their definitions, the failure-to-control matrix, and the stress-test role of misalignment are in Sections 2.5 and 3.2."
+     ],
+     "counts": {
+      "primary": 6,
+      "selected": 0,
+      "cross": 33,
+      "grey": 2,
+      "zh": 0
+     }
+    },
+    {
+     "id": "s1_3",
+     "number": "1.3",
+     "title": "Scope and Contributions",
+     "slug": "scope-and-contributions",
+     "bullets": [
+      "Name the three readers and what each takes away: researchers working inside one mechanism family who want the other families on one map with the same five questions answered; teams deploying agents with real credentials who must choose and combine mechanisms for a requirement and a threat model; evaluators, auditors, and policy staff who need to know what evidence a control claim rests on and which mechanisms satisfy which governance requirements. Assume familiarity with LLM agents and post-training; do not assume a security or control-theory background.",
+      "Give each reader a path in a short box: researchers read Sections 3, 4–9, and 11; deployers read 2.5 and 3.1 (as a one-page box), the selection table and reference stacks of Section 10, Sections 4–6, 7.1, 9.1–9.2, and the box 'What to require from the model vendor' in Section 8; evaluators read Section 3, the per-family evidence tables of Sections 4–8 (indexed in one evidence table), and Sections 9 and 10; AI-control researchers read Sections 3.1 (protocols), 3.4, 5, 6.3, 9.3–9.4, and 10.3, and the control-evaluation registry. Point to the reusable artefacts: the mechanism map (Figure 2) and its result version coloured by the two-level test per failure source; the requirements-by-sources gap map (which combinations have mechanisms, which have evidence, which have neither); the taxonomy of the surveyed literature; the master table (mechanism, requirement, actor and layer, assumption about the agent, cost, evidence grade), published as CSV/JSON; the benchmark table; the governance crosswalk; the control-claim reporting checklist; the safety-case skeleton; the control-evaluation registry; the glossary and term-correspondence table; the threat-model template; and the companion repository.",
+      "Scope by requirement and by lever, not by harm, with a two-part inclusion rule: a mechanism is in scope if (i) it is motivated by at least one named failure source (mistakes, manipulation, misalignment) and (ii) it is evaluated on a requirement-violation metric (wrong-consequential-action, unauthorised-action, policy-violation, overrun, or unacceptable-outcome rates), not on task success alone. Include mechanisms on either lever (Train, Steer on the model; Constrain, Observe, Intervene on the deployment) and their evaluation (Verify). Exclude capability improvement as such (reliability and efficiency surveys cover it), alignment theory and value specification, and the normative question of human authority, which Nguyen et al. treat.",
+      "Within the model-side lever include only work aimed at control properties: instruction hierarchy, refusal and safe completion under tool use, corrigibility and shutdown, resistance to reward hacking and injection, honesty, and retention of these under later tuning. Summarise general alignment and preference optimisation in one paragraph with pointers to their surveys.",
+      "State the agent-evidence rule: in Sections 4–9 the main text leads with results measured on agents (tool calls, trajectories, side effects); chat-only results appear as background in one paragraph per section and are marked as such in the evidence tables.",
+      "Contributions: (a) an operationalisation of the AI-control criterion (Greenblatt et al.) and of security's assume-breach principle as a two-level grading question (indifferent agent, subverting agent) applied uniformly to six mechanism families, including training-side and steering mechanisms that the control literature does not grade, and generalised from safety to five requirements and three failure sources; (b) a partition of mechanisms by point of enforcement (model weights, inference, action boundary, trajectory, deployment) with an explicit assignment rule (deployment lever by position on the action loop: before the action is Constrain, during is Observe, on detection is Intervene; model lever by when behaviour changes: weights is Train, inference is Steer); systems that span points are cited at each with the role stated; the correspondence to protect, detect, respond and to the reference monitor, intrusion detection, and enforceable-policy literatures is made explicit in a term-correspondence table; (c) a failure catalogue organised by attack tier (benign, malicious, insider), including the first treatment of human insiders alongside the model as insider, mapped to the requirements each failure violates, and the requirements-by-tiers gap map; (d) master and benchmark tables with reported numbers where papers report them (the share of mechanisms with no reported cost is itself a finding), actor and layer, access required to reproduce, deployment status, and a graded evidence level, anchored for comparability on a few shared benchmarks; (e) what happens after a control fires: incrimination, incident response, revocation that reaches child agents, and retraining; (f) deployment and assurance guidance including the governance crosswalk, the reporting checklist, and a safety-case skeleton with a worked example; (g) open problems ranked by evidence gap; (h) a versioned corpus, extraction tables, registry, and search protocol with a DOI at submission, maintained in the companion repository.",
+      "Position against the controllability survey (Nguyen et al.), the specification/verification/enforcement review, the guardrail SoK, the agent-security surveys and threat taxonomies, the alignment surveys, and the AI-control programme's roadmaps and evaluation framework, and against the per-requirement literatures (agent evaluation and reliability for correctness, policy-adherence benchmarks for compliance, clarification and delegation for scope, efficiency for budget). Be fair to the security surveys: they model an attacker who controls inputs, tools, or peers and treat the model as a confused deputy; many of the defences they catalogue (sandboxing, least privilege, information-flow control, privilege separation) are intent-independent and therefore pass L2 as well; this survey grades them as such and adds where they break (covert channels, collusion, many-instance coordination). Make the claim precise and checkable in the comparison table: of the surveys listed, none grades mechanisms across families by the two-level test, none re-tabulates usefulness, latency, and human-review cost across benchmarks for agent actions and pairs them with the assumption each mechanism makes, and none records misalignment evidence at protocol granularity; the AI-control evaluation framework grades by capability within its own programme and the injection-defence literature applies the indifference test within its family, and this survey generalises both. Position also against the safety-case work (frontier safety cases, evaluations-based safety cases for scheming, the AI-control safety-case sketch) and the auditing work (three-layered LLM auditing, black-box access is insufficient), which supply Section 10's method but not the mechanism evidence. State the search protocol, sources, and cutoff; say which grey literature (system cards, lab reports, forum posts, incident databases) is included, how it is graded on the evidence ladder and independence flag, and how it is archived; report how many of the tabulated control-evaluation papers post-date the closest prior survey's search cutoff.",
+      "Roadmap: motivating failures in Section 2; definitions in Section 3; model-side mechanisms in Sections 7 and 8 and deployment-side mechanisms in Sections 4–6; evaluation in Section 9; deployment and assurance in Section 10; open problems and conclusion in Section 11."
+     ],
+     "counts": {
+      "primary": 41,
+      "selected": 2,
+      "cross": 12,
+      "grey": 2,
+      "zh": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "number": 2,
+   "title": "How Agents Fail",
+   "slug": "failures",
+   "operation": "failures",
+   "color": "#D95358",
+   "purpose": "Makes the case for control through the three tiers of the attack side. Benign: the agent goes out of control with no attacker present. Malicious: an outsider redirects it through what it reads, calls, or remembers. Insider: someone with legitimate partial access contributes to loss of control, whether a person (data, weights, pipeline, credentials, oversight) or the model itself. For each: the intended task, the shortcut or loss of authority, the trust boundary, the strength and limits of the evidence, and the requirements it violates. Ends with the failure-to-control matrix used throughout the survey.",
+   "subsections": [
+    {
+     "id": "s2_1",
+     "number": "2.1",
+     "title": "Benign Failures",
+     "slug": "benign-failures",
+     "bullets": [
+      "Define the benign tier: the agent goes out of control in an ordinary situation with no attacker present; open with a documented incident (the Hugging Face case, reference to be confirmed) and say what happened, why, and under which conditions it recurs.",
+      "Open with the non-strategic case: a misunderstood instruction, a wrong plan, or a tool error compounds over a long trajectory into an irreversible action. Cite the mistake catalogues (thousands of annotated errors, rare self-recovery, solved runs that still cause harm) and the incident collections (budget overruns, runaway delegation, non-idempotent retries).",
+      "Use a file, account, or infrastructure change as the vignette; separate the intended outcome from the unacceptable side effect, and observed production incidents from simulated risks.",
+      "Show that the same trajectory can also contain a manipulated or a misaligned step: the failure families overlap and are not a classification of intent.",
+      "Derive requirements: bounded action scope, checkpoints and rollback where possible, approval at consequential transitions, and deployment-level outcome measures rather than task score."
+     ],
+     "counts": {
+      "primary": 20,
+      "selected": 1,
+      "cross": 14,
+      "grey": 5,
+      "zh": 1
+     }
+    },
+    {
+     "id": "s2_2",
+     "number": "2.2",
+     "title": "Malicious Attacks",
+     "slug": "malicious-attacks",
+     "bullets": [
+      "Define the malicious tier: an outsider with no legitimate access redirects the agent through what it reads, calls, or remembers.",
+      "Follow an instruction planted in a document, tool result, or retrieved memory into a privileged action; mark the point where data is promoted to authority. Treat persistent memory and personalised context as the cross-session attack surface and state the attacker's write and retrieval powers.",
+      "Distinguish three things that look alike: an external attacker redirecting the agent, benign personal context biasing how a policy is interpreted, and a genuine, authorised change of user preference.",
+      "Report attack conditions and benchmark numbers (success rates, transfer across scaffolds and models) rather than assuming attack success generalises; use exfiltration and unauthorised tool use as the representative harms.",
+      "Derive requirements: separating instructions from untrusted data, bounding credentials and egress, provenance and deletion for memory, user isolation, and longitudinal tests as context and permissions evolve."
+     ],
+     "counts": {
+      "primary": 102,
+      "selected": 5,
+      "cross": 37,
+      "grey": 5,
+      "zh": 8
+     }
+    },
+    {
+     "id": "s2_3",
+     "number": "2.3",
+     "title": "Insider Threats",
+     "slug": "insider-threats",
+     "bullets": [
+      "Define the insider as an actor with legitimate partial access who contributes to loss of control: an employee, contractor, or user who alters training data or weights, poisons or misconfigures the fine-tuning pipeline, misuses credentials or tool permissions, tunes or disables monitors and approval paths, or colludes with the agent; distinguish negligent from deliberate insiders and say why the literature has paid little attention to either.",
+      "Treat the model itself as the limiting case of an insider (the framing the AI-control and agentic-misalignment literatures use): it holds credentials, sees the oversight machinery, and acts across the whole deployment; Section 2.4 covers that case.",
+      "Map insider powers to the trusted computing base of Section 3.1: which components an insider can reach (data, weights, harness, monitor, logs, approval path) and what each reach enables; separate measured incidents and red-team exercises from hypothesised attacks.",
+      "Derive requirements: separation of duties and two-person rules for changes to the control infrastructure, provenance for training data and weights, protected and independently held logs, monitors that do not share weights or operators with the agent, and evaluations that include an insider in the red team.",
+      "State the gap as a finding of the survey rather than hiding it: almost no agent paper treats a human insider as such, the evidence for this tier is at grade E0–E1 (frameworks, policies, a few red-team exercises), and the relevant work is scattered under other names (training-data and memory poisoning, harmful fine-tuning, skill and tool supply chains, credential misuse, collusion); this subsection assembles those channels under one heading and Section 11.3 lists what is missing."
+     ],
+     "counts": {
+      "primary": 0,
+      "selected": 0,
+      "cross": 0,
+      "grey": 0,
+      "zh": 0
+     }
+    },
+    {
+     "id": "s2_4",
+     "number": "2.4",
+     "title": "The Model as Insider",
+     "slug": "the-model-as-insider",
+     "bullets": [
+      "Define the case: the model pursues an objective of its own using access it was legitimately given, so it behaves like an insider rather than an intruder; distinguish the two observable forms covered below and say which failure sources can produce each.",
+      "Define reward hacking as improving a proxy for success without achieving the intended outcome; define the harness as the execution and oversight machinery (tools, tests, graders, logs, approval paths) and harness tampering as an edit that violates an integrity or authority constraint. Distinguish exploiting an unchanged objective, tampering with its signal, and editing the machinery that measures it.",
+      "Use a coding vignette (hard-coded outputs, weakened tests, a changed grader, a suppressed log); identify the intended outcome and the misleading success signal.",
+      "Review the evidence for generalisation from specification gaming to reward tampering and for tampering in self-improving agents with edit permissions; record training conditions, false positives in the operational definitions, and the gap between elicited and deployment behaviour.",
+      "Derive requirements: independent outcome checks, protected reward signals and records, separation of task work from trusted control components, and harness changes checked outside the agent-controlled environment.",
+      "Separate misleading completion reports from strategic behaviours: alignment faking, sandbagging, concealing an unauthorised action, sabotaging work while appearing useful, and attacks on monitors, evaluators, and human reviewers, including collusion with an untrusted monitor.",
+      "Frame loss of control operationally: actions outside granted authority, credentials retained after revocation, continued execution after a stop request, delegated work that outlives its parent task. Use shutdown avoidance, unauthorised copies, resource acquisition, and multi-agent coordination as scenarios.",
+      "For each cited result record whether the behaviour was trained, elicited, or arose under the study conditions, and which powers it required (credentials, egress, process creation, delegation, persistent state); do not infer prevalence or powers from capability alone.",
+      "Derive requirements: protected action traces, independent checks on consequential outputs, expiring capabilities and bounded delegation, revocation that reaches child agents and queued work, independently enforceable shutdown and recovery, and evaluations that account for awareness of oversight."
+     ],
+     "counts": {
+      "primary": 84,
+      "selected": 11,
+      "cross": 52,
+      "grey": 6,
+      "zh": 13
+     }
+    },
+    {
+     "id": "s2_5",
+     "number": "2.5",
+     "title": "From Failures to Control Requirements",
+     "slug": "from-failures-to-control-requirements",
+     "bullets": [
+      "Map each failure family to the requirements it violates (correct, compliant, in scope, within budget, safe); most violate more than one, and compounding mistakes and runaway tool use are not safety failures at all.",
+      "Synthesise the four families in a failure-to-control matrix: intended outcome, asset or trust boundary, agent and attacker powers, candidate mechanisms on each lever, evidence setting, and known gaps.",
+      "Keep failure family, failure source, and harm distinct: reward hacking or harness tampering describes what happened; mistakes, manipulation, and misalignment describe possible sources; data leakage or sabotage describes a consequence.",
+      "State the question carried into Section 3: under which assumptions about the agent, at what cost, and against which concrete failures does a mechanism keep the requirements satisfied?"
+     ],
+     "counts": {
+      "primary": 7,
+      "selected": 2,
+      "cross": 20,
+      "grey": 5,
+      "zh": 3
+     }
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "number": 3,
+   "title": "Problem Setting and Definitions",
+   "slug": "setting",
+   "operation": null,
+   "color": "#7D7D7D",
+   "purpose": "Formalises the failure modes introduced in Section 2: fixes the deployment model, protected assets and trust boundaries, overseers and budgets, failure sources, harms, safety, usefulness, and cost. Introduces the adversarial evaluation game.",
+   "subsections": [
+    {
+     "id": "s3_1",
+     "number": "3.1",
+     "title": "The Deployment Setting",
+     "slug": "the-deployment-setting",
+     "bullets": [
+      "Define the agent (model plus scaffold), its operation set and affordances, task horizon, and the environment's reversibility. Define the overseers operationally: human reviewers with a budget (attention, latency, hours) and the four conditions for their oversight to be effective (epistemic access to the action and its context, temporal capacity, domain competence, effective authority to stop or reverse), following Nguyen et al.; and trusted models that are weaker but assumed non-adversarial.",
+      "Define the requirement set and the metric for each: correct (wrong-consequential-action rate and outcome correctness on consequential tasks, not benchmark score), compliant (policy-violation rate), in scope (unauthorised-action rate and ask-versus-act calibration), within budget (overrun rate and cost per task for time, money, tokens, tool calls), and safe (unacceptable-outcome rate). State the principal hierarchy (law and regulation, operator policy, user instruction) and that the deployer is the party exercising control. Safety is one of five; the two numbers (safety, usefulness) generalise to requirement satisfaction versus task value.",
+      "Define the two numbers: safety as the probability that no unacceptable outcome occurs over a deployment, and usefulness relative to running the agent unconstrained.",
+      "Define cost: monitor compute, latency, human hours (the overseer budget), refused or degraded tasks, false positives per task (alert fatigue), and integration and maintenance effort. Human attention is a cost of control, not a requirement on the agent.",
+      "Define the harness and its trusted components, persistent and personalized state, delegation boundaries, and who may change each; distinguish agent-controlled task artifacts from the control infrastructure.",
+      "Distinguish the two levers. Constrain, Observe, and Intervene act on the deployment around the agent; Train and Steer change the acting model's behaviour before or during inference; Verify tests either. Both levers are graded by the same five questions and the two-level test, which is a result to report for each family, not a criterion for inclusion.",
+      "Define a protocol as a composition of mechanisms plus an audit budget and a fallback (for example trusted monitoring with defer-to-trusted at a 2% audit budget). Mechanisms are the unit of the catalogue; protocols are the unit at which misalignment evidence exists, so the misalignment column of the master table records evidence at protocol granularity with fixed fields: setting, untrusted and trusted model pair, audit budget, attack policy, red-team knowledge and iterations, safety, usefulness.",
+      "Define the trusted computing base of a deployment as the set of components whose failure can violate a requirement: the harness, the trusted monitor, the approval path, the logs, the human auditors. Trusted does not mean safe; it means the requirement depends on it. State for every mechanism which components it adds to the base.",
+      "State the independence of monitor and agent: deployments often use the same model, provider, or training data for both; record the evidence for monitor independence when weights or data are shared and treat shared-weight monitoring as a correlated-failure assumption to be tested, not a given."
+     ],
+     "counts": {
+      "primary": 9,
+      "selected": 3,
+      "cross": 14,
+      "grey": 1,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s3_2",
+     "number": "3.2",
+     "title": "Failure Sources and Threat Models",
+     "slug": "failure-sources-and-threat-models",
+     "bullets": [
+      "Translate Section 2 into threat models organised by actor tier: benign (no adversary; errors and compounding), malicious external (controls inputs, tools, peers, or memory, but not the model or the control infrastructure), human insider (legitimate partial access to data, weights, pipeline, credentials, monitors, or approval paths), and the model as insider (controls its own outputs across the whole deployment and knows the oversight machinery). For each, specify powers, protected assets, and trust boundaries.",
+      "Map each tier to harm classes and to the benchmarks or settings that measure it; distinguish concentrated harms (one action) from diffuse harms (many small ones); note that insider and model-as-insider tiers are the least covered by benchmarks.",
+      "State how a mechanism's effectiveness interacts with the attacker's capabilities and incentives: a control that stops an indifferent agent may fail against a capable one, and the attacker's expected payoff changes with the probability and cost of being caught; the game-theoretic treatments in Section 3.4 make this precise. Record the interaction as a column in the master table.",
+      "For personalization, distinguish legitimate preference updates, benign-context safety degradation, and malicious memory writes; report whether authority persists across tasks, users, and sessions.",
+      "Place training-time compromise under the insider tier: an actor who alters data, weights, or the fine-tuning pipeline produces a model with the powers of the model-as-insider case at deployment, so the outside-the-model layer is evaluated against it."
+     ],
+     "counts": {
+      "primary": 12,
+      "selected": 4,
+      "cross": 40,
+      "grey": 5,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s3_3",
+     "number": "3.3",
+     "title": "Five Questions for Every Mechanism",
+     "slug": "five-questions-for-every-mechanism",
+     "bullets": [
+      "Which requirement does it serve, and does it trade one requirement against another (for example compliance against budget, safety against correctness)?",
+      "Who can apply it, and at which layer: model developer, deployer, platform or tool provider, auditor; weights, inference API, harness or scaffold, tool server, operating system and network, organisational process? A deployer using a model through an API cannot apply the model-side lever.",
+      "What does it assume about the agent and the attacker? About the agent: that errors are unintentional, that the attacker is external, or only a capability bound (what the agent cannot do: escape isolation, coordinate across instances, tell synthetic from real inputs) plus a trust assumption on the control infrastructure (trusted model, auditors, logs). About the attacker: which channels it controls (inputs, tools, peers, memory), whether it knows the mechanism, and how many attempts it gets. Report the two-level test (L1 indifferent, L2 subverting) here, per failure source.",
+      "What does it cost in usefulness, compute, latency, and human time?",
+      "What evidence does it have, of which class (formal guarantee, empirical measurement, analytic argument), at which grade, and under which failure source: E0 proposed or analytic only; E1 measured on chat responses; E2 measured on agent trajectories without an adversary; E3 measured under an adaptive red team (a control evaluation) with stated audit budget and red-team powers; E4 field or incident data from deployment. Add an independence flag (who ran the evaluation, with what access) and, for model-side mechanisms, the lifecycle stage, access to internals, and evidence of transfer to agent trajectories.",
+      "Apply the same five questions to each method family in Sections 4–8 and give the answers in one row of the master table per mechanism; Section 9 defines how to produce E2–E4 evidence, and Section 10 addresses composition and assurance.",
+      "For every piece of evidence state whether it was measured on agent trajectories (tool calls, side effects) or on chat responses; the agent-evidence rule of Section 1.3 governs the main text of Sections 4–9 and the grade column of the evidence tables."
+     ],
+     "counts": {
+      "primary": 12,
+      "selected": 2,
+      "cross": 17,
+      "grey": 0,
+      "zh": 2
+     }
+    },
+    {
+     "id": "s3_4",
+     "number": "3.4",
+     "title": "The Adversarial Case",
+     "slug": "the-adversarial-case",
+     "bullets": [
+      "Introduce the control-evaluation view with two red teams: the model (choosing an attack policy with knowledge of the mechanisms) and the environment author (choosing what the agent reads); state their powers side by side (goal choice, protocol knowledge, memory across tasks, coordination between instances, write access to inputs). Measure safety under the chosen policy and state the limits of this evidence for other policies, red teams, and deployments.",
+      "State the standard assumptions precisely: a red team with knowledge of the protocol constructs an attack policy intended to upper-bound what the untrusted model could do, with compensating affordances (iteration, scaffolding, hints) in place of the model's possible advantages; the trusted model, auditors, and logs are assumed non-adversarial; episodes are independent unless the protocol grants state; safety is estimated over a deployment of many tasks from a sample of episodes. Add the assumptions an auditor checks first: independence of the red team from the developers of the mechanism and of the model, elicitation adequacy, and evaluation awareness; require the benchmark table in Section 9 to record each. Cite the formal models that make the game precise (games for AI control, subversion-strategy evaluations, adaptive deployment against distributed threats).",
+      "Note the real gaps rather than the solved ones: trust in the trusted model and in human auditors; sandbagging and evaluation awareness during the control evaluation itself; whether the red team's attack policy upper-bounds the model's; attacks that begin outside the modelled deployment (weight exfiltration through infrastructure, social engineering of operators); and the cost of the evaluation (the control tax). Diffuse harms and many-instance coordination are modelled by adaptive-deployment and multi-task protocols and belong in Section 9.4, not here as gaps.",
+      "State the inference from a measured safety or usefulness number to a deployment claim and the assumptions it carries: red-team adequacy and elicitation, representativeness of the setting, distribution shift between evaluation and deployment, audit budget, and the trust placed in the trusted model. Say which failure-source evidence transfers to which (the transfer table of Section 9)."
+     ],
+     "counts": {
+      "primary": 3,
+      "selected": 3,
+      "cross": 14,
+      "grey": 3,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s3_5",
+     "number": "3.5",
+     "title": "Origins",
+     "slug": "origins",
+     "bullets": [
+      "Trace constrain to least privilege and sandboxing in security engineering; observe to intrusion detection and insider-threat monitoring; intervene to approval workflows and safe interruptibility; verify to red teaming, audits, and safety cases.",
+      "Give the term-correspondence table: each operation named next to its security and dependability ancestor and the canonical reference (reference monitor and least privilege; intrusion detection and the base-rate fallacy; enforceable security policies and edit automata; the confused deputy; the confinement problem; lattice and language-based information-flow security; fault prevention, tolerance, removal, and forecasting), so that readers from those communities find their vocabulary and the survey does not appear to re-invent it.",
+      "Trace the adversarial framing to AI boxing, corrigibility, and the 2023 AI-control proposal.",
+      "Mark what is new relative to security engineering, where the adversary is already assumed to know the system: the controlled party may share weights, data, and blind spots with its monitor (correlated failure); its dispositions can be changed by training, a lever security never had; and it may distinguish evaluation from deployment, so evidence gathered under test carries an assumption that prior safety-engineering evidence did not."
+     ],
+     "counts": {
+      "primary": 12,
+      "selected": 3,
+      "cross": 12,
+      "grey": 12,
+      "zh": 14
+     }
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "number": 4,
+   "title": "Constraining Agent Actions",
+   "slug": "constrain",
+   "operation": "constrain",
+   "color": "#E27553",
+   "purpose": "Explains external restrictions on the actions and resources available to an agent: least privilege, isolation, structured action interfaces, and information-flow boundaries. A schema, permission check, or memory policy is covered here when it restricts what can execute, rather than merely influencing the model's proposal. State at the outset that the intent-independent defences surveyed here (isolation, least privilege, information-flow control, privilege separation) pass the two-level test by construction and are the backbone against misalignment as well; the subsections report where they break (covert channels, collusion, many-instance coordination, scopes too tight to be useful).",
+   "subsections": [
+    {
+     "id": "s4_1",
+     "number": "4.1",
+     "title": "Least Privilege",
+     "slug": "least-privilege",
+     "bullets": [
+      "Survey per-tool and per-argument permissions, policy languages for agent privileges, and dynamic privilege reduction; report evidence against mistakes and against injection.",
+      "Discuss who writes the policy and how often it is wrong; specification incompleteness as the dominant failure.",
+      "Note the adversarial question: a misaligned model that can request privilege escalation through legitimate channels.",
+      "Include allowlisted tools and arguments, credential expiry, and bounded delegated authority; distinguish a user preference stored in context from an independently granted permission."
+     ],
+     "counts": {
+      "primary": 35,
+      "selected": 3,
+      "cross": 13,
+      "grey": 1,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s4_2",
+     "number": "4.2",
+     "title": "Sandboxing and Isolation",
+     "slug": "sandboxing-and-isolation",
+     "bullets": [
+      "Survey container and VM isolation, network egress controls, credential brokering, and separation of task state, trusted harness components, and user accounts.",
+      "Discuss containment as the mechanism that needs the fewest assumptions about the agent, and its usefulness cost.",
+      "Record the adversarial evidence: exfiltration and sandbox-escape side tasks in control settings.",
+      "Connect to harness tampering and persistence: protect evaluators and control configuration, restrict writable state and egress, and scope authority across personalized accounts and delegated agents."
+     ],
+     "counts": {
+      "primary": 21,
+      "selected": 3,
+      "cross": 10,
+      "grey": 0,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s4_3",
+     "number": "4.3",
+     "title": "Formal Action Constraints",
+     "slug": "formal-action-constraints",
+     "bullets": [
+      "Include schema- and grammar-constrained outputs, typed tool calls, and allowlisted arguments; explain that syntactic validity alone does not establish semantic safety.",
+      "Survey automata-guided planning, temporal constraints enforced during generation, SMT-checked tool calls, and typed action schemas.",
+      "Report what guarantees they give and over which subset of behaviour; the specification bottleneck and the verifier tax.",
+      "Position the formal-methods roadmap and what it would need to cover an adversarial agent."
+     ],
+     "counts": {
+      "primary": 39,
+      "selected": 5,
+      "cross": 5,
+      "grey": 0,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s4_4",
+     "number": "4.4",
+     "title": "Information-Flow Control",
+     "slug": "information-flow-control",
+     "bullets": [
+      "Survey capability-based and taint-tracking designs that separate control from data and block untrusted content from driving privileged actions.",
+      "Report measured robustness against injection benchmarks and the usefulness cost.",
+      "State the boundary: these designs assume the attacker is in the inputs; the model itself remains trusted.",
+      "Apply these boundaries to memory writes, retrieval, cross-user context, and protected control configuration; state which checks are enforced outside the acting model."
+     ],
+     "counts": {
+      "primary": 54,
+      "selected": 4,
+      "cross": 14,
+      "grey": 3,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s4_5",
+     "number": "4.5",
+     "title": "Identity, Credentials, and Delegation",
+     "slug": "identity-credentials-and-delegation",
+     "bullets": [
+      "Survey agent identity and attribution (agent identifiers, per-agent principals, signed actions), scoped and short-lived credentials, credential brokers and proxies that keep secrets out of the context, and egress control; identify the enforcement layer (harness, tool server, network) and who operates it.",
+      "Treat delegation as a constraint problem: bounds on what a child agent may do, propagation of scope on hand-off, and revocation that reaches child agents, scheduled work, and cached credentials; relate to the loss-of-control scenarios of Section 2.4 and to shutdown and recovery in Section 6.4.",
+      "Report evidence on authorisation drift in multi-agent systems, non-idempotent delegation failures in production, and injection that persists through memory into later sessions; separate measured incidents from proposed architectures.",
+      "State the assumption: these mechanisms hold against mistakes and manipulation by construction and against misalignment only to the extent the layer is outside the agent's reach; cost is integration work and refused or stalled tasks when scopes are too tight."
+     ],
+     "counts": {
+      "primary": 2,
+      "selected": 2,
+      "cross": 0,
+      "grey": 0,
+      "zh": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "number": 5,
+   "title": "Observing Agent Behaviour",
+   "slug": "observe",
+   "operation": "observe",
+   "color": "#598DD2",
+   "purpose": "Explains how independent observations of actions, context, reasoning, and activations produce evidence or alarms. Owns classifier guardrails, supervisory detectors, and internal-state probes; external action restrictions and the decisions triggered by an alarm are covered separately.",
+   "subsections": [
+    {
+     "id": "s5_1",
+     "number": "5.1",
+     "title": "Logging and Provenance",
+     "slug": "logging-and-provenance",
+     "bullets": [
+      "Survey trajectory logging, tool-call provenance, and tracing frameworks as the substrate every monitor and audit depends on.",
+      "Report what deployments actually log and the gap to what control evaluations assume is visible.",
+      "Note the adversarial twist: logs are also what a misaligned model reasons about.",
+      "Use the harness-tampering case to distinguish agent-written logs from independently protected evidence; include memory updates, permission changes, and delegated actions in the observable trace."
+     ],
+     "counts": {
+      "primary": 24,
+      "selected": 4,
+      "cross": 7,
+      "grey": 2,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s5_2",
+     "number": "5.2",
+     "title": "Guardrails and Action Monitors",
+     "slug": "guardrails-and-action-monitors",
+     "bullets": [
+      "Compare rule-based detectors, prompted monitors, fine-tuned input and output classifiers, supervisory guard agents, and constitutional classifiers as sources of violation scores or alarms.",
+      "Record whether a detector sees a message, tool call, plan, or complete trajectory; identify the protected asset and whether evidence concerns harmful text, harmful actions, or deployment outcomes.",
+      "Compare calibration, detection and false-positive rates, adaptive jailbreaks and injection into the monitor, encoding and obfuscation, and multi-turn attacks under a fixed observation model.",
+      "Keep scoring separate from enforcement: the intervention section owns what happens after a detection, and deployment practice owns the composition and governance of multiple guardrails."
+     ],
+     "counts": {
+      "primary": 70,
+      "selected": 10,
+      "cross": 26,
+      "grey": 1,
+      "zh": 10
+     }
+    },
+    {
+     "id": "s5_3",
+     "number": "5.3",
+     "title": "Chain-of-Thought Monitoring",
+     "slug": "chain-of-thought-monitoring",
+     "bullets": [
+      "Survey monitors over stated plans and chains of thought for deception and sabotage; record which reasoning is visible and which failure sources are tested.",
+      "Assess faithfulness, optimisation pressure, and obfuscation; explain why a useful reasoning trace is evidence rather than a complete account of the model's internal process.",
+      "Report what monitoring signals remain available as models and scaffolds change; keep activation-based detection in the following subsection."
+     ],
+     "counts": {
+      "primary": 57,
+      "selected": 6,
+      "cross": 4,
+      "grey": 0,
+      "zh": 6
+     }
+    },
+    {
+     "id": "s5_4",
+     "number": "5.4",
+     "title": "Activation Probes",
+     "slug": "activation-probes",
+     "bullets": [
+      "Survey linear probes and learned internal-state classifiers for safety-relevant properties; specify their training labels, access to activations, supervision assumptions, calibration, and false positives.",
+      "Distinguish a signal that predicts a label from a causal property of the model; test transfer across tasks and models and its value for detecting consequential action violations.",
+      "Evaluate distribution shift, adaptive evasion, and probe-triggered intervention under the shared evaluation protocol; detection accuracy alone does not establish deployment safety.",
+      "Use obfuscated-activation attacks to characterise failure under the studied adversarial conditions; separate the construction of a detector here from changing the model's activations to steer its behaviour."
+     ],
+     "counts": {
+      "primary": 46,
+      "selected": 4,
+      "cross": 8,
+      "grey": 1,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s5_5",
+     "number": "5.5",
+     "title": "Trusted and Untrusted Monitors",
+     "slug": "trusted-and-untrusted-monitors",
+     "bullets": [
+      "Define trusted monitors (weaker, assumed non-adversarial) and untrusted monitors (as capable as the agent, possibly colluding); survey upfront validation on synthetic attacks and anti-collusion measures (paraphrasing, redaction, ensembles).",
+      "Report the attacks on monitors themselves: prompt injection by the agent into the monitor's input, collusion signals, steganography.",
+      "Give the design rule that follows: monitors are attack surfaces and must be evaluated as such."
+     ],
+     "counts": {
+      "primary": 18,
+      "selected": 9,
+      "cross": 11,
+      "grey": 0,
+      "zh": 9
+     }
+    },
+    {
+     "id": "s5_6",
+     "number": "5.6",
+     "title": "Human Review under a Budget",
+     "slug": "human-review-under-a-budget",
+     "bullets": [
+      "Survey what human reviewers catch on agent trajectories, how long it takes, automation bias toward monitor scores, and interface support.",
+      "Connect the audit budgets assumed in control papers to realistic staffing of deployments.",
+      "Report the evidence that selective, well-targeted review beats constant but shallow supervision."
+     ],
+     "counts": {
+      "primary": 11,
+      "selected": 3,
+      "cross": 9,
+      "grey": 2,
+      "zh": 3
+     }
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "number": 6,
+   "title": "Intervening on Actions",
+   "slug": "intervene",
+   "operation": "intervene",
+   "color": "#E09A3B",
+   "purpose": "Explains the external execution decisions made after a proposed action, alarm, or request for help: approve, clarify, block, edit, defer, resample, stop, and recover. Separates who authorises an action from methods that shape model proposals or update weights.",
+   "subsections": [
+    {
+     "id": "s6_1",
+     "number": "6.1",
+     "title": "Approval Gates",
+     "slug": "approval-gates",
+     "bullets": [
+      "Survey co-planning, action approval, and clarification requests in agent interfaces; report evidence on when human decisions improve outcomes and when they become rubber stamps.",
+      "Discuss interruption cost and over-asking, and routing policies that decide which actions reach a human.",
+      "State the assumption: the human has the information and time to decide."
+     ],
+     "counts": {
+      "primary": 41,
+      "selected": 4,
+      "cross": 3,
+      "grey": 1,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s6_2",
+     "number": "6.2",
+     "title": "Blocking, Editing, and Deferral",
+     "slug": "blocking-editing-and-deferral",
+     "bullets": [
+      "Compare policy-triggered blocking, output or action editing, and replacement by a trusted model; specify the trigger, authority, failure-open behaviour, and effect on execution.",
+      "Use the detector outputs from monitoring as inputs to these decisions; report usefulness and safety at the chosen threshold without repeating classifier construction.",
+      "Distinguish an edited proposal, a prevented tool call, and deferred execution. Assess feedback loops in which the agent can adapt to a rejection and attempt another route.",
+      "Keep prompt or activation changes with steering and learned weight changes with training; this subsection owns the externally enforced decision about the current action."
+     ],
+     "counts": {
+      "primary": 20,
+      "selected": 4,
+      "cross": 22,
+      "grey": 7,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s6_3",
+     "number": "6.3",
+     "title": "Resampling and Incrimination",
+     "slug": "resampling-and-incrimination",
+     "bullets": [
+      "Survey defer-to-resample protocols that draw fresh samples on suspicious steps, exploiting the need for consistency in a deliberate attack; report results in multi-step settings.",
+      "Explain incrimination: repeated suspicious samples build evidence before a human is called, and a confirmed attempt changes the deployment.",
+      "Discuss the usefulness and latency cost of resampling in production."
+     ],
+     "counts": {
+      "primary": 4,
+      "selected": 3,
+      "cross": 4,
+      "grey": 7,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s6_4",
+     "number": "6.4",
+     "title": "Shutdown and Fallback",
+     "slug": "shutdown-and-fallback",
+     "bullets": [
+      "Survey kill switches, safe interruptibility, fallback, rollback where possible, and recovery after a confirmed incident; re-enter training only if a model update is chosen.",
+      "Treat a confirmed incident as evidence that updates the deployment: tighter budgets, different protocol, or no deployment.",
+      "Identify the absence of published incident-response playbooks for agents as a gap.",
+      "Return to the persistence and personalized-environment cases: propagate revocation to child agents, scheduled actions, credentials, and memory-backed authority; measure whether stop and recovery actually take effect."
+     ],
+     "counts": {
+      "primary": 19,
+      "selected": 2,
+      "cross": 8,
+      "grey": 5,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s6_5",
+     "number": "6.5",
+     "title": "Reversibility and Rollback",
+     "slug": "reversibility-and-rollback",
+     "bullets": [
+      "Survey reversibility engineering as an intervention that works after the fact: dry-run and plan-only modes, staging environments, snapshots and rollback, idempotent and transactional tool design, and blast-radius budgets that cap how much a single trajectory can change before a checkpoint.",
+      "Distinguish what can be made reversible (files, configuration, many account changes) from what cannot (sent messages, payments, external side effects) and show how the irreversible set drives approval gates in 6.1.",
+      "Report evidence from incident studies and from benchmarks that measure side effects rather than task score; this subsection had no dedicated retrieval in the literature pass and needs one.",
+      "State the assumption and cost: reversibility holds against all three sources when the rollback path is outside the agent's reach; the cost is slower execution, storage, and tasks that cannot be staged."
+     ],
+     "counts": {
+      "primary": 4,
+      "selected": 4,
+      "cross": 0,
+      "grey": 4,
+      "zh": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "number": 7,
+   "title": "Steering at Inference Time",
+   "slug": "steer",
+   "operation": "steer",
+   "color": "#65C2B9",
+   "purpose": "Explains how to redirect the acting model at inference time through instructions, context, self-correction, and activation interventions. Introduces mechanistic analysis only as the basis for locating and validating a steering target; diagnostic probes, external enforcement, weight updates, and audits have separate homes. Scope: only steering whose target is a control property (instruction priority, refusal and safe completion under tool use, honesty, injection resistance, corrigibility); prompting or steering for task performance or style is out of scope and is cited only as background.",
+   "subsections": [
+    {
+     "id": "s7_1",
+     "number": "7.1",
+     "title": "Instruction Design",
+     "slug": "instruction-design",
+     "bullets": [
+      "Survey system and developer instructions, instruction hierarchies, constitutional or policy prompts, few-shot safety examples, and retrieval of task-specific rules; identify who controls the instructions and which content remains untrusted.",
+      "Distinguish expressing a policy in a prompt from learning to prioritise it through training and from enforcing it in the tool runtime; identify the behavioural assumption made by prompting.",
+      "Compare evidence under instruction conflicts, long contexts, indirect injection, and changes in model or scaffold; record utility loss and failures where the agent ignores or misapplies the policy."
+     ],
+     "counts": {
+      "primary": 28,
+      "selected": 5,
+      "cross": 15,
+      "grey": 1,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s7_2",
+     "number": "7.2",
+     "title": "Context and Preference Steering",
+     "slug": "context-and-preference-steering",
+     "bullets": [
+      "Survey task-specific policy retrieval, scoped user preferences, and memory selection or correction as changes to the context that shapes the acting model.",
+      "Distinguish a preference or remembered instruction from authority to act; identify which context the user, agent, or attacker can modify and how benign personalization can bias policy interpretation.",
+      "Assess behavioural effects under long contexts and across sessions; use the separate enforcement, provenance, and revocation mechanisms when a memory or preference must not confer lasting authority."
+     ],
+     "counts": {
+      "primary": 26,
+      "selected": 4,
+      "cross": 11,
+      "grey": 4,
+      "zh": 6
+     }
+    },
+    {
+     "id": "s7_3",
+     "number": "7.3",
+     "title": "Planning and Self-Correction",
+     "slug": "planning-and-self-correction",
+     "bullets": [
+      "Survey explicit plans, safety checklists, self-critique, reflection, and critique-guided revision performed before execution without updating model weights.",
+      "Define behavioural steerability as responsiveness to authorised redirection; assess trajectory-level effects and whether critiques find errors or reproduce the acting model's assumptions.",
+      "Distinguish a proposal to revise a plan from the external decision to block, approve, defer, or stop its execution. Separate self-reported compliance from independently observed action outcomes."
+     ],
+     "counts": {
+      "primary": 35,
+      "selected": 2,
+      "cross": 16,
+      "grey": 1,
+      "zh": 2
+     }
+    },
+    {
+     "id": "s7_4",
+     "number": "7.4",
+     "title": "Mechanistic Analysis",
+     "slug": "mechanistic-analysis",
+     "bullets": [
+      "Introduce activation analysis, sparse autoencoders, circuit analysis, ablation, and activation patching only where they locate or validate a candidate target for an inference-time intervention.",
+      "Distinguish an interpretable feature or correlation from a causal mechanism; require counterfactual intervention tests and checks for alternative pathways before claiming control over a behaviour.",
+      "Record held-out task and model tests and the action-level outcome associated with each intervention. Route ongoing diagnostic probes to monitoring and hidden-objective discovery to pre-deployment audits."
+     ],
+     "counts": {
+      "primary": 54,
+      "selected": 3,
+      "cross": 20,
+      "grey": 5,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s7_5",
+     "number": "7.5",
+     "title": "Activation Steering",
+     "slug": "activation-steering",
+     "bullets": [
+      "Include only steering targets that are control properties (refusal, honesty, instruction priority, injection resistance, shutdown compliance); capability or style steering is out of scope.",
+      "Survey contrastive activation vectors, representation directions, conditional activation steering, and feature-level interventions applied during inference; specify layer, strength, trigger, and duration.",
+      "Specify how the direction is identified, intervention layers and strength, timing during a trajectory, and required access; evaluate unwanted side effects and utility across different tasks.",
+      "Test whether steering changes consequential actions under injection, persistent context, and long horizons, and whether it transfers across prompts or models; behavioural movement along a measured axis is not by itself a safety guarantee.",
+      "Include the single refusal direction and conditional activation steering as the clearest cases of a located, steerable behaviour, and the evidence on side effects when the direction is ablated or amplified."
+     ],
+     "counts": {
+      "primary": 80,
+      "selected": 4,
+      "cross": 2,
+      "grey": 0,
+      "zh": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "number": 8,
+   "title": "Training for Control Properties",
+   "slug": "train",
+   "operation": "train",
+   "color": "#8D86E8",
+   "purpose": "Explains how changing model parameters can give an agent control properties (instruction priority, refusal and safe completion under tool use, honesty, deference, injection and reward-hacking resistance, corrigibility) and how far those properties survive. General pretraining and alignment training are background in one subsection with pointers to their surveys; every other subsection is scoped to control properties or to training failures that are themselves control failures. Under the agent-evidence rule the chapter is a transfer question: which training-time properties survive on agent trajectories, under which failure source, with what evidence.",
+   "subsections": [
+    {
+     "id": "s8_1",
+     "number": "8.1",
+     "title": "General Safety Training",
+     "slug": "general-safety-training",
+     "bullets": [
+      "Summarise pretraining data curation and filtering, instruction tuning, and general preference optimisation (RLHF, RLAIF, constitutional training, DPO) in one subsection with pointers to their surveys; state what a deployer inherits from them (refusal behaviour, instruction following, reduced harmful text).",
+      "Explain why inherited alignment fails the one-line test and where it nonetheless matters: it lowers the base rate of mistakes and manipulation that the deployment lever must catch, and it sets the attacker's starting point.",
+      "Report the evidence on transfer from chat responses to agent trajectories and the safety-capability trade-off; mark explicitly where transfer to reward hacking, harness tampering, or long-horizon control is untested."
+     ],
+     "counts": {
+      "primary": 32,
+      "selected": 3,
+      "cross": 1,
+      "grey": 1,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s8_2",
+     "number": "8.2",
+     "title": "Supervised and Preference Training",
+     "slug": "supervised-and-preference-training",
+     "bullets": [
+      "Survey demonstrations and preference data targeted at control properties: instruction hierarchies, refusal and safe completion under tool use, policy compliance, deference and uncertainty reporting, honesty, and resisting injected instructions; include human-written and synthetic agent trajectories.",
+      "Specify data coverage, trajectory versus response-level supervision, scaffold and tool assumptions, and the handling of conflicting instructions and personalised context; evaluate generalisation beyond training templates and harmful compliance versus over-refusal.",
+      "Treat reward-model errors, proxy optimisation, reward tampering, sycophancy, and evaluator gaming as control failures of the training process itself; report safety and utility jointly on adversarial and out-of-distribution agent tasks."
+     ],
+     "counts": {
+      "primary": 103,
+      "selected": 5,
+      "cross": 18,
+      "grey": 0,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s8_3",
+     "number": "8.3",
+     "title": "Reasoning-Based Safety",
+     "slug": "reasoning-based-safety",
+     "bullets": [
+      "Survey training models to apply explicit safety specifications through reasoning, critique and revision, process feedback, debate, and weak-to-strong supervision; distinguish established methods from research proposals.",
+      "Assess whether supervision targets an observable action, a final outcome, or an intermediate explanation, and whether the supervisor can verify the relevant task.",
+      "Explain what is learned by deliberative alignment and other reasoning-based supervision; assess specification errors, supervisor limitations, hidden misbehaviour, and effects on monitorability. Inference-time use of a policy or critique is covered in steering."
+     ],
+     "counts": {
+      "primary": 50,
+      "selected": 5,
+      "cross": 9,
+      "grey": 1,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s8_4",
+     "number": "8.4",
+     "title": "Adversarial Training",
+     "slug": "adversarial-training",
+     "bullets": [
+      "Cover red-team-generated examples, jailbreak and injection training, harmful-tool-use curricula, and training against reward or harness tampering; record which attacker powers and surfaces the training covers.",
+      "Separate training against a known attack distribution from evidence against held-out adaptive attacks, deceptive strategies, new tools and scaffolds, or long-horizon personalized environments.",
+      "Use sleeper-agent, alignment-faking, and anti-scheming studies to motivate explicit tests of the limits of safety training; distinguish constructed model organisms and elicited behaviour from deployment prevalence."
+     ],
+     "counts": {
+      "primary": 30,
+      "selected": 2,
+      "cross": 19,
+      "grey": 1,
+      "zh": 2
+     }
+    },
+    {
+     "id": "s8_5",
+     "number": "8.5",
+     "title": "Representation Training and Unlearning",
+     "slug": "representation-training-and-unlearning",
+     "bullets": [
+      "Describe representation rerouting and circuit-breaker objectives, weight editing, and safety-oriented unlearning as parameter changes aimed at a control property or at removing a hazardous capability; distinguish them from inference-time activation additions and from external shutdown.",
+      "Separate text-only and multimodal evidence from agent action experiments; record training data, attacked surfaces, and held-out adaptive attacks; evaluate relearning, alternative elicitation, and collateral loss of capability.",
+      "Compare robustness, retained utility, and persistence after subsequent tuning; investigate bypass pathways and whether a representation intervention preserves the observability that monitors rely on."
+     ],
+     "counts": {
+      "primary": 76,
+      "selected": 3,
+      "cross": 11,
+      "grey": 1,
+      "zh": 3
+     }
+    },
+    {
+     "id": "s8_6",
+     "number": "8.6",
+     "title": "Safety Retention",
+     "slug": "safety-retention",
+     "bullets": [
+      "Assess whether learned safety persists after task-specific fine-tuning, distillation, editing, additional preference optimisation, or other parameter updates.",
+      "Study forgetting, relearning of restricted behaviour, shift in task distribution, and feedback contamination by compromised agents or harnesses; record provenance of training and evaluation data.",
+      "Report safety regression and useful task performance for each model version; release decisions, deployment rollback, and governance belong to deployment practice."
+     ],
+     "counts": {
+      "primary": 65,
+      "selected": 2,
+      "cross": 10,
+      "grey": 0,
+      "zh": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "number": 9,
+   "title": "Verifying Control Measures",
+   "slug": "verify",
+   "operation": "verify",
+   "color": "#62A16E",
+   "purpose": "Explains how to design evaluations of steering, constraints, monitoring, intervention, and training. Owns threat-model coverage, benchmark design, white-box audits, statistics, and reporting; method-specific outcomes and limitations remain with the method descriptions. Note that no benchmark or control setting yet covers the human-insider tier; evaluations of insider defences borrow from security practice (an insider on the red team) and are listed as missing in Section 11.3.",
+   "subsections": [
+    {
+     "id": "s9_1",
+     "number": "9.1",
+     "title": "Evaluation against Mistakes",
+     "slug": "evaluation-against-mistakes",
+     "bullets": [
+      "Describe sandboxed risk, tool-use, and harmfulness benchmarks and their observation and scoring protocols; specify which forms of failure each test can detect.",
+      "Report typical metrics (unsafe-action rate, task success) and their limits.",
+      "State whether failures are spontaneous, elicited, or injected by the experiment; do not infer the source of a failure from the benchmark name."
+     ],
+     "counts": {
+      "primary": 64,
+      "selected": 5,
+      "cross": 9,
+      "grey": 0,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s9_2",
+     "number": "9.2",
+     "title": "Evaluation against Manipulation",
+     "slug": "evaluation-against-manipulation",
+     "bullets": [
+      "Describe prompt-injection and agent-security evaluation designs, attacker powers, held-out adaptive attacks, and the joint measurement of attack success and useful task completion.",
+      "Record how the evaluation treats indirect inputs, poisoned tools or memory, long contexts, and personalized state; report defence outcomes with the relevant method.",
+      "State the attacker model and why it stops short of a misaligned agent."
+     ],
+     "counts": {
+      "primary": 73,
+      "selected": 5,
+      "cross": 9,
+      "grey": 12,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s9_3",
+     "number": "9.3",
+     "title": "Control Evaluations",
+     "slug": "control-evaluations",
+     "bullets": [
+      "Apply the deployment game defined in the setting: specify blue-team commitments, red-team knowledge, agent access, and attack-policy search for a reproducible control evaluation.",
+      "Explain upsampling and importance sampling to estimate rare-catastrophe probability from limited runs.",
+      "Address U underperforming during evaluation, invalidating capability estimates.",
+      "Compare fine-tuning-based elicitation with prompting; note exploration-hacking risk.",
+      "Record every control evaluation at protocol granularity with the fixed fields of Section 3.1 and publish them as the control-evaluation registry (setting, untrusted and trusted model pair, protocol, audit budget, attack policy, red-team knowledge and iterations, safety, usefulness, implementation link); include the post-May-2026 work (retry versus resample, multi-agent and persistent-state control, attack selection, ensemble monitoring).",
+      "Include an insider on the red team (a participant with the access an employee, contractor, or operator would have) and report which protocol assumptions that breaks; state plainly that human-insider control evaluations do not yet exist in the agent literature."
+     ],
+     "counts": {
+      "primary": 17,
+      "selected": 6,
+      "cross": 11,
+      "grey": 5,
+      "zh": 7
+     }
+    },
+    {
+     "id": "s9_4",
+     "number": "9.4",
+     "title": "Control Settings",
+     "slug": "control-settings",
+     "bullets": [
+      "Describe the control settings in one table: APPS backdoors, BashBench and BashArena, SHADE-Arena, ControlArena, LinuxArena, ResearchArena; task counts, side tasks, horizons, affordances.",
+      "Note realism versus cost and which deployments each proxies.",
+      "Record which settings also host mistake or injection benchmarks, enabling comparisons across failure sources.",
+      "Include reward and harness tampering opportunities and persistent personalized environments; evaluate across sessions, memory changes, and delegation, specifying which surfaces the agent or attacker can modify."
+     ],
+     "counts": {
+      "primary": 14,
+      "selected": 4,
+      "cross": 15,
+      "grey": 4,
+      "zh": 5
+     }
+    },
+    {
+     "id": "s9_5",
+     "number": "9.5",
+     "title": "White-Box Audits",
+     "slug": "white-box-audits",
+     "bullets": [
+      "Survey auditing games in which teams with different access (weights, training data, API only) try to uncover a planted hidden objective, and which access and tools made the difference.",
+      "Position model diffing and feature-level inspection as pre-deployment audit tools, with their reported hit rates on model organisms.",
+      "State what these audits can establish about the studied model organism and how that evidence differs from behavioural deployment evaluations; describe the access and capability limitations explicitly."
+     ],
+     "counts": {
+      "primary": 17,
+      "selected": 4,
+      "cross": 7,
+      "grey": 3,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s9_6",
+     "number": "9.6",
+     "title": "Statistics and Reporting",
+     "slug": "statistics-and-reporting",
+     "bullets": [
+      "Critique small task counts, wide confidence intervals, and blue teams tuned to known red-team strategies; recommend held-out attacks and full frontiers.",
+      "Propose the reporting checklist (Appendix C): failure source, benchmark or setting, attacker model, budget, both numbers, and cost.",
+      "Specify model-only versus agent-trajectory evidence, update stage and access, safety retention tests, ablations and marginal benefit when controls are combined, and common reporting axes for all method families."
+     ],
+     "counts": {
+      "primary": 26,
+      "selected": 5,
+      "cross": 5,
+      "grey": 2,
+      "zh": 5
+     }
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "number": 10,
+   "title": "Deployment and Assurance",
+   "slug": "deploy",
+   "operation": "deploy",
+   "color": "#A37CAD",
+   "purpose": "Explains how to assemble the previously introduced methods into a deployment, manage permissions and updates, and support auditable assurance claims. Focuses on interactions, ownership, release decisions, policy obligations, and assurance rather than re-surveying individual mechanisms.",
+   "subsections": [
+    {
+     "id": "s10_1",
+     "number": "10.1",
+     "title": "Reference Architectures",
+     "slug": "reference-architectures",
+     "bullets": [
+      "Place steering, constraints, monitors, execution decisions, trained-model assumptions, and evaluation evidence in a reference deployment, naming the trusted components and data flows.",
+      "Use the reward-hacking, harness-tampering, and personalized-assistant cases to explain interactions, shared evaluators, correlated blind spots, bypass routes, and failure-open dependencies.",
+      "Discuss applicability to open-weight, API-only, and multi-tenant systems; identify missing observability or enforcement surfaces and allocate ownership of each guardrail layer.",
+      "Connect these architectures to marginal-benefit and interaction tests from the evaluation section and to evidence reported with the methods; refer back to method descriptions instead of repeating them."
+     ],
+     "counts": {
+      "primary": 38,
+      "selected": 4,
+      "cross": 35,
+      "grey": 3,
+      "zh": 6
+     }
+    },
+    {
+     "id": "s10_2",
+     "number": "10.2",
+     "title": "Release Gates and Incident Feedback",
+     "slug": "release-gates-and-incident-feedback",
+     "bullets": [
+      "Define ownership and review of model, prompt, policy, memory, tool, and harness changes, with versioned evidence and protected provenance.",
+      "Specify when a change triggers regression evaluation, a new red-team exercise, retraining, permission review, or release rollback; connect observed incidents to the response mechanisms already described.",
+      "Separate research on safety retention after weight updates from the operational decision to release or recover a combined model and scaffold."
+     ],
+     "counts": {
+      "primary": 20,
+      "selected": 4,
+      "cross": 13,
+      "grey": 3,
+      "zh": 4
+     }
+    },
+    {
+     "id": "s10_3",
+     "number": "10.3",
+     "title": "Safety Cases",
+     "slug": "safety-cases",
+     "bullets": [
+      "Introduce inability, control, trustworthiness, and deference argument categories.",
+      "Position control arguments as the bridge between inability and trustworthiness.",
+      "Summarise the data-exfiltration control safety case: red-team evaluation as core evidence."
+     ],
+     "counts": {
+      "primary": 19,
+      "selected": 4,
+      "cross": 6,
+      "grey": 8,
+      "zh": 7
+     }
+    },
+    {
+     "id": "s10_4",
+     "number": "10.4",
+     "title": "Policies and Regulation",
+     "slug": "policies-and-regulation",
+     "bullets": [
+      "Extract the control-related clauses from responsible-scaling and frontier-safety frameworks: which capability thresholds trigger control requirements and what evidence is demanded.",
+      "Relate model-weight security levels and insider-threat controls to the control protocols surveyed here.",
+      "Note where regulation (EU AI Act oversight and shutdown requirements) overlaps with control."
+     ],
+     "counts": {
+      "primary": 25,
+      "selected": 5,
+      "cross": 6,
+      "grey": 11,
+      "zh": 15
+     }
+    },
+    {
+     "id": "s10_5",
+     "number": "10.5",
+     "title": "Independent Assurance",
+     "slug": "independent-assurance",
+     "bullets": [
+      "Describe roles and access requirements for independent evaluators, AI security institutes, and external red teams; identify which claims depend on access to weights, tools, traces, or training data.",
+      "Discuss reproducibility, auditor independence, and the gap between an internal control evaluation and evidence an external party can inspect.",
+      "Apply the shared reporting checklist to an assurance case without introducing another evaluation procedure; specify unresolved defeaters and ongoing obligations."
+     ],
+     "counts": {
+      "primary": 28,
+      "selected": 4,
+      "cross": 7,
+      "grey": 8,
+      "zh": 6
+     }
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "number": 11,
+   "title": "Open Problems and Outlook",
+   "slug": "open-problems",
+   "operation": null,
+   "color": "#7D7D7D",
+   "purpose": "Identifies unresolved research questions exposed by the method comparisons and deployment analysis, then gives evidence-calibrated priorities. Distinguishes missing capabilities, missing evidence, and open assurance problems without repeating method descriptions or the reporting standard. Organised by the three attack tiers of Section 2 so that each gap can be read against the failures that motivate it.",
+   "subsections": [
+    {
+     "id": "s11_1",
+     "number": "11.1",
+     "title": "Benign Failures",
+     "slug": "benign-failures-2",
+     "bullets": [
+      "Real deployment data on error rates and intervention outcomes; benchmarks that measure the cost of over-blocking; evidence on human review quality at scale."
+     ],
+     "counts": {
+      "primary": 21,
+      "selected": 0,
+      "cross": 12,
+      "grey": 6,
+      "zh": 0
+     }
+    },
+    {
+     "id": "s11_2",
+     "number": "11.2",
+     "title": "Malicious Attacks",
+     "slug": "malicious-attacks-2",
+     "bullets": [
+      "Joint evaluation of injection defences with the rest of the control stack; attacks that cross tool boundaries and sessions; standard reporting of utility cost."
+     ],
+     "counts": {
+      "primary": 27,
+      "selected": 0,
+      "cross": 32,
+      "grey": 0,
+      "zh": 0
+     }
+    },
+    {
+     "id": "s11_3",
+     "number": "11.3",
+     "title": "Insider Threats",
+     "slug": "insider-threats-2",
+     "bullets": [
+      "For human insiders: no benchmark, control setting, or incident corpus measures how a person with partial access can push an agent out of control; the channel literatures (poisoning, harmful fine-tuning, supply chain, credentials, collusion) are never evaluated together; separation-of-duties and two-person rules for the control infrastructure are policy, not measured practice.",
+      "Argue control degrades as U-T gap widens and human audit loses reliability.",
+      "Discuss whether trust can be bootstrapped via successively stronger trusted models.",
+      "Argue low-stakes sabotage lacks incriminating single actions, weakening audit-based protocols.",
+      "Assess growing evidence models recognise evaluation contexts."
+     ],
+     "counts": {
+      "primary": 6,
+      "selected": 1,
+      "cross": 29,
+      "grey": 0,
+      "zh": 1
+     }
+    },
+    {
+     "id": "s11_4",
+     "number": "11.4",
+     "title": "Metrics, Reporting, and Cost",
+     "slug": "metrics-reporting-and-cost",
+     "bullets": [
+      "Identify unresolved measurement questions and missing datasets beyond the evaluation and reporting tools already introduced; state what new evidence would change deployment decisions.",
+      "Return to the opening failure modes: identify missing evaluations of harness integrity, cross-session memory safety, evolving personal context, and revocation across delegated work; distinguish unmeasured risks from demonstrated failures.",
+      "Identify gaps in compositional assurance, mechanistic steering robustness, pretraining-to-agent transfer, retention of safety after post-training, and cross-session personalized deployment; distinguish missing evidence from negative results."
+     ],
+     "counts": {
+      "primary": 21,
+      "selected": 0,
+      "cross": 20,
+      "grey": 0,
+      "zh": 0
+     }
+    },
+    {
+     "id": "s11_5",
+     "number": "11.5",
+     "title": "Conclusion and Outlook",
+     "slug": "conclusion-and-outlook",
+     "bullets": [
+      "Use method-specific evidence and deployment analysis to prioritise complementary layers and research needs; refer back to established methods rather than introducing a second portfolio survey.",
+      "Prioritise research-sabotage settings, eval-awareness-robust honeypots, and anti-collusion validated under trained steganography.",
+      "Call for shared benchmarks reporting full safety-usefulness frontiers.",
+      "Give one recommendation per operation and one per failure source; restate that the adversarial case is the stress test, not the premise."
+     ],
+     "counts": {
+      "primary": 1,
+      "selected": 0,
+      "cross": 23,
+      "grey": 3,
+      "zh": 0
+     }
+    }
+   ]
+  }
+ ]
+}

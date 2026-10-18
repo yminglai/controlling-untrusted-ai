@@ -1,0 +1,52 @@
+{
+  "id": "2025-07-10-metr-trial-finds-experienced-developers-19-slower-with-ai-tools",
+  "date": "2025-07-10",
+  "date_precision": "day",
+  "title": "METR trial finds experienced developers 19% slower with AI tools while believing they were faster",
+  "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+  "publisher": "METR",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "In a randomized controlled trial, METR had 16 experienced open-source developers complete 246 real issues on large repositories they had contributed to for years, with each issue randomly assigned to allow or disallow AI tools, primarily Cursor Pro with Claude 3.5/3.7 Sonnet used as chat, agent mode and autocomplete. Developers took 19% longer when AI was allowed, although they had forecast a 24% speedup and afterwards still believed AI had sped them up by 20%; METR reports that developers submitted PRs of similar quality with and without AI and does not claim the developers or repositories represent most software development work.",
+  "failure_sources": [],
+  "requirements": [
+    "within-budget",
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_6",
+    "s11_4",
+    "s9_1",
+    "s10_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cursor",
+    "deployer": null,
+    "model": "Claude 3.5 Sonnet; Claude 3.7 Sonnet"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "bhati2026beyond",
+    "kapoor2024ai",
+    "miller2024adding",
+    "dhanorkar2026human"
+  ],
+  "tags": [
+    "productivity",
+    "randomized trial",
+    "coding assistants",
+    "perception gap",
+    "cursor"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated July 10, 2025 and published by METR (authors Joel Becker, Nate Rush, Beth Barnes, David Rein). RCT design, 16 developers, 246 issues, Cursor Pro with Claude 3.5/3.7 Sonnet, the 19% slowdown, the 24% forecast and the 20% post-hoc belief, the similar-quality PR statement and the representativeness caveat confirmed from the post body. The page notes updated results on late-2025 tools were published in February 2026; the factor analysis is shown only as an image, so no cause for the slowdown is attributed here.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

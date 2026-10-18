@@ -1,0 +1,53 @@
+{
+  "id": "2025-04-30-visa-intelligent-commerce-lets-ai-agents-pay-with-tokenised",
+  "date": "2025-04-30",
+  "date_precision": "day",
+  "title": "Visa Intelligent Commerce lets AI agents pay with tokenised credentials under consumer-set limits",
+  "url": "https://investor.visa.com/news/news-details/2025/Find-and-Buy-with-AI-Visa-Unveils-New-Era-of-Commerce/default.aspx",
+  "publisher": "Visa",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On April 30, 2025 Visa announced Visa Intelligent Commerce, a suite of integrated APIs and a commercial partner program that opens Visa's payment network to developers building AI agents, so that agents can browse, select, purchase and manage on a consumer's behalf using AI-Ready Cards that replace card details with tokenised digital credentials and confirm that the consumer's chosen agent may act for them. Consumers set spending limits and conditions for agent transactions, only the consumer can instruct the agent on what to do and when to activate a payment credential, and commerce signals are shared in real time with Visa so that it can apply transaction controls and help manage disputes; named partners include Anthropic, IBM, Microsoft, Mistral AI, OpenAI, Perplexity, Samsung and Stripe.",
+  "failure_sources": [],
+  "requirements": [
+    "within-budget",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s6_2",
+    "s5_1"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Visa",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "zuvic2026capability",
+    "he2026kedgeflow",
+    "yin2026safety"
+  ],
+  "tags": [
+    "agentic payments",
+    "tokenised credentials",
+    "spending limits",
+    "delegation",
+    "payment rail"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page on investor.visa.com). Press release dated April 30, 2025, dateline San Francisco, headline \"Find and Buy with AI: Visa Unveils New Era of Commerce\". Confirmed from the release body: Visa Intelligent Commerce is described as a suite of integrated APIs and a commercial partner program that opens Visa's payment network to developers building AI agents; AI-Ready Cards replace card details with tokenised digital credentials and confirm that the consumer's chosen agent may act for them; consumers set spending limits and conditions for agent transactions; only the consumer can instruct the agent on what to do and when to activate a payment credential; commerce signals are shared in real time with Visa, which lets it effect transaction controls and help manage disputes; partners named are Anthropic, IBM, Microsoft, Mistral AI, OpenAI, Perplexity, Samsung and Stripe. The release contains no availability date, pilot or live-transaction statements, transaction volumes or token counts, and does not describe how transaction controls or disputes operate, so this is the announcement of a payment-rail control mechanism rather than evidence of agent transactions in production.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

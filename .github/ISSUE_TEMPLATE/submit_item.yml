@@ -1,0 +1,100 @@
+name: Submit a stream item
+description: Report real-world news about deploying AI agents, good or bad, for the live stream.
+title: "[Submission]: "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing. Items must have a public URL and a date. The collector reads open issues
+        with the `submission` label every six hours, classifies them into the survey taxonomy, verifies the
+        URL, and adds them to the stream with `needs_review` set until an editor confirms the classification.
+        Please submit one item per issue.
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: One factual line, like a headline. No speculation.
+      placeholder: "Coding agent deleted a production database during a code freeze"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: The primary public source (vendor post, article, court filing, advisory, paper).
+      placeholder: "https://"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      description: When the event happened (YYYY-MM-DD). Use the publication date if the event date is unknown.
+      placeholder: "2026-10-17"
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened
+      description: Two to four factual sentences taken from the source. Which agent, deployed where, what it did, what caught it or did not.
+    validations:
+      required: true
+  - type: dropdown
+    id: polarity
+    attributes:
+      label: Good or bad
+      description: bad = a failure or harm; good = a success, or a control that worked or shipped; mixed otherwise.
+      options:
+        - bad
+        - good
+        - mixed
+    validations:
+      required: true
+  - type: dropdown
+    id: failure_source
+    attributes:
+      label: Which failure source
+      description: Why the agent did not meet its requirements on its own. Pick "not a failure" for deployments, policy, or shipped controls.
+      options:
+        - mistakes (the agent erred, hallucinated, or compounded errors)
+        - manipulation (prompt injection, memory poisoning, hijacked by what it read)
+        - misalignment (pursued its own objective, deceived, resisted oversight)
+        - not a failure
+        - not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: operation
+    attributes:
+      label: Which operation
+      description: The control operation that failed, was missing, or worked.
+      options:
+        - constrain (least privilege, sandboxing, action constraints, information flow, credentials)
+        - observe (logging, guardrails, monitors, probes, human review)
+        - intervene (approval gates, blocking, shutdown, rollback)
+        - steer (instructions, context, inference-time steering)
+        - train (safety training, adversarial training, unlearning)
+        - verify (evaluations, red teams, control evaluations, audits)
+        - deploy (architectures, release gates, safety cases, policy, assurance)
+        - not sure
+    validations:
+      required: true
+  - type: input
+    id: subsection
+    attributes:
+      label: Subsection (optional)
+      description: Survey subsection id(s) if you know them, for example `s4_2` or `s2_2, s5_2`. See the taxonomy on the site.
+      placeholder: "s4_2"
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The URL is public and I have read the source.
+          required: true
+        - label: This item is about an AI agent or LLM-based system in real use (not a demo, opinion, or funding news).
+          required: true

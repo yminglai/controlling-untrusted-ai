@@ -1,0 +1,421 @@
+# Feed list for pipeline/collect_news.py
+#
+# Every enabled URL below was fetched with requests and parsed with xml.etree on
+# 2026-10-17 (see `checked`). Entries that returned HTML, 403 or 404 on that date
+# are kept at the bottom under `disabled:` with the reason, so they can be retried.
+#
+# Fields
+#   id         stable short id, used as the item's `lens` ("feed:<id>") and by --only
+#   name       display name
+#   url        feed URL (RSS 2.0, Atom, RSS 1.0/RDF, or an arXiv API query)
+#   type       rss | atom | arxiv | github-issues   (parser auto-detects; type is informational)
+#   publisher  value written to the stream item's `publisher` field
+#   group      press | vendor | safety | security | policy | community | arxiv | submissions
+#   weight     0..1 prior that an entry is about deploying or operating AI agents.
+#              Used to (a) order candidates before --limit truncation, (b) bypass the
+#              keyword prefilter when >= 0.9, (c) seed the heuristic classifier's confidence.
+#   evidence   default SCHEMA.md `evidence` value for items from this feed
+#   checked    date the URL was last verified to return a parseable feed
+
+defaults:
+  timeout: 20            # seconds per request
+  max_items_per_feed: 200
+  user_agent: "controlling-untrusted-ai-collector/0.1 (+https://github.com/yminglai/controlling-untrusted-ai)"
+
+feeds:
+  # ---------------------------------------------------------------- press
+  - id: verge-ai
+    name: The Verge - AI
+    url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    type: atom
+    publisher: The Verge
+    group: press
+    weight: 0.6
+    evidence: press
+    checked: 2026-10-17
+  - id: ars-ai
+    name: Ars Technica - AI
+    url: https://arstechnica.com/ai/feed/
+    type: rss
+    publisher: Ars Technica
+    group: press
+    weight: 0.7
+    evidence: press
+    checked: 2026-10-17
+  - id: wired-ai
+    name: Wired - AI
+    url: https://www.wired.com/feed/tag/ai/latest/rss
+    type: rss
+    publisher: Wired
+    group: press
+    weight: 0.6
+    evidence: press
+    checked: 2026-10-17
+  - id: techcrunch-ai
+    name: TechCrunch - AI
+    url: https://techcrunch.com/category/artificial-intelligence/feed/
+    type: rss
+    publisher: TechCrunch
+    group: press
+    weight: 0.6
+    evidence: press
+    checked: 2026-10-17
+  - id: mit-tr-ai
+    name: MIT Technology Review - AI
+    url: https://www.technologyreview.com/topic/artificial-intelligence/feed
+    type: rss
+    publisher: MIT Technology Review
+    group: press
+    weight: 0.6
+    evidence: press
+    checked: 2026-10-17
+  - id: register-security
+    name: The Register - Security
+    # the .atom URL redirects to api.theregister.com and returns RSS 2.0
+    url: https://www.theregister.com/security/headlines.atom
+    type: rss
+    publisher: The Register
+    group: press
+    weight: 0.7
+    evidence: press
+    checked: 2026-10-17
+  - id: register-ai
+    name: The Register - AI and ML
+    url: https://www.theregister.com/software/ai_ml/headlines.atom
+    type: rss
+    publisher: The Register
+    group: press
+    weight: 0.7
+    evidence: press
+    checked: 2026-10-17
+  - id: bleepingcomputer
+    name: BleepingComputer
+    url: https://www.bleepingcomputer.com/feed/
+    type: rss
+    publisher: BleepingComputer
+    group: press
+    weight: 0.7
+    evidence: press
+    checked: 2026-10-17
+  - id: simonwillison
+    name: Simon Willison's Weblog
+    url: https://simonwillison.net/atom/everything/
+    type: atom
+    publisher: Simon Willison
+    group: press
+    weight: 0.8
+    evidence: researcher
+    checked: 2026-10-17
+  - id: importai
+    name: Import AI
+    url: https://importai.substack.com/feed
+    type: rss
+    publisher: Import AI
+    group: press
+    weight: 0.8
+    evidence: researcher
+    checked: 2026-10-17
+  - id: transformer
+    name: Transformer
+    url: https://www.transformernews.ai/feed
+    type: rss
+    publisher: Transformer
+    group: press
+    weight: 0.6
+    evidence: press
+    checked: 2026-10-17
+  - id: ft-ai
+    name: Financial Times - Artificial intelligence
+    url: https://www.ft.com/artificial-intelligence?format=rss
+    type: rss
+    publisher: Financial Times
+    group: press
+    weight: 0.5
+    evidence: press
+    checked: 2026-10-17
+  - id: hn-ai-agent
+    name: Hacker News - "AI agent" (50+ points)
+    url: https://hnrss.org/newest?q=%22AI+agent%22&points=50
+    type: rss
+    publisher: Hacker News
+    group: community
+    weight: 0.4
+    evidence: press
+    checked: 2026-10-17
+
+  # ---------------------------------------------------------------- vendor blogs
+  - id: openai-news
+    name: OpenAI News
+    url: https://openai.com/news/rss.xml
+    type: rss
+    publisher: OpenAI
+    group: vendor
+    weight: 0.7
+    evidence: first-party
+    checked: 2026-10-17
+  - id: deepmind-blog
+    name: Google DeepMind Blog
+    url: https://deepmind.google/blog/rss.xml
+    type: rss
+    publisher: Google DeepMind
+    group: vendor
+    weight: 0.6
+    evidence: first-party
+    checked: 2026-10-17
+  - id: microsoft-security
+    name: Microsoft Security Blog
+    url: https://www.microsoft.com/en-us/security/blog/feed/
+    type: rss
+    publisher: Microsoft Security
+    group: vendor
+    weight: 0.7
+    evidence: first-party
+    checked: 2026-10-17
+  - id: google-security
+    name: Google Online Security Blog
+    url: https://security.googleblog.com/feeds/posts/default
+    type: atom
+    publisher: Google Security
+    group: vendor
+    weight: 0.7
+    evidence: first-party
+    checked: 2026-10-17
+  - id: google-safety
+    name: Google Keyword - Safety and Security
+    url: https://blog.google/technology/safety-security/rss/
+    type: rss
+    publisher: Google
+    group: vendor
+    weight: 0.5
+    evidence: first-party
+    checked: 2026-10-17
+  - id: github-blog
+    name: GitHub Blog
+    url: https://github.blog/feed/
+    type: rss
+    publisher: GitHub
+    group: vendor
+    weight: 0.6
+    evidence: first-party
+    checked: 2026-10-17
+  - id: cloudflare-blog
+    name: Cloudflare Blog
+    url: https://blog.cloudflare.com/rss/
+    type: rss
+    publisher: Cloudflare
+    group: vendor
+    weight: 0.6
+    evidence: first-party
+    checked: 2026-10-17
+
+  # ---------------------------------------------------------------- safety and security organisations
+  - id: metr
+    name: METR
+    url: https://metr.org/feed.xml
+    type: rss
+    publisher: METR
+    group: safety
+    weight: 0.9
+    evidence: researcher
+    checked: 2026-10-17
+  - id: redwood
+    name: Redwood Research blog
+    url: https://blog.redwoodresearch.org/feed
+    type: rss
+    publisher: Redwood Research
+    group: safety
+    weight: 0.9
+    evidence: researcher
+    checked: 2026-10-17
+  - id: palisade
+    name: Palisade Research
+    url: https://palisaderesearch.org/feed.xml
+    type: atom
+    publisher: Palisade Research
+    group: safety
+    weight: 0.9
+    evidence: researcher
+    checked: 2026-10-17
+  - id: aiid
+    name: AI Incident Database
+    url: https://incidentdatabase.ai/rss.xml
+    type: rss
+    publisher: AI Incident Database
+    group: safety
+    weight: 1.0
+    evidence: incident-database
+    checked: 2026-10-17
+  - id: alignmentforum
+    name: Alignment Forum (curated)
+    url: https://www.alignmentforum.org/feed.xml?view=curated-rss
+    type: rss
+    publisher: Alignment Forum
+    group: safety
+    weight: 0.7
+    evidence: researcher
+    checked: 2026-10-17
+  - id: lesswrong
+    name: LessWrong (karma 30+)
+    url: https://www.lesswrong.com/feed.xml?view=rss&karmaThreshold=30
+    type: rss
+    publisher: LessWrong
+    group: community
+    weight: 0.5
+    evidence: researcher
+    checked: 2026-10-17
+  - id: schneier
+    name: Schneier on Security
+    url: https://www.schneier.com/feed/atom/
+    type: atom
+    publisher: Schneier on Security
+    group: security
+    weight: 0.7
+    evidence: researcher
+    checked: 2026-10-17
+  - id: krebs
+    name: Krebs on Security
+    url: https://krebsonsecurity.com/feed/
+    type: rss
+    publisher: Krebs on Security
+    group: security
+    weight: 0.5
+    evidence: press
+    checked: 2026-10-17
+  - id: embracethered
+    name: Embrace The Red
+    url: https://embracethered.com/blog/index.xml
+    type: rss
+    publisher: Embrace The Red
+    group: security
+    weight: 0.9
+    evidence: researcher
+    checked: 2026-10-17
+  - id: owasp-genai
+    name: OWASP GenAI Security Project
+    url: https://genai.owasp.org/feed/
+    type: rss
+    publisher: OWASP GenAI
+    group: security
+    weight: 0.8
+    evidence: researcher
+    checked: 2026-10-17
+
+  # ---------------------------------------------------------------- policy
+  - id: eu-ai-act
+    name: EU AI Act Newsletter
+    url: https://artificialintelligenceact.substack.com/feed
+    type: rss
+    publisher: EU AI Act Newsletter
+    group: policy
+    weight: 0.7
+    evidence: regulator
+    checked: 2026-10-17
+  - id: nist-news
+    # NIST publishes no AI-only feed; the general news feed is kept at low weight and
+    # relies on the keyword prefilter.
+    name: NIST News
+    url: https://www.nist.gov/news-events/news/rss.xml
+    type: rss
+    publisher: NIST
+    group: policy
+    weight: 0.4
+    evidence: regulator
+    checked: 2026-10-17
+  - id: nist-cyber-insights
+    name: NIST Cybersecurity Insights
+    url: https://www.nist.gov/blogs/cybersecurity-insights/rss.xml
+    type: rss
+    publisher: NIST
+    group: policy
+    weight: 0.4
+    evidence: regulator
+    checked: 2026-10-17
+  - id: cisa-advisories
+    name: CISA Cybersecurity Advisories
+    url: https://www.cisa.gov/cybersecurity-advisories/all.xml
+    type: rss
+    publisher: CISA
+    group: policy
+    weight: 0.4
+    evidence: regulator
+    checked: 2026-10-17
+  - id: cset
+    name: CSET (Georgetown)
+    url: https://cset.georgetown.edu/feed/
+    type: rss
+    publisher: CSET
+    group: policy
+    weight: 0.6
+    evidence: researcher
+    checked: 2026-10-17
+  - id: techpolicypress
+    name: Tech Policy Press
+    url: https://techpolicy.press/rss/feed.xml
+    type: rss
+    publisher: Tech Policy Press
+    group: policy
+    weight: 0.5
+    evidence: press
+    checked: 2026-10-17
+
+  # ---------------------------------------------------------------- arXiv API queries (Atom)
+  # The arXiv API asks for a 3 s pause between requests; the collector serialises `arxiv` feeds.
+  - id: arxiv-agent-deployment
+    name: arXiv - AI agents and deployment / incidents / injection / control / monitoring / sandbox
+    url: "http://export.arxiv.org/api/query?search_query=%28cat%3Acs.AI+OR+cat%3Acs.CR+OR+cat%3Acs.CL%29+AND+all%3A%22AI+agent%22+AND+%28all%3Aincident+OR+all%3Adeployment+OR+all%3A%22prompt+injection%22+OR+all%3Acontrol+OR+all%3Amonitoring+OR+all%3Asandbox%29&sortBy=submittedDate&sortOrder=descending&max_results=50"
+    type: arxiv
+    publisher: arXiv
+    group: arxiv
+    weight: 0.5
+    evidence: researcher
+    checked: 2026-10-17
+  - id: arxiv-ai-control
+    name: arXiv - AI control, control evaluations, untrusted models, trusted monitors
+    url: "http://export.arxiv.org/api/query?search_query=%28cat%3Acs.AI+OR+cat%3Acs.CR+OR+cat%3Acs.CL+OR+cat%3Acs.LG%29+AND+%28abs%3A%22AI+control%22+OR+abs%3A%22control+evaluation%22+OR+abs%3A%22untrusted+model%22+OR+abs%3A%22trusted+monitor%22%29&sortBy=submittedDate&sortOrder=descending&max_results=50"
+    type: arxiv
+    publisher: arXiv
+    group: arxiv
+    weight: 0.5
+    evidence: researcher
+    checked: 2026-10-17
+
+  # ---------------------------------------------------------------- reader submissions (GitHub issue form)
+  # Disabled here; `collect_news.py --issues owner/repo` turns it on for that repository.
+  - id: github-submissions
+    name: Reader submissions (GitHub issues labelled "submission")
+    url: https://api.github.com/repos/yminglai/controlling-untrusted-ai/issues?state=open&labels=submission&per_page=100
+    type: github-issues
+    repo: yminglai/controlling-untrusted-ai
+    publisher: Reader submission
+    group: submissions
+    weight: 1.0
+    evidence: press
+    enabled: false
+    checked: 2026-10-17
+
+# Sources that were requested but had no working feed on 2026-10-17. Retry occasionally.
+disabled:
+  - name: Anthropic News
+    tried: [https://www.anthropic.com/news/rss.xml, https://www.anthropic.com/rss.xml, https://www.anthropic.com/news/feed, https://www.anthropic.com/feed.xml]
+    reason: all 404 (HTML); no <link rel=alternate> on /news (checked 2026-10-17)
+  - name: Anthropic Alignment Science blog
+    tried: [https://alignment.anthropic.com/feed.xml, https://alignment.anthropic.com/rss.xml, https://alignment.anthropic.com/atom.xml, https://alignment.anthropic.com/index.xml]
+    reason: all 404; no autodiscovery link (checked 2026-10-17)
+  - name: UK AI Security Institute
+    tried: [https://www.aisi.gov.uk/rss.xml, https://www.aisi.gov.uk/blog/rss.xml, https://www.aisi.gov.uk/feed, https://www.aisi.gov.uk/blog/feed]
+    reason: all 404; site has no feed (checked 2026-10-17)
+  - name: Apollo Research
+    tried: [https://www.apolloresearch.ai/rss.xml, https://www.apolloresearch.ai/blog/rss.xml, https://www.apolloresearch.ai/feed]
+    reason: all 404; site has no feed (checked 2026-10-17)
+  - name: AIAAIC Repository
+    tried: [https://www.aiaaic.org/feed, https://www.aiaaic.org/rss.xml, https://www.aiaaic.org/aiaaic-repository/feed]
+    reason: Google Sites, no feed (checked 2026-10-17)
+  - name: Lawfare
+    tried: [https://www.lawfaremedia.org/feeds/rss, https://www.lawfaremedia.org/rss.xml, https://www.lawfareblog.com/rss.xml]
+    reason: HTTP 403 for every user agent tried; bot protection (checked 2026-10-17)
+  - name: Microsoft Security Response Center blog
+    tried: [https://msrc.microsoft.com/blog/feed, https://www.microsoft.com/en-us/msrc/blog/feed]
+    reason: returns HTML; covered partly by microsoft-security (checked 2026-10-17)
+  - name: MITRE ATLAS
+    tried: [https://atlas.mitre.org/feed.xml]
+    reason: 404; no feed (checked 2026-10-17)

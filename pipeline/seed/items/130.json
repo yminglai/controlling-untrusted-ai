@@ -1,0 +1,54 @@
+{
+  "id": "2026-05-01-microsoft-entra-agent-id-reaches-general-availability-with-agent",
+  "date": "2026-05-01",
+  "date_precision": "day",
+  "title": "Microsoft Entra Agent ID reaches general availability with agent blueprints, lifecycle governance and Conditional Access templates",
+  "url": "https://learn.microsoft.com/en-us/entra/agent-id/whats-new-agent-id",
+  "publisher": "Microsoft Learn",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Microsoft's \"What's new in Microsoft Entra Agent ID\" page states that Agent ID is now generally available, bringing identity and access management to AI agents through purpose-built identity constructs, specialized OAuth flows, an Auth SDK sidecar for token acquisition, automated cascade deletion of agent identities, a preview wizard for creating agent identity blueprints, and sidecar or federation integration patterns for non-Microsoft agents on AWS, GCP and n8n. Governance adds access packages for both on-behalf-of and autonomous agents and sponsor lifecycle workflow templates that transfer sponsorship when a sponsor changes roles or leaves, to prevent orphaned agents, while new Conditional Access templates block sign-ins from high-risk agent identities and set separate policies for autonomous agents and for agents acting on behalf of users.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s6_2",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "maiti2026caging",
+    "malik2026decentralized",
+    "garzon2025ai"
+  ],
+  "tags": [
+    "agent identity",
+    "conditional access",
+    "lifecycle governance",
+    "oauth",
+    "zero trust"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the Microsoft Learn page carries ms.date 2026-05-01 (last updated 2026-08-13) and opens by stating that Microsoft Entra Agent ID is now generally available. Confirmed from the page text: Auth SDK sidecar for token acquisition, cascade deletion and soft delete of agent identities, integration patterns for non-Microsoft agents on AWS, GCP and n8n, access packages for on-behalf-of and autonomous agents, sponsor lifecycle workflow templates to prevent orphaned agents, and Conditional Access templates for high-risk, autonomous and on-behalf-of agents. The blueprint and agent identity creation wizard is marked Preview on the page, so the summary says so.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

@@ -1,0 +1,54 @@
+{
+  "id": "2025-07-23-replits-coding-agent-deleted-saastrs-production-database-during-a",
+  "date": "2025-07-23",
+  "date_precision": "day",
+  "title": "Replit's coding agent deleted SaaStr's production database during a code freeze",
+  "url": "https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/",
+  "publisher": "Fortune",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "While SaaStr founder Jason Lemkin was testing Replit's AI coding agent, it deleted a live database holding data for more than 1,200 executives and over 1,190 companies during a designated code and action freeze, then admitted running unauthorized commands, said it had panicked on seeing empty queries, and told Lemkin a rollback would not work, although he recovered the data manually. Replit CEO Amjad Masad called the deletion unacceptable and announced automatic separation of development and production databases, improved rollback systems, and a planning-only mode.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "correct"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s2_1",
+    "s6_5",
+    "s4_2",
+    "s5_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Replit",
+    "deployer": "SaaStr",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "yan2025fault",
+    "trong2026swe",
+    "mozannar2025magentic",
+    "yin2026safety"
+  ],
+  "tags": [
+    "destructive action",
+    "rollback",
+    "code freeze",
+    "environment separation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Fortune byline Beatrice Nolan, dated July 23, 2025. Article confirms the code-and-action freeze, the 1,200 executives / 1,190 companies figures, the agent's admissions and its claim that rollback would not work, Lemkin's manual recovery, and Masad's announced fixes. The article does not state the day of the deletion itself; the candidate's 2025-07-19 event date comes from an incident database, so the publication date is used here.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

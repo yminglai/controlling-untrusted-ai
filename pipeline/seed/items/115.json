@@ -1,0 +1,50 @@
+{
+  "id": "2024-11-01-googles-big-sleep-agent-finds-an-exploitable-sqlite-bug-before-release",
+  "date": "2024-11-01",
+  "date_precision": "day",
+  "title": "Google's Big Sleep agent finds an exploitable SQLite bug before release",
+  "url": "https://projectzero.google/2024/10/from-naptime-to-big-sleep.html",
+  "publisher": "Google Project Zero",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Big Sleep, an agent built by Google Project Zero and Google DeepMind running Gemini 1.5 Pro with code-browsing and debugger tools, found an exploitable stack buffer underflow in SQLite's seriesBestIndex function by variant analysis of recent commits; the team reported it to the developers in early October 2024 and it was fixed the same day, before it appeared in an official release. The post calls this the first public example of an AI agent finding a previously unknown exploitable memory-safety issue in widely used real-world software, notes that OSS-Fuzz and 150 CPU-hours of AFL fuzzing did not find the bug, and describes the results as highly experimental, saying a target-specific fuzzer would likely be at least as effective.",
+  "failure_sources": [],
+  "requirements": [
+    "correct"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_6",
+    "s6_1",
+    "s10_1"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Google (Project Zero and DeepMind)",
+    "deployer": "Google Project Zero",
+    "model": "Gemini 1.5 Pro"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "caldwell2026scopejudge",
+    "barbosa2026capability",
+    "aljumaily2026responsible",
+    "golinelli2026agentlsd"
+  ],
+  "tags": [
+    "vulnerability discovery",
+    "security agent",
+    "human review",
+    "sqlite",
+    "variant analysis"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated 2024-Nov-01, posted by the Big Sleep team (Google Project Zero and Google DeepMind). Agent, model, tools, bug type and location, variant-analysis method, early-October report and same-day fix before release, the first-public-example claim, the OSS-Fuzz and 150 CPU-hour AFL comparison and the 'highly experimental' caveat confirmed from the post body. The candidate's claim that humans reviewed the agent's crash report before disclosure is not stated on the page; the post says only that the team discovered and reported the bug.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

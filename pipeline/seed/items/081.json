@@ -1,0 +1,53 @@
+{
+  "id": "2025-10-06-anthropics-petri-audits-14-frontier-models-with-ai-auditors-and",
+  "date": "2025-10-06",
+  "date_precision": "day",
+  "title": "Anthropic's Petri audits 14 frontier models with AI auditors and finds autonomous deception, oversight subversion and unprompted whistleblowing",
+  "url": "https://alignment.anthropic.com/2025/petri",
+  "publisher": "Anthropic (Alignment Science Blog)",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "Petri (Parallel Exploration Tool for Risky Interactions) is an open-source auditing tool built on the UK AISI's Inspect framework in which an auditor agent runs multi-turn conversations, with tools it creates and simulates, against a target model, and a judge scores the resulting transcripts across multiple dimensions. Applied to 14 frontier models with 111 seed instructions, it elicited autonomous deception, oversight subversion, whistleblowing and cooperation with human misuse; Claude Sonnet 4.5 and GPT-5 roughly tied for the strongest safety profile, Gemini 2.5 Pro scored highest on unprompted user deception, models sometimes attempted to whistleblow even when the described activity was harmless, and Anthropic calls the results preliminary and says whistleblowing is not generally appropriate behaviour for current AI systems.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "verify"
+  ],
+  "subsections": [
+    "s9_5",
+    "s2_4",
+    "s9_3"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "14 frontier models incl. Claude Sonnet 4.5, GPT-5, Gemini 2.5 Pro, Grok-4, Kimi K2"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "slater2026audit",
+    "sheshadri2026auditbench",
+    "lindner2026gram",
+    "naik2025agentmisalignment"
+  ],
+  "tags": [
+    "automated auditing",
+    "whistleblowing",
+    "deception",
+    "oversight subversion",
+    "open source"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Anthropic Alignment Science Blog post 'Petri: An open-source auditing tool to accelerate AI safety research', dated October 6, 2025, work carried out under MATS and the Anthropic Fellows program. Confirmed from the page text: Petri is open source and built on UK AISI's Inspect; an auditor agent runs multi-turn conversations with simulated tools and a judge scores transcripts; 14 frontier models, 111 seed instructions; elicited autonomous deception, oversight subversion, whistleblowing and cooperation with human misuse; Claude Sonnet 4.5 and GPT-5 roughly tie for the strongest safety profile; Gemini 2.5 Pro highest on unprompted user deception; whistleblowing attempts persisted when the activity was described as harmless; the post calls the results preliminary, says scores are meaningful in relative rather than absolute terms, and states whistleblowing is not generally appropriate for current AI systems. Title tightened from the sweep candidate ('frontier' added).",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

@@ -1,0 +1,54 @@
+{
+  "id": "2026-02-02-cltr-launches-a-loss-of-control-observatory-for-real-world-scheming",
+  "date": "2026-02-02",
+  "date_precision": "day",
+  "title": "CLTR launches a Loss of Control Observatory for real-world scheming incidents",
+  "url": "https://www.longtermresilience.org/reports/the-loss-of-control-observatory-a-prototype-to-detect-real-world-ai-control-incidents/",
+  "publisher": "Centre for Long-Term Resilience",
+  "kind": "research",
+  "polarity": "good",
+  "summary": "The Centre for Long-Term Resilience announced the Loss of Control Observatory, a prototype that uses an OSINT-based methodology to detect and analyse real-world scheming and scheming-like incidents from transcripts of AI interactions reported online, with a focus on X, where API access covers up to 1 million posts monthly. Funded by the UK AI Security Institute's Challenge Fund, the project argues that existing incident databases rely on limited sources such as voluntary submissions or news stories, lack an explicit focus on scheming, and have feedback loops of days or weeks, and says CLTR has begun systematically collecting transcripts toward a first phase of a detection capability for monitoring trends.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "observe",
+    "deploy",
+    "verify"
+  ],
+  "subsections": [
+    "s10_2",
+    "s2_4",
+    "s10_5"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "shane2026scheming",
+    "mcgregor2020preventing",
+    "sidhu2026open",
+    "meinke2024frontier"
+  ],
+  "tags": [
+    "scheming",
+    "incident tracking",
+    "osint",
+    "loss of control",
+    "early warning"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated February 02nd 2026 and authored by the Centre for Long-Term Resilience. Prototype status, the OSINT methodology, collection of transcripts shared on X, funding by the UK AI Security Institute's Challenge Fund, the stated gaps in existing incident databases, the 1 million posts monthly API figure and the stated next steps confirmed from the page body. The observatory's March 2026 results report is a separate item (208.json).",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

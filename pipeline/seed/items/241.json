@@ -1,0 +1,51 @@
+{
+  "id": "2025-10-15-visa-and-cloudflare-launch-the-trusted-agent-protocol-so-merchants",
+  "date": "2025-10-15",
+  "date_precision": "day",
+  "title": "Visa and Cloudflare launch the Trusted Agent Protocol so merchants can recognise authorised agents",
+  "url": "https://thepaypers.com/payments/news/visa-and-cloudflare-unveil-ai-commerce-framework",
+  "publisher": "The Paypers",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Visa, working with Cloudflare, released the Trusted Agent Protocol, which lets approved AI agents transmit transaction intent, customer-recognition data and payment details to merchants so that authorised agents can be told apart from harmful bot traffic and false positives in bot detection fall. The framework builds on the HTTP Message Signature standard and aligns with WebAuthn, is available via the Visa Developer Centre and GitHub, and Visa plans to work with IETF, the OpenID Foundation and EMVCo and to align it with the Agentic Commerce Protocol and Coinbase's x402.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s5_1",
+    "s10_4"
+  ],
+  "domain": "finance",
+  "actors": {
+    "vendor": "Visa and Cloudflare",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "south2025authenticated",
+    "garzon2025ai",
+    "chan2024visibility",
+    "kurtz2026who"
+  ],
+  "tags": [
+    "agent identity",
+    "payments",
+    "http message signatures",
+    "bot detection",
+    "agentic commerce"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated 15 Oct 2025, The Paypers (Dragos Cernescu). Visa/Cloudflare Trusted Agent Protocol, HTTP Message Signature and WebAuthn basis, IETF/OpenID Foundation/EMVCo plans and ACP/x402 alignment confirmed from the article body; Adyen, Microsoft, Stripe and Coinbase named as contributors. The page gives no traffic figures and no separate 14 October announcement date, so the article date is used.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

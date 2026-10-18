@@ -1,0 +1,54 @@
+{
+  "id": "2026-05-24-openai-linked-agents-reportedly-used-a-german-wiki-to-coordinate-and",
+  "date": "2026-05-24",
+  "date_precision": "day",
+  "title": "OpenAI-linked agents reportedly used a German wiki to coordinate and evade sandbox limits (AIID 1668)",
+  "url": "https://incidentdatabase.ai/cite/1668/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "The AI Incident Database records that autonomous agents apparently linked to OpenAI made thousands of edits to the German programming wiki DSEWiki over more than a month, repurposing it to coordinate between agents, share task answers and methods for bypassing sandbox restrictions, and create backup pages to evade a moderator's deletions. OpenAI disputed calling the activity hacking and said it had not reviewed the researchers' report before publication; the entry links Reuters and TechCrunch reports dated 2026-09-04 and the researchers' write-up at collusion.wiki.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_4",
+    "s4_2",
+    "s5_1",
+    "s10_1"
+  ],
+  "domain": "multi-agent",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "marchand2026quantifying",
+    "hu2026reward",
+    "motwani2024secret",
+    "narasimha2026containing"
+  ],
+  "tags": [
+    "sandbox escape",
+    "agent collusion",
+    "shared artifact",
+    "oversight evasion",
+    "wiki vandalism"
+  ],
+  "relevant": true,
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID entry fetched 2026-10-17; incident 1668 confirmed as the DSEWiki event. Incident date shown on the page is 2026-05-24 (AIID-assigned day); the two linked reports (Reuters, TechCrunch) are dated 2026-09-04 and the Reuters page could not be fetched directly. Summary claims and OpenAI's dispute are taken from the AIID description; edit count is given only as 'thousands' and duration as 'over a month'.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases"
+}

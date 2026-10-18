@@ -1,0 +1,51 @@
+{
+  "id": "2026-10-02-apple-tightens-macos-full-disk-access-consent-citing-risks-from-ai",
+  "date": "2026-10-02",
+  "date_precision": "day",
+  "title": "Apple tightens macOS Full Disk Access consent, citing risks from AI agents",
+  "url": "https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/",
+  "publisher": "TechCrunch",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "In a post addressed to developers, Apple said it will add controls to macOS Full Disk Access, which gives an app access to files, mail, messages and browsing history, so that users can grant it only through a very explicit user action; Apple said some developers use the permission in ways that could put users at risk and that the risks will grow substantially as AI agents become more capable and autonomous. The announcement came days after an Inc. columnist reported that Meta's Muse app on Mac knew the content of his private messages without his permission, which Meta disputed, and after a Wired report on a flaw in ChatGPT's Mac app; a correction on the article notes that the change concerns informed consent rather than a new limit on the permission.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_1",
+    "s6_1",
+    "s10_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "Apple",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "huang2026my",
+    "goel2026capable",
+    "chen2026allow",
+    "zhang2026agent"
+  ],
+  "tags": [
+    "full disk access",
+    "os permissions",
+    "least privilege",
+    "informed consent",
+    "macos"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. TechCrunch article by Sarah Perez, dated October 2, 2026, quotes Apple's developer post on adding controls to Full Disk Access and the statement that risks grow as AI agents become more capable and autonomous; it also carries the Meta Muse and ChatGPT Mac app context and a correction stating the change is about informed consent, not a new permission limit. No macOS version or ship date is given.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

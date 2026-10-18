@@ -1,0 +1,50 @@
+{
+  "id": "2025-06-25-gartner-predicts-over-40-of-agentic-ai-projects-will-be-cancelled-by",
+  "date": "2025-06-25",
+  "date_precision": "day",
+  "title": "Gartner predicts over 40% of agentic AI projects will be cancelled by 2027, citing inadequate risk controls",
+  "url": "https://www.outlookbusiness.com/deeptech/artificial-intelligence/over-40-of-agentic-ai-projects-will-be-scrapped-by-2027-says-gartner",
+  "publisher": "Outlook Business",
+  "kind": "research",
+  "polarity": "mixed",
+  "summary": "Gartner forecast that more than 40% of agentic AI projects will be cancelled by the end of 2027 because of escalating costs, unclear business value or inadequate risk controls, and estimated that only about 130 of the thousands of vendors claiming agentic AI products are real, describing the rest as agent washing. A January 2025 Gartner poll of 3,412 webinar attendees found that about 19% had made significant investments in agentic AI, 42% conservative investments, 8% none and 31% were waiting or unsure; the article names inadequate risk controls as a cause of cancellation but does not describe any specific control mechanism.",
+  "failure_sources": [],
+  "requirements": [
+    "within-budget",
+    "safe"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_2",
+    "s11_4",
+    "s3_1"
+  ],
+  "domain": "other",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "terekhov2025control",
+    "bhati2026beyond",
+    "telukunta2026case",
+    "liang2026acceptance"
+  ],
+  "tags": [
+    "analyst forecast",
+    "project cancellation",
+    "risk controls",
+    "agent washing",
+    "enterprise adoption"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Outlook Business article by Outlook Business Desk, published 25 June 2025, reporting a Gartner press release. Confirmed from the page text: the forecast that more than 40% of agentic AI projects will be cancelled by the end of 2027; the three stated causes (escalating costs, unclear business value, inadequate risk controls); the estimate that only about 130 of thousands of agentic AI vendors are real and the term agent washing; the January 2025 poll of 3,412 webinar attendees (19% significant, 42% conservative, 8% none, 31% wait-and-see or unsure); quotes from a Gartner Senior Director Analyst; and further forecasts (15% of day-to-day work decisions autonomous by 2028, 33% of enterprise software applications agentic by 2028). The article does not describe any specific risk control, oversight or safeguard mechanism. Classified as research (analyst report with deployment relevance) rather than evaluation, since no test of agents was published; failure_sources left empty because project cancellation is not an agent behaviour failure.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

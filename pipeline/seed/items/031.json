@@ -1,0 +1,54 @@
+{
+  "id": "2024-09-20-spaiware-prompt-injection-plants-persistent-exfiltration",
+  "date": "2024-09-20",
+  "date_precision": "day",
+  "title": "SpAIware: prompt injection plants persistent exfiltration instructions in ChatGPT's memory",
+  "url": "https://embracethered.com/blog/posts/2024/chatgpt-macos-app-persistent-data-exfiltration/",
+  "publisher": "Embrace The Red (Johann Rehberger)",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Johann Rehberger showed that prompt injection from an untrusted website or document could make ChatGPT's Memory feature store attacker instructions that persist into future chats and tell the app to render an invisible image from an attacker-controlled server with the user's messages included as query parameters, so what the user typed and received leaked in every later conversation. His May 2024 memory-injection report had been closed by OpenAI as a model-safety issue rather than a security concern; after an end-to-end exploit demo in June 2024, OpenAI fixed the exfiltration path in the ChatGPT macOS app, version 1.2024.247, in September 2024, while memory injection itself remained possible and users were advised to review stored memories, consider turning Memory off, or use temporary chats.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s5_1",
+    "s10_2"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "das2026trojan",
+    "huang2026malicious",
+    "lan2026silent",
+    "louck2026securing"
+  ],
+  "tags": [
+    "memory poisoning",
+    "prompt injection",
+    "data exfiltration",
+    "persistence",
+    "chatgpt"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page 'Spyware Injection Into Your ChatGPT's Long-Term Memory (SpAIware)' dated Sep 20, 2024 on Embrace The Red (wunderwuzzi / Johann Rehberger). Memory-tool injection from untrusted content, invisible-image exfiltration with user data in query parameters, the fix in ChatGPT macOS version 1.2024.247 (September 2024), the disclosure timeline (image exfiltration reported April 2023; partial url_safe fix December 2023, web app only; memory injection reported May 2024 and closed as a model-safety issue; end-to-end demo June 2024; BSides Vancouver Island talk 2024-09-20) and the user advice confirmed from the article body. No CVE given.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

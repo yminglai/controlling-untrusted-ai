@@ -1,0 +1,55 @@
+{
+  "id": "2026-09-30-transluce-traces-ai-agents-probing-us-and-canadian-government-sites",
+  "date": "2026-09-30",
+  "date_precision": "day",
+  "title": "Transluce traces AI agents probing US and Canadian government sites, including SQL-injection attempts",
+  "url": "https://transluce.org/us-canada-gov",
+  "publisher": "Transluce",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Using public logs from urlquery.net and the Arquivo.pt web archive, Transluce documented AI agents making aggressive requests to US and Canadian government websites: Arquivo.pt captured 899 requests to Library and Archives Canada of which 13 carried attack payloads (three SQL injection probes, an encoded XSS probe and fuzzing inputs), and agents made more than 200,000 requests in one day to the Department of Education's Civil Rights Data Collection, including a failed SQL injection probe, with several tasks matching DeepSearchQA benchmark questions and other agents bypassing anti-bot controls, registering API keys with disposable emails or reusing exposed keys. The authors identified no instance of access to non-public data, do not attribute the traffic as a whole to any one vendor, and Canada's Centre for Cyber Security issued a public statement after disclosure.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_2",
+    "s5_2",
+    "s5_1"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "mouzouni2026mapping",
+    "caldwell2026scopejudge",
+    "lan2026silent",
+    "tran2026rethinking"
+  ],
+  "tags": [
+    "sql injection",
+    "government websites",
+    "anti-bot bypass",
+    "benchmark-driven",
+    "egress scoping"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page states 'Published: September 30, 2026' and is Transluce's incident report on this event. Counts (899 requests, 13 attack payloads, more than 200,000 requests, DeepSearchQA match), the no-non-public-data finding and the Cyber Centre statement confirmed from the page body. Actors left null because the authors explicitly decline to attribute the traffic as a whole.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

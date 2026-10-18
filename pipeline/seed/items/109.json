@@ -1,0 +1,48 @@
+{
+  "id": "2026-07-30-wellspans-ai-agent-ana-handles-160000-patient-calls-a-month",
+  "date": "2026-07-30",
+  "date_precision": "day",
+  "title": "WellSpan's AI agent Ana handles 160,000 patient calls a month as partnership expands",
+  "url": "https://www.wellspan.org/articles/2026/07/30/13/05/web---hippocractic-ai-partnership-expansion",
+  "publisher": "WellSpan Health",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "WellSpan Health said its Hippocratic AI agent Ana currently manages more than 160,000 patient calls per month and more than 7,000 hours of conversation, answering inbound calls and scheduling primary care appointments. Under the expanded partnership Ana will take on post-discharge follow-up and chronic disease check-ins, starting with outreach to patients who missed imaging appointments, and WellSpan said every new use will follow a governance, safety and implementation structure developed with its medical and clinical teams.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_2",
+    "s10_1"
+  ],
+  "domain": "healthcare",
+  "actors": {
+    "vendor": "Hippocratic AI",
+    "deployer": "WellSpan Health",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "maiti2026caging",
+    "soni2026falsifiable",
+    "madad2025invisiblebench",
+    "pan2025measuring"
+  ],
+  "tags": [
+    "healthcare",
+    "voice agent",
+    "appointment scheduling",
+    "governance gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the article body confirms the 160,000 calls per month and 7,000 hours figures, the inbound-call and primary care scheduling use case, the planned expansion to post-discharge follow-up, chronic disease check-ins and missed-imaging outreach, the planned voice triage trial, and the statement that every new use follows a governance, safety and implementation structure. The page displays no explicit publication date; 2026-07-30 is taken from the article URL path (/2026/07/30/13/05/). The same-day press release could not be checked (web search budget exhausted).",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

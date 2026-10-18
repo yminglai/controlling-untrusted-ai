@@ -1,0 +1,53 @@
+{
+  "id": "2024-11-19-microsoft-introduces-the-copilot-control-system-for-governing-agents-at-ignite",
+  "date": "2024-11-19",
+  "date_precision": "day",
+  "title": "Microsoft introduces the Copilot Control System for governing agents at Ignite 2024",
+  "url": "https://www.microsoft.com/en-us/microsoft-365/blog/2024/11/19/introducing-copilot-actions-new-agents-and-tools-to-empower-it-teams/",
+  "publisher": "Microsoft 365 Blog",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "At Ignite on 19 November 2024 Microsoft announced the Copilot Control System, a set of capabilities for IT to adopt and manage Copilot and agents, built on three pillars: data protection (SharePoint Advanced Management with content governance reports and controls, included at no additional charge for Copilot customers), management controls that govern who can access and use Copilot and agents and give visibility into agent status and lifecycle through Copilot in the Microsoft 365 admin centers, and measurement and reporting through Copilot Analytics. The same post announced SharePoint agents (generally available), the Interpreter, Employee Self-Service, Facilitator and Project Manager agents, and Copilot Actions, with the admin-center controls in private preview and SharePoint Advanced Management and Copilot Analytics slated for general availability in early 2025.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_1",
+    "s5_1",
+    "s4_4",
+    "s10_1"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "telukunta2026case",
+    "kurtz2026who",
+    "dong2024agentops",
+    "arceo2026securing"
+  ],
+  "tags": [
+    "enterprise governance",
+    "agent lifecycle",
+    "access controls",
+    "data protection",
+    "microsoft 365"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Microsoft 365 Blog post by Jared Spataro dated Nov 19, 2024. Confirmed from the page text: the Copilot Control System and its three pillars (data protection, management controls, measurement and reporting); the management-controls description (govern who can access and use Copilot and agents, visibility into agent status and lifecycle); SharePoint Advanced Management at no additional charge with GA early 2025; Copilot in Microsoft 365 admin centers in private preview with GA early 2025; and the list of agents (SharePoint agents GA, Interpreter, Employee Self-Service, Facilitator, Project Manager) plus Copilot Actions. The page does not mention Purview or Entra and gives no performance numbers. Announcement-level item: the controls were in preview at publication.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

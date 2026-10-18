@@ -1,0 +1,49 @@
+{
+  "id": "2025-11-11-google-and-the-kubernetes-community-announce-agent-sandbox",
+  "date": "2025-11-11",
+  "date_precision": "day",
+  "title": "Google and the Kubernetes community announce Agent Sandbox for gVisor-isolated agent code execution",
+  "url": "https://cloud.google.com/blog/products/containers-kubernetes/agentic-ai-on-kubernetes-and-gke/",
+  "publisher": "Google Cloud",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 11 November 2025, at KubeCon NA 2025, Google Cloud introduced Agent Sandbox, a new Kubernetes primitive built with the Kubernetes community for agent code execution and computer use: it is built on gVisor with additional support for Kata Containers, is being developed as a CNCF project, is available in open source and deployable on GKE, and ships a Python SDK that wraps sandbox creation in a context manager. On GKE it uses managed gVisor in GKE Sandbox and administrator-configured pre-warmed sandbox pools for sub-second start, up to a 90% improvement over cold starts, and the companion GKE-exclusive Pod Snapshots feature for checkpoint and restore of running pods is in limited preview.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain"
+  ],
+  "subsections": [
+    "s4_2",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Google Cloud",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "marchand2026quantifying",
+    "narasimha2026containing",
+    "maiti2026caging",
+    "rabin2025sandboxeval"
+  ],
+  "tags": [
+    "sandbox",
+    "gvisor",
+    "kubernetes",
+    "code execution",
+    "isolation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated November 11, 2025 (Google Cloud Blog, Brandon Royal). Agent Sandbox as a Kubernetes primitive built on gVisor with Kata Containers support, CNCF project, open source and deployable on GKE, Python SDK, pre-warmed pools with sub-second start (up to 90% over cold starts), and Pod Snapshots in limited preview all confirmed from the page text.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

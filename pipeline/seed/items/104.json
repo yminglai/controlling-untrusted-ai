@@ -1,0 +1,51 @@
+{
+  "id": "2025-07-11-goldman-sachs-pilots-cognitions-devin-supervised-autonomous-coder",
+  "date": "2025-07-11",
+  "date_precision": "day",
+  "title": "Goldman Sachs pilots Cognition's Devin as a supervised autonomous coder",
+  "url": "https://www.nbcchicago.com/news/business/money-report/goldman-sachs-is-piloting-its-first-autonomous-coder-in-major-ai-milestone-for-wall-street/3787263/",
+  "publisher": "CNBC (via NBC Chicago)",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Goldman Sachs is testing Devin, the autonomous software engineer from Cognition, and plans to add it to a developer workforce of about 12,000 people, starting with hundreds of instances that could grow into the thousands depending on use cases; Cognition said Goldman is the first large bank to use Devin. Technology chief Marco Argenti said the agents will be supervised by human employees and take on tedious work such as migrating internal code to newer programming languages, described a \"hybrid workforce\" in which engineers state problems clearly and oversee the agents, and estimated productivity gains of up to three to four times those of earlier AI tools, a projection that is the bank's own.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_6",
+    "s10_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cognition",
+    "deployer": "Goldman Sachs",
+    "model": "Devin"
+  },
+  "evidence": "press",
+  "related_papers": [
+    "dhanorkar2026human",
+    "yu2026habituation",
+    "telukunta2026case",
+    "davis2026cheap"
+  ],
+  "tags": [
+    "coding agent",
+    "human supervision",
+    "hybrid workforce",
+    "code migration",
+    "banking"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; CNBC article by Hugh Son carried by NBC Chicago, dated July 11, 2025. Devin pilot, roughly 12,000 developers, hundreds of instances growing to thousands, human supervision, code-migration tasks, first-large-bank claim, and the three-to-four-times productivity estimate (Argenti's own projection) confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

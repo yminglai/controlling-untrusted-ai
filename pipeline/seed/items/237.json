@@ -1,0 +1,56 @@
+{
+  "id": "2025-08-28-taco-bell-rethinks-its-ai-drive-thru-rollout-after-glitches",
+  "date": "2025-08-28",
+  "date_precision": "day",
+  "title": "Taco Bell rethinks its AI drive-thru rollout after glitches and an 18,000-water-cup order",
+  "url": "https://www.sherwood.news/culture/taco-bell-is-rethinking-its-ai-drive-thrus-amid-glitches-and-trolls-ordering",
+  "publisher": "Sherwood News",
+  "kind": "incident",
+  "polarity": "mixed",
+  "summary": "Sherwood News, citing the Wall Street Journal, reported that Yum! Brands is rethinking its rollout of AI drive-thru ordering at Taco Bell after customers were frustrated by glitches and inaccurate orders and some trolled the system with absurd requests such as asking for 18,000 water cups. Taco Bell's chief digital and technology officer Dane Mathews told the WSJ that the chain is carefully considering how to use the technology, which is already in more than 500 US restaurants, and the article says a major pullback is not expected.",
+  "failure_sources": [
+    "mistakes",
+    "manipulation"
+  ],
+  "requirements": [
+    "correct",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_3",
+    "s6_4",
+    "s10_2"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": null,
+    "deployer": "Taco Bell (Yum! Brands)",
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "winston2026solver",
+    "pal2026persona",
+    "sah2026verifier",
+    "yao2024bench"
+  ],
+  "tags": [
+    "drive-thru ordering",
+    "adversarial users",
+    "action bounds",
+    "human fallback",
+    "rollout review"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; Sherwood News article by Max Knoblauch dated 8/28/25. The 18,000 water cups request, the more-than-500 US restaurants figure, Dane Mathews's title and his statement to the WSJ, and the no-major-pullback line were confirmed from the article body. The candidate's claims of about two million orders processed, a 2023 start, and staff being coached to monitor or step in do not appear on this page (they come from the underlying WSJ report) and were dropped from the summary. Relevance is borderline: a drive-thru ordering system sits near the chatbot boundary, but it commits orders into the restaurant's order system at scale, so it is treated as a consumer-facing action-taking agent; the missing controls are bounds on order actions and a human fallback.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

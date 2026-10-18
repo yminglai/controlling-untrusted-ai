@@ -1,0 +1,51 @@
+{
+  "id": "2026-04-07-anthropic-withholds-claude-mythos-preview-from-general-release-under-project",
+  "date": "2026-04-07",
+  "date_precision": "day",
+  "title": "Anthropic withholds Claude Mythos Preview from general release under Project Glasswing",
+  "url": "https://www.anthropic.com/glasswing",
+  "publisher": "Anthropic",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Anthropic announced Project Glasswing and said it does not plan to make Claude Mythos Preview generally available, because the model surpasses all but the most skilled humans at finding and exploiting software vulnerabilities and the safeguards that detect and block its most dangerous outputs are still being built. Access went instead to twelve launch partners (including AWS, Apple, Google, Microsoft and JPMorganChase) and over 40 further organisations that maintain critical software, for defensive work such as vulnerability detection and penetration testing; the model has found thousands of high-severity vulnerabilities, including a 27-year-old OpenBSD flaw, reported ones have been patched, and Anthropic committed to a public report within 90 days and a Cyber Verification Program for security professionals.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "constrain"
+  ],
+  "subsections": [
+    "s10_2",
+    "s10_5",
+    "s10_4"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Twelve Project Glasswing launch partners (AWS, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, Linux Foundation, Microsoft, NVIDIA, Palo Alto Networks) plus over 40 critical-software organisations",
+    "model": "Claude Mythos Preview"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "shevlane2022structured",
+    "solaiman2019release",
+    "goemans2024safety",
+    "clymer2025example"
+  ],
+  "tags": [
+    "staged release",
+    "structured access",
+    "dangerous capabilities",
+    "vulnerability discovery",
+    "release gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page is Anthropic's Project Glasswing announcement dated April 7, 2026 (a banner dated October 6, 2026 adds the expanded Cyber Verification Program). The no-general-availability decision and its stated reason, the twelve launch partners and 40+ further organisations, the vulnerability figures (thousands of high-severity flaws, 27-year-old OpenBSD bug) and the 90-day public report commitment are all confirmed from the page body.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

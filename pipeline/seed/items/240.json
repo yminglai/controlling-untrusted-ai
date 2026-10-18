@@ -1,0 +1,52 @@
+{
+  "id": "2025-09-29-openai-launches-instant-checkout-so-chatgpt-can-buy-from-etsy",
+  "date": "2025-09-29",
+  "date_precision": "day",
+  "title": "OpenAI launches Instant Checkout so ChatGPT can buy from Etsy and Shopify merchants",
+  "url": "https://openai.com/index/buy-it-in-chatgpt/",
+  "publisher": "OpenAI",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "On September 29, 2025 OpenAI turned on Instant Checkout, letting U.S. ChatGPT Free, Plus and Pro users buy single items from U.S. Etsy sellers inside the chat, with over a million Shopify merchants announced as coming soon; the feature runs on the Agentic Commerce Protocol, an open standard co-developed with Stripe, under which ChatGPT passes order details to the merchant, who accepts or declines the order, processes payment with its existing provider and remains the merchant of record. OpenAI states that users explicitly confirm each step before any action is taken, that encrypted payment tokens are authorised only for specific amounts and specific merchants with the user's permission, that only the information required to complete the order is shared with the merchant, and that product results are organic and unsponsored, with multi-item carts and more merchants and regions named as the next steps.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "within-budget"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s6_1",
+    "s4_1",
+    "s10_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI (ChatGPT, U.S. users); Etsy sellers (live); Shopify merchants (announced); Stripe (payments)",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "he2026kedgeflow",
+    "yin2026safety",
+    "south2025authenticated",
+    "zuvic2026capability"
+  ],
+  "tags": [
+    "agentic commerce",
+    "payments",
+    "scoped tokens",
+    "approval gate",
+    "shopping"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "The live URL returned HTTP 403 to two WebFetch attempts and to curl on 2026-10-17 (bot block), so the page was verified from the Wayback Machine snapshot of 2026-10-07 (web.archive.org/web/20261007012440/ + url), which carries the full article. Page title 'Buy it in ChatGPT: Instant Checkout and the Agentic Commerce Protocol', dated September 29, 2025, category Product, published by OpenAI. Confirmed from the article body: U.S. Etsy sellers live for U.S. Free, Plus and Pro users; 'over a million Shopify merchants' coming soon; single-item purchases today with multi-item carts, more merchants and regions next; protocol co-developed with Stripe and open-sourced; merchant accepts or declines the order and is merchant of record; 'they explicitly confirm each step before any action is taken'; 'encrypted payment tokens are only authorized for specific amounts and specific merchants'; 'only the information required to complete the order is shared'; 'Product results are organic and unsponsored'. Nuance not in the candidate: when several merchants sell the same product, ranking considers whether Instant Checkout is enabled, although the page says Instant Checkout items are not preferred. The page quotes 'more than 700 million' weekly users but names no model; the candidate's 'shared payment tokens' phrase matches the page's reference to Stripe's Shared Payment Token API.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

@@ -1,0 +1,54 @@
+{
+  "id": "2024-11-15-air-indias-ai-g-assistant-automates-97-of-nearly-4-million-customer",
+  "date": "2024-11-15",
+  "date_precision": "day",
+  "title": "Air India's AI.g assistant automates 97% of nearly 4 million customer sessions",
+  "url": "https://www.microsoft.com/en/customers/story/19768-air-india-azure-open-ai-service",
+  "publisher": "Microsoft",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "Microsoft's customer story reports that Air India's generative AI virtual assistant AI.g, launched in May 2023 on Azure OpenAI Service and integrated with enterprise systems including the reservation system, has handled nearly 4 million customer queries, 97% of them with full automation, averaging about 30,000 questions a day on topics such as bookings, flight status, baggage and check-in. The deployment uses Azure AI Content Safety to detect and mitigate harmful content, exposes back-end APIs through Azure API Management with the security layers required by the enterprise security team, and escalates to contact-centre staff when it detects a need for more support; Air India states it has had no instance of inappropriate behaviour in more than a year and a half.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "correct"
+  ],
+  "operations": [
+    "observe",
+    "intervene",
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_2",
+    "s6_2",
+    "s4_1",
+    "s10_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "Microsoft",
+    "deployer": "Air India",
+    "model": "GPT models via Azure OpenAI Service (version not named)"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "rebedea2023nemo",
+    "saketos2026defer",
+    "kang2026policyguard",
+    "rabinovich2026near"
+  ],
+  "tags": [
+    "customer service",
+    "content safety",
+    "human escalation",
+    "airline"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Microsoft customer story dated 11/15/2024. Figures (nearly 4 million queries, 97% full automation, about 30,000 questions a day, May 2023 launch) and controls (Azure AI Content Safety, Azure API Management with enterprise security layers, escalation to contact-centre staff, reservation-system integration for actionable responses) confirmed from the page body. First-party vendor case study, not independently corroborated; no specific GPT version named.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

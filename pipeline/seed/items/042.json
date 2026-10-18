@@ -1,0 +1,56 @@
+{
+  "id": "2025-08-25-anthropic-pilots-claude-for-chrome-and-publishes-prompt-injection",
+  "date": "2025-08-25",
+  "date_precision": "day",
+  "title": "Anthropic pilots Claude for Chrome and publishes prompt-injection attack success rates",
+  "url": "https://claude.com/blog/claude-for-chrome",
+  "publisher": "Anthropic",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "Anthropic began piloting Claude in Chrome, a browser extension that lets trusted users instruct Claude to see the page, click buttons and fill forms on their behalf, with 1,000 Max plan users from a waitlist; the research preview shipped site-level permissions that users can grant or revoke, confirmations before high-risk actions such as publishing, purchasing or sharing personal data, blocked site categories (financial services, adult content, pirated content) and improved system-prompt instructions, while classifiers for suspicious instruction patterns and unusual data-access requests were still being built and tested. In Anthropic's red-team evaluation of 123 test cases across 29 attack scenarios, browser use without safety mitigations showed a 23.6% attack success rate, which the mitigations added to autonomous mode reduced to 11.2%, and on a challenge set of four browser-specific attack types the rate fell from 35.7% to 0%; before mitigations, a malicious email posing as a security request that said no additional confirmation was required led Claude to delete the user's emails, which the mitigated version recognised as likely phishing and did not act on.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "verify",
+    "intervene",
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s9_2",
+    "s2_2",
+    "s6_1",
+    "s10_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "Anthropic (1,000 Max plan pilot users)",
+    "model": "Claude"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "evtimov2025wasp",
+    "debenedetti2024agentdojo",
+    "yan2026user",
+    "datta2026waaa"
+  ],
+  "tags": [
+    "prompt injection",
+    "browser agent",
+    "approval gates",
+    "site permissions",
+    "staged rollout"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page). Post dated August 25, 2025, with later update notes dated November 24, 2025 (beta for all Max subscribers) and December 18, 2025 (Pro, Team and Enterprise plans, Claude Code integration, admin allowlists and blocklists); the item date is the original publication date. The figures 1,000 Max plan users, 123 test cases, 29 attack scenarios, 23.6% to 11.2% in autonomous mode and 35.7% to 0% on a challenge set of four browser-specific attack types, and the email-deletion example are quoted from the page body. The page mostly calls the product 'Claude in Chrome'; 'Claude for Chrome' appears in the URL and navigation. No specific Claude model version is named. Classifiers are described as being built and tested, not shipped.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

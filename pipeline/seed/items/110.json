@@ -1,0 +1,53 @@
+{
+  "id": "2025-07-17-openai-launches-chatgpt-agent-with-confirmation-prompts-takeover-mode",
+  "date": "2025-07-17",
+  "date_precision": "day",
+  "title": "OpenAI launches ChatGPT agent with confirmation prompts, takeover mode and behaviour monitors",
+  "url": "https://decrypt.co/330714/openais-chatgpt-agent-launches-expanded-powers-elevated-risk",
+  "publisher": "Decrypt",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "OpenAI released ChatGPT agent to Pro, Plus and Team users on 17 July 2025; it works in a cloud virtual computer with a text-based browser, a terminal and connectors such as Google Drive and GitHub, and asks for explicit user approval before important actions such as purchases or access to sensitive data, stopping short of entering credit card details until the user approves. OpenAI researcher Casey Chu said the model was trained to ignore suspicious instructions on risky websites, that monitors watch the agent's behaviour and stop it if anything looks suspicious, and that a takeover mode lets users enter information themselves, while Sam Altman said the new capability will bring a new set of attacks.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "intervene",
+    "observe",
+    "train"
+  ],
+  "subsections": [
+    "s6_1",
+    "s5_2",
+    "s8_4",
+    "s6_4"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": "ChatGPT agent"
+  },
+  "evidence": "press",
+  "related_papers": [
+    "mozannar2025magentic",
+    "yan2026user",
+    "irshad2026verifiable",
+    "zheng2025webguard"
+  ],
+  "tags": [
+    "approval gates",
+    "takeover mode",
+    "action monitors",
+    "prompt injection",
+    "consumer agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17. Decrypt news report by Jason Nelson dated July 17, 2025 (day precision). Rollout to Pro, Plus and Team users, approval before important actions, pause before credit card entry, takeover mode, behaviour monitors and training to ignore suspicious instructions on risky websites are all stated in the article body, the last three in quotes from OpenAI researcher Casey Chu. The page gives no numeric figures.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

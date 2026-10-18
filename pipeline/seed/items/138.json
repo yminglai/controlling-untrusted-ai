@@ -1,0 +1,53 @@
+{
+  "id": "2025-11-19-auth0-for-ai-agents-goes-ga-with-token-vault-and-ciba-based",
+  "date": "2025-11-19",
+  "date_precision": "day",
+  "title": "Auth0 for AI Agents goes GA with Token Vault and CIBA-based asynchronous human approval",
+  "url": "https://auth0.com/blog/auth0-for-ai-agents-generally-available/",
+  "publisher": "Auth0",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Auth0 announced on 19 November 2025 that Auth0 for AI Agents is generally available, with four components (User Authentication, Token Vault, Asynchronous Authorization and fine-grained authorization for RAG) and SDKs for LangChain, LlamaIndex, Cloudflare Agents and the Vercel AI SDK. Token Vault stores, manages and refreshes users' OAuth tokens for third-party APIs such as Google Drive, Slack, Jira and GitHub (35+ integrations) so credentials are not stored in the agent's logic; Asynchronous Authorization uses CIBA with Guardian push notifications so an agent working in the background requests the user's approval for a critical action and is issued a token to act on the user's behalf only after the user approves; FGA for RAG returns to the agent only the documents the user is permitted to see.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_5",
+    "s6_1",
+    "s4_1",
+    "s4_4"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Auth0 (Okta)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "avirneni2025decoupling",
+    "maiti2026caging",
+    "weng2026you"
+  ],
+  "tags": [
+    "oauth",
+    "credential brokering",
+    "ciba",
+    "asynchronous approval",
+    "agent identity"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Auth0 blog post by Gareth Davies (Chief Product Officer, Auth0) dated Nov 19, 2025, titled 'Auth0 for AI Agents is Now Generally Available (GA)'. GA status, the four components, Token Vault storing, managing and refreshing OAuth tokens, CIBA-based Asynchronous Authorization that issues the token only after the user approves, Guardian push (email and SMS 'coming soon'), 35+ integrations, the named frameworks and FGA-for-RAG permission filtering all confirmed from the page body. The page gives no GA effective date other than the publication date and does not mention Okta; the sample code does fetch the access token from Token Vault, so the page's claim is that credentials are not stored in agent logic, not that the agent never touches a token.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

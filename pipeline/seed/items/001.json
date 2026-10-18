@@ -1,0 +1,54 @@
+{
+  "id": "2025-05-19-github-ships-the-copilot-coding-agent-with-a-sandboxed-vm-egress",
+  "date": "2025-05-19",
+  "date_precision": "day",
+  "title": "GitHub ships the Copilot coding agent with a sandboxed VM, egress allowlist, branch limits and human-gated CI",
+  "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/",
+  "publisher": "GitHub Blog",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "The Copilot coding agent runs in a GitHub Actions virtual machine whose internet access is limited to a customizable list of trusted destinations, can push only to branches it created, and commits its work to a draft pull request while recording session logs. Its pull requests require human approval before any CI/CD workflows run, the developer who asked for the pull request cannot approve it, and existing required-review rules, repository rulesets and organization policies still apply.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s4_2",
+    "s6_1",
+    "s4_1",
+    "s10_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "GitHub",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "lan2026silent",
+    "yu2026habituation",
+    "wang2026demystifying",
+    "rabin2025sandboxeval"
+  ],
+  "tags": [
+    "sandbox",
+    "egress allowlist",
+    "approval gate",
+    "least privilege",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; GitHub Blog post by Thomas Dohmke dated May 19, 2025 (updated May 23, 2025). Confirmed from the page text: GitHub Actions environment that boots a virtual machine, internet access limited to a customizable list of trusted destinations, pushes only to branches the agent created, draft pull requests, human approval before any CI/CD workflow runs, the requesting developer cannot approve, required reviews, repository rulesets and organization policies honored, session logs. The page does not use the word 'firewall', so the candidate title was adjusted.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

@@ -1,0 +1,52 @@
+{
+  "id": "2025-12-02-aws-previews-policy-in-bedrock-agentcore-to-intercept-every-tool-call-with-cedar",
+  "date": "2025-12-02",
+  "date_precision": "day",
+  "title": "AWS previews Policy in Bedrock AgentCore to intercept every tool call with Cedar rules",
+  "url": "https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-bedrock-agentcore-policy-evaluations-preview",
+  "publisher": "AWS",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "On 2 December 2025 AWS announced a preview of Policy in Amazon Bedrock AgentCore, which integrates with AgentCore Gateway to intercept every tool call in real time; teams create policies in natural language that automatically convert to Cedar, the AWS open-source policy language, so enforcement sits outside the agent's code. The same release previewed AgentCore Evaluations, which offers 13 built-in evaluators and custom model-based scoring to test and continuously monitor agent performance based on real-world behavior; Evaluations is in preview in four AWS Regions and Policy in all Regions where AgentCore is available.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe",
+    "verify"
+  ],
+  "subsections": [
+    "s4_1",
+    "s4_3",
+    "s5_2",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "AWS",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yu2026nomos",
+    "shi2025progent",
+    "zuvic2026capability",
+    "he2026kedgeflow"
+  ],
+  "tags": [
+    "policy enforcement",
+    "tool gateway",
+    "cedar",
+    "agent evaluations"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; AWS What's New post titled 'Amazon Bedrock AgentCore now includes Policy (preview), Evaluations (preview) and more', posted Dec 2, 2025. Confirmed from the page: Policy integrates with AgentCore Gateway to intercept every tool call in real time, natural-language policies convert to Cedar, Evaluations has 13 built-in evaluators plus custom model-based scoring, both in preview (Evaluations in four Regions).",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

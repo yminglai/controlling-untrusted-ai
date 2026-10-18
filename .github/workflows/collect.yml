@@ -1,0 +1,80 @@
+name: Collect stream
+
+# Refreshes site/data/stream.json from the feeds in pipeline/feeds.yml and from reader
+# submissions (issues labelled "submission"), classifies new items, and commits the result.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every 6 hours (UTC)
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "Look-back window in days"
+        required: false
+        default: "10"
+      limit:
+        description: "Max candidates to classify (empty = no limit)"
+        required: false
+        default: ""
+      no_llm:
+        description: "Heuristic classifier only (items get needs_review: true)"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: collect-stream
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install --quiet requests pyyaml
+
+      - name: Collect and classify
+        id: collect
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SINCE: ${{ github.event.inputs.since || '10' }}
+          LIMIT: ${{ github.event.inputs.limit || '' }}
+          NO_LLM: ${{ github.event.inputs.no_llm || 'false' }}
+        run: |
+          set -euo pipefail
+          args=(--since "$SINCE" --issues "${{ github.repository }}")
+          if [ -n "$LIMIT" ]; then args+=(--limit "$LIMIT"); fi
+          if [ "$NO_LLM" = "true" ]; then args+=(--no-llm); fi
+          python pipeline/collect_news.py "${args[@]}"
+
+      - name: Commit and push if the stream changed
+        env:
+          NEW_ITEMS: ${{ steps.collect.outputs.new_items }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- site/data/stream.json site/data/stats.json; then
+            echo "No changes to site/data/stream.json or stats.json."
+            exit 0
+          fi
+          git config user.name "stream-collector[bot]"
+          git config user.email "stream-collector[bot]@users.noreply.github.com"
+          git add site/data/stream.json site/data/stats.json
+          git commit -m "stream: ${NEW_ITEMS:-0} new items"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

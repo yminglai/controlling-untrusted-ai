@@ -1,0 +1,53 @@
+{
+  "id": "2026-06-05-openai-rolls-out-lockdown-mode-limiting-chatgpts-outbound-requests",
+  "date": "2026-06-05",
+  "date_precision": "day",
+  "title": "OpenAI rolls out Lockdown Mode, limiting ChatGPT's outbound requests to block exfiltration",
+  "url": "https://help.openai.com/en/articles/20001061-lockdown-mode",
+  "publisher": "OpenAI Help Center",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "OpenAI's help article says Lockdown Mode, an optional advanced security setting, is rolling out to eligible personal accounts (Free, Go, Plus and Pro) and self-serve ChatGPT Business accounts, after an earlier release limited to Enterprise, Edu, Healthcare and Teachers workspaces. The setting limits outbound network requests to prevent the final stage of prompt-injection data exfiltration: live web browsing is restricted to cached content, deep research and agent mode are disabled, Canvas code cannot reach the network, file downloads are off and live connector access and connector write actions are blocked, while OpenAI states it does not stop injections from appearing in processed content and does not affect Codex.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain"
+  ],
+  "subsections": [
+    "s4_2",
+    "s4_4",
+    "s4_1",
+    "s2_2"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "lan2026silent",
+    "costa2025securing",
+    "maiti2026caging",
+    "narasimha2026containing"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "egress control",
+    "opt-in",
+    "network isolation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Live URL answers HTTP 403 (JavaScript challenge) to non-browser fetchers; content confirmed from Wayback Machine captures of the same URL: 2026-02-16 (Enterprise, Edu, Healthcare and Teachers only, consumer plans 'not yet'), 2026-06-05 20:39 UTC (text reads 'rolling out to eligible personal accounts, including Free, Go, Plus, and Pro, and self-serve ChatGPT Business accounts', stamped updated about a day earlier), and 2026-10-15 (page still live, HTTP 200). The page shows only relative 'Updated' stamps, so the day is taken from the first archive capture burst on 2026-06-05. The sweep's Dane Stuckey quote does not appear on the page and was dropped from the summary.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

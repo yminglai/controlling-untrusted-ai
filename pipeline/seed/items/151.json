@@ -1,0 +1,51 @@
+{
+  "id": "2025-06-18-mcp-specification-revision-classifies-servers-as-oauth-resource",
+  "date": "2025-06-18",
+  "date_precision": "day",
+  "title": "MCP specification revision classifies servers as OAuth resource servers and requires RFC 8707 resource indicators",
+  "url": "https://modelcontextprotocol.io/specification/2025-06-18/changelog",
+  "publisher": "Model Context Protocol",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "The 2025-06-18 revision of the Model Context Protocol specification classifies MCP servers as OAuth resource servers, adding protected resource metadata so clients can discover the corresponding authorization server, and requires MCP clients to implement RFC 8707 resource indicators to prevent malicious servers from obtaining access tokens. The revision also clarifies security considerations in the authorization spec and in a new security best practices page, adds elicitation so servers can request additional information from users during interactions, adds structured tool output and resource links in tool results, removes JSON-RPC batching, and requires the negotiated protocol version in an MCP-Protocol-Version header on subsequent HTTP requests.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s10_1"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "Model Context Protocol",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "li2026zero",
+    "zuvic2026capability",
+    "sambrook2026hardware"
+  ],
+  "tags": [
+    "mcp",
+    "oauth",
+    "scoped credentials",
+    "confused deputy",
+    "tool servers"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the page is the 'Key Changes' changelog of the Model Context Protocol specification revision 2025-06-18, listing changes since revision 2025-03-26. Confirmed from the page text: MCP servers classified as OAuth Resource Servers with protected resource metadata for authorization-server discovery (PR #338); clients required to implement RFC 8707 Resource Indicators to prevent malicious servers from obtaining access tokens (PR #734); clarified security considerations and a new security best practices page; elicitation (PR #382); structured tool output (PR #371); resource links in tool results (PR #603); removal of JSON-RPC batching (PR #416); MCP-Protocol-Version header required on HTTP (PR #548). The page carries no separate publication date; the date is the revision identifier in the URL and page text. The page does not name Anthropic, so the vendor is recorded as the protocol project. Title reworded from 'makes' to the page's verb 'classifies'.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

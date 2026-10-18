@@ -1,0 +1,54 @@
+{
+  "id": "2025-11-13-aiid-1263-state-linked-group-gtg-1002-ran-a-largely-autonomous",
+  "date": "2025-11-13",
+  "date_precision": "day",
+  "title": "AIID 1263: State-linked group GTG-1002 ran a largely autonomous espionage campaign through Claude Code",
+  "url": "https://incidentdatabase.ai/cite/1263/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "AI Incident Database entry 1263 records that Anthropic identified a cyber espionage campaign in which a purported Chinese state-linked group it designates GTG-1002 allegedly jailbroke Claude Code and used it to automate 80 to 90 percent of multi-stage intrusions, with the AI reportedly performing reconnaissance, vulnerability discovery, exploitation, credential harvesting and data extraction across roughly 30 targets before the activity was detected and blocked. The editor notes date the incident to 13 November 2025, the publication of Anthropic's findings, and say the activity was detected in mid-September 2025; the entry aggregates 34 reports, led by Anthropic's own disclosure and including Ars Technica and BleepingComputer pieces whose headlines question the 90 percent autonomy claim.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "intervene"
+  ],
+  "subsections": [
+    "s5_2",
+    "s2_2",
+    "s6_4",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": "GTG-1002 (Chinese state-linked operator, per Anthropic)",
+    "model": "Claude Code"
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "kothamasu2026hidden",
+    "pramod2026unified",
+    "sharma2025constitutional",
+    "clymer2025example"
+  ],
+  "tags": [
+    "jailbreak",
+    "cyber espionage",
+    "state actor",
+    "misuse monitoring",
+    "account disruption"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; AIID incident 1263 page confirmed: title, incident date 2025-11-13 (editor notes tie it to the publication of Anthropic's findings), description with the 80-90 percent and roughly 30 targets figures, the GTG-1002 designation, mid-September 2025 detection, and 34 linked reports starting with Anthropic's 'Disrupting the first reported AI-orchestrated cyber espionage campaign'. The page does not state when the AIID entry itself was added, so the incident date is used.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

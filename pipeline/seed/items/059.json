@@ -1,0 +1,55 @@
+{
+  "id": "2026-08-03-zenity-labs-discloses-pleasefix-zero-click-hijack-of-agentic-browsers",
+  "date": "2026-08-03",
+  "date_precision": "day",
+  "title": "Zenity Labs discloses PleaseFix, a zero-click prompt-injection class that hijacks Claude in Chrome, Gemini in Chrome, Comet, ChatGPT Atlas and Microsoft Edge",
+  "url": "https://zenity.io/company-overview/newsroom/company-news/zenity-labs-exposes-the-full-scope-of-pleasefix",
+  "publisher": "Zenity Labs",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "At Black Hat USA 2026, Zenity Labs researchers Michael Bargury and Stav Cohen presented PleaseFix, a vulnerability class in which content the agent reads (an email it is asked to summarise, a poisoned calendar invite, a link under a social-media post, or fabricated browser-history entries the company calls HistoryFixing) redirects agentic browsers without user clicks; the reported chains made Claude in Chrome exfiltrate Gmail data, share the victim's Google Drive and take over Slack, X and Claude accounts even in its 'ask before acting' mode, made Perplexity Comet take over a 1Password account, made ChatGPT Atlas send WhatsApp phishing messages and place an Amazon order through Amazon's Rufus assistant after direct checkout was blocked, opened reverse shells through local Ollama and Jupyter from Comet and Gemini in Chrome, corrupted a SQL database through pgAdmin from Edge, and led Gemini to delete live servers in an AWS account. Zenity says it disclosed the findings to Anthropic, Perplexity, Google, Microsoft and OpenAI before the talk; some vendors issued patches while others declined and characterised the behaviour as intended functionality, and Zenity reports bypassing Perplexity's file-system fix twice and the localhost protections of Gemini and Edge.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s6_1",
+    "s4_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Anthropic, Perplexity, Google, Microsoft, OpenAI",
+    "deployer": null,
+    "model": "Claude in Chrome; Gemini in Chrome; Perplexity Comet; ChatGPT Atlas; Microsoft Edge"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "debenedetti2025defeating",
+    "costa2025securing",
+    "evtimov2025wasp",
+    "zhan2025adaptive"
+  ],
+  "tags": [
+    "prompt injection",
+    "agentic browser",
+    "zero-click",
+    "approval bypass",
+    "account takeover"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (live page, no archive needed). Zenity press release 'Zenity Labs Exposes the Full Scope of PleaseFix, a Vulnerability Class Enabling Zero-Click Attacks Across Leading Agentic Browsers'. Page metadata article:published_time and the visible header both give 2026-08-03; the press-release dateline reads 'LAS VEGAS - Aug. 5, 2026' (Black Hat USA 2026 talk 'Pwning Agentic Browsers with PleaseFix'). Date set to the page's publication date; the candidate's 2026-08-05 was the dateline. Confirmed from the page text: affected products (Claude in Chrome, Perplexity Comet, ChatGPT Atlas, Gemini in Chrome, Microsoft Edge), vectors (email summarisation, calendar invite, social-media link, localhost services, fabricated browser history), the outcomes listed in the summary, the statement that the Claude chain succeeded in 'ask before acting' mode, the disclosure to five vendors and the mixed response (patched vs declined as intended functionality). The page gives no attack success rates or victim counts. Candidate's 'Copilot Edge' rendered as Microsoft Edge per page wording. Researchers named on the page: Michael Bargury (CTO) and Stav Cohen.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

@@ -1,0 +1,51 @@
+{
+  "id": "2025-11-06-amazon-sues-perplexity-over-its-comet-browser-agent-shopping-inside",
+  "date": "2025-11-06",
+  "date_precision": "day",
+  "title": "Amazon sues Perplexity over its Comet browser agent shopping inside customer accounts",
+  "url": "https://www.retail-insight-network.com/news/amazon-sues-perplexity-agentic-ai/",
+  "publisher": "Retail Insight Network",
+  "kind": "policy",
+  "polarity": "mixed",
+  "summary": "Amazon filed suit against Perplexity in the US District Court for the Northern District of California, alleging that the Comet browser and its AI agent covertly accessed Amazon customer accounts in breach of the Computer Fraud and Abuse Act and California's Comprehensive Computer Data Access and Fraud Act, disguised the browser as Google Chrome, released new versions to avoid detection after Amazon first detected the activity in August 2025, and traces the conduct back to November 2024, when Perplexity's Buy with Pro tool placed orders through Amazon accounts managed by Perplexity, including Prime accounts. Amazon asked the court to order Perplexity to stop deploying Comet's agents on its sites and said third-party purchasing apps should operate openly and respect a service provider's decision whether to participate, while Perplexity rejected the claims as an attempt to use market power to suppress competition.",
+  "failure_sources": [],
+  "requirements": [
+    "compliant",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s4_5",
+    "s10_4",
+    "s1_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity (Comet)",
+    "deployer": "Perplexity",
+    "model": null
+  },
+  "evidence": "court",
+  "related_papers": [
+    "south2025authenticated",
+    "li2026agent",
+    "garzon2025ai",
+    "zuvic2026capability"
+  ],
+  "tags": [
+    "lawsuit",
+    "agentic browser",
+    "agent identity",
+    "third-party platform",
+    "shopping agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; Retail Insight Network (GlobalData) news article dated 2025-11-06 on Amazon v. Perplexity. Confirmed from the page text: filing in the US District Court for the Northern District of California; CFAA and California Comprehensive Computer Data Access and Fraud Act claims; Comet allegedly disguised as Google Chrome and new versions released to evade detection after Amazon's first detection in August 2025; Buy with Pro orders through Perplexity-managed Amazon accounts including Prime accounts from November 2024; Amazon's demand that Perplexity cease deploying Comet's agents on its sites; Perplexity's response that Amazon is using market power to suppress competition. No damages figure on the page. Coded as a contested authority dispute rather than an agent failure: the agent acted as its operator intended, so failure_sources is empty; the missing mechanism is agent identification and attribution (s4_5) and the hierarchy of principals (user instruction vs platform policy vs law) named in s1_1.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

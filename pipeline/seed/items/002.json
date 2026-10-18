@@ -1,0 +1,55 @@
+{
+  "id": "2025-05-22-legit-security-shows-remote-prompt-injection-in-gitlab-duo-leaking-pr",
+  "date": "2025-05-22",
+  "date_precision": "day",
+  "title": "Legit Security shows remote prompt injection in GitLab Duo leaking private source code",
+  "url": "https://www.legitsecurity.com/blog/remote-prompt-injection-in-gitlab-duo",
+  "publisher": "Legit Security",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Legit Security researchers showed that hidden instructions placed in GitLab merge request descriptions and comments, commit messages, issues or source code were followed by GitLab Duo Chat, and that Duo's Markdown output, rendered progressively as it streamed, let attacker-supplied HTML such as img tags through before sanitization. A prompt hidden in a public project's merge request made Duo take code changes from a private project the victim could access, base64-encode them and append them to an img URL pointing at an attacker-controlled server, so the victim's browser sent the code out when Duo answered a routine question; the researchers reported the issue to GitLab on 12 February 2025 and GitLab fixed it so Duo no longer renders unsafe tags pointing to domains outside gitlab.com.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "compliant",
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_4",
+    "s4_1",
+    "s5_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "GitLab",
+    "deployer": null,
+    "model": "Claude (Anthropic)"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "lan2026silent",
+    "costa2025securing",
+    "maloyan2026prompt"
+  ],
+  "tags": [
+    "prompt injection",
+    "data exfiltration",
+    "html injection",
+    "coding assistant",
+    "responsible disclosure"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page dated May 22, 2025 (updated December 5, 2025), written by Omer Mayraz of Legit Security. Injection placements (merge requests, comments, commits, issues, source code), hiding techniques (Unicode smuggling, Base16, KaTeX white text), the streamed-Markdown HTML rendering flaw, the base64 img-URL exfiltration of private code, the 2025-02-12 disclosure and the duo-ui!52 fix restricting external-domain tags confirmed from the article body. No CVE is given on the page.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

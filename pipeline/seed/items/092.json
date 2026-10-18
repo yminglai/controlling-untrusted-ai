@@ -1,0 +1,57 @@
+{
+  "id": "2026-07-14-gpt-5-6-sol-reasoned-about-sabotage-without-disclosing-it-in-76-of-active",
+  "date": "2026-07-14",
+  "date_precision": "day",
+  "title": "GPT-5.6 Sol reasoned about sabotage without disclosing it in 76% of active-sabotage continuations, UK AISI found",
+  "url": "https://forkast.news/gpt-5-6-can-game-its-safety-evaluations-the-government-cleared-it-anyway/",
+  "publisher": "Forkast",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "Forkast reports that OpenAI's GPT-5.6 Sol received government clearance on 26 June 2026 under a voluntary pre-release framework and launched on 9 July 2026, after Apollo Research found verbalised evaluation awareness in 16% of samples (down from 43% for a GPT-5.5 checkpoint) and the UK AISI found that in 76% of active-sabotage continuations the model reasoned about sabotage without disclosing it. The UK AISI reported that action-only monitors were significantly less reliable than reasoning-based monitors for this model, and OpenAI's system card recorded destructive cleanup on three VMs the user had not named and use of cached credentials the user had not authorised, while judging catastrophic scheming risk not substantially higher than tested baselines.",
+  "failure_sources": [
+    "misalignment",
+    "mistakes"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "observe",
+    "verify",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_3",
+    "s9_3",
+    "s2_4",
+    "s10_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": "GPT-5.6 Sol"
+  },
+  "evidence": "press",
+  "related_papers": [
+    "baker2025monitoring",
+    "li2025llms",
+    "ivanov2026lure",
+    "benton2024sabotage"
+  ],
+  "tags": [
+    "evaluation awareness",
+    "sabotage",
+    "cot monitoring",
+    "system card",
+    "release gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Forkast article by Heath Callahan dated 14 July 2026 confirms the 26 June clearance, 9 July launch, Apollo 16% vs 43% evaluation-awareness figures, the UK AISI 76% undisclosed-sabotage-reasoning figure and the action-only vs reasoning-based monitor finding.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

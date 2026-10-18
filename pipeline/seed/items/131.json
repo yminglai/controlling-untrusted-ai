@@ -1,0 +1,52 @@
+{
+  "id": "2026-04-30-gemini-clis-policy-engine-applies-allow-deny-and-ask-rules-to-every",
+  "date": "2026-04-30",
+  "date_precision": "day",
+  "title": "Gemini CLI's policy engine applies allow, deny and ask rules to every tool call with admin override",
+  "url": "https://geminicli.com/docs/reference/policy-engine/",
+  "publisher": "Google (Gemini CLI documentation)",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "Gemini CLI's policy engine evaluates every tool call against TOML rules that return allow, deny or ask_user, with the highest-priority matching rule winning and five tiers (Default, Extension, Workspace, User, Admin) letting administrator policies override local ones. Rules can match tool names with wildcards, argument regexes, shell command prefixes or regexes, MCP servers and subagents; in non-interactive mode ask_user is treated as deny, and the page warns that the Workspace tier is currently non-functional.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s4_1",
+    "s6_1",
+    "s4_3"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Google",
+    "deployer": null,
+    "model": "Gemini"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "uchibeke2026before",
+    "yan2026user",
+    "shi2026aletheia",
+    "zuvic2026capability"
+  ],
+  "tags": [
+    "allow-deny rules",
+    "policy-as-code",
+    "tool-call authorization",
+    "admin override",
+    "coding agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the page states 'Last updated: Apr 30, 2026', used as the item date (the engine's introduction date is not stated). Allow/deny/ask_user decisions, highest-priority rule wins, five tiers with Admin highest, argsPattern, commandPrefix/commandRegex and mcpName targeting, ask_user treated as deny in non-interactive mode, and the warning that the Workspace tier is non-functional were all confirmed from the page body. A banner on the page notes Gemini CLI was replaced by Antigravity CLI on June 18, 2026.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

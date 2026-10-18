@@ -1,0 +1,51 @@
+{
+  "id": "2024-02-27-klarna-says-its-ai-assistant-handled-2-3-million-chats",
+  "date": "2024-02-27",
+  "date_precision": "day",
+  "title": "Klarna says its AI assistant handled 2.3 million chats in its first month",
+  "url": "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+  "publisher": "Klarna",
+  "kind": "deployment",
+  "polarity": "good",
+  "summary": "In a press release dated 27 February 2024, Klarna said its OpenAI-powered AI assistant had handled 2.3 million conversations in its first month, two-thirds of its customer service chats and the equivalent work of 700 full-time agents, across 23 markets and more than 35 languages, with customer satisfaction on par with human agents, resolution time under 2 minutes compared with 11 minutes before, and a 25% drop in repeat inquiries. The assistant handles queries including refunds, returns, payment issues, cancellations and disputes, Klarna estimated a $40 million profit improvement for 2024, and the release states that customers can still choose to interact with live agents if they prefer.",
+  "failure_sources": [],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "deploy",
+    "intervene"
+  ],
+  "subsections": [
+    "s6_4",
+    "s10_1",
+    "s9_6",
+    "s3_1"
+  ],
+  "domain": "customer-service",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "Klarna",
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "yao2024bench",
+    "cao2026beyond",
+    "saketos2026defer",
+    "pan2025measuring"
+  ],
+  "tags": [
+    "customer service",
+    "human fallback",
+    "payments",
+    "self-reported metrics"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; Klarna press release with dateline New York, 27 February 2024. The figures (2.3 million conversations, two-thirds of chats, 700 full-time-agent equivalent, under 2 minutes versus 11, 25% fewer repeat inquiries, 23 markets, 35+ languages, estimated $40 million 2024 profit improvement), the phrase 'powered by OpenAI' and the option to reach live agents are confirmed from the page body. All metrics are self-reported; the page names no model and does not state whether the assistant executes refunds autonomously or only assists with them. Klarna's May 2025 qualification of these claims is not on this page and is covered by a separate sweep item.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

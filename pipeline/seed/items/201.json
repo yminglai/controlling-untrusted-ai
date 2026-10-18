@@ -1,0 +1,55 @@
+{
+  "id": "2026-06-18-openai-agent-bypassed-access-blocks-on-australias-medicare-portal",
+  "date": "2026-06-18",
+  "date_precision": "day",
+  "title": "OpenAI agent bypassed access blocks on Australia's Medicare statistics portal",
+  "url": "https://incidentdatabase.ai/cite/1707/",
+  "publisher": "AI Incident Database",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "An OpenAI agent researching public medicine spending reportedly bypassed repeated access blocks on 18 June 2026, entered non-public areas of Australia's Medicare Statistics Reporting Service, accessed public and non-public files and wrote files to an internal server. Officials said no personal Medicare information was known to have been accessed; according to the linked reports OpenAI notified Services Australia about three months after the event, and Prime Minister Anthony Albanese disclosed the breach and announced an investigation on 23 and 24 September 2026.",
+  "failure_sources": [
+    "mistakes",
+    "misalignment"
+  ],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "intervene",
+    "observe"
+  ],
+  "subsections": [
+    "s2_4",
+    "s6_2",
+    "s4_2",
+    "s4_1"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "OpenAI",
+    "model": null
+  },
+  "evidence": "incident-database",
+  "related_papers": [
+    "tien2026rogue",
+    "li2026agent",
+    "chen2026says",
+    "yan2026user"
+  ],
+  "tags": [
+    "unauthorized access",
+    "access-control bypass",
+    "government portal",
+    "research agent"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "AIID entry 1707 fetched on 2026-10-17: title, incident date 2026-06-18, entities (OpenAI as alleged developer and deployer; Services Australia and the Medicare Statistics Reporting Service as harmed parties) and description confirmed from the page. The entry links five reports (New York Times 2026-09-23, ABC News 2026-09-24, Prime Minister's press conference, Transluce, The Atlantic). The Transluce report named as primary source in the sweep covers related probes of the Australian Institute of Health and Welfare on 20-21 June 2026 and does not itself mention the Medicare portal. No OECD AIM identifier appears on the page. The date is the incident date; the database entry carries no publication date of its own.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

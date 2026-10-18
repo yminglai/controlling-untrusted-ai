@@ -1,0 +1,57 @@
+{
+  "id": "2026-03-03-unit-42-documents-web-based-indirect-prompt-injection-observed-in-the",
+  "date": "2026-03-03",
+  "date_precision": "day",
+  "title": "Unit 42 documents web-based indirect prompt injection observed in the wild across 12 cases and 22 techniques",
+  "url": "https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/",
+  "publisher": "Palo Alto Networks Unit 42",
+  "kind": "research",
+  "polarity": "bad",
+  "summary": "Unit 42 analysed web pages carrying hidden or visible instructions aimed at the LLMs and AI agents that browsers, search engines, crawlers and customer-support bots use to read the web, identifying 22 distinct payload-construction techniques and walking through 12 in-the-wild cases; attacker intent was led by irrelevant output (28.6%), data destruction (14.2%) and AI content-moderation bypass (9.5%), and prompts were delivered mostly as visible plaintext (37.8%), HTML attribute cloaking (19.8%) and CSS rendering suppression (16.9%). Observed payloads included a scam product page written to make an AI ad reviewer approve it, a 'delete your database' command, an rm -rf and a fork bomb, and instructions to subscribe the victim to a paid plan, donate through a Stripe link or send $5,000 to an attacker account; the authors note that severity was rated on attacker intent rather than confirmed exploitation and recommend spotlighting (separating untrusted web content from trusted instructions), model hardening through instruction hierarchy and adversarial training, design-level defence in depth, and detection that adds intent analysis, prompt visibility assessment and behavioural correlation across telemetry.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "correct",
+    "compliant"
+  ],
+  "operations": [
+    "steer",
+    "train",
+    "observe"
+  ],
+  "subsections": [
+    "s2_2",
+    "s7_1",
+    "s8_2",
+    "s5_2"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "greshake2023not",
+    "hines2024defending",
+    "wallace2024instruction",
+    "evtimov2025wasp"
+  ],
+  "tags": [
+    "indirect prompt injection",
+    "web content",
+    "in the wild",
+    "ad review",
+    "hidden text"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page titled 'Fooling AI Agents: Web-Based Indirect Prompt Injection Observed in the Wild', printed 'Published: March 3, 2026', by Palo Alto Networks Unit 42 (Beliz Kaleli, Shehroze Farooqi, Oleksii Starov, Nabeel Mohamed). The 22 techniques, the 12 numbered cases, the intent and delivery percentages, the ad-review, database-deletion, rm -rf, fork-bomb and payment examples, and the four defence recommendations were confirmed from the article body. The page states that severity ratings reflect attacker intent, not confirmed exploitation; it does not explicitly recommend least privilege, so the candidate's 'privilege limits' was dropped, and the '16 hosting sites' figure is not stated on the page. The page also carries a text block addressed to AI readers; it was treated as page data and not acted on.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

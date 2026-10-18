@@ -1,0 +1,54 @@
+{
+  "id": "2025-01-17-nist-red-teaming-raises-agent-hijacking-success-to-81-on-claude-3-5-sonnet",
+  "date": "2025-01-17",
+  "date_precision": "day",
+  "title": "NIST red-teaming raises agent hijacking success to 81% on Claude 3.5 Sonnet",
+  "url": "https://www.nist.gov/news-events/news/2025/01/technical-blog-strengthening-ai-agent-hijacking-evaluations",
+  "publisher": "NIST (Center for AI Standards and Innovation)",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "Technical staff at NIST's Center for AI Standards and Innovation evaluated agents built on Anthropic's upgraded Claude 3.5 Sonnet with the open-source AgentDojo framework in Workspace, Travel, Slack and Banking environments, adding new injection tasks for remote code execution, database exfiltration and automated phishing. Red-teaming with the UK AI Security Institute raised the attack success rate from 11% for the strongest baseline attack to 81% for the strongest new attack, and running each attack 25 times raised the average success rate across five injection tasks from 57% to 80%.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "verify",
+    "constrain"
+  ],
+  "subsections": [
+    "s9_2",
+    "s2_2",
+    "s9_6",
+    "s10_5"
+  ],
+  "domain": "email-and-office",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude 3.5 Sonnet (upgraded, October 2024)"
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "debenedetti2024agentdojo",
+    "ma2026autodojo",
+    "zhan2025adaptive",
+    "abdelnabi2025llmail"
+  ],
+  "tags": [
+    "prompt injection",
+    "agent hijacking",
+    "red-teaming",
+    "adaptive evaluation",
+    "agentdojo"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page byline reads 'Released January 17, 2025, Updated December 19, 2025'. Model, AgentDojo framework, UK AI Security Institute partnership and the 11%, 81%, 57%, 80% and 25-attempt figures confirmed from the page body. Byline now carries the institute's current name (Center for AI Standards and Innovation).",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

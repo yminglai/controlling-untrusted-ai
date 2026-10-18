@@ -1,0 +1,55 @@
+{
+  "id": "2025-06-02-170-of-1645-lovable-built-apps-found-exposing-user-data-through",
+  "date": "2025-06-02",
+  "date_precision": "day",
+  "title": "170 of 1,645 Lovable-built apps found exposing user data through missing row-level security",
+  "url": "https://gigazine.net/gsc_news/en/20250602-loveable-ai-made-service-vulnerability",
+  "publisher": "GIGAZINE",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Developer Matt Palmer found that Lovable, an AI service for building web apps, sometimes generated Supabase-backed apps without row-level security, leaving user data readable by anyone; on one Lovable-built site, Linkable, the email addresses of about 500 users were exposed. Scanning 1,645 Lovable-built apps he found 170 with the same flaw, exposing names, email addresses, financial information and API keys; Lovable said it had taken measures, but the article reports these did not check the generated code's correctness and the problem was not substantially resolved as of May 29, 2025.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "safe",
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_1",
+    "s10_2",
+    "s9_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Lovable",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "yan2026coding",
+    "shukla2026data",
+    "chennabasappa2025llamafirewall",
+    "bhati2026beyond"
+  ],
+  "tags": [
+    "vibe coding",
+    "data exposure",
+    "row-level security",
+    "generated code",
+    "least privilege"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; GIGAZINE page dated Jun 02, 2025 confirms Palmer's finding, the 1,645 scanned / 170 affected figures, the roughly 500 exposed Linkable emails, and the criticism that Lovable's measures did not check code correctness. Kind set to incident rather than the sweep's disclosure: the report is by a third-party researcher and user data was exposed in production.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

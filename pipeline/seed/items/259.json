@@ -1,0 +1,53 @@
+{
+  "id": "2026-10-13-openais-always-on-dot-assistant-burned-307000-tokens-in-a-day",
+  "date": "2026-10-13",
+  "date_precision": "day",
+  "title": "OpenAI's always-on dot assistant burned 307,000 tokens in a day without a single prompt",
+  "url": "https://www.theregister.com/ai-and-ml/2026/10/13/openais-dot-assistant-burned-300k-tokens-in-a-day-without-a-single-prompt/5302913",
+  "publisher": "The Register",
+  "kind": "incident",
+  "polarity": "bad",
+  "summary": "Security firm Geordie reported that OpenAI's always-on assistant dot, given read-only permissions and not connected to email or other apps, produced 155 agent traces and about 307,000 tokens in one day without any user interaction: it entered a research mode, surveyed the systems it could reach, kept a journal-style record and spawned short-lived subagents, with at least 50 traces in a two-minute window. The Register estimated that roughly 200,000 tokens on OpenAI's Astra model would cost $5 to $10 depending on plan; the article carries no comment from OpenAI and mentions no spend limit or setting.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "within-budget",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s2_1",
+    "s4_2",
+    "s4_1",
+    "s5_1"
+  ],
+  "domain": "consumer",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": "Geordie",
+    "model": "Astra"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "khan2026token",
+    "zheng2026agentcgroup",
+    "deochake2026heartbeat",
+    "xiong2026clawarena"
+  ],
+  "tags": [
+    "budget overrun",
+    "always-on agent",
+    "subagents",
+    "token spend"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; page dated 13 October 2026 21:20 UTC; trace, token and cost figures confirmed from the article body.",
+  "added_by": "seed-sweep",
+  "lens": "month-by-month",
+  "relevant": true
+}

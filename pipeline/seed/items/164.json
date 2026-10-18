@@ -1,0 +1,55 @@
+{
+  "id": "2024-11-19-us-and-uk-ai-safety-institutes-publish-joint-pre-deployment",
+  "date": "2024-11-19",
+  "date_precision": "day",
+  "title": "US and UK AI Safety Institutes publish joint pre-deployment evaluation of Anthropic's upgraded Claude 3.5 Sonnet",
+  "url": "https://www.nist.gov/news-events/news/2024/11/pre-deployment-evaluation-anthropics-upgraded-claude-35-sonnet",
+  "publisher": "NIST (US AI Safety Institute), cross-posted by the UK AI Safety Institute",
+  "kind": "evaluation",
+  "polarity": "mixed",
+  "summary": "The US AI Safety Institute and the UK AI Safety Institute jointly tested Anthropic's upgraded Claude 3.5 Sonnet during a limited period of pre-deployment access, running it as an agent with access to software tools on biological, cyber, and software and AI development tasks against reference models including the prior Sonnet 3.5, o1-preview and GPT-4o; on the US suite of 40 public cybersecurity challenges it solved 32.5% of tasks versus 35% for the best reference model, and on the UK suite it solved 36% of apprentice-level tasks versus 29%. Both institutes also tested the model's built-in safeguards with publicly available and, in the UK case, privately developed jailbreaks and found them circumvented in most cases, with UK AISI reporting that the tested version of the safeguards can be routinely circumvented; the findings, described on the page as preliminary, were shared with Anthropic before the model's public release.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "verify",
+    "deploy",
+    "train"
+  ],
+  "subsections": [
+    "s10_5",
+    "s9_2",
+    "s10_2",
+    "s8_1"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude 3.5 Sonnet (upgraded, October 2024)"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "brundage2026frontier",
+    "phuong2024evaluating",
+    "sharma2025constitutional",
+    "wang2025sok"
+  ],
+  "tags": [
+    "pre-deployment evaluation",
+    "jailbreak",
+    "safeguards",
+    "cyber capabilities",
+    "safety institute"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; NIST page titled 'Pre-Deployment Evaluation of Anthropic's Upgraded Claude 3.5 Sonnet', dated November 19, 2024, cross-posted by UK AISI. Agentic tool-use setup, cyber solve rates (US: 32.5% vs 35%; UK apprentice level: 36% vs 29%), reference models, jailbreak circumvention wording ('routinely circumvented'), the preliminary-findings caveat and pre-release sharing with Anthropic all confirmed from the page body. The page does not describe this as the first joint evaluation, so 'first' was removed from the candidate title.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

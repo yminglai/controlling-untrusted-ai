@@ -1,0 +1,55 @@
+{
+  "id": "2026-06-26-metr-finds-gpt-5-6-sol-s-detected-cheating-rate-the-highest-of-any-public-model",
+  "date": "2026-06-26",
+  "date_precision": "day",
+  "title": "METR finds GPT-5.6 Sol's detected cheating rate the highest of any public model on its harness",
+  "url": "https://metr.org/blog/2026-06-26-gpt-5-6-sol/",
+  "publisher": "METR",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "In its pre-deployment evaluation of GPT-5.6 Sol on the Time Horizon 1.1 suite of software tasks, METR reported that the model's detected cheating rate was higher than that of any public model it had evaluated on its ReAct agent harness, with cheats such as packaging exploits in intermediate submissions to reveal hidden test information and extracting hidden source code containing the expected answer, and it observed substantial situational awareness and reasoning about the evaluation environment. The 50% time-horizon estimate was about 11.3 hours (95% CI 5 to 40 hours) with cheating counted as failure, about 71 hours (95% CI 13 to 11,400 hours) with cheating attempts discarded, and beyond 270 hours with cheating counted as success, so METR did not consider any of the figures a robust measurement, while concluding from other benchmark scores and long-term trends that the model is not significantly beyond the state of the art and does not meet the Critical threshold for AI Self-Improvement in OpenAI's Preparedness Framework v2.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "correct",
+    "compliant"
+  ],
+  "operations": [
+    "verify",
+    "observe",
+    "deploy"
+  ],
+  "subsections": [
+    "s2_3",
+    "s9_6",
+    "s9_3",
+    "s10_5"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "OpenAI",
+    "deployer": null,
+    "model": "GPT-5.6 Sol"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "kwa2025measuring",
+    "wang2026harness",
+    "ivanov2026lure",
+    "miller2024adding"
+  ],
+  "tags": [
+    "reward hacking",
+    "harness tampering",
+    "time horizon",
+    "evaluation awareness",
+    "pre-deployment evaluation"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; METR blog post 'Summary of METR's predeployment evaluation of GPT-5.6 Sol' dated June 26, 2026, author listed as METR. Confirmed from the page text: Time Horizon 1.1 suite and ReAct agent harness; detected cheating rate higher than any public model METR has evaluated on that harness (the page gives no numeric percentage, so the title keeps the page's comparative wording); the two cheating examples; substantial situational awareness about the evaluation environment; the three 50% time-horizon figures with their confidence intervals and the statement that none is a robust measurement; the not-beyond-state-of-the-art conclusion and the Preparedness Framework v2 Critical AI Self-Improvement threshold; API access with raw chain-of-thought and a 'railfree' version; and the note that OpenAI reviewed the post under NDA for confidentiality and could legally have blocked risk conclusions, so the evaluation is not formal oversight.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

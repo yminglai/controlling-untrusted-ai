@@ -1,0 +1,54 @@
+{
+  "id": "2024-10-18-anthropic-publishes-sabotage-evaluations-for-frontier-models",
+  "date": "2024-10-18",
+  "date_precision": "day",
+  "title": "Anthropic publishes sabotage evaluations for frontier models",
+  "url": "https://www.anthropic.com/news/sabotage-evaluations",
+  "publisher": "Anthropic",
+  "kind": "evaluation",
+  "polarity": "good",
+  "summary": "Anthropic's Alignment Science team published four evaluations of a model's capacity for sabotage, covering steering humans toward bad decisions, inserting subtle bugs into codebases, sandbagging on dangerous-capability tests and undermining oversight, demonstrated on Claude 3 Opus and Claude 3.5 Sonnet. The code-sabotage attacker won around 10% of games against an Opus defender and around 1% against a Sonnet defender, a sandbagging model fell to 36.1% of normal performance before safety training restored it to 95.6%, and Anthropic judged minimal mitigations sufficient while expecting more realistic evaluations and stronger mitigations to be needed as capabilities improve.",
+  "failure_sources": [
+    "misalignment"
+  ],
+  "requirements": [
+    "safe",
+    "correct"
+  ],
+  "operations": [
+    "verify",
+    "observe"
+  ],
+  "subsections": [
+    "s9_3",
+    "s2_4",
+    "s5_5",
+    "s10_2"
+  ],
+  "domain": "research",
+  "actors": {
+    "vendor": "Anthropic",
+    "deployer": null,
+    "model": "Claude 3 Opus; Claude 3.5 Sonnet"
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "benton2024sabotage",
+    "weij2024ai",
+    "greenblatt2023ai",
+    "taylor2025auditing"
+  ],
+  "tags": [
+    "sabotage",
+    "sandbagging",
+    "control evaluation",
+    "undermining oversight",
+    "dangerous capabilities"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Page is Anthropic's announcement dated Oct 18, 2024; the four evaluations, the two models and the quoted results were confirmed from the page body. The candidate's arXiv id and its claim about abandoned evaluations are not on this page and were left out of the summary.",
+  "added_by": "seed-sweep",
+  "lens": "misalignment-field",
+  "relevant": true
+}

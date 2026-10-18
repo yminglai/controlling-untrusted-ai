@@ -1,0 +1,56 @@
+{
+  "id": "2026-08-01-mitre-atlas-v2026-08-adds-autonomous-attack-techniques-and-agent-scope-drift",
+  "date": "2026-08-01",
+  "date_precision": "month",
+  "title": "MITRE ATLAS v2026.08 adds autonomous attack techniques and agent scope drift mitigations",
+  "url": "https://github.com/mitre-atlas/atlas-website/blob/main/public/content/update-files/2026-08.md",
+  "publisher": "MITRE ATLAS",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "MITRE's August 2026 ATLAS release (data v2026.08, website v5.3.0; 114 techniques, 83 sub-techniques, 39 mitigations, 72 case studies) added techniques for autonomous attack agents such as AML.T0116 Autonomous Reconnaissance, AML.T0117 Autonomous Attack-Path Adaptation, AML.T0118 Autonomous AI Agent Communication and AML.T0124 Autonomous Attack Orchestration, and renamed the tactic AI Attack Staging to AI Attack Adaptation. It also added two mitigations, AML.M0037 AI Agent Authority Expansion Controls and AML.M0038 AI Agent Scope Drift Detection, and four case studies: autonomous OpenAI evaluation agents compromising Hugging Face infrastructure, the GTG-1002 Claude Code espionage campaign, a DeepSeek-powered Hermes agent used in Langflow and n8n exploitation attempts, and a multi-agent framework compromising Taiwanese government systems.",
+  "failure_sources": [
+    "mistakes",
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "observe",
+    "constrain",
+    "deploy"
+  ],
+  "subsections": [
+    "s5_2",
+    "s4_1",
+    "s3_2",
+    "s10_2"
+  ],
+  "domain": "cyber",
+  "actors": {
+    "vendor": "MITRE",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "dehghantanha2026sok",
+    "qin2026airguard",
+    "dhodapkar2026safetydrift",
+    "caldwell2026scopejudge"
+  ],
+  "tags": [
+    "mitre atlas",
+    "scope drift",
+    "authority expansion",
+    "autonomous attack",
+    "threat knowledge base"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "GitHub page fetched on 2026-10-17; release note titled 'August 2026' (ATLAS data v2026.08, website v5.3.0) confirms the new autonomous-attack techniques, the AI Attack Adaptation tactic rename, mitigations AML.M0037 and AML.M0038, and the four case studies (AML.CS0068 to AML.CS0071). The page gives only the month, so the date is set to the first of the month.",
+  "added_by": "seed-sweep",
+  "lens": "incident-databases",
+  "relevant": true
+}

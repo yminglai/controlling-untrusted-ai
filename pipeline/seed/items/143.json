@@ -1,0 +1,52 @@
+{
+  "id": "2025-10-13-amazon-bedrock-agentcore-reaches-general-availability",
+  "date": "2025-10-13",
+  "date_precision": "day",
+  "title": "Amazon Bedrock AgentCore reaches general availability with Gateway, Identity and Observability services",
+  "url": "https://aws.amazon.com/about-aws/whats-new/2025/10/amazon-bedrock-agentcore-available",
+  "publisher": "AWS",
+  "kind": "safety-feature",
+  "polarity": "good",
+  "summary": "AWS announced on 13 October 2025 that Amazon Bedrock AgentCore is generally available in nine regions, with every AgentCore service now supporting VPC, AWS PrivateLink, CloudFormation and resource tagging. Runtime provides complete session isolation and adds Agent-to-Agent protocol support; Gateway connects agents to MCP servers, APIs and Lambda functions through a single endpoint with IAM or OAuth authorization; Identity provides identity-aware authorization and secure vault storage for refresh tokens; and Observability provides OTEL-compatible execution visibility through CloudWatch dashboards.",
+  "failure_sources": [],
+  "requirements": [
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "constrain",
+    "observe"
+  ],
+  "subsections": [
+    "s4_5",
+    "s4_1",
+    "s5_1",
+    "s4_2"
+  ],
+  "domain": "infrastructure",
+  "actors": {
+    "vendor": "AWS",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "first-party",
+  "related_papers": [
+    "south2025authenticated",
+    "narasimha2026containing",
+    "pathak2026governance",
+    "avirneni2025decoupling"
+  ],
+  "tags": [
+    "identity",
+    "tool gateway",
+    "observability",
+    "session isolation",
+    "agent platform"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17; page header reads 'Posted on: Oct 13, 2025' and the headline announces general availability. Gateway (IAM/OAuth), Identity (refresh-token vault), Runtime session isolation, OTEL-compatible Observability, VPC/PrivateLink/CloudFormation/tagging and the nine regions are all confirmed from the announcement body.",
+  "added_by": "seed-sweep",
+  "lens": "safety-features",
+  "relevant": true
+}

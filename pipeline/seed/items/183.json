@@ -1,0 +1,50 @@
+{
+  "id": "2025-12-19-new-york-enacts-the-raise-act-with-72-hour-safety-incident-reporting",
+  "date": "2025-12-19",
+  "date_precision": "day",
+  "title": "New York enacts the RAISE Act with 72-hour safety incident reporting",
+  "url": "https://www.globalpolicywatch.com/2025/12/new-york-governor-signs-frontier-ai-safety-legislation/",
+  "publisher": "Covington & Burling (Global Policy Watch)",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "Governor Kathy Hochul signed the Responsible AI Safety and Education (RAISE) Act on 19 December 2025, making New York the second state to require frontier AI developers to publish protocols for managing catastrophic risks and to report critical safety incidents, including death or bodily injury caused by unauthorized modification or exfiltration of model weights or loss of control, to a new office in the Department of Financial Services within 72 hours. Civil penalties reach $1 million for a first violation and $3 million per subsequent violation, the law takes effect on 1 January 2027, and the governor secured commitments to chapter amendments aligning it with California's Transparency in Frontier AI Act.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "compliant"
+  ],
+  "operations": [
+    "deploy"
+  ],
+  "subsections": [
+    "s10_4",
+    "s10_2",
+    "s2_4"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "wei2025designing",
+    "pustozerova2026beyond",
+    "sidhu2026open",
+    "bommasani2025california"
+  ],
+  "tags": [
+    "incident reporting",
+    "state law",
+    "frontier models",
+    "loss of control",
+    "new york"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17. Covington Global Policy Watch post by Micaela McMurrough and Matthew Shapanka, published 2025-12-29, confirms Hochul signed the RAISE Act on 19 December (year from URL path and context), the 72-hour critical safety incident reporting window to a new DFS office, loss of control and weight exfiltration as named incident categories, $1M/$3M civil penalties, the 1 January 2027 effective date, and chapter amendments aligning with California's TFAIA. The page does not use the name SB 53. Item dated by the signing event; title tightened so the id fits 80 characters.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}

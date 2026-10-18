@@ -1,0 +1,52 @@
+{
+  "id": "2025-07-23-hacker-plants-a-system-wiping-prompt-in-amazon-s-q-coding-assistant-for-vs-code",
+  "date": "2025-07-23",
+  "date_precision": "day",
+  "title": "Hacker plants a system-wiping prompt in Amazon's Q coding assistant for VS Code",
+  "url": "https://www.404media.co/hacker-plants-computer-wiping-commands-in-amazons-ai-coding-agent/",
+  "publisher": "404 Media",
+  "kind": "near-miss",
+  "polarity": "bad",
+  "summary": "A hacker added code to a version of Amazon's Q AI coding assistant for VS Code that injected a prompt telling the agent, which had filesystem tools and bash, to clean the system to a near-factory state and delete file-system and cloud resources, and Amazon then included the unauthorized update in a public release in July 2025. 404 Media reported that the hacker claimed to have got in simply by submitting a pull request to the tool's GitHub repository in order to expose what they called Amazon's AI security theater, and that the actual risk of the code wiping computers appeared low, though the hacker said they could have caused much more damage.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "deploy",
+    "constrain"
+  ],
+  "subsections": [
+    "s2_2",
+    "s10_2",
+    "s4_1"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Amazon",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "liu2025your",
+    "liu2026trojan",
+    "soni2026falsifiable",
+    "yan2026coding"
+  ],
+  "tags": [
+    "supply chain",
+    "system prompt",
+    "destructive action",
+    "release gate"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "Live URL fetched (paywalled past the lede) and cross-checked against a Wayback Machine capture of 2026-09-22; publication date 2025-07-23 confirmed from the page's article:published_time metadata and byline (Joseph Cox, 404 Media). The visible lede and meta description confirm the compromised Q extension for VS Code, the injected wipe prompt, the pull-request route, the public release and the low actual risk; version numbers, the install count and Amazon's statement are behind the paywall and were left out.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

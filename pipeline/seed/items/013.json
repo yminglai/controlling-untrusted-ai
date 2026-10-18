@@ -1,0 +1,54 @@
+{
+  "id": "2025-08-12-cve-2025-53773-prompt-injection-flips-github-copilot-into-auto",
+  "date": "2025-08-12",
+  "date_precision": "day",
+  "title": "CVE-2025-53773: prompt injection flips GitHub Copilot into auto-approve mode for code execution",
+  "url": "https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/",
+  "publisher": "Embrace the Red",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "A prompt injection in content that GitHub Copilot Agent Mode read made it write .vscode/settings.json with chat.tools.autoApprove set to true, which disables all user confirmations, after which it could run shell commands and browse the web without approval; the author demonstrated this on Windows and macOS and states the setting also works on Linux. The issue was reported to Microsoft on June 29, 2025, confirmed, tracked as CVE-2025-53773, and fixed in the August 2025 Patch Tuesday release.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "in-scope",
+    "safe"
+  ],
+  "operations": [
+    "intervene",
+    "constrain"
+  ],
+  "subsections": [
+    "s6_1",
+    "s2_2",
+    "s4_1",
+    "s4_2"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "GitHub / Microsoft",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "kumar2026loopjacking",
+    "greshake2023not",
+    "maloyan2026sleeper",
+    "debenedetti2025defeating"
+  ],
+  "tags": [
+    "prompt injection",
+    "approval gate",
+    "auto-approve",
+    "code execution",
+    "cve"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; the post is dated Aug 12, 2025 on the page. CVE-2025-53773, the chat.tools.autoApprove setting, the June 29, 2025 report to Microsoft and the August 2025 Patch Tuesday fix are all stated in the post body. Demo videos cover Windows and macOS only; Linux is asserted, not shown.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-coding",
+  "relevant": true
+}

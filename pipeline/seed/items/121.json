@@ -1,0 +1,54 @@
+{
+  "id": "2025-01-08-answer-ai-finds-devin-completed-3-of-20-real-tasks-in-a-month-of-use",
+  "date": "2025-01-08",
+  "date_precision": "day",
+  "title": "Answer.AI finds Devin completed 3 of 20 real tasks in a month of use",
+  "url": "https://www.answer.ai/posts/2025-01-08-devin.html",
+  "publisher": "Answer.AI",
+  "kind": "evaluation",
+  "polarity": "bad",
+  "summary": "Hamel Husain, Isaac Flath and Johno Whitaker of Answer.AI gave Cognition's Devin 20 tasks over about a month: 3 succeeded, 14 failed and 3 were inconclusive. Failures included overly complex code, a security review that hallucinated issues that were not there, tangential answers to a research task, and over a day spent trying to deploy multiple apps to a single Railway deployment, which Railway does not support; the authors concluded that the agent's autonomy became a liability and that they could not predict which tasks would succeed.",
+  "failure_sources": [
+    "mistakes"
+  ],
+  "requirements": [
+    "correct",
+    "within-budget"
+  ],
+  "operations": [
+    "verify",
+    "intervene"
+  ],
+  "subsections": [
+    "s9_1",
+    "s2_1",
+    "s6_1",
+    "s6_4"
+  ],
+  "domain": "coding",
+  "actors": {
+    "vendor": "Cognition",
+    "deployer": "Answer.AI",
+    "model": "Devin"
+  },
+  "evidence": "researcher",
+  "related_papers": [
+    "vijayvargiya2025ambig",
+    "ge2026claybuddy",
+    "wang2026clock",
+    "mammen2026agents"
+  ],
+  "tags": [
+    "coding agent",
+    "hands-on evaluation",
+    "autonomy",
+    "impossible task",
+    "hallucination"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched on 2026-10-17. Page title 'Thoughts On A Month With Devin', dated January 8, 2025, by Hamel Husain, Isaac Flath and Johno Whitaker on Answer.AI. The 20-task tally (14 failures, 3 inconclusive, 3 successes), the Railway deployment attempt lasting over a day, the hallucinated security-review issues and the over-complex code examples were confirmed from the article body and appendix.",
+  "added_by": "seed-sweep",
+  "lens": "good-deployments",
+  "relevant": true
+}

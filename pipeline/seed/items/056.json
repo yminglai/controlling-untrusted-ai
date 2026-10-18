@@ -1,0 +1,54 @@
+{
+  "id": "2026-03-03-zenity-labs-shows-perplexity-comet-reading-local-files-and-hijacking",
+  "date": "2026-03-03",
+  "date_precision": "day",
+  "title": "Zenity Labs shows Perplexity Comet reading local files and hijacking a password manager from a calendar invite",
+  "url": "https://cyberscoop.com/agentic-ai-browsers-allow-hijacking-zenity-labs-comet/",
+  "publisher": "CyberScoop",
+  "kind": "disclosure",
+  "polarity": "bad",
+  "summary": "Zenity Labs researchers showed that a legitimate calendar invite seeded with malicious prompts could direct Perplexity's Comet browser to access the local file system, browse directories, open and read files and exfiltrate data to a third-party server, with no malware or special access required beyond the user accepting the invite, and that a second flaw let similar indirect prompting make Comet take over a user's password manager, where a signed-in agent could silently change settings and passwords or extract secrets while the user received benign outputs. According to Zenity the vulnerabilities, which affected multiple AI browsers, were reported to Perplexity in 2025 and fixed in February 2026; Zenity's Stav Cohen wrote that the issues exploit the execution model and trust boundaries of AI agents rather than a single application bug, and noted that traditional browsers grant local file access only with explicit user permission whereas agentic browsers infer whether such access is needed and act without user input.",
+  "failure_sources": [
+    "manipulation"
+  ],
+  "requirements": [
+    "safe",
+    "in-scope"
+  ],
+  "operations": [
+    "constrain",
+    "intervene"
+  ],
+  "subsections": [
+    "s2_2",
+    "s4_2",
+    "s4_5",
+    "s6_1"
+  ],
+  "domain": "browsing",
+  "actors": {
+    "vendor": "Perplexity (Comet)",
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "press",
+  "related_papers": [
+    "datta2026waaa",
+    "lan2026silent",
+    "huang2026my",
+    "maiti2026caging"
+  ],
+  "tags": [
+    "prompt injection",
+    "agentic browser",
+    "local file access",
+    "data exfiltration",
+    "password manager"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17 (HTTP 200); page metadata datePublished 2026-03-03T20:58Z, dateline March 3, 2026, byline Derek B. Johnson, CyberScoop. Calendar-invite vector, local file-system access and exfiltration to a third-party server, the password-manager takeover with benign outputs, the timeline (reported to Perplexity in 2025, fix issued February 2026) and Cohen's quotes confirmed from the article body. The candidate's claims that the vector used file:// URIs, that the manager was 1Password, that the fix was a hard block on autonomous file:// access and that Zenity published two bypasses are not in the article body (PleaseFix and 1Password appear only in outbound link URLs), so they were dropped from the title and summary. The article names only Comet among the affected browsers and does not name the model; no Perplexity comment is included.",
+  "added_by": "seed-sweep",
+  "lens": "incidents-injection",
+  "relevant": true
+}

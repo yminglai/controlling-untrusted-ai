@@ -1,0 +1,51 @@
+{
+  "id": "2026-02-17-nist-announces-the-ai-agent-standards-initiative-for-interoperable",
+  "date": "2026-02-17",
+  "date_precision": "day",
+  "title": "NIST announces the AI Agent Standards Initiative for interoperable and secure agents",
+  "url": "https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure",
+  "publisher": "NIST (Center for AI Standards and Innovation)",
+  "kind": "policy",
+  "polarity": "good",
+  "summary": "NIST's Center for AI Standards and Innovation launched the AI Agent Standards Initiative to help autonomous AI agents be adopted with confidence, operate securely, and interoperate across digital systems, organised around three pillars: industry-led standards development with U.S. participation in international standards bodies, community-led open-source protocol development, and research on AI agent security and identity. The announcement points to a CAISI request for information on AI agent security (responses due March 9), an ITL concept paper on AI agent identity and authorization (responses due April 2), and sector-specific listening sessions on barriers to agent adoption beginning in April 2026.",
+  "failure_sources": [],
+  "requirements": [
+    "safe",
+    "in-scope",
+    "compliant"
+  ],
+  "operations": [
+    "deploy",
+    "constrain"
+  ],
+  "subsections": [
+    "s10_4",
+    "s4_5"
+  ],
+  "domain": "government",
+  "actors": {
+    "vendor": null,
+    "deployer": null,
+    "model": null
+  },
+  "evidence": "regulator",
+  "related_papers": [
+    "south2025authenticated",
+    "chan2025infrastructure",
+    "kurtz2026who",
+    "anderljung2023frontier"
+  ],
+  "tags": [
+    "standards",
+    "agent identity",
+    "authorization",
+    "interoperability",
+    "nist"
+  ],
+  "verified": true,
+  "verified_on": "2026-10-17",
+  "verification_note": "URL fetched 2026-10-17; headline, release date (February 17, 2026, updated February 18, 2026), publisher (CAISI at NIST, with ITL and NSF), the three pillars, and the RFI, concept-paper and listening-session dates confirmed from the page body.",
+  "added_by": "seed-sweep",
+  "lens": "policy",
+  "relevant": true
+}
