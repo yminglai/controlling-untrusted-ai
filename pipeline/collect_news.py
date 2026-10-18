@@ -601,6 +601,12 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
     VERBOSE = args.verbose
 
+    if not args.no_llm and not os.environ.get("LLM_API_KEY", "").strip():
+        # Without a classifier key nothing is published: heuristic items would reach the live
+        # stream unreviewed. Pass --no-llm explicitly to publish heuristic items (needs_review: true).
+        log("no LLM_API_KEY in the environment: nothing collected or written (pass --no-llm to publish heuristic items)")
+        return 0
+
     now = dt.datetime.now(UTC)
     today = now.date().isoformat()
     t0 = time.time()

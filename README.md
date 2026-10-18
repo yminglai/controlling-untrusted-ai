@@ -7,10 +7,10 @@ arXiv link to come). Published as a static site on GitHub Pages at
 The site does two things.
 
 1. **The paper collection.** Every paper the survey placed into its taxonomy (1,788 arXiv papers and
-   174 reports and posts from outside arXiv), browsable by the paper's own 11 sections and 56
+   164 reports and posts from outside arXiv), browsable by the paper's own 11 sections and 56
    subsections, searchable and filterable, with a card per paper (method-style label, authors, year,
-   one-line summary, placement reason, cross-references) and, for 239 items, structured reading notes
-   in Chinese. 240 items are cited in the PDF; the rest are the reading list behind it.
+   one-line summary, placement reason, cross-references) and, for 238 items, structured reading notes
+   in Chinese. 239 items are cited in the PDF; the rest are the reading list behind it.
 2. **The live stream.** A continuously collected feed of real-world news about deploying AI agents,
    good and bad: incidents, near misses, deployments, shipped safety features, evaluations, policy and
    vendor disclosures. Every item is classified into the survey taxonomy (failure source, requirement,
@@ -154,6 +154,7 @@ appears; `PAPER_STATUS` in `site/assets/js/common.js` and the status lines in `i
 
 ## Licence
 
-To be decided. The pages currently state "CC BY 4.0 for text and data" and link to a `LICENSE` file
-at the repository root that does not exist yet; add the file (and adjust the footer and About page if a
-different licence is chosen) before publishing.
+Text and data (site pages, `site/data/`, `pipeline/seed/`, documentation) are released under
+CC BY 4.0; the code (`site/assets/`, page markup, `pipeline/*.py`, workflows) under the MIT License.
+See `LICENSE`. Paper records describe third-party works that keep their own licences; stream items
+link to their original sources.

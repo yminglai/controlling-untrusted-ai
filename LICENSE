@@ -1,0 +1,36 @@
+Licences for this repository
+
+1. Text and data (everything under site/data/, pipeline/seed/, the prose of the site pages,
+   README.md, BRIEF.md, SCHEMA.md and design/):
+   Creative Commons Attribution 4.0 International (CC BY 4.0).
+   You may share and adapt the material for any purpose, including commercially, provided you
+   give appropriate credit to the authors of "Controlling Untrusted AI: A Survey", link to the
+   licence, and indicate if changes were made.
+   Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+   The paper records in site/data/ describe third-party works (titles, authors, abstracts
+   summarised in one line, arXiv identifiers); the works themselves remain under their own
+   licences. Stream items summarise published news and reports and link to the original source.
+
+2. Code (site/assets/js/, site/assets/css/, site/*.html markup, pipeline/*.py, .github/):
+   MIT License
+
+   Copyright (c) 2026 the authors of "Controlling Untrusted AI: A Survey"
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+   and associated documentation files (the "Software"), to deal in the Software without
+   restriction, including without limitation the rights to use, copy, modify, merge, publish,
+   distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+   Software is furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all copies or
+   substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+3. Figures in site/assets/img/ (fig1_why_control*.jpg, fig2_mechanism_map*.jpg) are figures of
+   the paper and are released under CC BY 4.0 with the text.
