@@ -7,8 +7,7 @@ Run from the project root after a build:
     python3 pipeline/tests/test_build_data.py
 
 Plain asserts; exit code 0 means every check passed. Soft findings (for example
-a Chinese summary whose key is in neither papers.json nor grey.json) are printed
-as "ANOMALY:" lines instead of failing.
+papers whose one_line is empty) are printed as "ANOMALY:" lines instead of failing.
 """
 
 from __future__ import annotations
@@ -33,10 +32,6 @@ ALLOWED_COLOURS = {
 }
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LATEX_LEFTOVER = re.compile(r"\\[A-Za-z]+|--|[{}]")
-SUMMARY_FIELDS = [
-    "positioning", "problem", "method", "findings", "deployer_takeaway", "limitations",
-    "relation_to_subsection", "reading_depth", "terms", "doubts", "sid", "text_depth",
-]
 YEAR_MIN, YEAR_MAX = 1970, 2027
 
 
@@ -55,7 +50,6 @@ def main() -> int:
     tax = load("taxonomy.json")
     papers = load("papers.json")
     grey = load("grey.json")
-    summaries = load("summaries_zh.json")
     stats = load("stats.json")
 
     # ---- taxonomy ------------------------------------------------------- #
@@ -105,7 +99,7 @@ def main() -> int:
                 assert not LATEX_LEFTOVER.search(b), f"{ss['id']}: LaTeX left in bullet: {b[:80]!r}"
                 assert not re.match(r"(?i)(literature pass|references to start from|further reading)", b), \
                     f"{ss['id']}: housekeeping bullet not removed"
-            assert set(ss["counts"]) == {"primary", "selected", "cross", "grey", "zh"}, ss["id"]
+            assert set(ss["counts"]) == {"primary", "selected", "cross", "grey"}, ss["id"]
             assert not LATEX_LEFTOVER.search(s["purpose"]), f"{s['id']}: LaTeX left in purpose"
     assert all(n == 1 for n in section_slugs.values()), "section slugs not unique"
     assert all(n == 1 for n in sub_slugs.values()), "subsection slugs not unique"
@@ -116,7 +110,7 @@ def main() -> int:
     assert not dup, f"duplicate keys in papers.json: {dup[:10]}"
     paper_keys = set(keys)
     fields = ["key", "arxiv_id", "url", "title", "authors", "year", "primary", "section", "score",
-              "selected", "label", "one_line", "reason", "also", "reading_rank", "has_zh"]
+              "selected", "label", "one_line", "reason", "also", "reading_rank"]
     empty_one_line = 0
     for p in papers:
         assert list(p) == fields, f"{p.get('key')}: field order {list(p)}"
@@ -135,7 +129,6 @@ def main() -> int:
         assert isinstance(p["selected"], bool)
         assert p["label"].strip(), f"{p['key']}: empty label"
         assert p["reading_rank"] is None or isinstance(p["reading_rank"], int)
-        assert p["has_zh"] == (p["key"] in summaries), f"{p['key']}: has_zh inconsistent"
         if not p["one_line"]:
             empty_one_line += 1
     if empty_one_line:
@@ -154,7 +147,7 @@ def main() -> int:
     assert not gdup, f"duplicate keys in grey.json: {gdup}"
     grey_keys = set(gkeys)
     gfields = ["key", "title", "authors", "year", "venue", "url", "primary", "section", "label",
-               "one_line", "confidence", "selected", "also", "has_zh"]
+               "one_line", "confidence", "selected", "also"]
     paper_arxiv = {p["arxiv_id"] for p in papers}
     for g in grey:
         assert list(g) == gfields, f"{g.get('key')}: field order {list(g)}"
@@ -169,7 +162,6 @@ def main() -> int:
         assert re.match(r"https?://", g["url"]), f"{g['key']}: empty url or url without scheme"
         for a in g["also"]:
             assert set(a) == {"sid", "score"} and a["sid"] in sid_pos and a["sid"] != g["primary"], f"{g['key']}: also {a}"
-        assert g["has_zh"] == (g["key"] in summaries), f"{g['key']}: has_zh inconsistent"
         m = re.search(r"arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5})", g["url"])
         assert not (m and m.group(1) in paper_arxiv), f"{g['key']}: arXiv paper {m.group(1)} emitted as a report"
         assert not LATEX_LEFTOVER.search(g["title"]) and "$" not in g["title"], f"{g['key']}: LaTeX left in title"
@@ -183,33 +175,20 @@ def main() -> int:
         assert "$" not in p["title"] and "$" not in p["label"], f"{p['key']}: TeX math left in title or label"
         assert not re.search(r"pass-\d agent", p["reason"]), f"{p['key']}: pipeline wording in reason"
 
-    # ---- summaries ------------------------------------------------------ #
-    orphan = [k for k in summaries if k not in paper_keys and k not in grey_keys]
-    assert not orphan, f"summaries_zh: {len(orphan)} keys in neither papers.json nor grey.json: {orphan}"
-    for k, s in summaries.items():
-        assert list(s) == SUMMARY_FIELDS, f"summary {k}: fields {list(s)}"
-        assert isinstance(s["findings"], list) and isinstance(s["terms"], list), k
-        assert s["sid"] in sid_pos, f"summary {k}: sid {s['sid']!r} not in taxonomy"
-    assert list(summaries) == sorted(summaries), "summaries_zh.json keys are not sorted"
-
     # ---- counts --------------------------------------------------------- #
     exp = {sid: Counter() for sid in sids}
     for p in papers:
         exp[p["primary"]]["primary"] += 1
         if p["selected"]:
             exp[p["primary"]]["selected"] += 1
-        if p["has_zh"]:
-            exp[p["primary"]]["zh"] += 1
         for a in p["also"]:
             exp[a["sid"]]["cross"] += 1
     for g in grey:
         exp[g["primary"]]["grey"] += 1
-        if g["has_zh"]:
-            exp[g["primary"]]["zh"] += 1
         for a in g["also"]:
             exp[a["sid"]]["cross"] += 1
     for ss in subs:
-        for name in ("primary", "selected", "cross", "grey", "zh"):
+        for name in ("primary", "selected", "cross", "grey"):
             assert ss["counts"][name] == exp[ss["id"]][name], \
                 f"{ss['id']}: counts.{name} {ss['counts'][name]} != {exp[ss['id']][name]}"
 
@@ -223,7 +202,6 @@ def main() -> int:
     assert sum(stats["per_section"].values()) == len(papers)
     assert stats["generated"] == tax["generated"]
     assert isinstance(stats["stream_items"], int)
-    assert stats["zh"] == sum(p["has_zh"] for p in papers) + sum(g["has_zh"] for g in grey) == len(summaries)
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", stats["source_generated"] or ""), "stats.source_generated missing"
     for k in ("stream_polarity", "stream_per_source", "stream_per_op", "stream_per_sub"):
         assert isinstance(stats.get(k), dict), f"stats.{k} missing"
@@ -251,8 +229,7 @@ def main() -> int:
     # ---- freshness against the paper clone (local only) ------------------ #
     if OVERLEAF.exists():
         sources = [OVERLEAF / "outline.json", OVERLEAF / "research" / "corpus_full.json",
-                   OVERLEAF / "research" / "grey_v2.json", OVERLEAF / "research" / "summaries_zh.json",
-                   OVERLEAF / "research" / "labels_method_style.json"]
+                   OVERLEAF / "research" / "grey_v2.json", OVERLEAF / "research" / "labels_method_style.json"]
         newest = max(p.stat().st_mtime for p in sources if p.exists())
         built = (DATA / "taxonomy.json").stat().st_mtime
         assert newest <= built, "the paper clone is newer than site/data: run python3 pipeline/build_data.py"
@@ -276,7 +253,7 @@ def main() -> int:
     assert kebab("Identity, Credentials, & Delegation") == "identity-credentials-and-delegation"
 
     print(f"OK: sections={len(sections)} subsections={len(subs)} papers={len(papers)} grey={len(grey)} "
-          f"summaries={len(summaries)} cited={stats['cited']}")
+          f"cited={stats['cited']}")
     for a in anomalies:
         print("ANOMALY:", a)
     return 0

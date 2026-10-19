@@ -4,7 +4,7 @@
 export const REPO_URL = "https://github.com/yminglai/controlling-untrusted-ai";
 export const ISSUE_URL = REPO_URL + "/issues/new?template=submit_item.yml";
 export const LICENSE_URL = REPO_URL + "/blob/main/LICENSE";
-export const SITE_URL = "https://yminglai.github.io/controlling-untrusted-ai/";
+export const SITE_URL = "https://ymingl.com/controlling-untrusted-ai/";
 export const PAPER_STATUS = "Draft v0.2 · October 2026 · arXiv link to come";
 export const THEME_KEY = "cuai-theme";
 export const PAGES = { index: "index.html", papers: "papers.html", stream: "stream.html", about: "about.html" };

@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Companion site
-    url: https://yminglai.github.io/controlling-untrusted-ai/
+    url: https://ymingl.com/controlling-untrusted-ai/
     about: Browse the paper collection and the live stream before submitting.
   - name: Correction to an existing stream item
     url: https://github.com/yminglai/controlling-untrusted-ai/issues/new?labels=correction&title=%5BCorrection%5D%3A+

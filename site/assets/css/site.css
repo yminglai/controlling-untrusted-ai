@@ -21,7 +21,6 @@ a:hover { text-decoration-thickness: 2px; }
 [aria-disabled="true"], .is-disabled { opacity: .55; }
 ::selection { background: var(--c-tint); }
 mark { background: var(--mark-bg); color: inherit; text-decoration: underline 1px; }
-[lang="zh-Hans"] { font-family: var(--cjk); font-size: 16px; line-height: 29px; }
 .serif, h1, h2, h3 { font-family: var(--serif); font-weight: 400; font-optical-sizing: auto; }
 .mono { font-family: var(--mono); }
 .caps { font: 500 var(--fs-caps)/var(--lh-caps) var(--sans); letter-spacing: var(--ls-caps); text-transform: uppercase; }
@@ -202,8 +201,7 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
 /* ---- badges ---- */
 .badge { display: inline-block; padding: 0 6px; border: 1px solid var(--control-border); border-radius: var(--r-chip); font: 500 var(--fs-caps)/var(--lh-caps) var(--sans); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--fg); vertical-align: middle; }
 .badge--cited { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-.badge--zh { text-transform: none; letter-spacing: 0; font-size: 12px; }
-.badge--report, .badge--depth { background: var(--c-tint); border-color: var(--c-border); }
+.badge--report { background: var(--c-tint); border-color: var(--c-border); }
 .badge--new { border: 0; padding: 0; color: var(--fg-muted); }
 .score { font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); }
 .score--2 { color: var(--fg-muted); }
@@ -294,7 +292,6 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
 .sections-table tbody tr:hover { background: var(--bg-panel); }
 .sections-table td a { text-decoration: none; }
 .sections-table td a:hover { text-decoration: underline 1px var(--link-underline); }
-.sections-table td.num { color: var(--fg-muted); }
 .enum-table td:first-child, .colour-key td:nth-child(2) { font-family: var(--mono); white-space: nowrap; }
 .colour-key .mark { margin-right: 6px; }
 .bibtex { position: relative; font: 400 13px/20px var(--mono); background: var(--bg-panel); border: var(--hairline); padding: var(--s4) var(--s4); overflow: auto; white-space: pre; margin-bottom: var(--s4); }
@@ -396,7 +393,7 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
 /* Windows High Contrast: keep the colour marks (they carry section, failure source and polarity, each with a text
    label beside it) and draw pressed or checked states with a system-colour outline instead of a background swap. */
 @media (forced-colors: active) {
-  .mark, .ledger__dash, .sigbar__seg, .toc__rule, .sections-table__rule, .drawer__band, .live__dot, .new, .chronology__bar, .notes__takeaway, .rail__row, .chip--sub, .rail__sub[aria-current="location"]::before { forced-color-adjust: none; }
+  .mark, .ledger__dash, .sigbar__seg, .toc__rule, .sections-table__rule, .drawer__band, .live__dot, .new, .chronology__bar, .rail__row, .chip--sub, .rail__sub[aria-current="location"]::before { forced-color-adjust: none; }
   .chip.is-on, .chip[aria-pressed="true"], .btn--icon[aria-pressed="true"], .seg__opt input:checked + span, .facet__radio input:checked + span, .badge--cited { outline: 2px solid Highlight; outline-offset: -2px; }
   .chip.is-zero { border-style: dashed; }
 }

@@ -29,7 +29,6 @@
   --serif:"Newsreader","Newsreader Fallback","Iowan Old Style","Palatino Linotype",Charter,Georgia,serif;
   --sans:"Inter","Inter Fallback",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --cjk:"Newsreader","Songti SC","Noto Serif CJK SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",serif;
   --fs-display:clamp(40px,6vw,72px); --lh-display:1.05;   /* landing title */
   --fs-page:44px; --lh-page:48px;                           /* page titles, section heads */
   --fs-drawer:32px; --lh-drawer:38px;                       /* drawer label */
@@ -83,8 +82,8 @@
 }
 /* Dark theme, raw hues on the lighter panel surface (#434343) fall under 3:1 (coral 2.51, purple 2.85, gray 2.40):
    marks and dashes inside expanded rows, hovered rows and cards, and the panel blocks take a lightened outline. */
-[data-theme="dark"] :is(.is-expanded, .card:hover, .rail__row:hover, .rail__sub:hover, .toc__row:hover, .pipeline, .notes__takeaway, .bibtex, .sections-table tbody tr:hover, .sections-table__summary:hover) *,
-[data-theme="dark"] :is(.is-expanded, .card:hover, .rail__row:hover, .rail__sub:hover, .toc__row:hover, .pipeline, .notes__takeaway, .bibtex, .sections-table tbody tr:hover, .sections-table__summary:hover) ::before {
+[data-theme="dark"] :is(.is-expanded, .card:hover, .rail__row:hover, .rail__sub:hover, .toc__row:hover, .pipeline, .bibtex, .sections-table tbody tr:hover, .sections-table__summary:hover) *,
+[data-theme="dark"] :is(.is-expanded, .card:hover, .rail__row:hover, .rail__sub:hover, .toc__row:hover, .pipeline, .bibtex, .sections-table tbody tr:hover, .sections-table__summary:hover) ::before {
   --mark-outline:color-mix(in srgb, var(--c) 55%, white);
 }
 /* --c from data attributes: one rule per identity */

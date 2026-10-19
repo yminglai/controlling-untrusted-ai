@@ -1,5 +1,5 @@
 /* papers.css: page-scoped rules for papers.html (design/DESIGN.md section 5): layout, rail, filter bar, section and
-   subsection heads, cards, run-in groups, drawer content, reading notes, responsive rules. Colour is read only through
+   subsection heads, cards, run-in groups, drawer content, responsive rules. Colour is read only through
    the role tokens and --c (set by data-section / data-op / data-c on an ancestor). */
 
 /* ---- page head and layout ---- */
@@ -191,25 +191,6 @@ mark { padding: 0 1px; }
 .drawer__stream > p a { display: inline-flex; align-items: center; gap: 4px; }
 .drawer__nav .btn[aria-disabled="true"] { pointer-events: none; }
 
-/* reading notes */
-.notes__head { display: flex; align-items: center; gap: 8px; font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); }
-.notes__head .badge--depth { font-size: 12px; letter-spacing: 0; text-transform: none; }
-.notes__intro { font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); margin: var(--s1) 0 var(--s3); }
-.notes dl { margin: 0; }
-.notes dt { font: 600 14px/20px var(--sans); margin-top: var(--s3); }
-.notes dt .caps { margin-left: 6px; font-weight: 500; }
-.notes dd { margin: 4px 0 0; }
-.notes ol { padding-left: 1.4em; margin: 0; }
-.notes ol li + li { margin-top: 4px; }
-.notes__takeaway { background: var(--c-tint); border-left: var(--colour-rule) solid var(--c); padding: var(--s2) var(--s3); }
-.notes__doubts { font-style: italic; }
-.notes__terms { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px var(--s3); }
-.notes__terms > div { display: contents; }
-.notes__terms dt { font: 400 15px/22px var(--serif); margin: 0; }
-.notes__terms dd { margin: 0; font-size: 15px; line-height: 22px; }
-.notes__meta { font: 400 var(--fs-mono-s)/18px var(--mono); color: var(--fg-muted); margin-top: var(--s4); }
-.notes-wrap .skeleton .skeleton__row { height: 20px; margin-bottom: 10px; }
-
 /* ---- responsive ---- */
 @media (max-width: 1439px) {
   .papers__layout { grid-template-columns: 240px minmax(0, 760px); }
@@ -266,7 +247,6 @@ mark { padding: 0 1px; }
   .drawer__nav { padding-left: var(--s4); padding-right: var(--s4); }
   .drawer__stream li { grid-template-columns: 3px minmax(0, 1fr); }
   .drawer__stream li .num { grid-column: 1 / -1; order: 2; }
-  .notes__terms { grid-template-columns: minmax(0, 1fr); }
   .sec + .sec { margin-top: var(--s7); }
   .sub + .sub { margin-top: var(--s6); }
 }

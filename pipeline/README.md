@@ -4,7 +4,7 @@ Python scripts that produce everything under `site/data/`. Two independent halve
 
 | Script | Reads | Writes | Runs |
 |---|---|---|---|
-| `build_data.py` | the paper's Overleaf clone (`outline.json`, `research/*.json`, `references.bib`) | `taxonomy.json`, `papers.json`, `grey.json`, `summaries_zh.json`, `stats.json` | by hand, when the paper changes |
+| `build_data.py` | the paper's Overleaf clone (`outline.json`, `research/*.json`, `references.bib`) | `taxonomy.json`, `papers.json`, `grey.json`, `stats.json` | by hand, when the paper changes |
 | `collect_news.py` (+ `classify.py`, `feeds.yml`) | RSS/Atom feeds, arXiv API, GitHub issues, `stream.json` | `stream.json`; the `stream_*` fields of `stats.json` | every 6 hours in CI (`.github/workflows/collect.yml`) and by hand |
 
 The data contracts are in `../SCHEMA.md`. Nothing here is needed to serve the site; the front-end
@@ -178,7 +178,7 @@ python3 pipeline/build_data.py            # see `--help` for the source path opt
 ```
 
 `build_data.py` reads the Overleaf clone (read-only) and rewrites `taxonomy.json`, `papers.json`,
-`grey.json`, `summaries_zh.json` and `stats.json`. It preserves the `stream_items` and
+`grey.json` and `stats.json`. It preserves the `stream_items` and
 `stream_updated` fields of `stats.json`, which belong to the collector; if it did not, run
 `python3 pipeline/collect_news.py --since 0` afterwards to restore them (that run fetches feeds but
 adds nothing new). Field definitions are in `../SCHEMA.md`.
@@ -187,7 +187,7 @@ adds nothing new). Field definitions are in `../SCHEMA.md`.
 
 ```
 pipeline/
-  build_data.py        paper repo -> site/data (taxonomy, papers, grey, summaries_zh, stats)
+  build_data.py        paper repo -> site/data (taxonomy, papers, grey, stats)
   collect_news.py      feeds + submissions -> stream.json (this document)
   classify.py          LLM and heuristic classifiers, taxonomy loader, validation
   feeds.yml            curated sources with weights and check dates

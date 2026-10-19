@@ -11,7 +11,6 @@ project root; override with --overleaf PATH) and writes, under site/data/:
     taxonomy.json      sections, subsections, counts, colours   (indent=1)
     papers.json        1,788 arXiv papers                       (indent=None)
     grey.json          non-arXiv items, corpus grey + grey_v2   (indent=None)
-    summaries_zh.json  structured Chinese summaries by bib key  (indent=None)
     stats.json         headline numbers                         (indent=1)
     stream_recent.json the 12 newest stream items (when stream.json exists)
 
@@ -153,20 +152,6 @@ CONFIDENCE_VALUES = ("verified", "likely", "unverified")
 # Placement reasons that are pipeline bookkeeping, rewritten for readers.
 REASON_REWRITES = [
     (re.compile(r"^requested by name by the pass-\d agent\.?$", re.IGNORECASE), "Named in the section plan"),
-]
-
-# Chinese summary field -> site field (SCHEMA.md)
-SUMMARY_FIELDS = [
-    ("定位", "positioning"),
-    ("问题", "problem"),
-    ("方法", "method"),
-    ("发现", "findings"),
-    ("部署启示", "deployer_takeaway"),
-    ("局限", "limitations"),
-    ("与小节关系", "relation_to_subsection"),
-    ("阅读深度", "reading_depth"),
-    ("术语", "terms"),
-    ("存疑", "doubts"),
 ]
 
 # --------------------------------------------------------------------------- #
@@ -390,7 +375,7 @@ def build_sections(outline: dict) -> tuple[list[dict], list[str]]:
                 "title": strip_latex(sub.get("title")),
                 "slug": unique_slug(kebab(strip_latex(sub.get("title"))), used_sub_slugs),
                 "bullets": clean_bullets(sub.get("bullets")),
-                "counts": {"primary": 0, "selected": 0, "cross": 0, "grey": 0, "zh": 0},
+                "counts": {"primary": 0, "selected": 0, "cross": 0, "grey": 0},
             })
         sections.append({
             "id": f"s{k}",
@@ -405,8 +390,7 @@ def build_sections(outline: dict) -> tuple[list[dict], list[str]]:
     return sections, sid_order
 
 
-def build_papers(corpus: dict, labels: dict, zh_keys: set[str], sid_pos: dict,
-                 anomalies: Anomalies) -> list[dict]:
+def build_papers(corpus: dict, labels: dict, sid_pos: dict, anomalies: Anomalies) -> list[dict]:
     out = []
     seen = Counter()
     empty_one_line = Counter()
@@ -446,7 +430,6 @@ def build_papers(corpus: dict, labels: dict, zh_keys: set[str], sid_pos: dict,
             ("reason", clean_reason(p.get("reason"))),
             ("also", also),
             ("reading_rank", p.get("reading_rank")),
-            ("has_zh", key in zh_keys),
         ]))
     dups = sorted(k for k, n in seen.items() if n > 1)
     if dups:
@@ -502,13 +485,11 @@ def _grey_record(key, title, authors, year, venue, url, sid, label, one_line, co
         ("confidence", confidence),
         ("selected", bool(selected)),
         ("also", []),
-        ("has_zh", False),
     ])
 
 
 def build_grey(corpus: dict, grey_v2: dict, labels: dict, sid_pos: dict,
-               paper_keys: set[str], paper_arxiv: set[str], zh_keys: set[str],
-               anomalies: Anomalies) -> list[dict]:
+               paper_keys: set[str], paper_arxiv: set[str], anomalies: Anomalies) -> list[dict]:
     records: list[dict] = []
     by_url: dict[str, dict] = {}
     by_title: dict[str, dict] = {}
@@ -627,8 +608,6 @@ def build_grey(corpus: dict, grey_v2: dict, labels: dict, sid_pos: dict,
     no_line = [r["key"] for r in records if not r["one_line"]]
     if no_line:
         anomalies.add(f"grey: {len(no_line)} items with empty one_line: {no_line}")
-    for r in records:
-        r["has_zh"] = r["key"] in zh_keys
     # Grey items that are arXiv papers (by key or arXiv id) are folded into the paper
     # record by merge_grey_into_papers(), which reports each merge.
     sort_grey(records, sid_pos)
@@ -667,47 +646,12 @@ def merge_grey_into_papers(papers: list[dict], grey: list[dict], sid_pos: dict,
             if sid != p["primary"] and all(a["sid"] != sid for a in p["also"]):
                 p["also"].append({"sid": sid, "score": p["score"]})
         p["also"].sort(key=lambda a: (-(a["score"] or 0), sid_pos.get(a["sid"], 10**6)))
-        if g["has_zh"]:
-            p["has_zh"] = True
         anomalies.add(f"grey: {g['key']!r} is the paper {p['key']!r} (same {how}); merged into the paper record")
     sort_papers(papers, sid_pos)
     still = [g["key"] for g in kept if g["key"] in by_key]
     if still:
         raise SystemExit(f"error: grey keys still present in papers.json after merge: {still}")
     return kept
-
-
-def build_summaries(raw: list[dict] | dict, anomalies: Anomalies) -> dict:
-    items = raw if isinstance(raw, list) else list(raw.values())
-    out: dict[str, dict] = {}
-    for it in items:
-        key = (it.get("key") or "").strip()
-        if not key:
-            anomalies.add(f"summaries_zh: entry without key (title {it.get('title')!r})")
-            continue
-        if key in out:
-            anomalies.add(f"summaries_zh: duplicate key {key!r}")
-        rec = OrderedDict()
-        for src, dst in SUMMARY_FIELDS:
-            v = it.get(src)
-            if dst in ("findings", "terms"):
-                v = as_list(v)
-            else:
-                v = (v or "").strip() if isinstance(v, str) else (v if v is not None else "")
-            rec[dst] = v
-        rec["sid"] = it.get("sid") or ""
-        rec["text_depth"] = it.get("text_depth") or ""
-        out[key] = rec
-    return OrderedDict(sorted(out.items(), key=lambda kv: kv[0]))
-
-
-def prune_summaries(summaries: dict, card_keys: set[str], anomalies: Anomalies) -> dict:
-    """Drop notes whose bib key is on no card (a key merged into another record):
-    summaries_zh.json then holds exactly the notes the drawer can open."""
-    orphan = [k for k in summaries if k not in card_keys]
-    if orphan:
-        anomalies.add(f"summaries_zh: {len(orphan)} notes for keys on no card, dropped: {orphan}")
-    return OrderedDict((k, v) for k, v in summaries.items() if k in card_keys)
 
 
 def fill_counts(sections: list[dict], papers: list[dict], grey: list[dict]) -> None:
@@ -718,8 +662,6 @@ def fill_counts(sections: list[dict], papers: list[dict], grey: list[dict]) -> N
             sub["counts"]["primary"] += 1
             if p["selected"]:
                 sub["counts"]["selected"] += 1
-            if p["has_zh"]:
-                sub["counts"]["zh"] += 1
         for a in p["also"]:
             s2 = index.get(a["sid"])
             if s2 is not None:
@@ -728,8 +670,6 @@ def fill_counts(sections: list[dict], papers: list[dict], grey: list[dict]) -> N
         sub = index.get(g["primary"])
         if sub is not None:
             sub["counts"]["grey"] += 1
-            if g["has_zh"]:
-                sub["counts"]["zh"] += 1
         for a in g.get("also") or []:
             s2 = index.get(a["sid"])
             if s2 is not None:
@@ -777,11 +717,8 @@ def stream_derivatives(stream: dict | None) -> tuple[list[dict], dict]:
 
 
 def build_stats(generated: str, source_generated: str | None, papers: list[dict], grey: list[dict],
-                sections: list[dict], summaries: dict, stream_path: Path, anomalies: Anomalies) -> dict:
+                sections: list[dict], stream_path: Path, anomalies: Anomalies) -> dict:
     cited = sum(1 for p in papers if p["selected"]) + sum(1 for g in grey if g["selected"])
-    zh = sum(1 for p in papers if p["has_zh"]) + sum(1 for g in grey if g["has_zh"])
-    if zh != len(summaries):
-        anomalies.add(f"summaries_zh: {len(summaries)} notes but {zh} cards carry has_zh")
     years = Counter(str(p["year"]) if p["year"] is not None else "unknown" for p in papers)
     years_sorted = OrderedDict(
         sorted(years.items(), key=lambda kv: (kv[0] == "unknown", -int(kv[0]) if kv[0] != "unknown" else 0))
@@ -807,7 +744,6 @@ def build_stats(generated: str, source_generated: str | None, papers: list[dict]
         ("papers", len(papers)),
         ("grey", len(grey)),
         ("cited", cited),
-        ("zh", zh),
         ("subsections", sum(len(sec["subsections"]) for sec in sections)),
         ("sections", len(sections)),
         ("years", years_sorted),
@@ -823,31 +759,9 @@ def build_stats(generated: str, source_generated: str | None, papers: list[dict]
 # --------------------------------------------------------------------------- #
 
 def cross_checks(overleaf: Path, corpus: dict, outline: dict, labels: dict,
-                 papers: list[dict], grey: list[dict], summaries: dict,
-                 anomalies: Anomalies) -> None:
+                 papers: list[dict], grey: list[dict], anomalies: Anomalies) -> None:
     paper_keys = {p["key"] for p in papers}
     grey_keys = {g["key"] for g in grey}
-    paper_by_key = {p["key"]: p for p in papers}
-    grey_by_key = {g["key"]: g for g in grey}
-
-    missing = [k for k in summaries if k not in paper_keys and k not in grey_keys]
-    if missing:
-        anomalies.add(f"summaries_zh: {len(missing)} keys not in papers.json or grey.json: {missing}")
-    sid_mismatch = []
-    for k, s in summaries.items():
-        home = paper_by_key.get(k) or grey_by_key.get(k)
-        if home is not None and s["sid"] and s["sid"] != home["primary"]:
-            sid_mismatch.append(f"{k} (summary {s['sid']}, {'paper' if k in paper_by_key else 'grey'} {home['primary']})")
-    if sid_mismatch:
-        anomalies.add(f"summaries_zh: {len(sid_mismatch)} sid differs from the item's primary: {sid_mismatch}")
-    uncited_with_zh = [k for k in summaries if k in paper_by_key and not paper_by_key[k]["selected"]
-                       and k not in grey_by_key]
-    if uncited_with_zh:
-        anomalies.add(f"summaries_zh: {len(uncited_with_zh)} summaries for papers not marked selected: {uncited_with_zh}")
-    cited_no_zh = [p["key"] for p in papers if p["selected"] and p["key"] not in summaries]
-    cited_no_zh += [g["key"] for g in grey if g["selected"] and g["key"] not in summaries]
-    if cited_no_zh:
-        anomalies.add(f"summaries_zh: {len(cited_no_zh)} cited items without a Chinese summary: {cited_no_zh}")
 
     v2_keys = set()
     try:
@@ -922,30 +836,26 @@ def main(argv: list[str] | None = None) -> int:
     corpus = load_json(ov / "research" / "corpus_full.json")
     grey_v2 = load_json(ov / "research" / "grey_v2.json")
     labels = load_json(ov / "research" / "labels_method_style.json")
-    summaries_raw = load_json(ov / "research" / "summaries_zh.json")
 
     anomalies = Anomalies()
     sections, sid_order = build_sections(outline)
     sid_pos = {sid: i for i, sid in enumerate(sid_order)}
 
-    summaries = build_summaries(summaries_raw, anomalies)
-    papers = build_papers(corpus, labels, set(summaries), sid_pos, anomalies)
+    papers = build_papers(corpus, labels, sid_pos, anomalies)
     paper_keys = {p["key"] for p in papers}
     paper_arxiv = {p["arxiv_id"] for p in papers if p["arxiv_id"]}
-    grey = build_grey(corpus, grey_v2, labels, sid_pos, paper_keys, paper_arxiv, set(summaries), anomalies)
+    grey = build_grey(corpus, grey_v2, labels, sid_pos, paper_keys, paper_arxiv, anomalies)
     grey = merge_grey_into_papers(papers, grey, sid_pos, anomalies)
-    summaries = prune_summaries(summaries, {p["key"] for p in papers} | {g["key"] for g in grey}, anomalies)
     fill_counts(sections, papers, grey)
     taxonomy = build_taxonomy(outline, sections, args.generated)
-    stats = build_stats(args.generated, corpus.get("generated"), papers, grey, sections, summaries,
+    stats = build_stats(args.generated, corpus.get("generated"), papers, grey, sections,
                         args.out / "stream.json", anomalies)
-    cross_checks(ov, corpus, outline, labels, papers, grey, summaries, anomalies)
+    cross_checks(ov, corpus, outline, labels, papers, grey, anomalies)
 
     out: Path = args.out
     dump(out / "taxonomy.json", taxonomy, 1)
     dump(out / "papers.json", papers, None)
     dump(out / "grey.json", grey, None)
-    dump(out / "summaries_zh.json", summaries, None)
     dump(out / "stats.json", stats, 1)
     if (out / "stream.json").exists():
         try:
@@ -955,7 +865,7 @@ def main(argv: list[str] | None = None) -> int:
         except (OSError, ValueError):
             pass
 
-    print(f"wrote {out}: papers={len(papers)} grey={len(grey)} summaries={len(summaries)} "
+    print(f"wrote {out}: papers={len(papers)} grey={len(grey)} "
           f"subsections={stats['subsections']} cited={stats['cited']}")
     if not args.quiet:
         for a in anomalies.items:

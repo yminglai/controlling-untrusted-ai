@@ -1,7 +1,7 @@
 /* papers.js: the paper collection page (design/DESIGN.md section 5, design/IMPLEMENTATION_NOTES.md).
    Renders the rail, filter bar, section and subsection heads and cards from taxonomy.json, papers.json and
-   grey.json; search via search.js; the detail drawer with cross-references, stream items and the Chinese
-   reading notes (summaries_zh.json, loaded on first need). Hash: #s5, #s5_3, #paper/<key>, #grey/<key>;
+   grey.json; search via search.js; the detail drawer with cross-references and stream items.
+   Hash: #s5, #s5_3, #paper/<key>, #grey/<key>;
    the forms #sec=s5, #sub=s5_3, #paper=<key>, #grey=<key>, #q=<text> are accepted and normalised. */
 import {
   initPage, bindStats, readState, writeState, linkTo, fetchJSON, dataVersion, loadStream,
@@ -15,12 +15,6 @@ const $ = (s, r = document) => r.querySelector(s);
 const SITE_TITLE = "Controlling Untrusted AI";
 const CHUNK = 24;
 const SUB_RE = /^s\d{1,2}_\d{1,2}$/, SEC_RE = /^s\d{1,2}$/;
-const DEPTH_HINT = { "全文": "read in full", "部分": "read in part", "仅摘要": "abstract only", "仅题录": "metadata only" };
-const NOTE_FIELDS = [
-  ["positioning", "定位", "Positioning"], ["problem", "问题", "Problem"], ["method", "方法", "Method"],
-  ["findings", "发现", "Findings"], ["deployer_takeaway", "部署启示", "Deployer takeaway"], ["limitations", "局限", "Limitations"],
-  ["relation_to_subsection", "与小节关系", "Relation to this subsection"], ["doubts", "存疑", "Doubts"], ["terms", "术语", "Terms"]
-];
 const PAPER_FIELDS = [
   { name: "label", weight: 8 }, { name: "title", weight: 4 }, { name: "authors", weight: 2, get: (p) => (p.authors || []).join(" ") },
   { name: "one_line", weight: 1 }, { name: "reason", weight: 1 }, { name: "key", weight: 1 }, { name: "arxiv_id", weight: 1 },
@@ -38,7 +32,6 @@ const S = {
   papers: [], grey: [], loaded: false, loadError: false,
   byKey: new Map(), greyByKey: new Map(), primaryOf: new Map(), greyOf: new Map(), crossOf: new Map(),
   index: null, greyIndex: null, indexComplete: false, hitsQ: null, hits: null,
-  zh: null, zhKeys: null, zhPromise: null,
   stream: null, streamBySub: null,
   view: null, r: null, io: null, sentinel: null,
   noWiden: false, drawerKey: null, firstRender: true, lastRoute: "", stickyH: 112, pendingFocus: null
@@ -52,7 +45,6 @@ function queryState() { const st = readState(); delete st.hash; return st; }
 function hrefFor(hash, patch = {}) { return linkTo("papers", { ...queryState(), ...patch, hash }); }
 function hostOf(url) { try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return ""; } }
 function sectionIdOf(item) { return item.section || (T.sectionOf(item.primary) || {}).id || "s1"; }
-function hasZh(kind, item) { return !!(item.has_zh || (S.zhKeys && S.zhKeys.has(item.key))); }
 function yearMatch(y, years) { return years.has(String(y)) || (years.has("le2022") && y <= 2022); }
 
 /* ---------- route and filters ---------- */
@@ -80,7 +72,7 @@ function readFilters() {
   const st = readState();
   return {
     q: String(st.q || "").trim(),
-    cited: st.cited === "1", score3: st.score === "3", zh: st.zh === "1", grey: st.grey !== "0",
+    cited: st.cited === "1", score3: st.score === "3", grey: st.grey !== "0",
     years: new Set(String(st.years || "").split(",").filter((y) => YEAR_CHIPS.some((c) => c[0] === y))),
     sort: st.sort === "year" || st.sort === "title" ? st.sort : "survey",
     density: st.density === "compact" ? "compact" : "full",
@@ -88,7 +80,7 @@ function readFilters() {
   };
 }
 function activeFilterCount(f) {
-  return (f.q.length >= 2 ? 1 : 0) + (f.cited ? 1 : 0) + (f.score3 ? 1 : 0) + (f.zh ? 1 : 0) + (f.grey ? 0 : 1) + f.years.size;
+  return (f.q.length >= 2 ? 1 : 0) + (f.cited ? 1 : 0) + (f.score3 ? 1 : 0) + (f.grey ? 0 : 1) + f.years.size;
 }
 
 /* ---------- data ---------- */
@@ -142,17 +134,6 @@ function hitsFor(q) {
   S.hits = a ? { tokens: a.tokens, paper: new Map(a.results.map((x) => [x.item.key, x.score])), grey: new Map((b ? b.results : []).map((x) => [x.item.key, x.score])) } : null;
   return S.hits;
 }
-function loadNotesFile() {
-  if (!S.zhPromise) {
-    S.zhPromise = fetchJSON("data/summaries_zh.json", { version: dataVersion() }).then((z) => {
-      S.zh = z && typeof z === "object" ? z : {};
-      S.zhKeys = new Set(Object.keys(S.zh));
-      return S.zh;
-    });
-    S.zhPromise.catch(() => { S.zhPromise = null; });
-  }
-  return S.zhPromise;
-}
 async function loadStreamCounts() {
   try {
     const stream = await loadStream(S.stats);
@@ -185,7 +166,6 @@ function streamItemsFor(kind, item) {
 function matchPaper(p, f, hits, skip = "") {
   if (skip !== "cited" && f.cited && !p.selected) return false;
   if (skip !== "score" && f.score3 && !(p.score >= 3)) return false;
-  if (skip !== "zh" && f.zh && !hasZh("paper", p)) return false;
   if (skip !== "years" && f.years.size && !yearMatch(p.year, f.years)) return false;
   if (hits && !hits.paper.has(p.key)) return false;
   return true;
@@ -194,7 +174,6 @@ function matchGrey(g, f, hits, skip = "") {
   if (skip !== "grey" && !f.grey) return false;
   if (skip !== "cited" && f.cited && !g.selected) return false;
   if (skip !== "score" && f.score3) return false;
-  if (skip !== "zh" && f.zh && !hasZh("grey", g)) return false;
   if (skip !== "years" && f.years.size && !yearMatch(g.year, f.years)) return false;
   if (hits && !hits.grey.has(g.key)) return false;
   return true;
@@ -235,7 +214,7 @@ function computeView(r, f) {
   const sec = target ? T.sectionOf(target) : null;
   const q = f.q.length >= 2 ? f.q : "";
   const hits = S.loaded && q ? hitsFor(q) : null;
-  const anyPaperFilter = !!(q || f.cited || f.score3 || f.zh || f.years.size);
+  const anyPaperFilter = !!(q || f.cited || f.score3 || f.years.size);
   const active = anyPaperFilter || !f.grey;
   const counts = S.loaded ? computeCounts(f, hits) : null;
   const subsOfScope = (s, sc) => (sc === "sub" ? s.subsections.filter((ss) => ss.id === target) : s.subsections);
@@ -250,7 +229,7 @@ function computeView(r, f) {
     widened = true; secs = T.sections;
   }
   const eff = widened ? "all" : scope;
-  const key = JSON.stringify([eff, target, widened, q, f.cited, f.score3, f.zh, f.grey, [...f.years].sort(), f.sort, f.density, S.loaded, S.loadError, S.zhKeys ? 1 : 0]);
+  const key = JSON.stringify([eff, target, widened, q, f.cited, f.score3, f.grey, [...f.years].sort(), f.sort, f.density, S.loaded, S.loadError]);
   return {
     routeKind, scope, eff, def, target, sec, secs, f, q, hits, active, anyPaperFilter, counts, widened, key,
     subsOf: (s) => subsOfScope(s, eff),
@@ -390,13 +369,11 @@ function countChip(v, kind, val) {
       if (kind === "years") { if (matchPaper(p, f, hits, "years") && yearMatch(p.year, new Set([val]))) n++; }
       else if (kind === "cited") { if (matchPaper(p, f, hits, "cited") && p.selected) n++; }
       else if (kind === "score") { if (matchPaper(p, f, hits, "score") && p.score >= 3) n++; }
-      else if (kind === "zh") { if (matchPaper(p, f, hits, "zh") && hasZh("paper", p)) n++; }
     }
     for (const g of S.greyOf.get(ss.id) || []) {
       if (kind === "grey") { if (matchGrey(g, f, hits, "grey")) n++; }
       else if (kind === "years") { if (matchGrey(g, f, hits, "years") && yearMatch(g.year, new Set([val]))) n++; }
       else if (kind === "cited") { if (matchGrey(g, f, hits, "cited") && g.selected) n++; }
-      else if (kind === "zh") { if (matchGrey(g, f, hits, "zh") && hasZh("grey", g)) n++; }
     }
   }
   return n;
@@ -404,7 +381,7 @@ function countChip(v, kind, val) {
 function renderChips(v) {
   const f = v.f;
   const defs = [
-    ["cited", "Cited in the PDF", f.cited, "cited"], ["score", "Score 3", f.score3, "score"], ["zh", "Chinese notes", f.zh, "zh"], ["grey", "Reports and posts", f.grey, "grey"],
+    ["cited", "Cited in the PDF", f.cited, "cited"], ["score", "Score 3", f.score3, "score"], ["grey", "Reports and posts", f.grey, "grey"],
     null,
     ...YEAR_CHIPS.map(([id, label]) => ["year:" + id, label, f.years.has(id), "years", id])
   ];
@@ -427,7 +404,6 @@ function renderChips(v) {
   if (f.q.length >= 2) active.push(chip({ kind: "plain", id: "q", label: `“${f.q}”`, removable: true }));
   if (f.cited) active.push(chip({ kind: "plain", id: "cited", label: "Cited in the PDF", removable: true }));
   if (f.score3) active.push(chip({ kind: "plain", id: "score", label: "Score 3", removable: true }));
-  if (f.zh) active.push(chip({ kind: "plain", id: "zh", label: "Chinese notes", removable: true }));
   if (!f.grey) active.push(chip({ kind: "plain", id: "grey", label: "Without reports and posts", removable: true }));
   for (const [id, label] of YEAR_CHIPS) if (f.years.has(id)) active.push(chip({ kind: "plain", id: "year:" + id, label, removable: true }));
   dom.active.hidden = !active.length;
@@ -523,7 +499,6 @@ function cardHTML(u, v) {
   const marks = [];
   if (item.selected) marks.push('<span class="badge badge--cited">Cited</span>');
   if (isPaper) marks.push(item.score >= 3 ? '<span class="score" title="score 3, must cite"><span class="visually-hidden">score </span>3<span class="visually-hidden">, must cite</span></span>' : '<span class="score score--2" title="score 2, relevant"><span class="visually-hidden">score </span>2<span class="visually-hidden">, relevant</span></span>');
-  if (hasZh(u.kind, item)) marks.push('<span class="badge badge--zh" title="Structured reading notes in Chinese">中文</span>');
   if (!isPaper) marks.push(`<span class="badge badge--report" data-c="report">Report${item.confidence && item.confidence !== "verified" ? ` · ${esc(item.confidence)}` : ""}</span>`);
   const also = alsoChips(item, u.sub.id);
   if (also) marks.push(also);
@@ -729,25 +704,6 @@ function streamHTML(kind, item) {
   const rows = items.slice(0, 5).map((it) => `<li data-polarity="${esc(it.polarity)}"><span class="num muted">${esc(fmtDate(it.date, it.date_precision || "day", { year: true }))}</span><span class="mark mark--dash" role="img" aria-label="${esc(POLARITY_LABELS[it.polarity] || it.polarity)}"></span><a href="${esc(linkTo("stream", { hash: "item/" + it.id }))}">${esc(it.title)}</a></li>`).join("");
   return `<section class="drawer__section drawer__stream"><h3>In the stream</h3><p class="muted">${plural(items.length, "item")} filed under this paper or its subsection.</p><ul>${rows}</ul><p><a href="${esc(linkTo("stream", { paper: item.key }))}">All ${fmtInt(items.length)} in the stream${icon("arrow-right", "icon icon--s")}</a></p></section>`;
 }
-function notesHTML(z, sid) {
-  const depth = z.reading_depth || "";
-  const hint = DEPTH_HINT[depth] || "";
-  const field = (k, zh, en) => {
-    const v = z[k];
-    if (v == null || v === "" || (Array.isArray(v) && !v.length)) return "";
-    let dd;
-    if (k === "findings") dd = `<ol>${(Array.isArray(v) ? v : [v]).map((x) => `<li>${esc(x)}</li>`).join("")}</ol>`;
-    else if (k === "terms") dd = `<dl class="notes__terms">${(Array.isArray(v) ? v : [v]).map((t) => { const i = String(t).indexOf(" = "); const en2 = i >= 0 ? t.slice(0, i) : t, zh2 = i >= 0 ? t.slice(i + 3) : ""; return `<div><dt lang="en">${esc(en2)}</dt><dd>${esc(zh2)}</dd></div>`; }).join("")}</dl>`;
-    else dd = esc(Array.isArray(v) ? v.join("；") : v);
-    const cls = k === "deployer_takeaway" ? ' class="notes__takeaway"' : k === "doubts" ? ' class="notes__doubts"' : "";
-    return `<dt>${zh} <span class="caps muted" lang="en">${en}</span></dt><dd${cls}>${dd}</dd>`;
-  };
-  return `<section class="drawer__section notes-wrap"><h3>Reading notes (中文)</h3>
-    <p class="notes__head">${depth ? `<span class="badge badge--depth" lang="zh-Hans">${esc(depth)}</span>${hint ? ` <span class="muted">${esc(hint)}</span>` : ""}` : ""}</p>
-    <p class="notes__intro">Structured reading notes; the depth marks how much of the paper was read.</p>
-    <section lang="zh-Hans" class="notes"><dl>${NOTE_FIELDS.map(([k, zh, en]) => field(k, zh, en)).join("")}</dl>
-    <p class="notes__meta num" lang="en">阅读深度 ${esc(depth)} · text depth ${esc(z.text_depth || "")} · ${esc(sid)}</p></section></section>`;
-}
 function fillDrawer(kind, item) {
   const dlg = dom.drawer;
   const sec = T.sectionOf(item.primary) || T.sectionOf(sectionIdOf(item));
@@ -760,7 +716,6 @@ function fillDrawer(kind, item) {
   const badges = [];
   if (item.selected) badges.push('<span class="badge badge--cited">Cited</span>');
   if (kind === "grey") badges.push(`<span class="badge badge--report" data-c="report">Report${item.confidence && item.confidence !== "verified" ? ` · ${esc(item.confidence)}` : ""}</span>`);
-  if (hasZh(kind, item)) badges.push('<span class="badge badge--zh">中文</span>');
   dom.drawerBody.innerHTML = `
     <p class="drawer__crumb">${crumb}</p>
     <h2 class="drawer__label" id="drawer-label" tabindex="-1">${esc(item.label)}</h2>
@@ -771,8 +726,7 @@ function fillDrawer(kind, item) {
     ${item.one_line ? `<p class="drawer__summary">${esc(item.one_line)}</p>` : ""}
     ${kind === "paper" && item.reason ? `<section class="drawer__section drawer__why"><h3>Why it is here</h3><p>${esc(item.reason)}</p></section>` : ""}
     <section class="drawer__section"><h3>Placed in</h3>${placedHTML(item)}</section>
-    <div id="drawer-stream">${streamHTML(kind, item)}</div>
-    <div id="drawer-notes"></div>`;
+    <div id="drawer-stream">${streamHTML(kind, item)}</div>`;
   renderDrawerNav(kind, item);
   dlg.scrollTop = 0;
 }
@@ -807,23 +761,6 @@ function stepDrawer(delta) {
     (other.getAttribute("aria-disabled") === "true" ? $("#drawer-label") || other : other).focus({ preventScroll: true });
   }
 }
-async function loadNotesInto(kind, item) {
-  const slot = $("#drawer-notes");
-  if (!slot) return;
-  const known = hasZh(kind, item);
-  if (!known && S.zhKeys) { slot.innerHTML = ""; return; }
-  if (!known && kind === "paper") { slot.innerHTML = ""; return; }
-  slot.innerHTML = `<section class="drawer__section notes-wrap"><h3>Reading notes (中文)</h3><div class="skeleton" aria-hidden="true"><div class="skeleton__row"></div><div class="skeleton__row"></div><div class="skeleton__row"></div><div class="skeleton__row"></div><div class="skeleton__row"></div></div></section>`;
-  try {
-    const z = await loadNotesFile();
-    if (S.drawerKey !== kind + ":" + item.key) return;
-    const note = z[item.key];
-    slot.innerHTML = note ? notesHTML(note, item.primary) : "";
-    if (note && !item.has_zh) { const b = dom.drawerBody.querySelector(".drawer__badges"); if (b && !b.querySelector(".badge--zh")) b.insertAdjacentHTML("beforeend", ' <span class="badge badge--zh">中文</span>'); }
-  } catch (e) {
-    if (S.drawerKey === kind + ":" + item.key) slot.innerHTML = `<section class="drawer__section notes-wrap"><h3>Reading notes (中文)</h3><p class="error">The reading notes could not be loaded.</p></section>`;
-  }
-}
 /** closeEntity(): the × button and the backdrop. Uses the shell's closeDrawer so history is restored even where the
     dialog's close event is late; Esc goes through the native close event and the listener in wire(). */
 function closeEntity() {
@@ -842,7 +779,6 @@ function openEntity(kind, item, { push = false, replace = false, returnTo } = {}
   if (!dlg.open) openDrawer(dlg, { hash: push ? hash : undefined, returnTo });
   else if (replace) writeState({ hash });
   document.title = `${item.label} · Papers · ${SITE_TITLE}`;
-  loadNotesInto(kind, item);
 }
 
 /* ---------- routing ---------- */
@@ -1006,7 +942,6 @@ function toggleChip(id) {
   const f = readFilters();
   if (id === "cited") setFilter({ cited: f.cited ? null : "1" });
   else if (id === "score") setFilter({ score: f.score3 ? null : "3" });
-  else if (id === "zh") setFilter({ zh: f.zh ? null : "1" });
   else if (id === "grey") setFilter({ grey: f.grey ? "0" : null });
   else if (id.startsWith("year:")) {
     const y = id.slice(5);
@@ -1024,7 +959,7 @@ function removeChip(id) {
 }
 function clearFilters() {
   dom.q.value = "";
-  setFilter({ q: null, cited: null, score: null, zh: null, grey: null, years: null });
+  setFilter({ q: null, cited: null, score: null, grey: null, years: null });
 }
 
 /* ---------- main ---------- */

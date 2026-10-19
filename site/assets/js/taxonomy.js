@@ -197,21 +197,15 @@ export function renderColourKey(target) {
   for (const p of ["good", "bad", "mixed"]) rows.push([mark({ shape: "dash", c: p }), `--c-${p}`, `Polarity: ${POLARITY_LABELS[p].toLowerCase()}`]);
   target.innerHTML = `<table class="colour-key"><thead><tr><th>Mark</th><th>Token</th><th>Meaning</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table>`;
 }
-/** renderSectionsTable(el): the 56-row table in eleven <details> groups; zh counts fill via fillZhCounts. */
+/** renderSectionsTable(el): the 56-row table in eleven <details> groups. */
 export function renderSectionsTable(target) {
   target.innerHTML = sections.map((s) => {
     const tot = s.subsections.reduce((a, ss) => ({ primary: a.primary + ss.counts.primary, selected: a.selected + ss.counts.selected, cross: a.cross + ss.counts.cross, grey: a.grey + ss.counts.grey }), { primary: 0, selected: 0, cross: 0, grey: 0 });
     return `<details class="sections-table__group" data-section="${s.id}">
       <summary class="sections-table__summary"><span class="sections-table__rule" aria-hidden="true"></span><span class="num muted">§${s.number}</span><span class="sections-table__title">${esc(s.title)}</span><span class="sections-table__totals">${fmtInt(tot.primary)} primary · ${fmtInt(tot.selected)} cited · ${fmtInt(tot.grey)} reports</span><span class="sections-table__chev">${icon("chevron-down")}</span></summary>
-      <table><thead><tr><th>Subsection</th><th class="n">Primary</th><th class="n">Cited</th><th class="n">Cross</th><th class="n">Reports</th><th class="n">中文</th></tr></thead><tbody>
-      ${s.subsections.map((ss) => `<tr><td><a href="${linkTo("papers", { hash: ss.id })}">${ss.number} ${esc(ss.title)}</a></td><td class="n">${fmtInt(ss.counts.primary)}</td><td class="n">${fmtInt(ss.counts.selected)}</td><td class="n">${fmtInt(ss.counts.cross)}</td><td class="n">${fmtInt(ss.counts.grey)}</td><td class="n num" data-zh="${ss.id}">${ss.counts.zh != null ? fmtInt(ss.counts.zh) : "·"}</td></tr>`).join("")}
+      <table><thead><tr><th>Subsection</th><th class="n">Primary</th><th class="n">Cited</th><th class="n">Cross</th><th class="n">Reports</th></tr></thead><tbody>
+      ${s.subsections.map((ss) => `<tr><td><a href="${linkTo("papers", { hash: ss.id })}">${ss.number} ${esc(ss.title)}</a></td><td class="n">${fmtInt(ss.counts.primary)}</td><td class="n">${fmtInt(ss.counts.selected)}</td><td class="n">${fmtInt(ss.counts.cross)}</td><td class="n">${fmtInt(ss.counts.grey)}</td></tr>`).join("")}
       </tbody></table></details>`;
   }).join("");
-}
-/** fillZhCounts(el, summaries): writes per-subsection counts of Chinese notes into [data-zh] cells. */
-export function fillZhCounts(target, summaries) {
-  const c = {};
-  for (const k of Object.keys(summaries || {})) { const sid = summaries[k].sid; if (sid) c[sid] = (c[sid] || 0) + 1; }
-  for (const td of target.querySelectorAll("[data-zh]")) td.textContent = fmtInt(c[td.dataset.zh] || 0);
 }
 export { el, SOURCE_LABELS, OP_LABELS };

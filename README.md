@@ -2,15 +2,16 @@
 
 The companion website of the survey *Controlling Untrusted AI: A Survey* (draft v0.2, October 2026;
 arXiv link to come). Published as a static site on GitHub Pages at
-`https://yminglai.github.io/controlling-untrusted-ai/`.
+`https://ymingl.com/controlling-untrusted-ai/` (the account's GitHub Pages custom domain; project sites are
+served under it, so the repository needs no CNAME of its own).
 
 The site does two things.
 
 1. **The paper collection.** Every paper the survey placed into its taxonomy (1,788 arXiv papers and
    164 reports and posts from outside arXiv), browsable by the paper's own 11 sections and 56
    subsections, searchable and filterable, with a card per paper (method-style label, authors, year,
-   one-line summary, placement reason, cross-references) and, for 238 items, structured reading notes
-   in Chinese. 239 items are cited in the PDF; the rest are the reading list behind it.
+   one-line summary, placement reason, cross-references). 239 items are cited in the PDF; the rest are
+   the reading list behind it.
 2. **The live stream.** A continuously collected feed of real-world news about deploying AI agents,
    good and bad: incidents, near misses, deployments, shipped safety features, evaluations, policy and
    vendor disclosures. Every item is classified into the survey taxonomy (failure source, requirement,
@@ -31,7 +32,7 @@ site/                       the published site: index.html  papers.html  stream.
   assets/css/               tokens.css  site.css  papers.css  stream.css
   assets/js/                common.js  taxonomy.js  papers.js  stream.js  search.js
   assets/img/               the two figures of the paper, favicon.svg, og.png (+ og.html that made it)
-  data/                     taxonomy.json  papers.json  grey.json  summaries_zh.json  stats.json  stream.json
+  data/                     taxonomy.json  papers.json  grey.json  stats.json  stream_recent.json  stream.json
 pipeline/                   build_data.py  collect_news.py  classify.py  feeds.yml  seed/  tests/  README.md
 .github/                    workflows/collect.yml  workflows/pages.yml  ISSUE_TEMPLATE/submit_item.yml
 ```
@@ -51,7 +52,7 @@ python3 -m http.server 8765 --directory site
 ```
 
 All URLs are relative, so the site also works from `file://` and from a sub-path such as
-`https://<user>.github.io/<repo>/`. Append `?theme=light` or `?theme=dark` to any page to force a
+`https://ymingl.com/controlling-untrusted-ai/`. Append `?theme=light` or `?theme=dark` to any page to force a
 theme for screenshots; otherwise the theme follows the system and the masthead toggle (stored in
 `localStorage` under `cuai-theme`).
 
@@ -71,9 +72,8 @@ Headless Chrome enforces a 500 px minimum window, so a true 390 px capture needs
 ## Regenerating the paper data
 
 `pipeline/build_data.py` reads the paper's repository (the read-only Overleaf clone: `outline.json`,
-`research/corpus_full.json`, `research/grey_v2.json`, `research/labels_method_style.json`,
-`research/summaries_zh.json`) and rewrites `taxonomy.json`, `papers.json`, `grey.json`,
-`summaries_zh.json` and `stats.json` under `site/data/`.
+`research/corpus_full.json`, `research/grey_v2.json`, `research/labels_method_style.json`) and rewrites
+`taxonomy.json`, `papers.json`, `grey.json` and `stats.json` under `site/data/`.
 
 ```bash
 python3 pipeline/build_data.py                      # clone expected at ../overleaf-ai-control
@@ -142,7 +142,7 @@ push workflows). The workflow checks that every `site/data/*.json` parses before
 One-time setup in the repository: Settings → Pages → Source: "GitHub Actions". Nothing else is
 needed; there is no build step. `site/404.html` is served for unknown paths; it resolves its assets
 from the site root even for nested paths such as `/<repo>/stream/`. `og:url` and `og:image` in the
-page heads are absolute (crawlers require it) and point at `https://yminglai.github.io/controlling-untrusted-ai/`;
+page heads are absolute (crawlers require it) and point at `https://ymingl.com/controlling-untrusted-ai/`;
 change them if the site moves.
 
 ## No branding

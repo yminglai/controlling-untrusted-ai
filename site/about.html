@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About · Controlling Untrusted AI</title>
-<meta name="description" content="The survey, its taxonomy, the paper collection, the reading notes, how the live stream is collected, how to submit and cite, the data files and their limits.">
+<meta name="description" content="The survey, its taxonomy, the paper collection, how the live stream is collected, how to submit and cite, the data files and their limits.">
 <meta name="data-version" content="2026-10-17">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
@@ -12,9 +12,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Controlling Untrusted AI: A Survey">
 <meta property="og:title" content="About · Controlling Untrusted AI: A Survey">
-<meta property="og:description" content="The survey, its taxonomy, the paper collection, the reading notes, how the live stream is collected, how to submit and cite, the data files and their limits.">
-<meta property="og:url" content="https://yminglai.github.io/controlling-untrusted-ai/about.html">
-<meta property="og:image" content="https://yminglai.github.io/controlling-untrusted-ai/assets/img/og.png">
+<meta property="og:description" content="The survey, its taxonomy, the paper collection, how the live stream is collected, how to submit and cite, the data files and their limits.">
+<meta property="og:url" content="https://ymingl.com/controlling-untrusted-ai/about.html">
+<meta property="og:image" content="https://ymingl.com/controlling-untrusted-ai/assets/img/og.png">
 <meta property="og:image:alt" content="Controlling Untrusted AI: A Survey, with the eleven-section colour bar of the paper collection">
 <meta name="twitter:card" content="summary_large_image">
 <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("cuai-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
@@ -104,9 +104,6 @@
       <h3 class="caps">The Sections</h3>
       <div class="sections-table" id="sections-table"></div>
 
-      <h2 id="notes">Reading Notes in Chinese</h2>
-      <p><span data-bind="stats.zh">238</span> items carry structured reading notes in Chinese: positioning, problem, method, findings, deployer takeaway, limitations, relation to the subsection, doubts and a glossary of terms. Each note states how much of the paper was read: in full, in part, abstract only or metadata only. The notes were written against the papers; they are not translations of them. They open from the paper's card.</p>
-
       <h2 id="stream">The Live Stream</h2>
       <p>The stream records real events in the deployment of AI agents: incidents, near misses, deployments, shipped safety features, evaluations, research with direct deployment relevance, policy, and vendor disclosures. Each item is marked good, bad or mixed and classified into the taxonomy: which failure source, which requirement, which control operation, which subsections. The stream was seeded by a verified sweep and is refreshed every six hours by a collector that reads RSS feeds and search results and classifies candidates with a language model. Every item is fetched and its date and claims checked against the source before publication; unverifiable items are not published.</p>
       <table class="enum-table"><thead><tr><th>Kind</th><th>Meaning</th></tr></thead><tbody><tr><td>incident</td><td>harm occurred</td></tr><tr><td>near-miss</td><td>caught before harm</td></tr><tr><td>deployment</td><td>an agent put into real use, with or without reported controls</td></tr><tr><td>safety-feature</td><td>a vendor or deployer shipped a control mechanism</td></tr><tr><td>evaluation</td><td>a published test of deployed or deployable agents, including system cards and red-team reports</td></tr><tr><td>research</td><td>a paper or report with direct deployment relevance</td></tr><tr><td>policy</td><td>law, regulation, standard, enforcement, lawsuit</td></tr><tr><td>disclosure</td><td>vendor postmortem or security advisory</td></tr></tbody></table>
@@ -125,16 +122,15 @@
   author = {[Authors]},
   year   = {2026},
   note   = {Draft v0.2, October 2026. arXiv link to come.},
-  url    = {https://yminglai.github.io/controlling-untrusted-ai/}
+  url    = {https://ymingl.com/controlling-untrusted-ai/}
 }<button type="button" class="btn btn--sm bibtex__copy" id="copy-bib"><svg class="icon icon--s" aria-hidden="true"><use href="#i-copy"/></svg> Copy</button></pre>
 
       <h2 id="data">Data</h2>
       <p>The site reads only the files below; they are regenerated from the paper's repository and by the collector. All are UTF-8 JSON under <code class="mono">site/data/</code>.</p>
       <div class="datalist">
 <div class="datalist__item"><div><a class="datalist__file" href="data/taxonomy.json">taxonomy.json</a><span class="datalist__meta">81 KB · generated 2026-10-17</span></div><p class="datalist__desc">The survey's structure: title, thesis, readers, requirements, failure sources, operations and the eleven sections with their subsections, plan bullets and counts.</p></div>
-<div class="datalist__item"><div><a class="datalist__file" href="data/papers.json">papers.json</a><span class="datalist__meta">1270 KB · generated 2026-10-17</span></div><p class="datalist__desc">One object per arXiv paper: key, arXiv id, title, authors, year, primary subsection, score, whether it is cited in the PDF, method-style label, one-line summary, placement reason, cross-references.</p></div>
-<div class="datalist__item"><div><a class="datalist__file" href="data/grey.json">grey.json</a><span class="datalist__meta">88 KB · generated 2026-10-17</span></div><p class="datalist__desc">Reports and posts from outside arXiv: key, title, authors, year, venue, URL, primary subsection, label, one-line summary, verification confidence.</p></div>
-<div class="datalist__item"><div><a class="datalist__file" href="data/summaries_zh.json">summaries_zh.json</a><span class="datalist__meta">547 KB · generated 2026-10-17</span></div><p class="datalist__desc">Structured reading notes in Chinese keyed by bib key: positioning, problem, method, findings, deployer takeaway, limitations, relation to the subsection, reading depth, terms, doubts.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/papers.json">papers.json</a><span class="datalist__meta">1240 KB · generated 2026-10-17</span></div><p class="datalist__desc">One object per arXiv paper: key, arXiv id, title, authors, year, primary subsection, score, whether it is cited in the PDF, method-style label, one-line summary, placement reason, cross-references.</p></div>
+<div class="datalist__item"><div><a class="datalist__file" href="data/grey.json">grey.json</a><span class="datalist__meta">85 KB · generated 2026-10-17</span></div><p class="datalist__desc">Reports and posts from outside arXiv: key, title, authors, year, venue, URL, primary subsection, label, one-line summary, verification confidence.</p></div>
 <div class="datalist__item"><div><a class="datalist__file" href="data/stats.json">stats.json</a><span class="datalist__meta">1 KB · generated 2026-10-17</span></div><p class="datalist__desc">Counts for the site: papers, reports, cited items, subsections, sections, papers per year and per section, stream item count and last update.</p></div>
 <div class="datalist__item"><div><a class="datalist__file" href="data/stream_recent.json">stream_recent.json</a><span class="datalist__meta">30 KB · generated 2026-10-17</span></div><p class="datalist__desc">The twelve newest stream items, newest first, in the item schema of stream.json; read by the landing page.</p></div>
 <div class="datalist__item"><div><a class="datalist__file" href="data/stream.json">stream.json</a><span class="datalist__meta">637 KB · generated 2026-10-17</span></div><p class="datalist__desc">The live stream: one object per verified event with date, source URL, publisher, kind, polarity, summary, failure sources, requirements, operations, subsections, domain, actors, evidence, related papers, tags and verification note.</p></div>
@@ -144,7 +140,7 @@
       <p>Three limits apply. The paper cards rest on abstract-level evidence: labels, summaries and placements were written from abstracts and, for cited papers, from the paper text; a card is a pointer, not a review. Stream items are classified by a language model and then verified for URL, date and claims; human review of the classification is pending for items so marked, and until then a classification may be wrong. The collection is a snapshot of the draft: subsections, counts and placements will change as the paper does, and the generated dates above say when.</p>
 
       <h2 id="colophon">Colophon</h2>
-      <p>Set in Newsreader, Inter and IBM Plex Mono, served by Google Fonts with system fallbacks; Chinese text uses the system's own faces. Static HTML, CSS and JavaScript, no build step, no analytics, no cookies, no trackers; the only third-party request is for the typefaces. Light and dark themes follow the system and switch in the masthead. Text and data are released under CC BY 4.0.</p>
+      <p>Set in Newsreader, Inter and IBM Plex Mono, served by Google Fonts with system fallbacks. Static HTML, CSS and JavaScript, no build step, no analytics, no cookies, no trackers; the only third-party request is for the typefaces. Light and dark themes follow the system and switch in the masthead. Text and data are released under CC BY 4.0.</p>
       <p><a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">Source on GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> · <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/blob/main/LICENSE" rel="noopener">Licence<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></p>
     </article>
   </div>
@@ -156,7 +152,7 @@
   </div>
 </footer>
 <script type="module">
-import { initPage, bindStats, fetchJSON, dataVersion, copyText } from "./assets/js/common.js";
+import { initPage, bindStats, copyText } from "./assets/js/common.js";
 import * as T from "./assets/js/taxonomy.js";
 const $ = (s) => document.querySelector(s);
 const [stats, tax] = await Promise.all([initPage(), T.loadTaxonomy().catch(() => null)]);
@@ -164,23 +160,6 @@ if (tax) {
   bindStats(stats || {}, { taxonomy: tax });
   T.renderColourKey($("#colour-key"));
   T.renderSectionsTable($("#sections-table"));
-  const table = $("#sections-table");
-  /* the 中文 column and the notes count come from taxonomy counts.zh and stats.zh; the 549 KB notes file is fetched only
-     when an older taxonomy.json without counts.zh is served */
-  const hasZhCounts = tax.sections.every((s) => s.subsections.every((ss) => ss.counts && ss.counts.zh != null));
-  if (!hasZhCounts || !(stats && stats.zh != null)) {
-    const fill = async () => {
-      try {
-        const z = await fetchJSON("data/summaries_zh.json", { version: dataVersion() });
-        if (!hasZhCounts) T.fillZhCounts(table, z);
-        bindStats(stats || {}, { taxonomy: tax, stats: { ...(stats || {}), zh: Object.keys(z).length } });
-      } catch (e) { /* the column keeps its dots */ }
-    };
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); fill(); } }, { rootMargin: "400px" });
-      io.observe(table);
-    } else fill();
-  }
 }
 $("#copy-bib").addEventListener("click", () => copyText($("#bibtex").firstChild.textContent.trim(), "Copied"));
 </script>
