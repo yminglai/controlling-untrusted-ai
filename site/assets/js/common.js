@@ -1,21 +1,21 @@
 /* common.js: shared constants, data loading, theme, masthead, URL state, formatting, marks and chips,
-   ledger rows, drawer helpers, toast. ES module, no dependencies. See design/IMPLEMENTATION_NOTES.md. */
+   ledger rows, drawer helpers, toast. ES module, no dependencies. */
 
 export const REPO_URL = "https://github.com/yminglai/controlling-untrusted-ai";
 export const ISSUE_URL = REPO_URL + "/issues/new?template=submit_item.yml";
 export const LICENSE_URL = REPO_URL + "/blob/main/LICENSE";
 export const SITE_URL = "https://ymingl.com/controlling-untrusted-ai/";
-export const PAPER_STATUS = "Draft v0.2 · October 2026 · arXiv link to come";
 export const THEME_KEY = "cuai-theme";
-export const PAGES = { index: "index.html", papers: "papers.html", stream: "stream.html", about: "about.html" };
+export const PAGES = { index: "index.html", papers: "papers.html", stream: "stream.html" };
 
 export const KIND_LABELS = {
   "incident": "Incident", "near-miss": "Near miss", "deployment": "Deployment", "safety-feature": "Safety feature",
   "evaluation": "Evaluation", "research": "Research", "policy": "Policy", "disclosure": "Disclosure"
 };
 export const POLARITY_LABELS = { good: "Good", bad: "Bad", mixed: "Mixed" };
-export const SOURCE_LABELS = { mistakes: "Mistakes", manipulation: "Manipulation", misalignment: "Misalignment" };
-export const OP_LABELS = { failures: "How Agents Fail", constrain: "Constrain", observe: "Observe", intervene: "Intervene", steer: "Steer", train: "Train", verify: "Verify", deploy: "Deploy and Assure" };
+/* tier and operation labels: the ids below are the fallback; loadTaxonomy() overwrites every label from taxonomy.json */
+export const SOURCE_LABELS = { benign: "Benign", external: "External", insider: "Insider" };
+export const OP_LABELS = { failures: "Failure Modes of Deployed Agents", constrain: "Constrain", monitor: "Monitor", intervene: "Intervene", steer: "Steer", train: "Train", evaluate: "Evaluate", deploy: "Deploy" };
 export const REQ_LABELS = { "correct": "Correct", "compliant": "Compliant", "in-scope": "In scope", "within-budget": "Within budget", "safe": "Safe" };
 
 /* A registry other modules fill (taxonomy.js sets registry.taxonomy) so this module can label subsection ids
@@ -195,16 +195,12 @@ export function initTheme() {
 }
 
 /* ---------- masthead ---------- */
-/** initMasthead(stats): aria-current on the nav, the Stream dot when stats.stream_updated is within 7 days, the Menu sheet. */
-export function initMasthead(stats) {
+/** initMasthead(): aria-current on the nav and the Menu sheet. */
+export function initMasthead() {
   const file = location.pathname.split("/").pop() || "index.html";
   for (const a of document.querySelectorAll(".masthead .nav__link")) {
     const target = (a.getAttribute("href") || "").split(/[?#]/)[0];
     if (target === file) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
-  }
-  const streamLink = document.querySelector('.masthead .nav__link[href^="stream.html"]');
-  if (streamLink && stats && stats.stream_updated && withinDays(stats.stream_updated, 7) && !streamLink.querySelector(".nav__dot")) {
-    streamLink.insertAdjacentHTML("beforeend", '<span class="nav__dot" aria-hidden="true"></span><span class="visually-hidden"> updated this week</span>');
   }
   const head = document.querySelector(".masthead");
   const btn = document.querySelector(".menu-btn");
@@ -259,7 +255,7 @@ export function dataAttrFor(id) {
   if (SUB_RE.test(id)) return `data-section="${id.split("_")[0]}"`;
   return `data-c="${esc(id)}"`;
 }
-/** mark({shape: "square"|"square-hollow"|"circle"|"dash"|"dash-l"|"dot", c: "s5"|"observe"|"mistakes"|"bad"|"report"}) -> HTML string */
+/** mark({shape: "square"|"square-hollow"|"circle"|"dash"|"dash-l"|"dot", c: "s5"|"monitor"|"benign"|"bad"|"report"}) -> HTML string */
 export function mark({ shape = "square", c = "gray", hollow = false, label = "" } = {}) {
   const cls = `mark mark--${hollow ? "square-hollow" : shape}`;
   return `<span class="${cls}" ${dataAttrFor(c)} ${label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true"'}></span>`;
@@ -447,25 +443,12 @@ export async function copyText(text, label = "Copied") {
 }
 export function reducedMotion() { return matchMedia("(prefers-reduced-motion: reduce)").matches; }
 
-/* ---------- footer ---------- */
-/** initFooter(stats): fills the colophon's generated and stream-updated dates. */
-export function initFooter(stats) {
-  const g = document.querySelector("[data-footer-generated]");
-  const s = document.querySelector("[data-footer-stream]");
-  if (g && stats) g.textContent = stats.generated || "";
-  if (s) {
-    const u = stats && stats.stream_updated;
-    s.textContent = u ? fmtDateLong(u) : "not yet";
-    if (u) s.setAttribute("title", u);
-  }
-}
-/** initPage(): theme, stats, masthead, footer; returns the stats promise (null on failure, never throws). */
+/** initPage(): theme, stats, masthead; returns the stats promise (null on failure, never throws). */
 export async function initPage() {
   initTheme();
   let stats = null;
   try { stats = await loadStats(); } catch (e) { stats = null; }
   initMasthead(stats);
-  initFooter(stats);
   if (stats) bindStats(stats);
   return stats;
 }

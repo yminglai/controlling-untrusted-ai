@@ -1,14 +1,12 @@
-/* stream.css: page-scoped rules for stream.html (design/DESIGN.md section 6). Live indicator, chronology strip,
-   facet rail and sheet, ledger expansion and density, pipeline panel, states, responsive rules. Colour is read only
+/* stream.css: page-scoped rules for stream.html. Live indicator, chronology strip,
+   facet rail and sheet, ledger expansion and density, states, responsive rules. Colour is read only
    through roles and --c (set by data attributes or identity tokens); no hue is named. */
 
 /* ---- header ---- */
 .stream__head { padding-bottom: var(--s5); }
-.stream__dek { font: 400 20px/30px var(--serif); max-width: var(--measure-dek); margin: var(--s3) 0 var(--s4); }
+.stream__status { margin-top: var(--s3); }
 .stream__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s5); font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); color: var(--fg-muted); }
 .stream__sources { margin: 0; }
-.stream__actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
-.stream__actions .btn .icon { width: 16px; height: 16px; }
 
 /* ---- live indicator: label in --c-text, sits on --bg only ---- */
 .live { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
@@ -29,11 +27,11 @@
 
 /* ---- facets rail ---- */
 .facets { position: sticky; top: 56px; max-height: calc(100vh - 56px); overflow: auto; overscroll-behavior: contain; padding: 2px 6px var(--s6) 2px; scrollbar-width: thin; }
-/* the empty state fades the filter controls only; the pipeline panel inside the aside stays readable and clickable */
+/* the empty state fades the filter controls */
 .facets[aria-disabled="true"] .facet, .facets[aria-disabled="true"] .facets__bar { opacity: .55; pointer-events: none; }
 .facets__bar { display: none; }
 .facet { border: 0; margin: 0; padding: 0 0 var(--s4); min-width: 0; }
-.facet + .facet, .facet + details.facet, details.facet + .facet { border-top: var(--hairline); padding-top: var(--s3); }
+.facet + .facet { border-top: var(--hairline); padding-top: var(--s3); }
 .facet__legend { display: block; padding: 0; margin: 0 0 var(--s2); color: var(--fg-muted); }
 legend.facet__legend { float: left; width: 100%; }
 .facet__options { display: flex; flex-wrap: wrap; gap: 6px; clear: both; }
@@ -47,11 +45,6 @@ legend.facet__legend { float: left; width: 100%; }
 .facet--range .facet__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2); clear: both; }
 .facet--range label { display: grid; gap: 4px; font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); min-width: 0; }
 .facet--range .input { width: 100%; min-width: 0; padding: 5px 8px; font-family: var(--mono); font-size: var(--fs-meta); }
-.facet--more > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px; }
-.facet--more > summary::-webkit-details-marker { display: none; }
-.facet--more > summary::after { content: ""; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform var(--t-toggle) var(--ease); }
-.facet--more[open] > summary::after { transform: rotate(225deg) translateY(-1px); }
-.facet--more > .facet { border-top: 0; padding-top: var(--s2); padding-bottom: 0; }
 .facet__radios { display: inline-flex; border: 1px solid var(--control-border); border-radius: var(--r-chip); overflow: hidden; clear: both; }
 .facet__radio { position: relative; display: inline-flex; }
 .facet__radio + .facet__radio { border-left: 1px solid var(--control-border); }
@@ -150,16 +143,6 @@ legend.facet__legend { float: left; width: 100%; }
 #state .empty, #state .error { border-top: var(--hairline); }
 #state .empty__actions .btn .icon, #state .error__retry .btn .icon { width: 16px; height: 16px; }
 
-/* ---- pipeline panel ---- */
-.pipeline { background: var(--bg-panel); border: var(--hairline); padding: var(--s4); margin-top: var(--s5); font: 400 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); }
-.pipeline__head { color: var(--fg-muted); margin: 0 0 var(--s2); }
-.pipeline p { margin: 0; }
-.pipeline__counts { margin-top: var(--s3) !important; font: 400 var(--fs-mono-s)/18px var(--mono); color: var(--fg-muted); }
-.pipeline__links { margin-top: var(--s2) !important; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); font-size: var(--fs-meta); }
-.pipeline__links a { font-family: var(--mono); }
-.pipeline__links a:last-child { font-family: var(--sans); }
-.stream__main > .pipeline { margin-top: var(--s7); }
-
 /* ---- responsive ---- */
 @media (max-width: 1439px) {
   .stream__layout { grid-template-columns: 240px minmax(0, 1fr); }
@@ -183,12 +166,12 @@ legend.facet__legend { float: left; width: 100%; }
   .ledger .ledger__month { font-size: 20px; line-height: 26px; }
 }
 @media (max-width: 767px) {
-  .stream__dek { font-size: 18px; line-height: 27px; }
   .chronology svg { display: none; }
   .chronology__jump { display: block; }
   .ledger__row { scroll-margin-top: 104px; }
   .ledger--compact .ledger__row:not(.is-expanded) .ledger__body { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
   .ledger__row.is-expanded { box-shadow: 0 0 0 var(--s2) var(--bg-panel); }
+  .ledger__row:not(.is-expanded) .ledger__class :is([data-kind="op"], [data-kind="req"]) { display: none; }
   .facet--range .facet__row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -196,7 +179,7 @@ legend.facet__legend { float: left; width: 100%; }
   .facets { transition: none; }
 }
 @media print {
-  .facets, .facets__toggle, .chronology, .stream__actions, .ledger__more { display: none !important; }
+  .facets, .facets__toggle, .chronology, .ledger__more { display: none !important; }
   .stream__layout { display: block; }
 }
 /* verification note: first sentence collapsed, the full note behind "Show full note" (added with the review fixes) */

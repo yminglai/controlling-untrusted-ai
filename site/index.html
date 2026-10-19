@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Controlling Untrusted AI: A Survey</title>
-<meta name="description" content="A survey of control for untrusted AI agents with its full paper collection and a live stream of agent deployments in the wild, filed under the survey's taxonomy.">
-<meta name="data-version" content="2026-10-17">
+<meta name="description" content="The survey Controlling Untrusted AI, its paper collection, and a live stream of agent deployments in the wild.">
+<meta name="data-version" content="2026-10-19">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#2E2E2E" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Controlling Untrusted AI: A Survey">
 <meta property="og:title" content="Controlling Untrusted AI: A Survey">
-<meta property="og:description" content="A survey of control for untrusted AI agents with its full paper collection and a live stream of agent deployments in the wild, filed under the survey's taxonomy.">
+<meta property="og:description" content="The survey Controlling Untrusted AI, its paper collection, and a live stream of agent deployments in the wild.">
 <meta property="og:url" content="https://ymingl.com/controlling-untrusted-ai/">
 <meta property="og:image" content="https://ymingl.com/controlling-untrusted-ai/assets/img/og.png">
-<meta property="og:image:alt" content="Controlling Untrusted AI: A Survey, with the eleven-section colour bar of the paper collection">
+<meta property="og:image:alt" content="Controlling Untrusted AI: A Survey, with the ten-section colour bar of the paper collection">
 <meta name="twitter:card" content="summary_large_image">
 <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("cuai-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="data/stats.json" as="fetch" crossorigin>
-<link rel="preload" href="data/taxonomy.json?v=2026-10-17" as="fetch" crossorigin>
+<link rel="preload" href="data/taxonomy.json?v=2026-10-19" as="fetch" crossorigin>
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -44,17 +44,8 @@
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
   <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
   <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
-  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V11M10 10V3.5a1.5 1.5 0 0 1 3 0V11M13 10.5v-6a1.5 1.5 0 0 1 3 0V12M16 11.5V7.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1.5a7 7 0 0 1-5.5-2.7l-2.7-3.6a1.6 1.6 0 0 1 2.5-2L7 16.5"/></symbol>
-  <symbol id="i-dial" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4.5-5.5"/><circle cx="12" cy="17" r="1.2"/><path d="M4 21h16"/></symbol>
-  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
-  <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 2.5 19.5 5v6.5c0 4.6-3.2 8-7.5 10-4.3-2-7.5-5.4-7.5-10V5z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
-  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></symbol>
 </svg>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="masthead masthead--double">
@@ -65,7 +56,6 @@
       <ul class="masthead__links" id="site-links">
         <li><a class="nav__link" href="papers.html">Papers</a></li>
         <li><a class="nav__link" href="stream.html">Stream</a></li>
-        <li><a class="nav__link" href="about.html">About</a></li>
         <li class="only-sheet"><a class="nav__link ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></li>
       </ul>
       <span class="masthead__sep" role="presentation"></span>
@@ -79,11 +69,9 @@
     <section class="title-block grid12" aria-labelledby="title">
       <div class="span-8">
         <h1 class="title-block__title" id="title">Controlling Untrusted AI:<br>A Survey</h1>
-        <p class="dek" data-bind="taxonomy.thesis|sentences:2">Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own: they make mistakes, they can be redirected by what they read, and they may pursue objectives of their own.</p>
-        <p class="byline caps">[Authors]</p>
-        <p class="status">Draft v0.2 · October 2026 · arXiv link to come</p>
+        <p class="dek" data-bind="taxonomy.thesis|sentences:2">Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own.</p>
+        <p class="status"><span class="caps">[Authors]</span> · Draft v0.2, October 2026 · arXiv link to come</p>
         <div class="title-block__actions">
-          <a class="btn btn--arrow" aria-disabled="true" title="arXiv link to come" role="link">Read the Paper <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
           <a class="btn btn--arrow" href="papers.html">Browse the Papers <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
           <a class="btn btn--arrow" href="stream.html">Open the Stream <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         </div>
@@ -94,7 +82,7 @@
       <div class="spread__left" id="collection">
         <h2 class="running-head">The Paper Collection</h2>
         <div class="sigbar sigbar--sections" id="sigbar-sections" role="img" aria-label="Papers per section"><span class="sigbar__seg sigbar__seg--empty"></span></div>
-        <p class="countline"><span data-bind="stats.papers">1,788</span> papers · <span data-bind="stats.grey">164</span> reports and posts · <span data-bind="stats.subsections">56</span> subsections</p>
+        <p class="countline"><span data-bind="stats.papers">1,788</span> papers · <span data-bind="stats.grey">164</span> reports and posts · <span data-bind="stats.sections">10</span> sections · <span data-bind="stats.subsections">29</span> subsections</p>
         <ol class="toc" id="toc" aria-label="Contents"></ol>
       </div>
       <div class="spread__rule" role="presentation"></div>
@@ -106,51 +94,11 @@
         <p class="spread__foot" id="stream-foot" hidden><a href="stream.html">All <span data-bind="stats.stream_items">231</span> items</a></p>
       </div>
     </section>
-
-    <section class="block" id="map" aria-labelledby="map-h">
-      <h2 id="map-h">The Mechanism Map</h2>
-      <p class="kicker">Two levers act on an untrusted agent. The first changes the deployment around it, the second changes the model. Verify tests either lever, and deployment and assurance compose the mechanisms into a stack.</p>
-      <nav class="mech" id="mech" aria-label="Mechanism map"></nav>
-      <p class="mech__test">Two-level test. L1, does it still work if the agent is indifferent to the requirement. L2, does it still work if the agent tries to defeat it and knows how it works.</p>
-    </section>
-
-    <section class="block grid12" id="gap" aria-labelledby="gap-h">
-      <div class="span-8c">
-        <h2 id="gap-h">The Control Gap</h2>
-        <figure class="plate">
-          <button type="button" class="plate__btn" id="plate-open" aria-label="Enlarge Figure 1"><img class="plate__img" src="assets/img/fig1_why_control_web.jpg" srcset="assets/img/fig1_why_control_1000.jpg 1000w, assets/img/fig1_why_control_web.jpg 1600w" sizes="(min-width: 1024px) 853px, calc(100vw - 32px)" width="1600" height="995" loading="lazy" alt="Figure 1 of the paper: a timeline from chat to tool use to autonomous agents to recursive self-improvement against a fixed line of human review capacity; beneath it the four operations Constrain, Observe, Intervene and Verify, and the three failure sources Mistakes, Manipulation and Misalignment."></button>
-          <figcaption class="plate__caption">Figure 1. What an AI system can do has grown while what a human can check has not. Four operations close the gap against three failure sources.</figcaption>
-        </figure>
-        <dialog class="dialog" id="plate-dialog" aria-label="Figure 1, enlarged">
-          <button type="button" class="btn--icon dialog__close" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
-          <img src="assets/img/fig1_why_control_web.jpg" width="1600" height="995" alt="Figure 1, enlarged" loading="lazy">
-        </dialog>
-      </div>
-    </section>
-
-    <section class="block" id="readers" aria-labelledby="readers-h">
-      <h2 id="readers-h">Who This Is For</h2>
-      <div class="readers">
-        <div class="readers__col"><h3>Researchers</h3><p data-bind="taxonomy.readers.0">Researchers inside one mechanism family (agent security: injection defences, isolation, information-flow control; guardrails; monitoring; control evaluation; formal enforcement; post-training; steering) who want the other families on one map with the same five questions answered.</p></div>
-        <div class="readers__col"><h3>Deploying Teams</h3><p data-bind="taxonomy.readers.1">Teams deploying agents with real credentials who must choose and combine mechanisms for a requirement and a threat model.</p></div>
-        <div class="readers__col"><h3>Evaluators and Policy Staff</h3><p data-bind="taxonomy.readers.2">Evaluators, auditors, and policy staff who need to know what evidence a control claim rests on and which mechanisms satisfy which governance requirements (human oversight, logging, risk management, robustness).</p></div>
-      </div>
-    </section>
-
-    <section class="block" id="numbers" aria-labelledby="numbers-h">
-      <h2 id="numbers-h" class="visually-hidden">By the Numbers</h2>
-      <div class="statline">
-        <p class="statline__items"><span data-bind="stats.papers">1,788</span> papers · <span data-bind="stats.cited">239</span> cited in the PDF · <span data-bind="stats.grey">164</span> reports and posts · <span data-bind="stats.subsections">56</span> subsections · <span data-bind="stats.years|firstkey">2011</span> to <span data-bind="stats.years|lastkey">2026</span></p>
-        <div id="year-hist"></div>
-      </div>
-      <div class="key" id="key"></div>
-    </section>
   </div>
 </main>
 <footer class="colophon">
   <div class="wrap">
-    <p class="colophon__row colophon__row--mono">Data generated <span data-footer-generated>2026-10-17</span> · Stream updated <span data-footer-stream>17 Oct 2026</span></p>
-    <p class="colophon__row"><a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/issues/new?template=submit_item.yml" target="_blank" rel="noopener">Submit an item<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <a href="about.html#cite">Cite</a> <a href="about.html#data">Data</a> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <span>No analytics, no cookies, no trackers. Typefaces served by Google Fonts.</span> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/blob/main/LICENSE" rel="noopener">CC BY 4.0 for text and data<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></p>
+    <p class="colophon__row"><a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai#cite" rel="noopener">Cite<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/issues/new?template=submit_item.yml" target="_blank" rel="noopener">Submit an item<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai" rel="noopener">GitHub<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a> <a class="ext" href="https://github.com/yminglai/controlling-untrusted-ai/blob/main/LICENSE" rel="noopener">Licence<svg class="icon icon--ext" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></p>
   </div>
 </footer>
 <script type="module">
@@ -158,21 +106,16 @@ import { initPage, loadStream, fetchJSON, bindStats, renderLedgerRows, polarityB
 import * as T from "./assets/js/taxonomy.js";
 
 const $ = (s) => document.querySelector(s);
-const statsP = initPage();
-const taxP = T.loadTaxonomy().catch(() => null);
-const [stats, tax] = await Promise.all([statsP, taxP]);
+const [stats, tax] = await Promise.all([initPage(), T.loadTaxonomy().catch(() => null)]);
 
 if (tax) {
   bindStats(stats || {}, { taxonomy: tax });
   T.renderSectionBar($("#sigbar-sections"), stats);
   T.renderToc($("#toc"));
-  T.renderMechanismMap($("#mech"), stats, null);
-  T.renderKey($("#key"));
 }
-if (stats) T.renderYearHistogram($("#year-hist"), stats.years);
 
-/* the live stream column: the polarity bar and the map's item counts come from stats.json at once; the twelve rows
-   come from stream_recent.json after first paint (stream.json, 650 KB, is the fallback when the small file is absent) */
+/* the live stream column: the polarity bar comes from stats.json at once; the twelve rows come from
+   stream_recent.json after first paint (stream.json is the fallback when the small file is absent) */
 const ledger = $("#ledger-short"), countLine = $("#stream-count"), foot = $("#stream-foot");
 function emptyLedger() {
   ledger.classList.remove("ledger--reserve");
@@ -189,7 +132,6 @@ if (!stats || !(stats.stream_items > 0)) {
   emptyLedger();
 } else {
   if (stats.stream_polarity) polarityBar($("#sigbar-polarity"), stats.stream_polarity);
-  if (tax && stats.stream_per_op) T.updateMechanismCounts($("#mech"), { sources: stats.stream_per_source || {}, ops: stats.stream_per_op, subs: stats.stream_per_sub || {} });
   onIdle(async () => {
     const version = stats.stream_updated || stats.generated;
     let recent = null;
@@ -201,7 +143,6 @@ if (!stats || !(stats.stream_items > 0)) {
           const items = stream.items.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
           recent = { generated: stream.generated, items: items.slice(0, 12) };
           polarityBar($("#sigbar-polarity"), polarityCounts(items));
-          if (tax) T.updateMechanismCounts($("#mech"), T.streamCounts(items));
         }
       } catch (e) { recent = null; }
     }
@@ -216,12 +157,6 @@ if (!stats || !(stats.stream_items > 0)) {
     foot.querySelector("a").innerHTML = `All ${fmtInt(stats.stream_items)} items`;
   });
 }
-
-/* Figure 1 in a native dialog */
-const dlg = $("#plate-dialog");
-$("#plate-open").addEventListener("click", () => dlg.showModal());
-dlg.querySelector(".dialog__close").addEventListener("click", () => dlg.close());
-dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
 </script>
 </body>
 </html>

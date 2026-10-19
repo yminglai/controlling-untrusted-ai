@@ -625,9 +625,10 @@ def main(argv=None) -> int:
     stream.setdefault("sources", [])
     tax = clf.load_taxonomy()
     log(f"taxonomy: {tax['source']} ({len(tax['subsection_ids'])} subsections); stream has {len(stream['items'])} items")
-    if stream.get("taxonomy_generated") and tax.get("generated") and stream["taxonomy_generated"] != tax["generated"]:
-        log(f"warning: stream.json was classified against taxonomy {stream['taxonomy_generated']}, "
-            f"the current taxonomy is {tax['generated']}; subsection ids may have changed meaning (see SCHEMA.md)")
+    if stream["items"] and tax.get("structure") and stream.get("taxonomy_structure") != tax["structure"]:
+        log(f"warning: stream.json is filed against subsection list {stream.get('taxonomy_structure')}, "
+            f"the current taxonomy is {tax['structure']} (generated {tax.get('generated')}); subsection ids have changed "
+            f"meaning: run pipeline/remap_stream.py (see SCHEMA.md)")
 
     raw, report = fetch_all(feeds_to_fetch, defaults)
     failed = {k: v["error"] for k, v in report.items() if v["error"]}
@@ -696,6 +697,7 @@ def main(argv=None) -> int:
         log(f"dry run: wrote {DRY_RUN_JSON.relative_to(ROOT)} ({len(new_items)} items, {len(rejected)} rejected)")
     else:
         out_stream = {"generated": generated, "taxonomy_generated": tax.get("generated") or stream.get("taxonomy_generated"),
+                      "taxonomy_structure": tax.get("structure") or stream.get("taxonomy_structure"),
                       "sources": sources, "items": merged}
         if new_items:
             dump_json(STREAM_JSON, out_stream)

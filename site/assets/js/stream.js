@@ -1,7 +1,7 @@
-/* stream.js: the live stream page (design/DESIGN.md section 6). Conditional load of stream.json, facet counts against
-   the other active groups, filtering and sorting, the chronology strip drawn from the filtered set with scroll-spy,
-   chunked ledger rows with expansion and deep links, chip filters, related-paper labels via a lazy papers.json load,
-   download and report links, empty, error and stale states. Filters live in the query string, position in the hash;
+/* stream.js: the live stream page. Conditional load of stream.json, facet counts against the other active groups,
+   filtering and sorting, the chronology strip drawn from the filtered set with scroll-spy, chunked ledger rows with
+   expansion and deep links, chip filters built from taxonomy.json, related-paper labels via a lazy papers.json load,
+   report links, empty, error and stale states. Filters live in the query string, position in the hash;
    every URL is built with linkTo / readState / writeState. No console output. */
 import {
   initPage, bindStats, readState, writeState, linkTo, fetchJSON, dataVersion, loadStream,
@@ -13,12 +13,11 @@ import * as T from "./taxonomy.js";
 const $ = (s, r = document) => r.querySelector(s);
 const PAGE_TITLE = "Stream · Controlling Untrusted AI";
 const CHUNK = 60;
-const MULTI = ["polarity", "source", "op", "req", "kind", "evidence"];
+const MULTI = ["polarity", "source", "op", "req", "kind"];
 const SINGLE = ["domain", "sub", "from", "to", "q", "paper"];
 const FILTER_KEYS = [...MULTI, ...SINGLE];
-const COUNTED = ["polarity", "source", "op", "req", "kind", "evidence", "domain", "sub"];
+const COUNTED = ["polarity", "source", "op", "req", "kind", "domain", "sub"];
 const DOMAINS = ["coding", "browsing", "customer-service", "finance", "email-and-office", "healthcare", "legal", "cyber", "research", "infrastructure", "consumer", "government", "multi-agent", "other"];
-const EVIDENCE = ["first-party", "press", "researcher", "regulator", "court", "incident-database"];
 const KINDS = Object.keys(KIND_LABELS);
 const EVIDENCE_LABELS = { "first-party": "First-party", press: "Press", researcher: "Researcher", regulator: "Regulator", court: "Court", "incident-database": "Incident database" };
 const DOMAIN_LABELS = { coding: "Coding", browsing: "Browsing", "customer-service": "Customer service", finance: "Finance", "email-and-office": "Email and office", healthcare: "Healthcare", legal: "Legal", cyber: "Cyber", research: "Research", infrastructure: "Infrastructure", consumer: "Consumer", government: "Government", "multi-agent": "Multi-agent", other: "Other" };
@@ -42,7 +41,7 @@ let liveTimer = 0;
 let showNewDots = true;          // false when more than half the items were verified this week: the dot would say nothing
 
 const ledger = $("#ledger"), stateEl = $("#state"), sentinel = $("#sentinel"), facetsEl = $("#facets"),
-  activeEl = $("#active"), resultsEl = $("#results"), chronoEl = $("#chronology"), pipelineEl = $("#pipeline"),
+  activeEl = $("#active"), resultsEl = $("#results"), chronoEl = $("#chronology"),
   mainEl = $("#stream-main"), toggleBtn = $("#facets-toggle"), toggleLabel = $("#facets-toggle-label"), scrim = $("#facets-scrim");
 const mqSheet = matchMedia("(max-width: 1023px)");
 const mqPhone = matchMedia("(max-width: 767px)");
@@ -60,7 +59,20 @@ function itemUrl(id) { return new URL(linkTo("stream", { hash: "item/" + id }), 
 
 /* ---------- URL state ---------- */
 function parseState() {
-  const s = readState();
+  let s = readState();
+  if (/^f=/.test(s.hash)) {
+    /* the older form #f=key:value,key:value is folded into the query string */
+    const patch = { hash: "" };
+    for (const pair of s.hash.slice(2).split(",")) {
+      const i = pair.indexOf(":");
+      if (i < 0) continue;
+      const k = pair.slice(0, i).trim(), v = pair.slice(i + 1).trim();
+      if (!FILTER_KEYS.includes(k) || !v) continue;
+      patch[k] = MULTI.includes(k) && patch[k] ? `${patch[k]},${v}` : v;
+    }
+    writeState(patch);
+    s = readState();
+  }
   const st = { hash: s.hash || "", sort: s.sort === "verified" ? "verified" : "date", density: s.density === "compact" ? "compact" : "full" };
   for (const k of MULTI) st[k] = s[k] ? String(s[k]).split(",").map((x) => x.trim()).filter(Boolean) : [];
   for (const k of SINGLE) st[k] = s[k] ? String(s[k]) : "";
@@ -120,7 +132,6 @@ function valuesOf(it, g) {
     case "op": return it.operations || [];
     case "req": return it.requirements || [];
     case "kind": return [it.kind];
-    case "evidence": return [it.evidence];
     case "domain": return [it.domain];
     case "sub": return it.subsections || [];
   }
@@ -130,7 +141,7 @@ function matchGroup(it, g, st, toks) {
   const v = st[g];
   if (!v || (Array.isArray(v) && !v.length)) return true;
   switch (g) {
-    case "polarity": case "kind": case "evidence": return v.includes(valuesOf(it, g)[0]);
+    case "polarity": case "kind": return v.includes(valuesOf(it, g)[0]);
     case "source": case "op": case "req": return valuesOf(it, g).some((x) => v.includes(x));
     case "domain": return it.domain === v;
     case "sub": return (it.subsections || []).some((x) => x === v || (!v.includes("_") && x.startsWith(v + "_")));
@@ -155,7 +166,7 @@ function compare(a, b) {
     if (va !== vb) return va < vb ? 1 : -1;
   }
   if (a.date !== b.date) return a.date < b.date ? 1 : -1;
-  return String(a.title).localeCompare(String(b.title));
+  return a.id < b.id ? 1 : a.id > b.id ? -1 : 0;   /* the file's order: date desc, then id desc */
 }
 function facetCounts(st, toks) {
   const c = {};
@@ -202,17 +213,15 @@ function buildFacets() {
       <div class="facet__search">${icon("search")}<input class="input" type="search" id="f-q" data-group="q" placeholder="Search the stream" title="Searches titles, summaries, publishers, actors and tags" autocomplete="off" spellcheck="false"><kbd aria-hidden="true">/</kbd></div>
     </div>
     ${group("polarity", "Polarity", ["good", "bad", "mixed"], "polarity")}
-    ${group("source", "Failure source", srcs, "source")}
+    ${group("source", "Tier", srcs, "source")}
     ${group("op", "Operation", ops, "op")}
     ${group("req", "Requirement", reqs, "req")}
     ${group("kind", "Kind", KINDS, "kind")}
     <div class="facet"><label class="facet__legend caps" for="f-domain">Domain</label><select class="input facet__select" id="f-domain" data-group="domain"><option value="">All domains</option>${DOMAINS.map((d) => `<option value="${d}" data-label="${DOMAIN_LABELS[d] || human(d)}">${DOMAIN_LABELS[d] || human(d)}</option>`).join("")}</select></div>
-    <details class="facet facet--more"><summary class="facet__legend caps">More</summary>${group("evidence", "Evidence", EVIDENCE, "plain", EVIDENCE_LABELS)}</details>
     <div class="facet"><label class="facet__legend caps" for="f-sub">Subsection</label><select class="input facet__select" id="f-sub" data-group="sub"><option value="">All subsections</option>${subs}</select></div>
     <fieldset class="facet facet--range"><legend class="facet__legend caps">Date range</legend><div class="facet__row"><label>From<input class="input" type="month" id="f-from" data-group="from" pattern="\\d{4}-\\d{2}" placeholder="YYYY-MM" aria-label="From month"></label><label>To<input class="input" type="month" id="f-to" data-group="to" pattern="\\d{4}-\\d{2}" placeholder="YYYY-MM" aria-label="To month"></label></div></fieldset>
     <fieldset class="facet"><legend class="facet__legend caps">Sort</legend><div class="facet__radios">${radio("sort", "date", "Date", true)}${radio("sort", "verified", "Recently verified")}</div></fieldset>
     <fieldset class="facet"><legend class="facet__legend caps">Density</legend><div class="facet__radios">${radio("density", "full", "Full", true)}${radio("density", "compact", "Compact")}</div></fieldset>`;
-  if (!mqSheet.matches) facetsEl.appendChild(pipelineEl);
 }
 function updateFacets(st, counts) {
   for (const fs of facetsEl.querySelectorAll("fieldset[data-group]")) {
@@ -252,7 +261,6 @@ function renderActive(st) {
   for (const id of st.req) parts.push(activeChip("req", "req", id));
   for (const id of st.kind) parts.push(activeChip("kind", "kind", id));
   if (st.domain) parts.push(activeChip("domain", "plain", st.domain, DOMAIN_LABELS[st.domain] || human(st.domain), "Domain"));
-  for (const id of st.evidence) parts.push(activeChip("evidence", "plain", id, EVIDENCE_LABELS[id] || human(id), "Evidence"));
   if (st.sub) parts.push(activeChip("sub", st.sub.includes("_") ? "sub" : "section", st.sub));
   if (st.paper) { const p = papersMap && papersMap.get(st.paper); parts.push(activeChip("paper", "plain", st.paper, p ? p.label : st.paper, "Paper")); }
   if (st.from) parts.push(activeChip("from", "plain", st.from, `From ${fmtMonth(st.from)}`));
@@ -513,7 +521,6 @@ function renderNoStream() {
   items = []; list = []; allMonths = [];
   setLive(null);
   $("#stream-sources").textContent = "No items yet";
-  $("#download").hidden = true;
   facetsEl.setAttribute("aria-disabled", "true");
   for (const x of facetsEl.querySelectorAll("input, select, button")) x.disabled = true;
   toggleBtn.setAttribute("aria-disabled", "true"); toggleBtn.disabled = true;
@@ -521,25 +528,17 @@ function renderNoStream() {
   resultsEl.textContent = "";
   ledger.hidden = true; sentinel.hidden = true; activeEl.innerHTML = "";
   stateEl.innerHTML = `<div class="empty">The ledger opens with the first verified sweep.<div class="empty__actions"><a class="btn btn--arrow" href="${ISSUE_URL}" target="_blank" rel="noopener">Submit an item ${icon("arrow-up-right")}</a></div></div>`;
-  $("#pipeline-counts").textContent = "0 items · 0 seed sweep · 0 collector · 0 reader submissions";
   document.title = PAGE_TITLE;
 }
 function renderError() {
   ledger.hidden = true; sentinel.hidden = true;
   setLive(null, "The stream could not be loaded");
   $("#stream-sources").textContent = `${fmtInt((stats && stats.stream_items) || 0)} items · not loaded`;
-  $("#download").hidden = true;
   stateEl.innerHTML = `<div class="error" role="alert">The stream could not be loaded.<div class="error__retry"><button type="button" class="btn" id="retry">Retry</button></div></div>`;
   $("#retry").addEventListener("click", () => load());
 }
 function fillHeader() {
-  const n = items.length;
-  const sources = Array.isArray(stream.sources) && stream.sources.length ? stream.sources.join(", ") : "seed sweep";
-  $("#stream-sources").innerHTML = `${fmtInt(n)} items · sources: ${esc(sources)}`;
-  $("#download").hidden = false;
-  let seed = 0, collector = 0, reader = 0;
-  for (const it of items) { const by = String(it.added_by || ""); if (by.startsWith("seed")) seed++; else if (by === "collector") collector++; else reader++; }
-  $("#pipeline-counts").textContent = `${fmtInt(n)} items · ${fmtInt(seed)} seed sweep · ${fmtInt(collector)} collector · ${fmtInt(reader)} reader submissions`;
+  $("#stream-sources").textContent = `${fmtInt(items.length)} items`;
   setLive(stream.generated || (stats && stats.stream_updated));
 }
 
@@ -580,10 +579,6 @@ function closeSheet({ refocus = true } = {}) {
   document.body.classList.remove("stream--sheet-open");
   setInert(false);
   if (refocus) toggleBtn.focus();
-}
-function placePipeline() {
-  if (mqSheet.matches) { if (pipelineEl.parentElement !== mainEl) mainEl.appendChild(pipelineEl); }
-  else { closeSheet({ refocus: false }); if (pipelineEl.parentElement !== facetsEl) facetsEl.appendChild(pipelineEl); }
 }
 
 /* ---------- events ---------- */
@@ -671,7 +666,7 @@ function wire() {
       $("#f-q").focus(); $("#f-q").select();
     }
   });
-  mqSheet.addEventListener("change", () => { placePipeline(); if (items.length) renderChronology(); });
+  mqSheet.addEventListener("change", () => { if (!mqSheet.matches) closeSheet({ refocus: false }); if (items.length) renderChronology(); });
   mqPhone.addEventListener("change", () => { if (items.length) renderChronology(); });
   if ("ResizeObserver" in window) {
     let lastW = 0;
@@ -693,7 +688,6 @@ const [s, t] = await Promise.all([initPage(), T.loadTaxonomy().catch(() => null)
 stats = s; tax = t;
 if (tax) bindStats(stats || {}, { taxonomy: tax });
 buildFacets();
-placePipeline();
 wire();
 setLive(stats && stats.stream_updated);
 state = parseState();

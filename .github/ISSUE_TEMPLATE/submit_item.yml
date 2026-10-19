@@ -56,11 +56,11 @@ body:
     id: failure_source
     attributes:
       label: Which failure source
-      description: Why the agent did not meet its requirements on its own. Pick "not a failure" for deployments, policy, or shipped controls.
+      description: The attack tier. Pick "not a failure" for deployments, policy, or shipped controls.
       options:
-        - mistakes (the agent erred, hallucinated, or compounded errors)
-        - manipulation (prompt injection, memory poisoning, hijacked by what it read)
-        - misalignment (pursued its own objective, deceived, resisted oversight)
+        - benign (the agent erred, hallucinated, or compounded errors; no attacker)
+        - external (prompt injection, memory poisoning, redirected by what it read, called, or remembered)
+        - insider (someone with legitimate partial access, or the model itself pursuing its own objective)
         - not a failure
         - not sure
     validations:
@@ -71,13 +71,13 @@ body:
       label: Which operation
       description: The control operation that failed, was missing, or worked.
       options:
-        - constrain (least privilege, sandboxing, action constraints, information flow, credentials)
-        - observe (logging, guardrails, monitors, probes, human review)
-        - intervene (approval gates, blocking, shutdown, rollback)
-        - steer (instructions, context, inference-time steering)
-        - train (safety training, adversarial training, unlearning)
-        - verify (evaluations, red teams, control evaluations, audits)
-        - deploy (architectures, release gates, safety cases, policy, assurance)
+        - constrain (confinement, formal enforcement, information-flow control, delegated authority)
+        - monitor (observability, automated monitors, untrusted monitors, human oversight)
+        - intervene (approval gates, resampling, shutdown, rollback)
+        - steer (instruction hierarchies, memory management, activation steering)
+        - train (safety fine-tuning, adversarial training, representation-level methods)
+        - evaluate (benchmarks, control evaluations, model auditing)
+        - deploy (reference architectures, governance, assurance)
         - not sure
     validations:
       required: true

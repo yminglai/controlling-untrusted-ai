@@ -9,6 +9,13 @@ Extended 2026-10-17 (review fixes): `grey.json` `also`, `confidence` closed set,
 `stats.json` `source_generated` and the `stream_*` counts; `stream.json` `taxonomy_generated`; the new
 `stream_recent.json`.
 
+Changed 2026-10-19 (new paper structure): 10 sections in four `parts`, 29 subsections; the failure
+sources are the three attack tiers `benign | external | insider` (field name unchanged); operations
+`observe` and `verify` became `monitor` and `evaluate`; `steer` and `train` both belong to Section 7;
+`lever` is the part title; `sections[].operation` became the list `operations`; subsection `bullets`
+and section `purpose` dropped (writer notes); `taxonomy.structure` and `stream.taxonomy_structure`
+fingerprint the subsection list. The stream was re-filed by `pipeline/remap_stream.py`.
+
 ## `taxonomy.json`
 
 ```json
@@ -16,36 +23,42 @@ Extended 2026-10-17 (review fixes): `grey.json` `also`, `confidence` closed set,
   "title": "Controlling Untrusted AI: A Survey",
   "thesis": "<one paragraph from outline.json>",
   "readers": ["...", "...", "..."],
-  "generated": "2026-10-17",
+  "generated": "2026-10-19",
+  "structure": "f91f5efaa064",
   "requirements": [
     {"id": "correct", "label": "Correct"}, {"id": "compliant", "label": "Compliant"},
     {"id": "in-scope", "label": "In scope"}, {"id": "within-budget", "label": "Within budget"},
     {"id": "safe", "label": "Safe"}
   ],
   "failure_sources": [
-    {"id": "mistakes", "label": "Mistakes", "color": "#D95358", "blurb": "..."},
-    {"id": "manipulation", "label": "Manipulation", "color": "#E09A3B", "blurb": "..."},
-    {"id": "misalignment", "label": "Misalignment", "color": "#A37CAD", "blurb": "..."}
+    {"id": "benign", "label": "Benign", "color": "#D95358", "blurb": "..."},
+    {"id": "external", "label": "External", "color": "#E09A3B", "blurb": "..."},
+    {"id": "insider", "label": "Insider", "color": "#A37CAD", "blurb": "..."}
   ],
   "operations": [
-    {"id": "failures", "label": "How Agents Fail", "section": "s2", "color": "#D95358", "lever": null},
-    {"id": "constrain", "label": "Constrain", "section": "s4", "color": "#E27553", "lever": "deployment"},
-    {"id": "observe", "label": "Observe", "section": "s5", "color": "#598DD2", "lever": "deployment"},
-    {"id": "intervene", "label": "Intervene", "section": "s6", "color": "#E09A3B", "lever": "deployment"},
-    {"id": "steer", "label": "Steer", "section": "s7", "color": "#65C2B9", "lever": "model"},
-    {"id": "train", "label": "Train", "section": "s8", "color": "#8D86E8", "lever": "model"},
-    {"id": "verify", "label": "Verify", "section": "s9", "color": "#62A16E", "lever": "verify"},
-    {"id": "deploy", "label": "Deploy and Assure", "section": "s10", "color": "#A37CAD", "lever": "assurance"}
+    {"id": "failures", "label": "Failure Modes of Deployed Agents", "section": "s2", "color": "#D95358", "lever": null},
+    {"id": "constrain", "label": "Constrain", "section": "s4", "color": "#E27553", "lever": "System-Level Control"},
+    {"id": "monitor", "label": "Monitor", "section": "s5", "color": "#598DD2", "lever": "System-Level Control"},
+    {"id": "intervene", "label": "Intervene", "section": "s6", "color": "#E09A3B", "lever": "System-Level Control"},
+    {"id": "steer", "label": "Steer", "section": "s7", "color": "#65C2B9", "lever": "Model-Level Control"},
+    {"id": "train", "label": "Train", "section": "s7", "color": "#65C2B9", "lever": "Model-Level Control"},
+    {"id": "evaluate", "label": "Evaluate", "section": "s8", "color": "#62A16E", "lever": "Evaluation and Assurance"},
+    {"id": "deploy", "label": "Deploy", "section": "s9", "color": "#A37CAD", "lever": "Evaluation and Assurance"}
+  ],
+  "parts": [
+    {"title": "Foundations", "sections": ["s1", "s2", "s3"]},
+    {"title": "System-Level Control", "sections": ["s4", "s5", "s6"]},
+    {"title": "Model-Level Control", "sections": ["s7"]},
+    {"title": "Evaluation and Assurance", "sections": ["s8", "s9", "s10"]}
   ],
   "sections": [
     {
-      "id": "s4", "number": 4, "title": "Constraining Agent Actions", "slug": "constrain",
-      "operation": "constrain", "color": "#E27553", "purpose": "<from outline.json>",
+      "id": "s4", "number": 4, "title": "Action Constraints", "slug": "constrain",
+      "operations": ["constrain"], "color": "#E27553", "part": 1,
       "subsections": [
         {
-          "id": "s4_1", "number": "4.1", "title": "Least Privilege", "slug": "least-privilege",
-          "bullets": ["<plan bullets from outline.json, LaTeX stripped>"],
-          "counts": {"primary": 23, "selected": 3, "cross": 11, "grey": 1}
+          "id": "s4_1", "number": "4.1", "title": "Confinement", "slug": "confinement",
+          "counts": {"primary": 56, "selected": 3, "cross": 11, "grey": 1}
         }
       ]
     }
@@ -53,11 +66,21 @@ Extended 2026-10-17 (review fixes): `grey.json` `also`, `confidence` closed set,
 }
 ```
 
-Sections 1, 3 and 11 have `operation: null` and `color: "#7D7D7D"`. `counts.primary` = papers whose
+`structure` is twelve hex digits of SHA-1 over the ordered subsection ids and titles
+(`build_data.structure_fingerprint`): two outlines of one day get different fingerprints, and the
+collector and the tests compare it with `stream.taxonomy_structure`. `failure_sources` are the three
+attack tiers of the paper (Section 2); the blurbs are the paper's one-sentence definitions.
+`operations` has one entry per operation in section order; Section 7 carries both `steer` and `train`.
+`label` is the chip label (`failures` takes its section title), `color` is the section's colour and
+`lever` is the title of the section's part, `null` for `failures`, which is not a control operation.
+`parts` lists the paper's parts in order with their section ids; `sections[].part` is the index into
+`parts`. `sections[].operations` lists the section's operation ids (`[]` for Sections 1, 3 and 10,
+which have `color: "#7D7D7D"`). Section titles select operation, slug and colour (`SECTION_META` in
+`build_data.py`), so a renumbered outline cannot mislabel a section. `counts.primary` = papers whose
 `primary` is this subsection; `selected` = of those, cited in the PDF; `cross` = papers and reports
 that list this subsection in `also`; `grey` = grey items whose `primary` is this subsection. A
-subsection may have zero primary papers (2.3 Insider Threats in the October 2026 outline); the front-end renders the
-head with an empty state.
+subsection may have zero primary papers (1.3, 1.4 and 3.3 in the 19 October outline); the front-end
+renders the head with an empty state.
 
 ## `papers.json`  (array, one object per arXiv paper; 1,788 items)
 
@@ -119,20 +142,21 @@ grey subsection is added to the paper's `also`.
 
 ```json
 {
-  "generated": "2026-10-17",
-  "source_generated": "2026-10-16",
-  "papers": 1788, "grey": 164, "cited": 239, "subsections": 56, "sections": 11,
+  "generated": "2026-10-19",
+  "source_generated": "2026-10-19",
+  "papers": 1788, "grey": 164, "cited": 239, "subsections": 29, "sections": 10,
   "years": {"2026": 908, "2025": 417, "...": 0},
   "per_section": {"s2": 213, "...": 0},
   "stream_items": 231, "stream_updated": "2026-10-17T00:00:00Z",
   "stream_polarity": {"good": 93, "bad": 97, "mixed": 41},
-  "stream_per_source": {"manipulation": 71, "misalignment": 47, "mistakes": 40},
+  "stream_per_source": {"benign": 40, "external": 71, "insider": 47},
   "stream_per_op": {"constrain": 149, "deploy": 85, "...": 0},
   "stream_per_sub": {"s1_1": 3, "...": 0}
 }
 ```
 
-`source_generated` is `corpus_full.json.generated`, the date of the paper data the build read.
+`source_generated` is `corpus_full.json.generated`, or the file's modification date when that is later
+(the corpus can be re-filed without a new stamp).
 `cited` counts distinct cited documents (selected papers plus selected grey records after the merges
 above). The `stream_*` counts are derived from `stream.json` by
 `build_data.stream_derivatives()` and rewritten by the collector on every run; the landing page reads
@@ -141,7 +165,8 @@ them instead of `stream.json`.
 ## `stream_recent.json`
 
 `{"generated": "<stream.json generated>", "items": [...]}`: the twelve newest items of `stream.json`,
-same item schema, newest first. Written by `build_data.py` and by the collector. The landing page
+same item schema, in the file's order (date desc, then id desc). Written by `build_data.py`, the
+collector and `remap_stream.py`. The landing page
 reads this file and falls back to `stream.json` when it is absent.
 
 ## `stream.json`  (the live stream)
@@ -149,7 +174,8 @@ reads this file and falls back to `stream.json` when it is absent.
 ```json
 {
   "generated": "2026-10-17T12:00:00Z",
-  "taxonomy_generated": "2026-10-17",
+  "taxonomy_generated": "2026-10-19",
+  "taxonomy_structure": "f91f5efaa064",
   "sources": ["seed sweep 2026-10-17", "collector"],
   "items": [
     {
@@ -163,10 +189,10 @@ reads this file and falls back to `stream.json` when it is absent.
       "kind": "incident",
       "polarity": "bad",
       "summary": "Two factual sentences taken from the source, no speculation.",
-      "failure_sources": ["mistakes"],
+      "failure_sources": ["benign"],
       "requirements": ["in-scope", "correct"],
       "operations": ["constrain", "intervene"],
-      "subsections": ["s2_1", "s4_1", "s6_5"],
+      "subsections": ["s2_1", "s4_1", "s6_3"],
       "domain": "coding",
       "actors": {"vendor": "Replit", "deployer": "SaaStr", "model": null},
       "evidence": "first-party",
@@ -191,10 +217,12 @@ Enumerations:
   `policy` (law, regulation, standard, enforcement, lawsuit), `disclosure` (vendor postmortem or security
   advisory).
 - `polarity`: `bad` (a failure or harm), `good` (a success or a control that worked or shipped), `mixed`.
-- `failure_sources`: subset of `mistakes | manipulation | misalignment`; empty for items that are not
-  about a failure.
+- `failure_sources`: subset of `benign | external | insider` (the attack tier: `benign` = the agent
+  itself failed, no attacker; `external` = an outsider redirected it through what it read, called, or
+  remembered; `insider` = a person with legitimate partial access, or the model itself pursuing its own
+  objective); empty for items that are not about a failure.
 - `requirements`: subset of `correct | compliant | in-scope | within-budget | safe`.
-- `operations`: subset of `constrain | observe | intervene | steer | train | verify | deploy`; the
+- `operations`: subset of `constrain | monitor | intervene | steer | train | evaluate | deploy`; the
   operation that failed, was missing, or worked.
 - `subsections`: 1 to 4 subsection ids from `taxonomy.json`, most specific first.
 - `domain`: free text from a small controlled list: `coding`, `browsing`, `customer-service`,
@@ -208,13 +236,16 @@ Enumerations:
   database > press), the others go here, and `related_papers` and `tags` are the union across the
   reports. Absent when the event has a single source; never empty. Dedupe must consider these URLs too.
 
-`taxonomy_generated` is the `generated` date of the `taxonomy.json` the items were classified against.
-Subsection ids are positional, so a renamed or reordered outline changes their meaning; the collector
-warns and `pipeline/tests/test_collector.py` fails when it differs from the current `taxonomy.json`,
-and items must then be re-filed (as the nine reward-hacking items were moved from `s2_3` to `s2_4` on
-2026-10-17).
+`taxonomy_generated` is the `generated` date and `taxonomy_structure` the `structure` fingerprint of
+the `taxonomy.json` the items were classified against. Subsection ids are positional, so a renamed or
+reordered outline changes their meaning; the collector warns and `pipeline/tests/test_collector.py`
+fails when the fingerprint differs from the current `taxonomy.json`, and items must then be re-filed
+by `pipeline/remap_stream.py` (as the whole stream was mapped from the 56 subsections of 17 October
+onto the 36 of 19 October 01:13, with the tiers and two operations renamed, and from those onto the
+29 of the 01:29 outline). The script holds one map per earlier structure.
 
 Every item must have a working `url`, a `date`, and `verified: true` with a note; unverifiable items
 are not published. `id` = `YYYY-MM-DD-` + slug of the title (ASCII, hyphens, max 80 chars), as produced
 by `make_id()` in `pipeline/collect_news.py`. `date` is the event date when the source states it,
-otherwise the publication date. Items are sorted by `date` descending in the file.
+otherwise the publication date. Items are sorted by `date` descending, then `id` descending, in the
+file, in `stream_recent.json` and on the stream page.

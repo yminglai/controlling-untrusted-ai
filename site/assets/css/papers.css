@@ -1,4 +1,4 @@
-/* papers.css: page-scoped rules for papers.html (design/DESIGN.md section 5): layout, rail, filter bar, section and
+/* papers.css: page-scoped rules for papers.html: layout, rail, filter bar, section and
    subsection heads, cards, run-in groups, drawer content, responsive rules. Colour is read only through
    the role tokens and --c (set by data-section / data-op / data-c on an ancestor). */
 
@@ -17,6 +17,8 @@
 /* ---- rail ---- */
 .rail__list, .rail__subs { list-style: none; }
 .rail__list { border-top: var(--hairline); }
+.rail__part + .rail__part { margin-top: var(--s5); }
+.rail__part-title { color: var(--fg-muted); padding: 0 0 var(--s2) calc(var(--colour-rule) + var(--s3)); }
 .rail__section { border-bottom: var(--hairline); }
 .rail__row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto 28px; column-gap: var(--s2); align-items: start; padding: 10px 0 10px var(--s3); border-left: var(--colour-rule) solid var(--c); transition: background var(--t-hover); }
 .rail__row:hover { background: var(--bg-panel); }
@@ -88,28 +90,19 @@
 
 /* ---- results, section and subsection heads ---- */
 .results { min-height: 320px; }
+.results:focus { outline: none; }
 .sec { scroll-margin-top: var(--sticky-h, 120px); }
 .sec + .sec { margin-top: var(--s8); }
 .section-head { border-top: var(--colour-rule) solid var(--c); padding: var(--s4) 0 var(--s5); margin-bottom: var(--s2); }
 .section-head__num { font: 400 20px/var(--lh-page) var(--mono); color: var(--fg-muted); margin-right: var(--s1); vertical-align: 2px; }
 .section-head__title { font: 400 var(--fs-page)/var(--lh-page) var(--serif); margin: 0 0 var(--s3); letter-spacing: -0.005em; }
-.section-head__op { margin-bottom: var(--s3); }
-.section-head__purpose { font: 400 var(--fs-label)/28px var(--serif); max-width: var(--measure); }
+.section-head__op { display: flex; flex-wrap: wrap; gap: var(--s2); }
 .sub { scroll-margin-top: var(--sticky-h, 120px); }
 .sub + .sub { margin-top: var(--s7); }
 .sub-head { padding: var(--s3) 0 var(--s3); border-bottom: var(--hairline-strong); }
 .sub-head__title { font: 400 var(--fs-h2)/var(--lh-h2) var(--serif); }
 .sub-head__num { font: 400 18px/var(--lh-h2) var(--mono); color: var(--fg-muted); margin-right: 2px; }
 .sub-head__counts { font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); margin-top: var(--s1); }
-.sub-head__covers { margin-top: var(--s2); }
-.sub-head__covers summary { display: inline-flex; align-items: center; gap: 6px; font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); cursor: pointer; list-style: none; padding: 2px 0; }
-.sub-head__covers summary::-webkit-details-marker { display: none; }
-.sub-head__covers summary:hover { color: var(--fg); }
-.sub-head__covers summary .icon { transition: transform var(--t-toggle) var(--ease); }
-.sub-head__covers[open] summary .icon { transform: rotate(180deg); }
-.sub-head__plan { margin: var(--s2) 0 0; font: italic 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); }
-.sub-head__covers ul { margin: var(--s2) 0 var(--s1); padding-left: 1.2em; font: 400 var(--fs-body)/var(--lh-body) var(--serif); max-width: var(--measure); }
-.sub-head__covers li + li { margin-top: 4px; }
 .sub-head__stream { display: inline-block; margin-top: var(--s2); font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); }
 .sub-head__next { display: flex; align-items: center; gap: 6px; margin-top: var(--s6); padding-top: var(--s4); border-top: var(--hairline); font: 400 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); color: var(--fg-muted); }
 .sub-head__next a { color: var(--fg); }
@@ -130,8 +123,6 @@
 .card__title { font: 400 var(--fs-ui)/var(--lh-ui) var(--sans); margin-top: 2px; }
 .card__byline { font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); margin-top: 3px; }
 .card__line { font: 400 var(--fs-body)/var(--lh-body) var(--serif); margin-top: var(--s2); max-width: var(--measure); }
-.card__line--why { font: italic 400 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); color: var(--fg-muted); }
-.card__why { font-style: normal; font-weight: 500; }
 .card__marks { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin-top: var(--s2); font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); color: var(--fg-muted); }
 .card__marks a, .card__marks .chip { position: relative; z-index: 1; }
 .card__marks .chip--sub { min-height: 20px; padding-right: 6px; font-weight: 500; }
@@ -176,7 +167,6 @@ mark { padding: 0 1px; }
 .drawer__badges { display: inline-flex; gap: 6px; vertical-align: middle; margin-left: 4px; }
 .drawer__actions .btn .icon--s { width: 14px; height: 14px; }
 .drawer__summary { font: 400 var(--fs-label)/28px var(--serif); margin-top: var(--s4); }
-.drawer__why p { font: 400 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); }
 .drawer__placed { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 /* inline, so a long subsection title wraps and the note follows the text instead of dropping to its own line */
 .drawer__placed a { display: inline; font: 400 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); text-decoration: none; }
@@ -251,7 +241,7 @@ mark { padding: 0 1px; }
   .sub + .sub { margin-top: var(--s6); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .rail__chevron .icon, .runin__summary .icon, .sub-head__covers summary .icon { transition: none; }
+  .rail__chevron .icon, .runin__summary .icon { transition: none; }
 }
 @media print {
   .papers__rail, .filterbar, .strip, .sub-head__next { display: none; }

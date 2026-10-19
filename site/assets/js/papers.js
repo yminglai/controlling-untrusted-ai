@@ -1,5 +1,5 @@
-/* papers.js: the paper collection page (design/DESIGN.md section 5, design/IMPLEMENTATION_NOTES.md).
-   Renders the rail, filter bar, section and subsection heads and cards from taxonomy.json, papers.json and
+/* papers.js: the paper collection page.
+   Renders the rail (the paper's contents by part), filter bar, section and subsection heads and cards from taxonomy.json, papers.json and
    grey.json; search via search.js; the detail drawer with cross-references and stream items.
    Hash: #s5, #s5_3, #paper/<key>, #grey/<key>;
    the forms #sec=s5, #sub=s5_3, #paper=<key>, #grey=<key>, #q=<text> are accepted and normalised. */
@@ -262,8 +262,9 @@ function resultsHeadHTML(v) {
 }
 
 /* ---------- rail ---------- */
+/** The rail is the paper's contents: one group per part, then its sections with their subsections. */
 function renderRail() {
-  dom.rail.innerHTML = `<ul class="rail__list">${T.sections.map((sec) => `
+  const section = (sec) => `
     <li class="rail__section" data-section="${sec.id}" data-sec="${sec.id}">
       <div class="rail__row">
         <a class="rail__link" href="${esc(hrefFor(sec.id))}" data-rail-item data-id="${sec.id}" data-hash="${sec.id}" tabindex="-1"><span class="rail__num num">§${sec.number}</span><span class="rail__title">${esc(sec.title)}</span></a>
@@ -271,7 +272,8 @@ function renderRail() {
         <button type="button" class="rail__chevron" aria-expanded="false" aria-controls="rail-subs-${sec.id}" aria-label="Show the subsections of §${sec.number}" tabindex="-1">${icon("chevron-down", "icon icon--s")}</button>
       </div>
       <ul class="rail__subs" id="rail-subs-${sec.id}">${sec.subsections.map((ss) => `<li><a class="rail__sub" href="${esc(hrefFor(ss.id))}" data-rail-item data-id="${ss.id}" data-hash="${ss.id}" tabindex="-1"><span class="rail__num num">${ss.number}</span><span class="rail__title">${esc(ss.title)}</span><span class="rail__count num" data-count="${ss.id}">${fmtInt(ss.counts.primary)}</span></a></li>`).join("")}</ul>
-    </li>`).join("")}</ul>`;
+    </li>`;
+  dom.rail.innerHTML = T.parts.map((p) => `<section class="rail__part">${p.title ? `<h3 class="rail__part-title caps">${esc(p.title)}</h3>` : ""}<ul class="rail__list">${T.sectionsOfPart(p).map(section).join("")}</ul></section>`).join("");
 }
 function setRailOpen(li, open) {
   li.classList.toggle("is-open", open);
@@ -318,7 +320,7 @@ function updateRail(v) {
   const curChip = dom.stripChips.querySelector(".is-on");
   if (curChip && dom.stripChips.clientWidth) {
     const cr = curChip.getBoundingClientRect(), sr = dom.stripChips.getBoundingClientRect();
-    if (cr.left < sr.left || cr.right > sr.right) dom.stripChips.scrollLeft += cr.left - sr.left - 8;
+    if (cr.left < sr.left || cr.right > sr.right - 28) dom.stripChips.scrollLeft += cr.left - sr.left - 8;
   }
   stripEnd();
 }
@@ -381,7 +383,7 @@ function countChip(v, kind, val) {
 function renderChips(v) {
   const f = v.f;
   const defs = [
-    ["cited", "Cited in the PDF", f.cited, "cited"], ["score", "Score 3", f.score3, "score"], ["grey", "Reports and posts", f.grey, "grey"],
+    ["cited", "Cited in the PDF", f.cited, "cited"], ["score", "Score 3", f.score3, "score"], ["grey", "Without reports and posts", !f.grey, "grey"],
     null,
     ...YEAR_CHIPS.map(([id, label]) => ["year:" + id, label, f.years.has(id), "years", id])
   ];
@@ -454,11 +456,10 @@ function updateTitle(v = S.view) {
 
 /* ---------- heads and cards ---------- */
 function sectionHTML(sec, withHead) {
-  const op = T.operationOf(sec.id);
+  const ops = T.operationsOf(sec.id);
   const head = withHead ? `<header class="section-head">
       <h2 class="section-head__title"><span class="section-head__num num">§${sec.number}</span> ${esc(sec.title)}</h2>
-      ${op ? `<p class="section-head__op">${chip({ kind: "op", id: op.id, href: linkTo("stream", { op: op.id }), title: `${op.label} items in the stream` })}</p>` : ""}
-      ${sec.purpose ? `<p class="section-head__purpose">${esc(sec.purpose)}</p>` : ""}
+      ${ops.length ? `<p class="section-head__op">${ops.map((op) => chip({ kind: "op", id: op.id, href: linkTo("stream", { op: op.id }), title: `${op.label} items in the stream` })).join("")}</p>` : ""}
     </header>` : "";
   return `<section class="sec" id="${sec.id}" data-section="${sec.id}" aria-label="§${sec.number} ${esc(sec.title)}">${head}</section>`;
 }
@@ -470,7 +471,6 @@ function subHTML(ss, sec, v, c) {
     <header class="sub-head">
       <${H} class="sub-head__title" id="h-${ss.id}"><span class="sub-head__num num">${ss.number}</span> ${esc(ss.title)}</${H}>
       <p class="sub-head__counts">${counts}</p>
-      ${ss.bullets && ss.bullets.length ? `<details class="sub-head__covers"><summary>${icon("chevron-down", "icon icon--s")}What this subsection covers</summary><p class="sub-head__plan">From the authors' section plan: the points this subsection is written to make.</p><ul>${ss.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul></details>` : ""}
       <a class="sub-head__stream" href="${esc(linkTo("stream", { sub: ss.id }))}" data-stream-sub="${ss.id}"${n ? "" : " hidden"}>${n ? `${plural(n, "item")} in the stream` : ""}</a>
     </header>
     <div class="cards" data-slot="prim"></div>
@@ -493,9 +493,7 @@ function cardHTML(u, v) {
   const hl = (s) => (tokens ? highlight(s, tokens) : esc(s));
   const sec = sectionIdOf(item);
   const by = authorsLine(item.authors);
-  const line = item.one_line
-    ? `<p class="card__line clamp-3">${hl(item.one_line)}</p>`
-    : item.reason ? `<p class="card__line card__line--why clamp-3"><span class="card__why">Why here:</span> ${hl(item.reason)}</p>` : "";
+  const line = item.one_line ? `<p class="card__line clamp-3">${hl(item.one_line)}</p>` : "";
   const marks = [];
   if (item.selected) marks.push('<span class="badge badge--cited">Cited</span>');
   if (isPaper) marks.push(item.score >= 3 ? '<span class="score" title="score 3, must cite"><span class="visually-hidden">score </span>3<span class="visually-hidden">, must cite</span></span>' : '<span class="score score--2" title="score 2, relevant"><span class="visually-hidden">score </span>2<span class="visually-hidden">, relevant</span></span>');
@@ -639,6 +637,7 @@ function renderView(v, { scroll = false } = {}) {
   dom.results.replaceChildren();
   syncControls(v); renderChips(v); updateRail(v); updateCrumb(v); updateTitle(v);
   dom.resultsHead.innerHTML = resultsHeadHTML(v);
+  dom.resultsHead.hidden = S.loaded && !S.loadError && !v.active && v.eff !== "all";
   if (S.loadError) { dom.results.innerHTML = errorHTML(); return; }
   if (!S.loaded) { renderSkeleton(v); return; }
   const units = buildUnits(v);
@@ -662,10 +661,10 @@ function observeSticky() {
   set();
   if ("ResizeObserver" in window) new ResizeObserver(set).observe(row);
 }
-/** After a re-render removed the focused element, put focus on the results head (tabindex -1) so Tab continues from the list. */
+/** After a re-render removed the focused element, put focus on the results head (or the list when the head is hidden; both tabindex -1) so Tab continues from the list. */
 function settleFocus() {
   const a = document.activeElement;
-  if (!a || a === document.body) dom.resultsHead.focus({ preventScroll: true });
+  if (!a || a === document.body) (dom.resultsHead.hidden ? dom.results : dom.resultsHead).focus({ preventScroll: true });
 }
 function scrollToTarget(id) {
   ensureRendered(id);
@@ -679,7 +678,6 @@ function metaLine(kind, item) {
   if (kind === "paper") { parts.push(`arXiv ${item.arxiv_id}`); parts.push(`score ${item.score}`); }
   else parts.push(item.venue || hostOf(item.url));
   if (item.selected) parts.push("cited in the PDF");
-  if (kind === "paper" && item.reading_rank != null) parts.push(`reading list #${item.reading_rank}`);
   return parts.filter(Boolean).map(esc).join(" · ");
 }
 function authorsHTML(list) {
@@ -724,7 +722,6 @@ function fillDrawer(kind, item) {
     <p class="drawer__meta">${metaLine(kind, item)}${badges.length ? ` <span class="drawer__badges">${badges.join(" ")}</span>` : ""}</p>
     <div class="drawer__actions">${actions}<button type="button" class="btn btn--sm" data-copy="key" data-value="${esc(item.key)}">${icon("copy", "icon icon--s")}Copy key</button><button type="button" class="btn btn--sm" data-copy="link" data-value="${esc(link)}">${icon("link", "icon icon--s")}Copy link</button></div>
     ${item.one_line ? `<p class="drawer__summary">${esc(item.one_line)}</p>` : ""}
-    ${kind === "paper" && item.reason ? `<section class="drawer__section drawer__why"><h3>Why it is here</h3><p>${esc(item.reason)}</p></section>` : ""}
     <section class="drawer__section"><h3>Placed in</h3>${placedHTML(item)}</section>
     <div id="drawer-stream">${streamHTML(kind, item)}</div>`;
   renderDrawerNav(kind, item);
@@ -797,6 +794,7 @@ function route({ force = false } = {}) {
       writeState({ hash: S.view && S.view.target ? S.view.target : "" });
       S.lastRoute = location.search + location.hash;
       if (!S.view) renderView(computeView({ kind: "none" }, f));
+      dom.resultsHead.hidden = false;
       dom.resultsHead.innerHTML = `${resultsHeadHTML(S.view)} · <span class="muted">no paper with the key “${esc(r.key)}”</span>`;
       return;
     }

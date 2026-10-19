@@ -23,7 +23,15 @@ DATA = ROOT / "site" / "data"
 OVERLEAF = ROOT.parent / "overleaf-ai-control"   # the read-only paper clone; absent in CI
 sys.path.insert(0, str(ROOT / "pipeline"))
 
-from build_data import clean_bullets, kebab, strip_latex  # noqa: E402
+from build_data import kebab, source_date, strip_latex, structure_fingerprint  # noqa: E402
+
+N_SECTIONS, N_SUBSECTIONS = 10, 29   # outline.json of 2026-10-19 01:29
+PART_TITLES = ["Foundations", "System-Level Control", "Model-Level Control", "Evaluation and Assurance"]
+NEUTRAL_SECTIONS = {"s1", "s3", "s10"}   # no operation, gray
+SECTION_OPERATIONS = {"s2": ["failures"], "s4": ["constrain"], "s5": ["monitor"], "s6": ["intervene"],
+                      "s7": ["steer", "train"], "s8": ["evaluate"], "s9": ["deploy"]}
+OPERATION_IDS = ["failures", "constrain", "monitor", "intervene", "steer", "train", "evaluate", "deploy"]
+TIER_IDS = ["benign", "external", "insider"]
 
 ALLOWED_COLOURS = {
     "#2E2E2E", "#7D7D7D", "#C7C7C7", "#EAEAEA", "#F7F7F7", "#FFFFFF",
@@ -55,22 +63,41 @@ def main() -> int:
     # ---- taxonomy ------------------------------------------------------- #
     sections = tax["sections"]
     subs = [ss for s in sections for ss in s["subsections"]]
-    assert len(sections) == 11, f"expected 11 sections, got {len(sections)}"
-    assert len(subs) == 56, f"expected 56 subsections, got {len(subs)}"
+    assert len(sections) == N_SECTIONS, f"expected {N_SECTIONS} sections, got {len(sections)}"
+    assert len(subs) == N_SUBSECTIONS, f"expected {N_SUBSECTIONS} subsections, got {len(subs)}"
     sids = [ss["id"] for ss in subs]
-    assert len(set(sids)) == 56, "subsection ids are not unique"
+    assert len(set(sids)) == N_SUBSECTIONS, "subsection ids are not unique"
     sid_pos = {sid: i for i, sid in enumerate(sids)}
     op_ids = {o["id"] for o in tax["operations"]}
     assert tax["title"] == "Controlling Untrusted AI: A Survey"
     assert tax["thesis"].strip() and len(tax["readers"]) == 3
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", tax["generated"])
+    assert tax["structure"] == structure_fingerprint(sections), "taxonomy.structure is not the fingerprint of its subsection list"
     assert [r["id"] for r in tax["requirements"]] == ["correct", "compliant", "in-scope", "within-budget", "safe"]
-    assert [f["id"] for f in tax["failure_sources"]] == ["mistakes", "manipulation", "misalignment"]
+    assert [f["id"] for f in tax["failure_sources"]] == TIER_IDS
     assert all(f["blurb"].strip() and f["color"] in ALLOWED_COLOURS for f in tax["failure_sources"])
-    assert len(tax["operations"]) == 8
+    assert [o["id"] for o in tax["operations"]] == OPERATION_IDS
+    assert {o["id"]: o["label"] for o in tax["operations"] if o["id"] in ("monitor", "evaluate", "deploy")} == \
+        {"monitor": "Monitor", "evaluate": "Evaluate", "deploy": "Deploy"}
+
+    # parts: every section in exactly one part, in section order; "part" is the index into parts
+    parts = tax["parts"]
+    assert [p["title"] for p in parts] == PART_TITLES, [p["title"] for p in parts]
+    listed = [sid for p in parts for sid in p["sections"]]
+    assert listed == [s["id"] for s in sections], f"parts do not cover the sections once each in order: {listed}"
+    for i, p in enumerate(parts):
+        for sid in p["sections"]:
+            assert next(s for s in sections if s["id"] == sid)["part"] == i, f"{sid}: part index != {i}"
     for o in tax["operations"]:
-        assert o["section"] in {s["id"] for s in sections}, f"operation {o['id']} points at unknown section"
-        assert o["color"] in ALLOWED_COLOURS
+        sec = next(s for s in sections if s["id"] == o["section"])
+        assert o["color"] == sec["color"] and o["color"] in ALLOWED_COLOURS, f"operation {o['id']}: colour is not its section's"
+        assert o["id"] in sec["operations"], f"operation {o['id']}: section {sec['id']} does not list it"
+        if o["id"] == "failures":
+            assert o["lever"] is None, "failures is not a control operation and has no lever"
+        else:
+            assert o["lever"] == parts[sec["part"]]["title"], f"operation {o['id']}: lever {o['lever']!r} is not its part title"
+    # every operation sits on exactly one section, in section order
+    assert [o for s in sections for o in s["operations"]] == OPERATION_IDS, [s["operations"] for s in sections]
 
     section_slugs = Counter()
     sub_slugs = Counter()
@@ -79,28 +106,26 @@ def main() -> int:
         assert s["title"].strip(), f"{s['id']}: empty title"
         assert SLUG.match(s["slug"]), f"{s['id']}: slug {s['slug']!r} not kebab-case"
         assert s["color"] in ALLOWED_COLOURS, f"{s['id']}: colour {s['color']} not a token"
-        assert s["purpose"].strip(), f"{s['id']}: empty purpose"
+        assert "purpose" not in s, f"{s['id']}: the outline's writer notes are not reader content"
         section_slugs[s["slug"]] += 1
-        if s["id"] in ("s1", "s3", "s11"):
-            assert s["operation"] is None and s["color"] == "#7D7D7D", f"{s['id']}: should be neutral"
+        assert isinstance(s["operations"], list), s["id"]
+        if s["id"] in NEUTRAL_SECTIONS:
+            assert s["operations"] == [] and s["color"] == "#7D7D7D", f"{s['id']}: should be neutral"
         else:
-            assert s["operation"] in op_ids, f"{s['id']}: operation {s['operation']!r} unknown"
-            op = next(o for o in tax["operations"] if o["id"] == s["operation"])
-            assert op["section"] == s["id"] and op["color"] == s["color"], f"{s['id']}: operation mismatch"
+            assert s["operations"] == SECTION_OPERATIONS[s["id"]], f"{s['id']}: operations {s['operations']}"
+            for op_id in s["operations"]:
+                assert op_id in op_ids, f"{s['id']}: operation {op_id!r} unknown"
+                op = next(o for o in tax["operations"] if o["id"] == op_id)
+                assert op["section"] == s["id"] and op["color"] == s["color"], f"{s['id']}: operation mismatch"
         for j, ss in enumerate(s["subsections"], start=1):
             assert ss["id"] == f"s{s['number']}_{j}", f"positional id mismatch: {ss['id']}"
             assert ss["number"] == f"{s['number']}.{j}", ss["number"]
             assert ss["title"].strip(), f"{ss['id']}: empty title"
+            assert not LATEX_LEFTOVER.search(ss["title"]), f"{ss['id']}: LaTeX left in title"
             assert SLUG.match(ss["slug"]), f"{ss['id']}: slug {ss['slug']!r} not kebab-case"
             sub_slugs[ss["slug"]] += 1
-            assert isinstance(ss["bullets"], list)
-            for b in ss["bullets"]:
-                assert b.strip(), f"{ss['id']}: empty bullet"
-                assert not LATEX_LEFTOVER.search(b), f"{ss['id']}: LaTeX left in bullet: {b[:80]!r}"
-                assert not re.match(r"(?i)(literature pass|references to start from|further reading)", b), \
-                    f"{ss['id']}: housekeeping bullet not removed"
+            assert "bullets" not in ss, f"{ss['id']}: author plan notes are not reader content"
             assert set(ss["counts"]) == {"primary", "selected", "cross", "grey"}, ss["id"]
-            assert not LATEX_LEFTOVER.search(s["purpose"]), f"{s['id']}: LaTeX left in purpose"
     assert all(n == 1 for n in section_slugs.values()), "section slugs not unique"
     assert all(n == 1 for n in sub_slugs.values()), "subsection slugs not unique"
 
@@ -194,7 +219,10 @@ def main() -> int:
 
     # ---- stats ---------------------------------------------------------- #
     assert stats["papers"] == len(papers) and stats["grey"] == len(grey)
-    assert stats["subsections"] == 56 and stats["sections"] == 11
+    assert stats["subsections"] == N_SUBSECTIONS and stats["sections"] == N_SECTIONS
+    assert stats["papers"] == 1788, f"expected 1,788 papers, got {stats['papers']}"
+    for sec in ("s2", "s4", "s5", "s6", "s7", "s8", "s9"):
+        assert stats["per_section"][sec] > 0, f"{sec}: no papers"
     assert stats["cited"] == sum(p["selected"] for p in papers) + sum(g["selected"] for g in grey)
     assert sum(stats["years"].values()) == len(papers)
     assert list(stats["years"]) == sorted(stats["years"], key=lambda y: -int(y)), "years not descending"
@@ -207,17 +235,26 @@ def main() -> int:
         assert isinstance(stats.get(k), dict), f"stats.{k} missing"
     assert set(stats["stream_polarity"]) == {"good", "bad", "mixed"}
     assert set(stats["stream_per_sub"]) <= set(sids), "stats.stream_per_sub has ids outside the taxonomy"
+    assert set(stats["stream_per_source"]) <= set(TIER_IDS), "stats.stream_per_source has values outside the tiers"
+    assert set(stats["stream_per_op"]) <= set(OPERATION_IDS) - {"failures"}, "stats.stream_per_op has unknown operations"
 
     # ---- stream files ---------------------------------------------------- #
     if (DATA / "stream.json").exists():
         stream = load("stream.json")
+        assert stream.get("taxonomy_structure") == tax["structure"], \
+            f"stream.json filed against subsection list {stream.get('taxonomy_structure')!r}, taxonomy.json is {tax['structure']!r}: run pipeline/remap_stream.py"
         assert stream.get("taxonomy_generated") == tax["generated"], \
             f"stream.json classified against taxonomy {stream.get('taxonomy_generated')!r}, taxonomy.json is {tax['generated']!r}"
+        order = [(it["date"], it["id"]) for it in stream["items"]]
+        assert order == sorted(order, reverse=True), "stream.json is not in date desc, id desc order"
         assert stats["stream_items"] == len(stream["items"]) and stats["stream_updated"] == stream["generated"]
         assert sum(stats["stream_polarity"].values()) == len(stream["items"])
         for it in stream["items"]:
+            assert 1 <= len(it["subsections"]) <= 4, f"stream item {it['id']}: {len(it['subsections'])} subsections"
             for sid in it["subsections"]:
                 assert sid in sid_pos, f"stream item {it['id']}: subsection {sid!r} not in taxonomy"
+            assert set(it["failure_sources"]) <= set(TIER_IDS), f"stream item {it['id']}: failure_sources {it['failure_sources']}"
+            assert set(it["operations"]) <= set(OPERATION_IDS) - {"failures"}, f"stream item {it['id']}: operations {it['operations']}"
         assert (DATA / "stream_recent.json").exists(), "stream_recent.json missing"
         recent = load("stream_recent.json")
         assert recent["generated"] == stream["generated"]
@@ -234,9 +271,9 @@ def main() -> int:
         built = (DATA / "taxonomy.json").stat().st_mtime
         assert newest <= built, "the paper clone is newer than site/data: run python3 pipeline/build_data.py"
         with (OVERLEAF / "research" / "corpus_full.json").open(encoding="utf-8") as fh:
-            corpus_generated = json.load(fh).get("generated")
-        assert stats["source_generated"] == corpus_generated, \
-            f"stats.source_generated {stats['source_generated']!r} != corpus_full.generated {corpus_generated!r}"
+            expected_source = source_date(json.load(fh), OVERLEAF / "research" / "corpus_full.json")
+        assert stats["source_generated"] == expected_source, \
+            f"stats.source_generated {stats['source_generated']!r} != {expected_source!r} (corpus_full.generated or its file date)"
         with (OVERLEAF / "outline.json").open(encoding="utf-8") as fh:
             outline = json.load(fh)
         for sec in outline["sections"]:
@@ -249,7 +286,6 @@ def main() -> int:
     assert strip_latex(r"\texttt{a\_b} \citep{x,y} in Sections 4--9 \emph{now}.") == "a_b in Sections 4–9 now."
     assert strip_latex(r"keep 2% budget and \cref{tab:x}") == "keep 2% budget and"
     assert strip_latex(r"``q'' \textbf{\emph{n}} \href{http://x}{t} \{b\}") == "“q” n t {b}"
-    assert clean_bullets(["Literature pass: 35 papers", "References to start from: a", "Further reading: b", "Keep"]) == ["Keep"]
     assert kebab("Identity, Credentials, & Delegation") == "identity-credentials-and-delegation"
 
     print(f"OK: sections={len(sections)} subsections={len(subs)} papers={len(papers)} grey={len(grey)} "

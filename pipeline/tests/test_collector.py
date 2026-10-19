@@ -109,7 +109,9 @@ class LimitAndDateTests(unittest.TestCase):
         it = {"title": "Deepfake voice clone scam targets relatives", "snippet": "AI voice cloning used for fraud.", "url": "https://x", "publisher": "AI Incident Database"}
         self.assertFalse(clf.heuristic_classify(it, tax, 1.0)["relevant"])
         it = {"title": "AI coding agent went rogue and deleted files", "snippet": "", "url": "https://x", "publisher": "AI Incident Database"}
-        self.assertTrue(clf.heuristic_classify(it, tax, 1.0)["relevant"])
+        r = clf.heuristic_classify(it, tax, 1.0)
+        self.assertTrue(r["relevant"])
+        self.assertEqual(r["failure_sources"], ["benign"])
         it = {"title": "Εξαρθρώθηκε εγκληματική οργάνωση με AI", "snippet": "agent deployment", "url": "https://x", "publisher": "P"}
         self.assertFalse(clf.heuristic_classify(it, tax, 1.0)["relevant"])
 
@@ -117,18 +119,29 @@ class LimitAndDateTests(unittest.TestCase):
 class IssueFormTests(unittest.TestCase):
     BODY = ("### Title\n\nAgent emailed confidential files\n\n### URL\n\nhttps://example.com/story\n\n### Date\n\n2026-10-02\n\n"
             "### What happened\n\nAn email agent forwarded a folder to an outside address after reading a poisoned calendar invite.\n\n"
-            "### Good or bad\n\nbad\n\n### Which failure source\n\nmanipulation (prompt injection, memory poisoning, hijacked by what it read)\n\n"
-            "### Which operation\n\nconstrain (least privilege, sandboxing, action constraints, information flow, credentials)\n\n"
-            "### Subsection (optional)\n\ns2_2, s4_4\n\n### Checks\n\n- [x] The URL is public\n")
+            "### Good or bad\n\nbad\n\n### Which failure source\n\nexternal (prompt injection, memory poisoning, redirected by what it read, called, or remembered)\n\n"
+            "### Which operation\n\nconstrain (confinement, formal enforcement, information-flow control, delegated authority)\n\n"
+            "### Subsection (optional)\n\ns2_2, s4_3\n\n### Checks\n\n- [x] The URL is public\n")
 
     def test_parse_and_candidate(self):
         f = cn.parse_issue_body(self.BODY)
         self.assertEqual(f["url"], "https://example.com/story")
         c = cn.issue_to_candidate({"number": 7, "title": "[Submission]: x", "body": self.BODY, "created_at": "2026-10-03T00:00:00Z"})
         self.assertEqual(c["date"], "2026-10-02")
-        self.assertEqual(c["hints"], {"polarity": "bad", "failure_sources": ["manipulation"], "operations": ["constrain"], "subsections": ["s2_2", "s4_4"]})
+        self.assertEqual(c["hints"], {"polarity": "bad", "failure_sources": ["external"], "operations": ["constrain"], "subsections": ["s2_2", "s4_3"]})
         self.assertEqual(c["lens"], "github-issue:7")
         self.assertEqual(c["added_by"], "submission")
+
+    def test_issue_template_uses_the_collector_vocabulary(self):
+        """The dropdown options of .github/ISSUE_TEMPLATE/submit_item.yml must start with the ids the collector matches."""
+        tpl = Path(__file__).resolve().parents[2] / ".github" / "ISSUE_TEMPLATE" / "submit_item.yml"
+        if not tpl.exists():
+            self.skipTest("issue template not present")
+        import yaml
+        form = yaml.safe_load(tpl.read_text(encoding="utf-8"))
+        options = {f["id"]: [o.split(" ")[0] for o in f["attributes"]["options"]] for f in form["body"] if f.get("type") == "dropdown"}
+        self.assertEqual(options["failure_source"][:3], clf.FAILURE_SOURCES)
+        self.assertEqual(options["operation"][:7], clf.OPERATIONS)
 
     def test_missing_url_is_dropped(self):
         self.assertIsNone(cn.issue_to_candidate({"number": 1, "title": "t", "body": "### URL\n\n_No response_"}))
@@ -138,16 +151,29 @@ class HeuristicTests(unittest.TestCase):
     def setUp(self):
         self.tax = clf.load_taxonomy()
 
-    def test_taxonomy_has_56_subsections(self):
-        self.assertEqual(len(self.tax["subsection_ids"]), 56)
-        self.assertIn("s10_5", self.tax["subsection_ids"])
+    def test_taxonomy_has_29_subsections(self):
+        self.assertEqual(len(self.tax["subsection_ids"]), 29)
+        self.assertIn("s4_4", self.tax["subsection_ids"])
+        self.assertIn("s9_2", self.tax["subsection_ids"])
+        self.assertNotIn("s10_3", self.tax["subsection_ids"])
+        self.assertNotIn("s11_1", self.tax["subsection_ids"])
+        self.assertEqual(next(s for s in self.tax["sections"] if s["id"] == "s7")["operations"], ["steer", "train"])
+
+    def test_fallback_taxonomy_and_rules_agree(self):
+        fallback_ids = {f"{sid}_{j}" for sid, _k, _t, subs in clf.FALLBACK_TAXONOMY for j in range(1, len(subs) + 1)}
+        self.assertEqual(len(fallback_ids), 29)
+        for sid, _pats in clf.SUBSECTION_RULES:
+            self.assertIn(sid, fallback_ids, f"rule for unknown subsection {sid}")
+        self.assertEqual(len({sid for sid, _ in clf.SUBSECTION_RULES}), len(clf.SUBSECTION_RULES), "one rule group per subsection")
+        self.assertEqual({o for ops in clf.SECTION_OPERATIONS.values() for o in ops} - {"failures"}, set(clf.OPERATIONS))
+        self.assertEqual(set(clf.OPERATION_SECTION), set(clf.OPERATIONS))
 
     def test_incident(self):
         it = {"title": "Coding agent deleted a production database", "snippet": "The AI agent wiped the database during a code freeze; the vendor added rollback.", "publisher": "Fortune", "url": "https://x"}
         r = clf.heuristic_classify(it, self.tax, 0.6)
         self.assertTrue(r["relevant"])
         self.assertEqual((r["kind"], r["polarity"]), ("incident", "bad"))
-        self.assertIn("mistakes", r["failure_sources"])
+        self.assertIn("benign", r["failure_sources"])
         self.assertIn("s2_1", r["subsections"])
         self.assertEqual(r["domain"], "coding")
         self.assertTrue(r["needs_review"])
@@ -175,13 +201,13 @@ class ValidateTests(unittest.TestCase):
         it = {"title": "t", "snippet": "s", "url": "https://x"}
         fb = clf.heuristic_classify(it, tax)
         raw = {"relevant": "true", "kind": "Incident", "polarity": "BAD", "summary": "Sentence one is here. Sentence two is here. Sentence three.",
-               "failure_sources": "manipulation, bogus", "operations": ["constrain", "nope"], "subsections": ["S4_2", "s99_1"],
+               "failure_sources": "external, manipulation, bogus", "operations": ["constrain", "observe", "nope"], "subsections": ["S4_2", "s99_1", "s4_5"],
                "domain": "coding", "evidence": "press", "actors": {"vendor": "Acme", "model": None}, "tags": ["a", "b"], "date": "2026-10-01", "confidence": 0.9}
         r = clf.validate(raw, it, tax, fb)
         self.assertEqual(r["kind"], "incident")
         self.assertEqual(r["polarity"], "bad")
-        self.assertEqual(r["failure_sources"], ["manipulation"])
-        self.assertEqual(r["operations"], ["constrain"])
+        self.assertEqual(r["failure_sources"], ["external"])      # the old word "manipulation" is no longer accepted
+        self.assertEqual(r["operations"], ["constrain"])          # nor is "observe"
         self.assertEqual(r["subsections"], ["s4_2"])
         self.assertEqual(r["summary"], "Sentence one is here. Sentence two is here.")
         self.assertEqual(r["actors"], {"vendor": "Acme", "deployer": None, "model": None})
@@ -207,8 +233,8 @@ class _FakeGateway(BaseHTTPRequestHandler):
         for i in range(1, count + 1):
             items.append({"index": i, "relevant": i != 2, "kind": "incident", "polarity": "bad",
                           "summary": "A deployed agent did something harmful. The vendor responded with a fix.",
-                          "failure_sources": ["manipulation"], "requirements": ["in-scope"], "operations": ["constrain", "observe"],
-                          "subsections": ["s2_2", "s4_4"], "domain": "email-and-office", "evidence": "press",
+                          "failure_sources": ["external"], "requirements": ["in-scope"], "operations": ["constrain", "monitor"],
+                          "subsections": ["s2_2", "s4_3"], "domain": "email-and-office", "evidence": "press",
                           "actors": {"vendor": "V", "deployer": None, "model": "M"}, "tags": ["prompt injection"], "date": None, "confidence": 0.8})
         body = json.dumps({"choices": [{"message": {"content": "```json\n" + json.dumps({"items": items}) + "\n```"}}]}).encode()
         self.send_response(200)
@@ -236,7 +262,9 @@ class LLMContractTests(unittest.TestCase):
             res = clf.classify(items, tax, use_llm=True, batch_size=2)
             self.assertEqual(len(res), 3)
             self.assertEqual([r["relevant"] for r in res], [True, False, True])
-            self.assertEqual(res[0]["subsections"], ["s2_2", "s4_4"])
+            self.assertEqual(res[0]["subsections"], ["s2_2", "s4_3"])
+            self.assertEqual(res[0]["failure_sources"], ["external"])
+            self.assertEqual(res[0]["operations"], ["constrain", "monitor"])
             self.assertEqual(res[0]["classifier"], "llm")
             self.assertFalse(res[0]["needs_review"])
             self.assertEqual(len(_FakeGateway.calls), 2)
@@ -245,8 +273,14 @@ class LLMContractTests(unittest.TestCase):
             self.assertEqual(call["auth"], "Bearer test-key-not-real")
             self.assertNotIn("temperature", call["payload"])
             self.assertEqual(call["payload"]["model"], "fake/model")
-            self.assertIn("Controlling Untrusted AI", call["payload"]["messages"][0]["content"])
-            self.assertIn("s4_2 Sandboxing and Isolation", call["payload"]["messages"][0]["content"])
+            system = call["payload"]["messages"][0]["content"]
+            self.assertIn("Controlling Untrusted AI", system)
+            self.assertIn("s4_1 Confinement", system)
+            self.assertIn("three tiers", system)
+            for word in ("benign", "external", "insider", "monitor", "evaluate"):
+                self.assertIn(word, system)
+            for word in ("mistakes'", "manipulation'", "misalignment'", "'observe'", "'verify'"):
+                self.assertNotIn(word, system, f"old vocabulary {word} still in the prompt")
         finally:
             srv.shutdown()
             srv.server_close()
@@ -255,10 +289,6 @@ class LLMContractTests(unittest.TestCase):
                     os.environ.pop(k, None)
                 else:
                     os.environ[k] = v
-
-
-if __name__ == "__main__":
-    unittest.main()
 
 
 class TaxonomyConsistencyTests(unittest.TestCase):
@@ -287,31 +317,46 @@ class TaxonomyConsistencyTests(unittest.TestCase):
         rules = dict(clf.SUBSECTION_RULES)
         for sid in rules:
             self.assertIn(sid, titles, f"rule for unknown subsection {sid}")
-        self.assertIn("Insider", titles["s2_3"])
+        self.assertEqual(titles["s2_2"], "External Attacks")
+        self.assertEqual(titles["s2_3"], "Insider Threats")
+        self.assertNotIn("s2_4", titles)
+        # 2.3 covers the human insider, the model as the limiting case of an insider, and colluding agents
         self.assertTrue(any("insider" in p for p in rules["s2_3"]), "s2_3 rules must carry insider vocabulary")
-        self.assertFalse(any("reward hack" in p for p in rules["s2_3"]), "reward hacking belongs to s2_4 now")
-        self.assertTrue(any("reward hack" in p for p in rules["s2_4"]))
+        self.assertTrue(any("reward hack" in p for p in rules["s2_3"]), "reward hacking is the model-as-insider case, s2_3")
+        self.assertTrue(any("collu" in p for p in rules["s2_3"]), "collusion between agents is filed under s2_3")
+        tax = clf.load_taxonomy()
         r = clf.heuristic_classify({"title": "Model reward hacked its coding harness in production RL",
-                                    "snippet": "The agent tampered with the test harness to pass.", "url": "https://x"},
-                                   clf.load_taxonomy(), 0.6)
-        self.assertIn("s2_4", r["subsections"])
-        self.assertNotIn("s2_3", r["subsections"])
+                                    "snippet": "The agent tampered with the test harness to pass.", "url": "https://x"}, tax, 0.6)
+        self.assertIn("s2_3", r["subsections"])
+        self.assertIn("insider", r["failure_sources"])
         r2 = clf.heuristic_classify({"title": "Rogue employee stole model weights from an AI lab",
-                                     "snippet": "An insider with privileged access exfiltrated the weights.", "url": "https://x"},
-                                    clf.load_taxonomy(), 0.6)
+                                     "snippet": "An insider with privileged access exfiltrated the weights.", "url": "https://x"}, tax, 0.6)
         self.assertIn("s2_3", r2["subsections"])
+        self.assertIn("insider", r2["failure_sources"])
+        r3 = clf.heuristic_classify({"title": "Two AI agents colluded through steganographic messages to bypass their monitor",
+                                     "snippet": "A multi-agent pipeline hid a covert channel from the untrusted monitor.", "url": "https://x"}, tax, 0.6)
+        self.assertIn("s2_3", r3["subsections"])
+        r4 = clf.heuristic_classify({"title": "Email agent hijacked by prompt injection in a calendar invite leaked files",
+                                     "snippet": "Indirect prompt injection exfiltrated data from the inbox.", "url": "https://x"}, tax, 0.6)
+        self.assertIn("s2_2", r4["subsections"])
+        self.assertEqual(r4["failure_sources"][0], "external")
 
     def test_stream_taxonomy_version(self):
         if not (self.TAXONOMY.exists() and self.STREAM.exists()):
             self.skipTest("data not built")
         data, titles = self._titles()
         stream = json.loads(self.STREAM.read_text(encoding="utf-8"))
+        self.assertEqual(stream.get("taxonomy_structure"), data.get("structure"),
+                         "stream.json was classified against another subsection list; run pipeline/remap_stream.py")
         self.assertEqual(stream.get("taxonomy_generated"), data.get("generated"),
                          "stream.json was classified against another taxonomy; re-file the items")
-        self.assertEqual(clf.load_taxonomy().get("generated"), data.get("generated"))
+        self.assertEqual(clf.load_taxonomy().get("structure"), data.get("structure"))
         for it in stream["items"]:
+            self.assertTrue(1 <= len(it["subsections"]) <= 4, it["id"])
             for sid in it["subsections"]:
                 self.assertIn(sid, titles, f"{it['id']}: {sid}")
+            self.assertTrue(set(it["failure_sources"]) <= set(clf.FAILURE_SOURCES), f"{it['id']}: {it['failure_sources']}")
+            self.assertTrue(set(it["operations"]) <= set(clf.OPERATIONS), f"{it['id']}: {it['operations']}")
 
     ABBR = (r"(?:Inc|No|Nos|U\.S|N\.D|S\.D|E\.D|W\.D|Cal|Jr|Sr|Dr|Mr|Ms|Mrs|vs|e\.g|i\.e|approx|Corp|Ltd|Co|St|Gov|Sen|Rep|Fig|Vol|pp"
             r"|et al|D\.C|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|v|art|para|Art|Sec|cf|ca|a\.m|p\.m|Prof|Univ|Dept|Ph\.D"
@@ -343,3 +388,7 @@ class TaxonomyConsistencyTests(unittest.TestCase):
         for w in warn:
             print(f"ANOMALY: summary may exceed two sentences: {w}")
         self.assertFalse(over, f"summaries over two sentences: {over}")
+
+
+if __name__ == "__main__":
+    unittest.main()
