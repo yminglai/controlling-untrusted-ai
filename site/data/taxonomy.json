@@ -6,7 +6,7 @@
   "Teams deploying agents with real credentials who must choose and combine mechanisms for a requirement and a threat model.",
   "Evaluators, auditors, and policy staff who need to know what evidence a control claim rests on and which mechanisms satisfy which governance requirements (human oversight, logging, risk management, robustness)."
  ],
- "generated": "2026-10-18",
+ "generated": "2026-10-17",
  "requirements": [
   {
    "id": "correct",
