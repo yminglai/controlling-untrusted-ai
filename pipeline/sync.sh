@@ -9,7 +9,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-PAPER="${PAPER_REPO:-/Users/minglai.yang/Desktop/Scale_AI_LaTeX_Paper_Template/overleaf-ai-control}"
+PAPER="${PAPER_REPO:-/Users/minglai.yang/Desktop/Scale_AI_LaTeX_Paper_Template/ai-control-tooling}"
+export PAPER_TOOLING="$PAPER"
 PUSH=1; [ "${1:-}" = "--no-push" ] && PUSH=0
 
 titles() { python3 -c "import json,sys; t=json.load(open(sys.argv[1])); print('\n'.join(ss['title'] for s in t['sections'] for ss in s['subsections']))" "$1"; }

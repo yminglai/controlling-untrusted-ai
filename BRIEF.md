@@ -8,7 +8,7 @@ no bundler and no server.
 ## The two things the site does
 
 1. **The paper collection.** Every paper the survey placed into its taxonomy, browsable by the
-   survey's own structure (11 sections, 56 subsections), searchable, filterable, with a card per
+   survey's own structure (11 sections, 35 subsections), searchable, filterable, with a card per
    paper (method-style label, authors, year, one-line summary, arXiv link, cross-references, and
    for 239 papers a structured Chinese reading summary). 1,788 arXiv papers + ~150 verified
    non-arXiv ("grey") items. 239 are cited in the PDF; the rest are the full reading list.
@@ -27,9 +27,11 @@ this is (a) a survey with its full corpus and (b) a living tracker of agent depl
 
 Deployed AI agents must meet their operator's requirements: be **correct, compliant, in scope,
 within budget, and safe**. They cannot be trusted to meet them on their own, for three reasons
-(**failure sources**): they make **mistakes**, they can be **manipulated** by what they read
-(prompt injection, memory poisoning), and they may be **misaligned** (pursue objectives of their
-own, deceive, resist oversight). **Control** is whatever makes the agent's actions meet the
+(**failure sources**): **benign** failures (the agent goes out of control with no attacker
+present), **external** attacks (an outsider redirects it through what it reads, calls, or
+remembers: prompt injection, memory poisoning), and **insider** threats (someone with legitimate
+partial access, or the model itself pursuing objectives of its own, deceiving, resisting
+oversight). **Control** is whatever makes the agent's actions meet the
 requirements without taking the agent's good intentions on trust. It works through **two levers**:
 change the deployment around the agent (**Constrain** what it can do, **Observe** what it does,
 **Intervene** when something is off) or change the model (**Train** before deployment, **Steer** at
@@ -50,17 +52,17 @@ phrases of two to five words, no colons, no sentences. Prose style: plain, concr
 |---|---|---|---|
 | s1 | Introduction | — | ink/gray |
 | s2 | How Agents Fail | failures | coral `#D95358` |
-| s3 | Problem Setting and Definitions | setting | gray `#7D7D7D` |
-| s4 | Constraining Agent Actions | constrain | terracotta `#E27553` |
-| s5 | Observing Agent Behaviour | observe | blue `#598DD2` |
-| s6 | Intervening on Actions | intervene | amber `#E09A3B` |
-| s7 | Steering at Inference Time | steer | teal `#65C2B9` |
-| s8 | Training for Control Properties | train | periwinkle `#8D86E8` |
-| s9 | Verifying Control Measures | verify | forest `#62A16E` |
+| s3 | Setting | — | gray `#7D7D7D` |
+| s4 | Constrain | constrain | terracotta `#E27553` |
+| s5 | Observe | observe | blue `#598DD2` |
+| s6 | Intervene | intervene | amber `#E09A3B` |
+| s7 | Steer | steer | teal `#65C2B9` |
+| s8 | Train | train | periwinkle `#8D86E8` |
+| s9 | Verify | verify | forest `#62A16E` |
 | s10 | Deployment and Assurance | deploy | purple `#A37CAD` |
-| s11 | Open Problems and Outlook | — | gray |
+| s11 | Open Problems | — | gray |
 
-Failure sources: mistakes coral `#D95358`, manipulation amber `#E09A3B`, misalignment purple `#A37CAD`.
+Failure sources: benign coral `#D95358`, external amber `#E09A3B`, insider purple `#A37CAD`.
 Polarity of stream items: good forest `#62A16E`, bad coral `#D95358`, mixed gold `#D1B745`.
 Neutrals (from the paper's class file): ink `#2E2E2E`, gray `#7D7D7D`, medium gray `#C7C7C7`,
 light gray `#EAEAEA`, panel `#F7F7F7`, white, link `#598DD2`. Extra accents available: sky
@@ -130,11 +132,11 @@ environment only. GitHub account for the eventual repo: `yminglai` (do not creat
 controlling-untrusted-ai/
   BRIEF.md  SCHEMA.md  README.md  LICENSE
   design/            concept_*.md, judge_*.md, DESIGN.md (the spec the front-end follows)
-  site/              index.html  papers.html  stream.html  about.html  404.html
+  site/              index.html  papers.html  stream.html  404.html
     assets/css/      tokens.css  site.css  papers.css  stream.css
     assets/js/       common.js  taxonomy.js  papers.js  stream.js  search.js (as needed)
     assets/img/      figures, favicon, og image
-    data/            taxonomy.json  papers.json  grey.json  summaries_zh.json  stream.json  stats.json
+    data/            taxonomy.json  papers.json  grey.json  stream.json  stats.json
   pipeline/          build_data.py (paper repo -> site/data)  collect_news.py  classify.py  feeds.yml
                      seed/ (sweep outputs)  tests/
   .github/           workflows/collect.yml  ISSUE_TEMPLATE/submit_item.yml

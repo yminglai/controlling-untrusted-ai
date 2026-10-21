@@ -20,17 +20,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "site" / "data"
-OVERLEAF = ROOT.parent / "overleaf-ai-control"   # the read-only paper clone; absent in CI
 sys.path.insert(0, str(ROOT / "pipeline"))
 
-from build_data import kebab, source_date, strip_latex, structure_fingerprint  # noqa: E402
+from build_data import PAPER_TOOLING, kebab, source_date, strip_latex, structure_fingerprint  # noqa: E402
 
-N_SECTIONS, N_SUBSECTIONS = 10, 29   # outline.json of 2026-10-19 01:29
-PART_TITLES = ["Foundations", "System-Level Control", "Model-Level Control", "Evaluation and Assurance"]
-NEUTRAL_SECTIONS = {"s1", "s3", "s10"}   # no operation, gray
-SECTION_OPERATIONS = {"s2": ["failures"], "s4": ["constrain"], "s5": ["monitor"], "s6": ["intervene"],
-                      "s7": ["steer", "train"], "s8": ["evaluate"], "s9": ["deploy"]}
-OPERATION_IDS = ["failures", "constrain", "monitor", "intervene", "steer", "train", "evaluate", "deploy"]
+N_SECTIONS, N_SUBSECTIONS = 11, 35   # outline.json of 2026-10-21
+PART_TITLES = ["The Problem", "Control Outside the Model", "Control Inside the Model", "Verification, Deployment, and Outlook"]
+NEUTRAL_SECTIONS = {"s1", "s3", "s11"}   # no operation, gray
+SECTION_OPERATIONS = {"s2": ["failures"], "s4": ["constrain"], "s5": ["observe"], "s6": ["intervene"],
+                      "s7": ["steer"], "s8": ["train"], "s9": ["verify"], "s10": ["deploy"]}
+OPERATION_IDS = ["failures", "constrain", "observe", "intervene", "steer", "train", "verify", "deploy"]
 TIER_IDS = ["benign", "external", "insider"]
 
 ALLOWED_COLOURS = {
@@ -77,8 +76,9 @@ def main() -> int:
     assert [f["id"] for f in tax["failure_sources"]] == TIER_IDS
     assert all(f["blurb"].strip() and f["color"] in ALLOWED_COLOURS for f in tax["failure_sources"])
     assert [o["id"] for o in tax["operations"]] == OPERATION_IDS
-    assert {o["id"]: o["label"] for o in tax["operations"] if o["id"] in ("monitor", "evaluate", "deploy")} == \
-        {"monitor": "Monitor", "evaluate": "Evaluate", "deploy": "Deploy"}
+    assert {o["id"]: o["label"] for o in tax["operations"]} == {
+        "failures": "How Agents Fail", "constrain": "Constrain", "observe": "Observe", "intervene": "Intervene",
+        "steer": "Steer", "train": "Train", "verify": "Verify", "deploy": "Deploy"}
 
     # parts: every section in exactly one part, in section order; "part" is the index into parts
     parts = tax["parts"]
@@ -221,7 +221,7 @@ def main() -> int:
     assert stats["papers"] == len(papers) and stats["grey"] == len(grey)
     assert stats["subsections"] == N_SUBSECTIONS and stats["sections"] == N_SECTIONS
     assert stats["papers"] == 1788, f"expected 1,788 papers, got {stats['papers']}"
-    for sec in ("s2", "s4", "s5", "s6", "s7", "s8", "s9"):
+    for sec in ("s2", "s4", "s5", "s6", "s7", "s8", "s9", "s10"):
         assert stats["per_section"][sec] > 0, f"{sec}: no papers"
     assert stats["cited"] == sum(p["selected"] for p in papers) + sum(g["selected"] for g in grey)
     assert sum(stats["years"].values()) == len(papers)
@@ -263,20 +263,22 @@ def main() -> int:
         assert dates == sorted(dates, reverse=True), "stream_recent.json not newest first"
         assert {it["id"] for it in recent["items"]} <= {it["id"] for it in stream["items"]}
 
-    # ---- freshness against the paper clone (local only) ------------------ #
-    if OVERLEAF.exists():
-        sources = [OVERLEAF / "outline.json", OVERLEAF / "research" / "corpus_full.json",
-                   OVERLEAF / "research" / "grey_v2.json", OVERLEAF / "research" / "labels_method_style.json"]
+    # ---- freshness against the paper's tooling repository (local only) --- #
+    if PAPER_TOOLING.exists():
+        sources = [PAPER_TOOLING / "outline.json", PAPER_TOOLING / "research" / "corpus_full.json",
+                   PAPER_TOOLING / "research" / "grey_v2.json", PAPER_TOOLING / "research" / "labels_method_style.json"]
         newest = max(p.stat().st_mtime for p in sources if p.exists())
         built = (DATA / "taxonomy.json").stat().st_mtime
-        assert newest <= built, "the paper clone is newer than site/data: run python3 pipeline/build_data.py"
-        with (OVERLEAF / "research" / "corpus_full.json").open(encoding="utf-8") as fh:
-            expected_source = source_date(json.load(fh), OVERLEAF / "research" / "corpus_full.json")
+        assert newest <= built, "the paper's tooling repository is newer than site/data: run python3 pipeline/build_data.py"
+        with (PAPER_TOOLING / "research" / "corpus_full.json").open(encoding="utf-8") as fh:
+            expected_source = source_date(json.load(fh), PAPER_TOOLING / "research" / "corpus_full.json")
         assert stats["source_generated"] == expected_source, \
             f"stats.source_generated {stats['source_generated']!r} != {expected_source!r} (corpus_full.generated or its file date)"
-        with (OVERLEAF / "outline.json").open(encoding="utf-8") as fh:
+        with (PAPER_TOOLING / "outline.json").open(encoding="utf-8") as fh:
             outline = json.load(fh)
         for sec in outline["sections"]:
+            assert strip_latex(sec["title"]) == next(s["title"] for s in sections if s["number"] == int(sec["number"])), \
+                f"section {sec['number']}: title differs from outline.json"
             for j, sub in enumerate(sec.get("subsections") or [], start=1):
                 sid = f"s{int(sec['number'])}_{j}"
                 assert strip_latex(sub.get("title")) == next(ss["title"] for ss in subs if ss["id"] == sid), \

@@ -9,12 +9,14 @@ Extended 2026-10-17 (review fixes): `grey.json` `also`, `confidence` closed set,
 `stats.json` `source_generated` and the `stream_*` counts; `stream.json` `taxonomy_generated`; the new
 `stream_recent.json`.
 
-Changed 2026-10-19 (new paper structure): 10 sections in four `parts`, 29 subsections; the failure
-sources are the three attack tiers `benign | external | insider` (field name unchanged); operations
-`observe` and `verify` became `monitor` and `evaluate`; `steer` and `train` both belong to Section 7;
-`lever` is the part title; `sections[].operation` became the list `operations`; subsection `bullets`
-and section `purpose` dropped (writer notes); `taxonomy.structure` and `stream.taxonomy_structure`
-fingerprint the subsection list. The stream was re-filed by `pipeline/remap_stream.py`.
+Changed 2026-10-19 and 2026-10-21 (paper restructured; sources moved to the paper's tooling
+repository): 11 sections in four `parts`, 35 subsections; the failure sources are the three failure
+tiers `benign | external | insider` (field name unchanged); the operations are the section titles
+`constrain | observe | intervene | steer | train | verify | deploy`, one per section (`deploy` is
+Section 10, Deployment and Assurance); `lever` is the part title; `sections[].operation` became the
+list `operations`; subsection `bullets` and section `purpose` dropped (writer notes);
+`taxonomy.structure` and `stream.taxonomy_structure` fingerprint the subsection list. The stream was
+re-filed from the 17 October seed classification by `pipeline/remap_stream.py`.
 
 ## `taxonomy.json`
 
@@ -23,8 +25,8 @@ fingerprint the subsection list. The stream was re-filed by `pipeline/remap_stre
   "title": "Controlling Untrusted AI: A Survey",
   "thesis": "<one paragraph from outline.json>",
   "readers": ["...", "...", "..."],
-  "generated": "2026-10-19",
-  "structure": "f91f5efaa064",
+  "generated": "2026-10-21",
+  "structure": "1ef18ee6f954",
   "requirements": [
     {"id": "correct", "label": "Correct"}, {"id": "compliant", "label": "Compliant"},
     {"id": "in-scope", "label": "In scope"}, {"id": "within-budget", "label": "Within budget"},
@@ -36,29 +38,29 @@ fingerprint the subsection list. The stream was re-filed by `pipeline/remap_stre
     {"id": "insider", "label": "Insider", "color": "#A37CAD", "blurb": "..."}
   ],
   "operations": [
-    {"id": "failures", "label": "Failure Modes of Deployed Agents", "section": "s2", "color": "#D95358", "lever": null},
-    {"id": "constrain", "label": "Constrain", "section": "s4", "color": "#E27553", "lever": "System-Level Control"},
-    {"id": "monitor", "label": "Monitor", "section": "s5", "color": "#598DD2", "lever": "System-Level Control"},
-    {"id": "intervene", "label": "Intervene", "section": "s6", "color": "#E09A3B", "lever": "System-Level Control"},
-    {"id": "steer", "label": "Steer", "section": "s7", "color": "#65C2B9", "lever": "Model-Level Control"},
-    {"id": "train", "label": "Train", "section": "s7", "color": "#65C2B9", "lever": "Model-Level Control"},
-    {"id": "evaluate", "label": "Evaluate", "section": "s8", "color": "#62A16E", "lever": "Evaluation and Assurance"},
-    {"id": "deploy", "label": "Deploy", "section": "s9", "color": "#A37CAD", "lever": "Evaluation and Assurance"}
+    {"id": "failures", "label": "How Agents Fail", "section": "s2", "color": "#D95358", "lever": null},
+    {"id": "constrain", "label": "Constrain", "section": "s4", "color": "#E27553", "lever": "Control Outside the Model"},
+    {"id": "observe", "label": "Observe", "section": "s5", "color": "#598DD2", "lever": "Control Outside the Model"},
+    {"id": "intervene", "label": "Intervene", "section": "s6", "color": "#E09A3B", "lever": "Control Outside the Model"},
+    {"id": "steer", "label": "Steer", "section": "s7", "color": "#65C2B9", "lever": "Control Inside the Model"},
+    {"id": "train", "label": "Train", "section": "s8", "color": "#8D86E8", "lever": "Control Inside the Model"},
+    {"id": "verify", "label": "Verify", "section": "s9", "color": "#62A16E", "lever": "Verification, Deployment, and Outlook"},
+    {"id": "deploy", "label": "Deploy", "section": "s10", "color": "#A37CAD", "lever": "Verification, Deployment, and Outlook"}
   ],
   "parts": [
-    {"title": "Foundations", "sections": ["s1", "s2", "s3"]},
-    {"title": "System-Level Control", "sections": ["s4", "s5", "s6"]},
-    {"title": "Model-Level Control", "sections": ["s7"]},
-    {"title": "Evaluation and Assurance", "sections": ["s8", "s9", "s10"]}
+    {"title": "The Problem", "sections": ["s1", "s2", "s3"]},
+    {"title": "Control Outside the Model", "sections": ["s4", "s5", "s6"]},
+    {"title": "Control Inside the Model", "sections": ["s7", "s8"]},
+    {"title": "Verification, Deployment, and Outlook", "sections": ["s9", "s10", "s11"]}
   ],
   "sections": [
     {
-      "id": "s4", "number": 4, "title": "Action Constraints", "slug": "constrain",
+      "id": "s4", "number": 4, "title": "Constrain", "slug": "constrain",
       "operations": ["constrain"], "color": "#E27553", "part": 1,
       "subsections": [
         {
           "id": "s4_1", "number": "4.1", "title": "Confinement", "slug": "confinement",
-          "counts": {"primary": 56, "selected": 3, "cross": 11, "grey": 1}
+          "counts": {"primary": 56, "selected": 6, "cross": 21, "grey": 1}
         }
       ]
     }
@@ -69,17 +71,17 @@ fingerprint the subsection list. The stream was re-filed by `pipeline/remap_stre
 `structure` is twelve hex digits of SHA-1 over the ordered subsection ids and titles
 (`build_data.structure_fingerprint`): two outlines of one day get different fingerprints, and the
 collector and the tests compare it with `stream.taxonomy_structure`. `failure_sources` are the three
-attack tiers of the paper (Section 2); the blurbs are the paper's one-sentence definitions.
-`operations` has one entry per operation in section order; Section 7 carries both `steer` and `train`.
-`label` is the chip label (`failures` takes its section title), `color` is the section's colour and
-`lever` is the title of the section's part, `null` for `failures`, which is not a control operation.
-`parts` lists the paper's parts in order with their section ids; `sections[].part` is the index into
-`parts`. `sections[].operations` lists the section's operation ids (`[]` for Sections 1, 3 and 10,
-which have `color: "#7D7D7D"`). Section titles select operation, slug and colour (`SECTION_META` in
+failure tiers of the paper (Section 2); the blurbs are the paper's one-sentence definitions.
+`operations` has one entry per operation in section order, one operation per section; the ids are the
+section titles (`deploy` for Deployment and Assurance). `label` is the chip label (`failures` takes
+its section title), `color` is the section's colour and `lever` is the title of the section's part,
+`null` for `failures`, which is not a control operation. `parts` lists the paper's parts in order
+with their section ids; `sections[].part` is the index into `parts`. `sections[].operations` lists
+the section's operation ids (`[]` for Sections 1, 3 and 11, which have `color: "#7D7D7D"`). Section titles select operation, slug and colour (`SECTION_META` in
 `build_data.py`), so a renumbered outline cannot mislabel a section. `counts.primary` = papers whose
 `primary` is this subsection; `selected` = of those, cited in the PDF; `cross` = papers and reports
 that list this subsection in `also`; `grey` = grey items whose `primary` is this subsection. A
-subsection may have zero primary papers (1.3, 1.4 and 3.3 in the 19 October outline); the front-end
+subsection may have zero primary papers (1.3, 1.4 and 3.3 in the 21 October outline); the front-end
 renders the head with an empty state.
 
 ## `papers.json`  (array, one object per arXiv paper; 1,788 items)
@@ -142,16 +144,16 @@ grey subsection is added to the paper's `also`.
 
 ```json
 {
-  "generated": "2026-10-19",
-  "source_generated": "2026-10-19",
-  "papers": 1788, "grey": 164, "cited": 239, "subsections": 29, "sections": 10,
+  "generated": "2026-10-21",
+  "source_generated": "2026-10-20",
+  "papers": 1788, "grey": 164, "cited": 239, "subsections": 35, "sections": 11,
   "years": {"2026": 908, "2025": 417, "...": 0},
-  "per_section": {"s2": 213, "...": 0},
+  "per_section": {"s2": 190, "...": 0},
   "stream_items": 231, "stream_updated": "2026-10-17T00:00:00Z",
   "stream_polarity": {"good": 93, "bad": 97, "mixed": 41},
   "stream_per_source": {"benign": 40, "external": 71, "insider": 47},
   "stream_per_op": {"constrain": 149, "deploy": 85, "...": 0},
-  "stream_per_sub": {"s1_1": 3, "...": 0}
+  "stream_per_sub": {"s1_1": 2, "...": 0}
 }
 ```
 
@@ -174,8 +176,8 @@ reads this file and falls back to `stream.json` when it is absent.
 ```json
 {
   "generated": "2026-10-17T12:00:00Z",
-  "taxonomy_generated": "2026-10-19",
-  "taxonomy_structure": "f91f5efaa064",
+  "taxonomy_generated": "2026-10-21",
+  "taxonomy_structure": "1ef18ee6f954",
   "sources": ["seed sweep 2026-10-17", "collector"],
   "items": [
     {
@@ -222,7 +224,7 @@ Enumerations:
   remembered; `insider` = a person with legitimate partial access, or the model itself pursuing its own
   objective); empty for items that are not about a failure.
 - `requirements`: subset of `correct | compliant | in-scope | within-budget | safe`.
-- `operations`: subset of `constrain | monitor | intervene | steer | train | evaluate | deploy`; the
+- `operations`: subset of `constrain | observe | intervene | steer | train | verify | deploy`; the
   operation that failed, was missing, or worked.
 - `subsections`: 1 to 4 subsection ids from `taxonomy.json`, most specific first.
 - `domain`: free text from a small controlled list: `coding`, `browsing`, `customer-service`,
@@ -240,9 +242,11 @@ Enumerations:
 the `taxonomy.json` the items were classified against. Subsection ids are positional, so a renamed or
 reordered outline changes their meaning; the collector warns and `pipeline/tests/test_collector.py`
 fails when the fingerprint differs from the current `taxonomy.json`, and items must then be re-filed
-by `pipeline/remap_stream.py` (as the whole stream was mapped from the 56 subsections of 17 October
-onto the 36 of 19 October 01:13, with the tiers and two operations renamed, and from those onto the
-29 of the 01:29 outline). The script holds one map per earlier structure.
+by `pipeline/remap_stream.py`. The script rebuilds every item's `subsections`, `failure_sources` and
+`operations` from the 17 October seed classification in `pipeline/seed/items/*.json` (matched by id
+or URL) through one direct map onto the current subsection list, and refuses to run when
+`taxonomy.json` carries a fingerprint other than the one its map targets, so a changed outline needs
+a new map before the stream can be published again.
 
 Every item must have a working `url`, a `date`, and `verified: true` with a note; unverifiable items
 are not published. `id` = `YYYY-MM-DD-` + slug of the title (ASCII, hyphens, max 80 chars), as produced

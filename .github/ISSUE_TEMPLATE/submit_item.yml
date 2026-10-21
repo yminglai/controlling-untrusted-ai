@@ -72,12 +72,12 @@ body:
       description: The control operation that failed, was missing, or worked.
       options:
         - constrain (confinement, formal enforcement, information-flow control, delegated authority)
-        - monitor (observability, automated monitors, untrusted monitors, human oversight)
+        - observe (automated monitors, untrusted monitors, human oversight)
         - intervene (approval gates, resampling, shutdown, rollback)
         - steer (instruction hierarchies, memory management, activation steering)
         - train (safety fine-tuning, adversarial training, representation-level methods)
-        - evaluate (benchmarks, control evaluations, model auditing)
-        - deploy (reference architectures, governance, assurance)
+        - verify (benchmarks, control evaluations, model auditing)
+        - deploy (reference architectures, governance, safety cases)
         - not sure
     validations:
       required: true

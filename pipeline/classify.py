@@ -34,7 +34,8 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY_JSON = ROOT / "site" / "data" / "taxonomy.json"
 OUTLINE_JSON = Path(
-    os.environ.get("OUTLINE_JSON", str(ROOT.parent / "overleaf-ai-control" / "outline.json"))
+    os.environ.get("OUTLINE_JSON")
+    or Path(os.environ.get("PAPER_TOOLING") or ROOT.parent / "ai-control-tooling") / "outline.json"
 )
 
 DEFAULT_MODEL = "anthropic/claude-opus-5-5"
@@ -44,54 +45,56 @@ LLM_RETRIES = 3
 # --------------------------------------------------------------------------- vocabulary
 
 SURVEY_PARAGRAPH = (
-    "Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, "
-    "within budget, and safe. They cannot be trusted to meet them on their own. On the attack side "
-    "the survey distinguishes three tiers: benign loss of control (the agent makes mistakes and no "
-    "one is attacking), external attacks (an outsider redirects the agent through what it reads, "
-    "calls, or remembers), and insider threats (a person with partial access to data, weights, "
-    "pipelines, credentials, or oversight, or the model itself pursuing objectives of its own). "
-    "Control is whatever makes the agent's actions meet the requirements without taking the agent's "
-    "good intentions on trust. On the defence side the survey separates what is implemented outside "
-    "the executing model (Constrain what it can do, Monitor what it does, Intervene when something is "
-    "off) from what is implemented inside it (Train before deployment, Steer at inference time). "
-    "Evaluate tests either side (benchmarks by failure tier, control evaluations, audits, statistics). "
-    "Composition and Assurance composes mechanisms into stacks, release gates, safety cases, and "
-    "regulation. Every mechanism is graded by a two-level test: L1, does it still work if the agent "
-    "is indifferent to the requirement; L2, does it still work if the agent, or an insider, tries to "
-    "defeat it and knows how it works."
+    "Deployed AI agents must meet the requirements their deployer places on them: be correct, compliant, "
+    "in scope, within budget, and safe. They cannot be trusted to do so on their own. On the attack side "
+    "the survey distinguishes three tiers: benign failures (the agent goes out of control with no "
+    "attacker present), external attacks (an outsider redirects the agent through what it reads, calls, "
+    "or remembers), and insider threats (someone with legitimate partial access contributes to loss of "
+    "control, whether a person with access to data, weights, pipeline, credentials, or oversight, or the "
+    "model itself). Control is whatever makes the agent's actions meet the requirements without taking "
+    "the agent's good intentions on trust. On the defence side the survey separates control outside the "
+    "model (Constrain what the agent can do, Observe what it does, Intervene when something is off) from "
+    "control inside the model (Steer at inference time, Train before deployment); guarantees come from "
+    "outside the model, while measures inside it lower the base rate the outside layer must catch. "
+    "Verify tests either side (benchmarks, control evaluations, model auditing). Deployment and Assurance "
+    "assembles mechanisms into reference architectures, governance, and safety cases. For every mechanism "
+    "the survey records the threat model under which it holds, in particular whether it survives an agent "
+    "or insider that actively tries to defeat it, what it costs in safety and usefulness, and what "
+    "evidence supports it."
 )
 
 KINDS = ["incident", "near-miss", "deployment", "safety-feature", "evaluation", "research", "policy", "disclosure"]
 POLARITIES = ["bad", "good", "mixed"]
 FAILURE_SOURCES = ["benign", "external", "insider"]   # the three attack tiers; the field keeps its name
 REQUIREMENTS = ["correct", "compliant", "in-scope", "within-budget", "safe"]
-OPERATIONS = ["constrain", "monitor", "intervene", "steer", "train", "evaluate", "deploy"]
+OPERATIONS = ["constrain", "observe", "intervene", "steer", "train", "verify", "deploy"]
 DOMAINS = [
     "coding", "browsing", "customer-service", "finance", "email-and-office", "healthcare", "legal",
     "cyber", "research", "infrastructure", "consumer", "government", "multi-agent", "other",
 ]
 EVIDENCE = ["first-party", "press", "researcher", "regulator", "court", "incident-database"]
 
-# Section 7 (Model-Level Methods) carries both model-level operations.
+# One operation per section; the ids are the section titles (Deployment and Assurance is "deploy").
 SECTION_OPERATIONS = {
-    "s2": ["failures"], "s4": ["constrain"], "s5": ["monitor"], "s6": ["intervene"],
-    "s7": ["steer", "train"], "s8": ["evaluate"], "s9": ["deploy"],
+    "s2": ["failures"], "s4": ["constrain"], "s5": ["observe"], "s6": ["intervene"],
+    "s7": ["steer"], "s8": ["train"], "s9": ["verify"], "s10": ["deploy"],
 }
 OPERATION_SECTION = {o: s for s, ops in SECTION_OPERATIONS.items() for o in ops if o != "failures"}
 
-# Positional ids and titles from outline.json (2026-10-19 01:29), kept here so the collector works
-# without the paper clone. pipeline/tests/test_collector.py checks these against site/data/taxonomy.json.
+# Positional ids and titles from outline.json (2026-10-21), kept here so the collector works without
+# the paper's tooling repository. pipeline/tests/test_collector.py checks these against site/data/taxonomy.json.
 FALLBACK_TAXONOMY = [
     ("s1", 1, "Introduction", ["The Control Problem", "Scope", "Methodology", "Contributions"]),
-    ("s2", 2, "Failure Modes of Deployed Agents", ["Benign Failures", "External Attacks", "Insider Threats"]),
-    ("s3", 3, "Preliminaries", ["Threat Model", "Control Protocols", "Assessment Criteria"]),
-    ("s4", 4, "Action Constraints", ["Confinement", "Formal Enforcement", "Information-Flow Control", "Delegated Authority"]),
-    ("s5", 5, "Monitoring", ["Automated Monitors", "Untrusted Monitors", "Human Oversight"]),
-    ("s6", 6, "Intervention", ["Approval Gates", "Resampling", "Shutdown"]),
-    ("s7", 7, "Model-Level Methods", ["Inference-Time Steering", "Training-Time Methods"]),
-    ("s8", 8, "Evaluation Methodology", ["Benchmarks", "Control Evaluations", "Model Auditing"]),
-    ("s9", 9, "Composition and Assurance", ["Reference Architectures", "Safety Cases"]),
-    ("s10", 10, "Outlook", ["Open Problems", "Conclusion"]),
+    ("s2", 2, "How Agents Fail", ["Benign Failures", "Malicious Attacks", "Insider Threats"]),
+    ("s3", 3, "Setting", ["Threat Model", "Control Protocols", "Assessment Criteria"]),
+    ("s4", 4, "Constrain", ["Confinement", "Formal Enforcement", "Information-Flow Control", "Delegated Authority"]),
+    ("s5", 5, "Observe", ["Automated Monitors", "Untrusted Monitors", "Human Oversight"]),
+    ("s6", 6, "Intervene", ["Approval Gates", "Resampling", "Shutdown"]),
+    ("s7", 7, "Steer", ["Instruction Hierarchies", "Memory Management", "Activation Steering"]),
+    ("s8", 8, "Train", ["Safety Fine-Tuning", "Adversarial Training", "Representation-Level Methods"]),
+    ("s9", 9, "Verify", ["Benchmarks", "Control Evaluations", "Model Auditing"]),
+    ("s10", 10, "Deployment and Assurance", ["Reference Architectures", "Governance", "Safety Cases"]),
+    ("s11", 11, "Open Problems", ["Gaps by Failure Tier", "Cost and Organisational Constraints", "Conclusion"]),
 ]
 
 
@@ -281,25 +284,25 @@ OPERATION_RULES = {
     "constrain": (r"sandbox", r"isolat", r"permission", r"least privilege", r"allowlist", r"whitelist", r"scope[ds]? (?:token|credential)",
                   r"credential", r"oauth", r"identity", r"access control", r"capabilit(?:y|ies) restrict", r"information[- ]flow",
                   r"taint", r"container", r"read-only", r"restrict"),
-    "monitor": (r"monitor", r"logging", r"\blogs?\b", r"observab", r"detect", r"guardrail", r"classifier", r"provenance", r"telemetry",
+    "observe": (r"monitor", r"logging", r"\blogs?\b", r"observab", r"detect", r"guardrail", r"classifier", r"provenance", r"telemetry",
                 r"audit log", r"chain[- ]of[- ]thought", r"probe", r"flagged", r"human review", r"oversight"),
     "intervene": (r"approval", r"confirm", r"block", r"blocked", r"rollback", r"roll back", r"revert", r"kill switch", r"shut ?down",
                   r"pause", r"halt", r"stopped", r"intercept", r"quarantine", r"human[- ]in[- ]the[- ]loop", r"undo", r"fallback"),
     "steer": (r"system prompt", r"instruction hierarch", r"steering", r"prompting", r"context engineering", r"preference", r"activation"),
     "train": (r"fine[- ]tun", r"rlhf", r"training", r"trained to", r"post-training", r"safety training", r"adversarial training",
               r"unlearn", r"constitution"),
-    "evaluate": (r"evaluat", r"benchmark", r"red[- ]team", r"audit", r"test(?:ed|ing|s)?\b", r"system card", r"assessment", r"control evaluation",
-                 r"pentest", r"capability", r"measur", r"study"),
+    "verify": (r"evaluat", r"benchmark", r"red[- ]team", r"audit", r"test(?:ed|ing|s)?\b", r"system card", r"assessment", r"control evaluation",
+               r"pentest", r"capability", r"measur", r"study"),
     "deploy": (r"regulat", r"\blaw\b", r"policy", r"\bact\b", r"standard", r"safety case", r"framework", r"governance", r"certif",
                r"incident report", r"disclosure", r"postmortem", r"release", r"assurance", r"third[- ]party", r"compliance", r"architecture"),
 }
 SUBSECTION_RULES = [
-    # most specific first; (subsection id, patterns); ids of outline.json 2026-10-19 01:29 (10 sections, 29 subsections)
-    # 2.2 External Attacks: an outsider redirects the agent through what it reads, calls, or remembers
+    # most specific first; (subsection id, patterns); ids of outline.json 2026-10-21 (11 sections, 35 subsections)
+    # 2.2 Malicious Attacks: an outsider redirects the agent through what it reads, calls, or remembers
     ("s2_2", (r"prompt injection", r"indirect prompt", r"memory poison", r"poison", r"zero-click", r"malicious (?:email|document|website|page|content|instruction)", r"tool poisoning",
             r"supply[- ]chain", r"compromised (?:tool|server|plugin|extension|dependency|package)")),
     # 2.3 Insider Threats: a person with legitimate partial access, the model itself as the limiting case, and agents
-    # colluding or drifting through delegation (the multi-agent failures of the earlier outline)
+    # colluding or drifting through delegation
     ("s2_3", (r"multi-?agent", r"agent swarm", r"agents? (?:collud|talking|negotiat|coordinat)", r"collu", r"steganograph", r"covert (?:channel|communication|signal)",
             r"agent-to-agent", r"\ba2a\b", r"delegation chain", r"orchestrat\w+ (?:agents|pipeline)", r"team of agents", r"fleet of agents", r"\binsiders?\b", r"rogue (?:employee|engineer|developer|contractor|admin)",
             r"disgruntled", r"\bemployee\b.*(?:stole|leak|exfiltrat|sabotag|misus)", r"(?:stole|stolen|theft of|exfiltrat\w+) (?:the )?(?:model )?weights", r"weight (?:theft|exfiltration)",
@@ -337,33 +340,43 @@ SUBSECTION_RULES = [
             r"roll back", r"revert", r"undo", r"restor", r"backup", r"reversib", r"recover")),
     # 6.2 Resampling
     ("s6_2", (r"resampl", r"incriminat", r"re-?run", r"second opinion")),
-    # 7.1 Inference-Time Steering: memory and context, activation steering, instruction hierarchies and prompting
-    ("s7_1", (r"context", r"preference", r"memory\b", r"persona", r"in-context", r"personali[sz]", r"activation steering", r"steering vector", r"representation engineering",
-            r"mechanistic", r"interpretab", r"circuit", r"feature(?:s)? (?:found|discover)", r"system prompt", r"instruction hierarch", r"prompt design", r"instructions?\b",
-            r"spec\b", r"model spec", r"self-correct", r"planning", r"reflection", r"plan(?:s|ning)? (?:before|ahead)", r"verif(?:y|ies) its own")),
-    # 7.2 Training-Time Methods: adversarial training, representation-level methods, safety fine-tuning and its durability
-    ("s7_2", (r"adversarial training", r"robustness training", r"trained against", r"anti-scheming", r"jailbreak training", r"unlearn", r"representation (?:training|rerouting)",
-            r"circuit breaker", r"weight editing", r"model editing", r"deliberative", r"reasoning[- ]based safety", r"safety reasoning", r"chain-of-thought training",
-            r"rlhf", r"preference training", r"dpo\b", r"supervised fine", r"sft\b", r"reward model", r"safety training", r"post-training", r"constitution", r"refusal training",
-            r"trained to refuse", r"alignment training", r"fine[- ]tun", r"training", r"safety retention", r"fine-tuning (?:removes|undoes|breaks)", r"safety degrad",
-            r"tamper-resist")),
-    # 8.2 Control Evaluations and their settings
-    ("s8_2", (r"control evaluation", r"control protocol", r"untrusted model", r"trusted editing", r"ai control", r"control setting", r"testbed", r"environment(?:s)? for",
+    # 7.3 Activation Steering: steering vectors, activation patching
+    ("s7_3", (r"activation steering", r"steering vector", r"activation patching", r"\bactivations?\b", r"steer(?:ing|ed)? (?:the )?model")),
+    # 7.2 Memory Management: long-term memory, personalised context, memory authorisation
+    ("s7_2", (r"memory\b", r"memories", r"context", r"preference", r"persona", r"in-context", r"personali[sz]", r"long-term", r"remember")),
+    # 7.1 Instruction Hierarchies: system and policy prompts, plan-then-execute, self-correction, interpretability as a control instrument
+    ("s7_1", (r"system prompt", r"instruction hierarch", r"prompt design", r"instructions?\b", r"spec\b", r"model spec", r"policy prompt", r"self-correct", r"planning",
+            r"reflection", r"plan(?:s|ning)? (?:before|ahead)", r"plan-then-execute", r"verif(?:y|ies) its own", r"mechanistic", r"interpretab", r"circuit\b",
+            r"feature(?:s)? (?:found|discover)")),
+    # 8.2 Adversarial Training
+    ("s8_2", (r"adversarial training", r"robustness training", r"trained against", r"anti-scheming", r"jailbreak training", r"tamper-resist",
+            r"adversarial(?:ly)? (?:train|fine)")),
+    # 8.3 Representation-Level Methods: circuit breakers, representation rerouting, unlearning, weight editing
+    ("s8_3", (r"unlearn", r"representation (?:training|rerouting|engineering)", r"circuit breaker", r"weight editing", r"model editing", r"representation[- ]level")),
+    # 8.1 Safety Fine-Tuning and its durability
+    ("s8_1", (r"rlhf", r"preference training", r"dpo\b", r"supervised fine", r"sft\b", r"reward model", r"safety training", r"post-training", r"constitution",
+            r"refusal training", r"trained to refuse", r"alignment training", r"fine[- ]tun", r"training", r"deliberative", r"reasoning[- ]based safety",
+            r"safety reasoning", r"chain-of-thought training", r"scalable oversight", r"pretraining data", r"data curation", r"safety retention",
+            r"fine-tuning (?:removes|undoes|breaks)", r"safety degrad")),
+    # 9.2 Control Evaluations and their settings
+    ("s9_2", (r"control evaluation", r"control protocol", r"untrusted model", r"trusted editing", r"ai control", r"control setting", r"testbed", r"environment(?:s)? for",
             r"simulat")),
-    # 8.3 Model Auditing: white-box audits, auditing games, model diffing
-    ("s8_3", (r"white-box", r"audit(?:ing)? the model", r"interpretability audit", r"model internals", r"hidden objective", r"auditing game", r"model diffing")),
-    # 8.1 Benchmarks, metrics and reporting
-    ("s8_1", (r"injection (?:benchmark|eval|test)", r"red[- ]team", r"jailbreak (?:benchmark|eval|test|rate)", r"attack success", r"adversarial (?:eval|test|robust)",
+    # 9.3 Model Auditing: white-box audits, auditing games, model diffing
+    ("s9_3", (r"white-box", r"audit(?:ing)? the model", r"interpretability audit", r"model internals", r"hidden objective", r"auditing game", r"model diffing")),
+    # 9.1 Benchmarks, metrics and reporting
+    ("s9_1", (r"injection (?:benchmark|eval|test)", r"red[- ]team", r"jailbreak (?:benchmark|eval|test|rate)", r"attack success", r"adversarial (?:eval|test|robust)",
             r"pentest", r"penetration test", r"ctf\b", r"benchmark", r"evaluat", r"system card", r"model card", r"capabilit", r"test(?:ed|ing|s)?\b", r"study", r"measur",
             r"reliab", r"statistic", r"confidence interval", r"reporting", r"metric", r"pass@", r"success rate", r"variance")),
-    # 9.2 Safety Cases: frontier safety frameworks, regulation, independent assessment, governance and release gates
-    ("s9_2", (r"regulat", r"\blaw\b", r"\bbill\b", r"\bact\b", r"legislat", r"executive order", r"lawsuit", r"\bcourt", r"\bfine[ds]?\b", r"ftc\b", r"\beu\b", r"ban(?:ned|s)?\b",
-            r"compliance", r"enforcement", r"treaty", r"standard", r"safety case", r"risk assessment", r"frontier safety framework", r"preparedness", r"responsible scaling",
-            r"safety framework", r"third[- ]party", r"independent (?:audit|assur|evaluat|test)", r"external (?:audit|evaluat|test)", r"certif", r"accredit", r"assurance",
-            r"incident report", r"postmortem", r"post-mortem", r"release gate", r"staged rollout", r"disclos", r"advisory", r"cve-", r"patch", r"recall", r"lessons learned",
-            r"feedback", r"governance", r"change (?:review|management|control)", r"versioned", r"regression (?:eval|test)")),
-    # 9.1 Reference Architectures
-    ("s9_1", (r"reference architecture", r"defen[cs]e in depth", r"architecture", r"security stack", r"blueprint", r"design pattern", r"best practice", r"guidance", r"playbook",
+    # 10.3 Safety Cases: frontier safety frameworks, regulation, independent assurance
+    ("s10_3", (r"regulat", r"\blaw\b", r"\bbill\b", r"\bact\b", r"legislat", r"executive order", r"lawsuit", r"\bcourt", r"\bfine[ds]?\b", r"ftc\b", r"\beu\b",
+            r"ban(?:ned|s)?\b", r"compliance", r"enforcement", r"treaty", r"standard", r"safety case", r"risk assessment", r"frontier safety framework", r"preparedness",
+            r"responsible scaling", r"safety framework", r"third[- ]party", r"independent (?:audit|assur|evaluat|test)", r"external (?:audit|evaluat|test)", r"certif",
+            r"accredit", r"assurance")),
+    # 10.2 Governance: release gates, incident reporting and response
+    ("s10_2", (r"incident report", r"incident response", r"postmortem", r"post-mortem", r"release gate", r"staged rollout", r"disclos", r"advisory", r"cve-", r"patch",
+            r"recall", r"lessons learned", r"feedback", r"governance", r"change (?:review|management|control)", r"versioned", r"regression (?:eval|test)")),
+    # 10.1 Reference Architectures
+    ("s10_1", (r"reference architecture", r"defen[cs]e in depth", r"architecture", r"security stack", r"blueprint", r"design pattern", r"best practice", r"guidance", r"playbook",
             r"framework", r"control stack", r"layered defen[cs]e")),
     # 3.1 Threat Model: the deployment setting
     ("s3_1", (r"deploy", r"production", r"rolls? out", r"launch", r"enterprise", r"customers", r"adopt", r"in use", r"agents? (?:for|that|to)\b")),
@@ -490,9 +503,9 @@ def heuristic_classify(item: dict, tax: dict, weight: float = 0.5) -> dict:
         scored.sort(reverse=True)
         operations = [o for _, o in scored[:3]]
         if not operations:
-            operations = {"policy": ["deploy"], "disclosure": ["deploy", "monitor"], "evaluation": ["evaluate"],
-                          "research": ["evaluate"], "safety-feature": ["constrain"], "incident": ["constrain", "monitor"],
-                          "near-miss": ["monitor", "intervene"], "deployment": ["deploy"]}.get(kind, ["deploy"])
+            operations = {"policy": ["deploy"], "disclosure": ["deploy", "observe"], "evaluation": ["verify"],
+                          "research": ["verify"], "safety-feature": ["constrain"], "incident": ["constrain", "observe"],
+                          "near-miss": ["observe", "intervene"], "deployment": ["deploy"]}.get(kind, ["deploy"])
     operations = _uniq(operations)[:4]
 
     subsections = [s for s in (hints.get("subsections") or []) if s in tax["subsection_ids"]]

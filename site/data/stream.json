@@ -1,7 +1,7 @@
 {
   "generated": "2026-10-17T00:00:00Z",
-  "taxonomy_generated": "2026-10-19",
-  "taxonomy_structure": "f91f5efaa064",
+  "taxonomy_generated": "2026-10-21",
+  "taxonomy_structure": "1ef18ee6f954",
   "sources": [
     "seed sweep 2026-10-17"
   ],
@@ -25,7 +25,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
@@ -77,7 +77,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_1",
@@ -133,7 +133,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene",
         "train"
       ],
@@ -141,7 +141,7 @@
         "s2_3",
         "s4_1",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "browsing",
       "actors": {
@@ -199,7 +199,7 @@
       "subsections": [
         "s4_1",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "consumer",
       "actors": {
@@ -248,13 +248,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
         "s4_1",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -301,11 +301,11 @@
       ],
       "operations": [
         "deploy",
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
-        "s9_2",
+        "s10_3",
         "s5_1",
         "s2_3"
       ],
@@ -357,13 +357,13 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
-        "s9_2",
+        "s10_3",
         "s4_1",
         "s5_1"
       ],
@@ -472,7 +472,7 @@
       ],
       "subsections": [
         "s4_4",
-        "s9_2",
+        "s10_2",
         "s5_1"
       ],
       "domain": "consumer",
@@ -519,7 +519,7 @@
       ],
       "operations": [
         "constrain",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s2_2",
@@ -569,13 +569,13 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s5_1",
-        "s9_1",
-        "s9_2"
+        "s10_1",
+        "s10_2"
       ],
       "domain": "healthcare",
       "actors": {
@@ -621,7 +621,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_1",
@@ -675,7 +675,7 @@
         "constrain"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s4_4",
         "s3_1"
       ],
@@ -725,7 +725,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -778,7 +778,7 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "constrain",
         "deploy"
       ],
@@ -786,7 +786,7 @@
         "s5_1",
         "s4_1",
         "s3_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -833,8 +833,8 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2",
-        "s9_1"
+        "s10_2",
+        "s10_1"
       ],
       "domain": "healthcare",
       "actors": {
@@ -880,12 +880,12 @@
       ],
       "operations": [
         "constrain",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s4_1",
         "s2_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -931,14 +931,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "train"
       ],
       "subsections": [
         "s2_2",
         "s4_3",
         "s5_1",
-        "s7_2"
+        "s8_2"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -990,14 +990,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
         "s2_3",
         "s4_1",
         "s5_1",
-        "s9_2"
+        "s10_3"
       ],
       "domain": "cyber",
       "actors": {
@@ -1048,14 +1048,14 @@
         "safe"
       ],
       "operations": [
-        "monitor",
-        "evaluate",
+        "observe",
+        "verify",
         "deploy"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s5_1",
-        "s9_2"
+        "s10_3"
       ],
       "domain": "coding",
       "actors": {
@@ -1103,15 +1103,15 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
-        "evaluate",
+        "observe",
+        "verify",
         "deploy"
       ],
       "subsections": [
         "s5_1",
-        "s8_2",
+        "s9_2",
         "s2_3",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "coding",
       "actors": {
@@ -1162,7 +1162,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -1224,7 +1224,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -1279,7 +1279,7 @@
       "operations": [
         "intervene",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -1333,12 +1333,12 @@
       "operations": [
         "train",
         "deploy",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_1",
-        "s7_2",
-        "s9_2",
+        "s10_1",
+        "s8_1",
+        "s10_2",
         "s3_1"
       ],
       "domain": "cyber",
@@ -1385,15 +1385,15 @@
         "compliant"
       ],
       "operations": [
-        "evaluate",
-        "monitor",
+        "verify",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s2_3",
-        "s8_1",
-        "s8_2",
-        "s9_2"
+        "s9_1",
+        "s9_2",
+        "s10_3"
       ],
       "domain": "coding",
       "actors": {
@@ -1442,7 +1442,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
@@ -1657,7 +1657,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_1",
@@ -1715,13 +1715,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "multi-agent",
       "actors": {
@@ -1766,7 +1766,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -1818,7 +1818,7 @@
       ],
       "operations": [
         "constrain",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s2_3",
@@ -1984,7 +1984,7 @@
         "s4_4",
         "s4_1",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -2134,11 +2134,11 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s2_3",
         "s5_1"
       ],
@@ -2186,13 +2186,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -2292,15 +2292,15 @@
         "safe"
       ],
       "operations": [
-        "monitor",
-        "evaluate",
+        "observe",
+        "verify",
         "train"
       ],
       "subsections": [
         "s2_2",
-        "s8_1",
+        "s9_1",
         "s5_1",
-        "s10_1"
+        "s11_1"
       ],
       "domain": "browsing",
       "actors": {
@@ -2347,13 +2347,13 @@
       ],
       "operations": [
         "deploy",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s5_1",
-        "s8_2",
+        "s9_2",
         "s2_3"
       ],
       "domain": "other",
@@ -2400,15 +2400,15 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "train",
         "deploy"
       ],
       "subsections": [
         "s5_1",
-        "s7_2",
+        "s8_1",
         "s3_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -2456,7 +2456,8 @@
         "constrain"
       ],
       "subsections": [
-        "s9_2"
+        "s10_2",
+        "s10_3"
       ],
       "domain": "cyber",
       "actors": {
@@ -2502,12 +2503,12 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s2_3",
-        "s9_2",
+        "s10_2",
         "s5_1",
         "s3_1"
       ],
@@ -2555,14 +2556,14 @@
         "in-scope"
       ],
       "operations": [
-        "monitor",
-        "evaluate",
+        "observe",
+        "verify",
         "constrain"
       ],
       "subsections": [
         "s5_1",
-        "s8_2",
-        "s9_2"
+        "s9_2",
+        "s10_3"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -2609,7 +2610,7 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -2669,7 +2670,7 @@
       "operations": [
         "intervene",
         "steer",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s6_1",
@@ -2721,14 +2722,14 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "train"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s2_2",
-        "s9_2",
-        "s7_2"
+        "s10_3",
+        "s8_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -2773,12 +2774,12 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy"
       ],
       "subsections": [
+        "s10_3",
         "s9_2",
-        "s8_2",
         "s2_3"
       ],
       "domain": "research",
@@ -2826,7 +2827,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_1",
@@ -2934,12 +2935,12 @@
       "operations": [
         "steer",
         "train",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
         "s7_1",
-        "s7_2",
+        "s8_1",
         "s5_1"
       ],
       "domain": "browsing",
@@ -2989,7 +2990,7 @@
       "subsections": [
         "s4_1",
         "s4_4",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -3145,11 +3146,12 @@
       ],
       "operations": [
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s9_2",
-        "s8_1"
+        "s10_2",
+        "s10_3",
+        "s9_1"
       ],
       "domain": "other",
       "actors": {
@@ -3259,7 +3261,7 @@
         "constrain"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s4_4"
       ],
       "domain": "government",
@@ -3362,7 +3364,7 @@
       "operations": [
         "intervene",
         "constrain",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s6_3",
@@ -3417,7 +3419,7 @@
       "operations": [
         "intervene",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
@@ -3470,7 +3472,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -3573,14 +3575,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s4_4",
         "s4_1",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -3630,14 +3632,14 @@
       ],
       "operations": [
         "constrain",
-        "evaluate",
+        "verify",
         "deploy"
       ],
       "subsections": [
         "s2_1",
         "s4_4",
         "s4_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "coding",
       "actors": {
@@ -3691,13 +3693,14 @@
         "in-scope"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s9_2",
-        "s2_3"
+        "s10_2",
+        "s2_3",
+        "s10_3"
       ],
       "domain": "other",
       "actors": {
@@ -3749,7 +3752,7 @@
       "subsections": [
         "s2_2",
         "s4_1",
-        "s9_2",
+        "s10_2",
         "s4_4"
       ],
       "domain": "consumer",
@@ -3798,10 +3801,10 @@
         "deploy",
         "constrain",
         "intervene",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s4_1",
         "s6_1"
       ],
@@ -3849,7 +3852,7 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "constrain"
       ],
       "subsections": [
@@ -3907,7 +3910,7 @@
         "s2_2",
         "s4_3",
         "s4_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -3956,14 +3959,14 @@
       "operations": [
         "deploy",
         "constrain",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s4_1",
         "s5_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "government",
       "actors": {
@@ -4010,7 +4013,7 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s2_3"
       ],
       "domain": "government",
@@ -4113,13 +4116,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
         "s4_3",
         "s4_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -4169,8 +4172,8 @@
       "subsections": [
         "s4_4",
         "s4_3",
-        "s9_2",
-        "s9_1"
+        "s10_2",
+        "s10_1"
       ],
       "domain": "government",
       "actors": {
@@ -4215,10 +4218,10 @@
       ],
       "operations": [
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s3_1",
         "s1_1"
       ],
@@ -4266,13 +4269,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s4_1",
         "s2_2",
-        "s9_2",
+        "s10_2",
         "s4_3"
       ],
       "domain": "government",
@@ -4317,7 +4320,7 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "constrain",
         "intervene"
       ],
@@ -4423,14 +4426,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
         "s4_1",
         "s4_2",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -4587,12 +4590,12 @@
         "compliant"
       ],
       "operations": [
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s2_3",
-        "s9_2"
+        "s10_3"
       ],
       "domain": "research",
       "actors": {
@@ -4639,11 +4642,11 @@
       ],
       "operations": [
         "train",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s2_3",
-        "s7_2"
+        "s8_1"
       ],
       "domain": "coding",
       "actors": {
@@ -4795,7 +4798,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -4847,7 +4850,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene",
         "deploy"
       ],
@@ -4855,7 +4858,7 @@
         "s4_4",
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -4904,15 +4907,15 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "train"
       ],
       "subsections": [
         "s5_1",
         "s2_2",
-        "s7_2",
-        "s9_2"
+        "s8_1",
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -4965,7 +4968,7 @@
       ],
       "subsections": [
         "s4_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -5071,7 +5074,7 @@
       ],
       "subsections": [
         "s4_4",
-        "s9_2",
+        "s10_2",
         "s5_1"
       ],
       "domain": "browsing",
@@ -5128,13 +5131,13 @@
         "compliant"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s8_2",
         "s9_2",
+        "s10_3",
         "s2_3",
         "s5_1"
       ],
@@ -5234,14 +5237,14 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s5_1",
-        "s8_1",
-        "s9_1"
+        "s9_1",
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -5288,7 +5291,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -5337,14 +5340,14 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
-        "monitor",
+        "verify",
+        "observe",
         "intervene"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s6_1",
-        "s9_2"
+        "s10_3"
       ],
       "domain": "research",
       "actors": {
@@ -5391,13 +5394,13 @@
       ],
       "operations": [
         "constrain",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s2_2",
         "s4_3",
         "s4_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "browsing",
       "actors": {
@@ -5443,12 +5446,12 @@
         "correct"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s2_1",
         "s5_1",
         "s4_1"
@@ -5546,12 +5549,12 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "finance",
       "actors": {
@@ -5598,7 +5601,7 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s3_3"
       ],
       "domain": "government",
@@ -5644,7 +5647,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -5695,13 +5698,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -5847,13 +5850,13 @@
         "safe"
       ],
       "operations": [
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s2_3",
-        "s8_1",
-        "s10_1"
+        "s9_1",
+        "s11_1"
       ],
       "domain": "other",
       "actors": {
@@ -5900,12 +5903,12 @@
         "compliant"
       ],
       "operations": [
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s8_3",
+        "s9_3",
         "s2_3",
-        "s8_2"
+        "s9_2"
       ],
       "domain": "research",
       "actors": {
@@ -5951,15 +5954,15 @@
         "in-scope"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "train",
         "deploy"
       ],
       "subsections": [
-        "s8_1",
-        "s9_2",
+        "s9_1",
+        "s10_3",
         "s2_2",
-        "s7_2"
+        "s8_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -6006,7 +6009,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -6063,7 +6066,7 @@
         "s4_4",
         "s6_1",
         "s4_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "consumer",
       "actors": {
@@ -6110,7 +6113,8 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2"
+        "s10_2",
+        "s10_3"
       ],
       "domain": "government",
       "actors": {
@@ -6154,10 +6158,10 @@
       ],
       "operations": [
         "deploy",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_2"
+        "s10_2"
       ],
       "domain": "government",
       "actors": {
@@ -6201,14 +6205,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s4_4",
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -6253,14 +6257,14 @@
       ],
       "operations": [
         "constrain",
-        "evaluate",
+        "verify",
         "steer"
       ],
       "subsections": [
         "s4_2",
-        "s8_1",
+        "s9_1",
         "s7_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "other",
       "actors": {
@@ -6313,7 +6317,7 @@
         "s2_2",
         "s4_3",
         "s4_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "customer-service",
       "actors": {
@@ -6360,11 +6364,12 @@
       ],
       "operations": [
         "deploy",
-        "evaluate",
+        "verify",
         "intervene"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
+        "s10_3",
         "s2_3"
       ],
       "domain": "other",
@@ -6464,7 +6469,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -6517,12 +6522,12 @@
       ],
       "operations": [
         "train",
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
-        "s7_2",
-        "s8_2",
+        "s8_1",
+        "s9_2",
         "s2_3",
         "s5_1"
       ],
@@ -6569,7 +6574,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -6621,13 +6626,13 @@
         "in-scope"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
         "s5_1",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "cyber",
       "actors": {
@@ -6672,10 +6677,11 @@
       ],
       "operations": [
         "deploy",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
+        "s10_3",
         "s5_1"
       ],
       "domain": "government",
@@ -6723,7 +6729,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_1",
@@ -6775,7 +6781,7 @@
       "operations": [
         "intervene",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s6_1",
@@ -6825,12 +6831,12 @@
       "operations": [
         "deploy",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s5_3",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "customer-service",
       "actors": {
@@ -6879,14 +6885,14 @@
         "in-scope"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "deploy"
       ],
       "subsections": [
         "s5_3",
         "s6_3",
-        "s9_2",
+        "s10_2",
         "s2_1"
       ],
       "domain": "customer-service",
@@ -6940,7 +6946,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -6991,7 +6997,7 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "deploy"
       ],
@@ -6999,7 +7005,7 @@
         "s5_1",
         "s2_2",
         "s6_3",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -7056,7 +7062,7 @@
         "s6_1",
         "s2_2",
         "s4_1",
-        "s7_2"
+        "s8_1"
       ],
       "domain": "coding",
       "actors": {
@@ -7106,13 +7112,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -7158,16 +7164,16 @@
         "in-scope"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "intervene",
         "constrain",
         "deploy"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s2_2",
         "s6_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "browsing",
       "actors": {
@@ -7215,7 +7221,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -7270,13 +7276,13 @@
       "operations": [
         "intervene",
         "constrain",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s2_2",
         "s6_1",
         "s4_4",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "browsing",
       "actors": {
@@ -7322,11 +7328,11 @@
       "operations": [
         "deploy",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_2",
-        "s9_1",
+        "s10_2",
+        "s10_1",
         "s4_1",
         "s5_1"
       ],
@@ -7374,15 +7380,15 @@
         "safe"
       ],
       "operations": [
-        "monitor",
-        "evaluate",
+        "observe",
+        "verify",
         "train"
       ],
       "subsections": [
         "s5_1",
         "s2_3",
-        "s8_2",
-        "s9_2"
+        "s9_2",
+        "s10_2"
       ],
       "domain": "other",
       "actors": {
@@ -7481,7 +7487,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -7531,13 +7537,13 @@
         "within-budget"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy"
       ],
       "subsections": [
-        "s8_1",
-        "s10_1",
-        "s9_2"
+        "s9_1",
+        "s11_2",
+        "s10_2"
       ],
       "domain": "cyber",
       "actors": {
@@ -7588,7 +7594,7 @@
       "operations": [
         "intervene",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -7649,7 +7655,7 @@
       "subsections": [
         "s7_1",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "coding",
       "actors": {
@@ -7693,14 +7699,14 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "deploy"
       ],
       "subsections": [
         "s5_1",
         "s6_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "coding",
       "actors": {
@@ -7749,13 +7755,13 @@
       "operations": [
         "constrain",
         "intervene",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s4_1",
         "s6_1",
         "s2_2",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "coding",
       "actors": {
@@ -7802,7 +7808,8 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2"
+        "s10_2",
+        "s10_3"
       ],
       "domain": "government",
       "actors": {
@@ -8027,7 +8034,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_1",
@@ -8087,13 +8094,13 @@
       ],
       "operations": [
         "intervene",
-        "monitor",
+        "observe",
         "train"
       ],
       "subsections": [
         "s6_1",
         "s5_1",
-        "s7_2",
+        "s8_2",
         "s6_3"
       ],
       "domain": "browsing",
@@ -8148,7 +8155,7 @@
       ],
       "subsections": [
         "s2_2",
-        "s9_2",
+        "s10_2",
         "s4_1",
         "s4_4"
       ],
@@ -8200,7 +8207,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -8249,13 +8256,13 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
-        "s9_1",
+        "s10_1",
         "s5_3",
-        "s9_2",
+        "s10_2",
         "s5_1"
       ],
       "domain": "cyber",
@@ -8301,12 +8308,12 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s5_3",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "coding",
       "actors": {
@@ -8350,13 +8357,13 @@
         "correct"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy"
       ],
       "subsections": [
-        "s8_1",
-        "s10_1",
-        "s9_2"
+        "s9_1",
+        "s11_2",
+        "s10_2"
       ],
       "domain": "coding",
       "actors": {
@@ -8403,7 +8410,8 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2"
+        "s10_2",
+        "s10_3"
       ],
       "domain": "government",
       "actors": {
@@ -8505,7 +8513,7 @@
       "operations": [
         "intervene",
         "steer",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s6_3",
@@ -8555,14 +8563,14 @@
         "within-budget"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "steer",
         "deploy"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s7_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "healthcare",
       "actors": {
@@ -8617,7 +8625,7 @@
         "s2_1",
         "s4_2",
         "s7_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "customer-service",
       "actors": {
@@ -8661,13 +8669,13 @@
         "within-budget"
       ],
       "operations": [
-        "evaluate",
-        "monitor",
+        "verify",
+        "observe",
         "steer",
         "deploy"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s5_3",
         "s7_1",
         "s1_1"
@@ -8717,8 +8725,8 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2",
-        "s10_1",
+        "s10_2",
+        "s11_2",
         "s3_1"
       ],
       "domain": "other",
@@ -8763,14 +8771,14 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
         "s6_1",
         "s5_1",
         "s5_3",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "cyber",
       "actors": {
@@ -8815,7 +8823,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -8867,7 +8875,7 @@
         "in-scope"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "constrain",
         "intervene"
       ],
@@ -8922,7 +8930,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -8975,14 +8983,14 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "train"
       ],
       "subsections": [
         "s2_3",
+        "s9_2",
         "s8_2",
-        "s7_2",
-        "s9_2"
+        "s10_3"
       ],
       "domain": "research",
       "actors": {
@@ -9031,7 +9039,7 @@
       "subsections": [
         "s4_4",
         "s4_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -9077,7 +9085,7 @@
         "in-scope"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "constrain",
         "steer",
@@ -9087,7 +9095,7 @@
         "s5_1",
         "s6_1",
         "s7_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -9134,11 +9142,12 @@
       ],
       "operations": [
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s9_2",
-        "s8_1",
+        "s10_2",
+        "s10_3",
+        "s9_1",
         "s2_1"
       ],
       "domain": "other",
@@ -9189,7 +9198,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -9243,13 +9252,13 @@
         "in-scope"
       ],
       "operations": [
-        "evaluate",
-        "monitor",
+        "verify",
+        "observe",
         "constrain"
       ],
       "subsections": [
         "s2_3",
-        "s8_1",
+        "s9_1",
         "s5_1",
         "s4_1"
       ],
@@ -9297,15 +9306,15 @@
         "correct"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "constrain",
         "deploy"
       ],
       "subsections": [
         "s2_1",
         "s4_1",
-        "s9_2",
-        "s8_1"
+        "s10_2",
+        "s9_1"
       ],
       "domain": "coding",
       "actors": {
@@ -9355,7 +9364,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -9413,7 +9422,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -9465,13 +9474,14 @@
         "in-scope"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy",
         "train"
       ],
       "subsections": [
         "s2_3",
-        "s9_2"
+        "s10_2",
+        "s10_3"
       ],
       "domain": "other",
       "actors": {
@@ -9515,14 +9525,14 @@
         "compliant"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "constrain",
         "deploy"
       ],
       "subsections": [
         "s5_1",
-        "s9_2",
+        "s10_2",
         "s4_3"
       ],
       "domain": "other",
@@ -9568,12 +9578,12 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
         "s4_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -9619,12 +9629,12 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_1",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "coding",
       "actors": {
@@ -9667,13 +9677,13 @@
         "correct"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy"
       ],
       "subsections": [
-        "s9_2",
-        "s8_1",
-        "s9_1"
+        "s10_2",
+        "s9_1",
+        "s10_1"
       ],
       "domain": "infrastructure",
       "actors": {
@@ -9720,13 +9730,13 @@
       "operations": [
         "intervene",
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
         "s6_3",
-        "s9_2",
+        "s10_2",
         "s2_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "customer-service",
       "actors": {
@@ -9770,11 +9780,11 @@
       ],
       "operations": [
         "deploy",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_2",
-        "s9_1",
+        "s10_2",
+        "s10_1",
         "s5_1"
       ],
       "domain": "infrastructure",
@@ -9820,7 +9830,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
@@ -9870,13 +9880,14 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s5_3",
         "s3_1",
-        "s10_1"
+        "s11_1",
+        "s11_2"
       ],
       "domain": "coding",
       "actors": {
@@ -9920,7 +9931,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -9970,13 +9981,13 @@
       ],
       "operations": [
         "intervene",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s6_1",
         "s5_3",
-        "s9_2",
+        "s10_2",
         "s7_1"
       ],
       "domain": "customer-service",
@@ -10024,14 +10035,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
         "s2_3",
         "s4_1",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "research",
       "actors": {
@@ -10077,14 +10088,14 @@
         "compliant"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
-        "s8_1",
-        "s9_2",
+        "s9_1",
+        "s10_3",
         "s5_1"
       ],
       "domain": "coding",
@@ -10129,11 +10140,11 @@
       ],
       "operations": [
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
+        "s10_2",
         "s9_2",
-        "s8_2",
         "s2_3"
       ],
       "domain": "other",
@@ -10183,7 +10194,7 @@
       ],
       "subsections": [
         "s4_4",
-        "s9_1",
+        "s10_1",
         "s3_1"
       ],
       "domain": "multi-agent",
@@ -10233,7 +10244,7 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "constrain"
       ],
       "subsections": [
@@ -10290,7 +10301,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s4_4",
@@ -10340,14 +10351,14 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s5_1",
         "s2_3",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "research",
       "actors": {
@@ -10390,13 +10401,13 @@
         "in-scope"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
         "s5_1",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "multi-agent",
       "actors": {
@@ -10494,14 +10505,14 @@
       ],
       "operations": [
         "constrain",
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
         "s2_3",
         "s4_1",
         "s4_2",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "research",
       "actors": {
@@ -10552,10 +10563,10 @@
       "operations": [
         "deploy",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_2",
+        "s10_2",
         "s3_1",
         "s2_2",
         "s4_1"
@@ -10605,7 +10616,7 @@
       ],
       "operations": [
         "intervene",
-        "monitor",
+        "observe",
         "constrain"
       ],
       "subsections": [
@@ -10710,13 +10721,13 @@
       ],
       "operations": [
         "deploy",
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
+        "s10_3",
         "s9_2",
-        "s8_2",
-        "s3_3"
+        "s3_2"
       ],
       "domain": "research",
       "actors": {
@@ -10812,7 +10823,7 @@
       ],
       "operations": [
         "intervene",
-        "monitor",
+        "observe",
         "constrain",
         "train"
       ],
@@ -10866,13 +10877,13 @@
         "safe"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "constrain"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s2_2",
-        "s9_2"
+        "s10_3"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -10917,13 +10928,13 @@
         "safe"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
         "s5_1",
         "s6_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "customer-service",
       "actors": {
@@ -10969,11 +10980,11 @@
         "within-budget"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "intervene"
       ],
       "subsections": [
-        "s8_1",
+        "s9_1",
         "s2_1",
         "s6_1",
         "s6_3"
@@ -11023,14 +11034,14 @@
       ],
       "operations": [
         "train",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
         "s2_3",
-        "s7_2",
+        "s8_2",
         "s5_1",
-        "s8_2"
+        "s9_2"
       ],
       "domain": "research",
       "actors": {
@@ -11081,7 +11092,7 @@
       "subsections": [
         "s6_1",
         "s4_1",
-        "s7_2",
+        "s8_1",
         "s2_2"
       ],
       "domain": "browsing",
@@ -11129,14 +11140,14 @@
         "in-scope"
       ],
       "operations": [
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
         "s2_3",
-        "s8_2",
+        "s9_2",
         "s4_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "research",
       "actors": {
@@ -11182,14 +11193,15 @@
         "compliant"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy",
         "train"
       ],
       "subsections": [
-        "s9_2",
-        "s8_1",
-        "s7_2"
+        "s10_3",
+        "s9_1",
+        "s10_2",
+        "s8_1"
       ],
       "domain": "cyber",
       "actors": {
@@ -11234,14 +11246,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s4_1",
         "s5_1",
         "s4_3",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -11288,7 +11300,7 @@
         "deploy"
       ],
       "subsections": [
-        "s9_2"
+        "s10_2"
       ],
       "domain": "government",
       "actors": {
@@ -11332,7 +11344,7 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "constrain",
         "deploy"
@@ -11341,7 +11353,7 @@
         "s5_1",
         "s6_1",
         "s4_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "customer-service",
       "actors": {
@@ -11383,13 +11395,13 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene"
       ],
       "subsections": [
         "s5_3",
         "s6_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "cyber",
       "actors": {
@@ -11432,13 +11444,13 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s5_3",
         "s3_1",
-        "s10_1"
+        "s11_1"
       ],
       "domain": "coding",
       "actors": {
@@ -11483,13 +11495,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s4_1",
         "s5_1",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "customer-service",
       "actors": {
@@ -11534,14 +11546,14 @@
         "correct"
       ],
       "operations": [
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
-        "s8_2",
+        "s9_2",
         "s2_3",
         "s5_2",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "research",
       "actors": {
@@ -11586,13 +11598,14 @@
       ],
       "operations": [
         "deploy",
-        "evaluate",
+        "verify",
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
-        "s9_2",
-        "s8_2"
+        "s10_2",
+        "s10_3",
+        "s9_2"
       ],
       "domain": "other",
       "actors": {
@@ -11636,7 +11649,7 @@
         "correct"
       ],
       "operations": [
-        "monitor",
+        "observe",
         "intervene",
         "deploy"
       ],
@@ -11644,7 +11657,7 @@
         "s5_3",
         "s6_1",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "healthcare",
       "actors": {
@@ -11690,12 +11703,12 @@
         "compliant"
       ],
       "operations": [
-        "evaluate",
+        "verify",
         "deploy"
       ],
       "subsections": [
-        "s9_2",
-        "s8_1",
+        "s10_2",
+        "s9_1",
         "s2_1"
       ],
       "domain": "legal",
@@ -11743,13 +11756,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
         "s4_3",
         "s5_1",
-        "s9_2"
+        "s10_2"
       ],
       "domain": "consumer",
       "actors": {
@@ -11796,8 +11809,8 @@
       ],
       "operations": [
         "constrain",
-        "evaluate",
-        "monitor"
+        "verify",
+        "observe"
       ],
       "subsections": [
         "s2_3",
@@ -11849,7 +11862,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",
@@ -11902,7 +11915,7 @@
       ],
       "operations": [
         "constrain",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_3",
@@ -11956,14 +11969,14 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
-        "evaluate"
+        "observe",
+        "verify"
       ],
       "subsections": [
         "s2_2",
         "s4_3",
         "s5_1",
-        "s8_1"
+        "s9_1"
       ],
       "domain": "email-and-office",
       "actors": {
@@ -12010,13 +12023,13 @@
       ],
       "operations": [
         "intervene",
-        "monitor",
+        "observe",
         "deploy"
       ],
       "subsections": [
         "s6_1",
         "s5_3",
-        "s9_1"
+        "s10_1"
       ],
       "domain": "coding",
       "actors": {
@@ -12062,11 +12075,11 @@
       ],
       "operations": [
         "deploy",
-        "evaluate"
+        "verify"
       ],
       "subsections": [
-        "s9_2",
-        "s8_1",
+        "s10_2",
+        "s9_1",
         "s2_1"
       ],
       "domain": "customer-service",
@@ -12112,13 +12125,13 @@
       ],
       "operations": [
         "constrain",
-        "monitor",
+        "observe",
         "intervene",
         "deploy"
       ],
       "subsections": [
-        "s9_2",
-        "s9_1",
+        "s10_2",
+        "s10_1",
         "s4_1",
         "s5_1"
       ],
@@ -12169,8 +12182,8 @@
       ],
       "subsections": [
         "s6_3",
+        "s10_1",
         "s9_1",
-        "s8_1",
         "s3_1"
       ],
       "domain": "customer-service",
@@ -12218,7 +12231,7 @@
       "operations": [
         "constrain",
         "intervene",
-        "monitor"
+        "observe"
       ],
       "subsections": [
         "s2_2",

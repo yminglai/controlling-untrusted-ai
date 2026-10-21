@@ -4,7 +4,7 @@ Python scripts that produce everything under `site/data/`. Two independent halve
 
 | Script | Reads | Writes | Runs |
 |---|---|---|---|
-| `build_data.py` | the paper's Overleaf clone (`outline.json`, `research/*.json`, `references.bib`) | `taxonomy.json`, `papers.json`, `grey.json`, `stats.json` | by hand, when the paper changes |
+| `build_data.py` | the paper's tooling repository (`outline.json`, `research/*.json`) | `taxonomy.json`, `papers.json`, `grey.json`, `stats.json` | by hand, when the paper changes |
 | `collect_news.py` (+ `classify.py`, `feeds.yml`) | RSS/Atom feeds, arXiv API, GitHub issues, `stream.json` | `stream.json`; the `stream_*` fields of `stats.json` | every 6 hours in CI (`.github/workflows/collect.yml`) and by hand |
 
 The data contracts are in `../SCHEMA.md`. Nothing here is needed to serve the site; the front-end
@@ -112,7 +112,7 @@ were not published. The collector appends to that seed; it never rewrites seed i
 ### How classification maps to the taxonomy
 
 `classify.py` loads the taxonomy from `site/data/taxonomy.json`, else from the paper's
-`outline.json` (positional ids `s{section}_{subsection}`), else from a built-in copy of the 56
+`outline.json` (positional ids `s{section}_{subsection}`), else from a built-in copy of the 35
 subsection titles, so CI works even before `build_data.py` has run.
 
 **LLM classifier.** One chat call per batch. The system prompt is the survey paragraph from
@@ -125,7 +125,7 @@ title. The model returns strict JSON per item:
 | `relevant` | is this about deploying or operating AI agents in the real world, good or bad |
 | `kind` | `incident`, `near-miss`, `deployment`, `safety-feature`, `evaluation`, `research`, `policy`, `disclosure` |
 | `polarity` | `bad`, `good`, `mixed` |
-| `failure_sources` | subset of `mistakes`, `manipulation`, `misalignment`; empty when not a failure |
+| `failure_sources` | subset of `benign`, `external`, `insider` (the failure tier); empty when not a failure |
 | `requirements` | subset of `correct`, `compliant`, `in-scope`, `within-budget`, `safe` |
 | `operations` | subset of `constrain`, `observe`, `intervene`, `steer`, `train`, `verify`, `deploy`: the operation that failed, was missing, or worked |
 | `subsections` | 1 to 4 ids, most specific first |
@@ -177,7 +177,7 @@ field as absent.
 python3 pipeline/build_data.py            # see `--help` for the source path option
 ```
 
-`build_data.py` reads the Overleaf clone (read-only) and rewrites `taxonomy.json`, `papers.json`,
+`build_data.py` reads the paper's tooling repository (read-only) and rewrites `taxonomy.json`, `papers.json`,
 `grey.json` and `stats.json`. It preserves the `stream_items` and
 `stream_updated` fields of `stats.json`, which belong to the collector; if it did not, run
 `python3 pipeline/collect_news.py --since 0` afterwards to restore them (that run fetches feeds but

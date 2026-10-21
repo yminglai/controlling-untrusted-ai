@@ -1,5 +1,5 @@
 /* site.css: reset, type, layout primitives and every shared component.
-   Page-scoped rules live in papers.css and stream.css. Hues are read only through --c and the role tokens. */
+   Page-scoped rules live in landing.css, papers.css and stream.css. Hues are read only through --c and the role tokens. */
 
 /* ---- fonts: metric fallbacks so layout does not shift when web fonts arrive or fail ---- */
 @font-face { font-family: "Newsreader Fallback"; src: local("Georgia"); size-adjust: 97%; }
@@ -36,8 +36,6 @@ mark { background: var(--mark-bg); color: inherit; text-decoration: underline 1p
 
 /* ---- layout ---- */
 .wrap { max-width: calc(var(--content-max) + 2 * var(--margin)); margin-inline: auto; padding-inline: var(--margin); }
-.grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
-.span-8 { grid-column: span 8; }
 main { display: block; flex: 1 0 auto; }
 
 /* ---- skip link ---- */
@@ -63,20 +61,8 @@ main { display: block; flex: 1 0 auto; }
 .theme-toggle .i-sun { display: none; } [data-theme="dark"] .theme-toggle .i-sun { display: block; } [data-theme="dark"] .theme-toggle .i-moon { display: none; }
 .menu-btn { display: none; width: auto; padding: 0 8px; gap: 6px; font: 500 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); }
 
-/* ---- running head, signature bar, count line ---- */
+/* ---- running head ---- */
 .running-head { font: 500 var(--fs-caps)/var(--lh-caps) var(--sans); letter-spacing: var(--ls-caps); text-transform: uppercase; }
-.sigbar { display: flex; height: 6px; gap: 1px; margin: var(--s2) 0 var(--s3); }
-.sigbar__seg { flex: 1 1 0; background: var(--c); min-width: 2px; }
-.sigbar__seg--empty { background: var(--rule); }
-.countline { font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); color: var(--fg-muted); }
-
-/* ---- title block ---- */
-.title-block { padding: var(--s4) 0 var(--s5); }
-.title-block__title { font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: -0.01em; margin-bottom: var(--s3); }
-.dek { font: 400 var(--fs-dek)/var(--lh-dek) var(--serif); max-width: var(--measure-dek); margin-bottom: var(--s4); }
-.status { font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); }
-.status .caps { color: var(--fg); }
-.title-block__actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
 
 /* ---- buttons ---- */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--control-border); border-radius: var(--r-chip); background: var(--bg); color: var(--fg); font: 500 var(--fs-ui-s)/var(--lh-ui-s) var(--sans); text-decoration: none; cursor: pointer; white-space: nowrap; transition: background var(--t-hover), border-color var(--t-hover); }
@@ -89,32 +75,6 @@ main { display: block; flex: 1 0 auto; }
 .btn--icon { border: 1px solid var(--control-border); }
 /* pressed icon button (density toggles on papers and stream): --fg fill, --bg glyph, also under hover */
 .btn--icon[aria-pressed="true"], .btn--icon[aria-pressed="true"]:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-
-/* ---- the Spread ---- */
-.spread { display: grid; grid-template-columns: minmax(0, 7fr) 1px minmax(0, 5fr); column-gap: var(--s3); }
-.spread__rule { background: var(--rule); }
-.spread__foot { margin-top: var(--s4); font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); }
-
-/* ---- contents ---- */
-.toc { list-style: none; border-top: var(--hairline); }
-.toc__row { position: relative; display: grid; grid-template-columns: var(--colour-rule) 2.75rem minmax(0, 1fr) auto; column-gap: var(--s3); padding: var(--s3) var(--s2) var(--s3) 0; border-bottom: var(--hairline); transition: background var(--t-hover); }
-.toc__row:hover { background: var(--bg-panel); }
-.toc__rule { grid-row: 1 / -1; width: var(--colour-rule); background: var(--c); }
-.toc__num { font: 400 var(--fs-meta)/var(--lh-h3) var(--mono); color: var(--fg-muted); }
-.toc__title { font: 400 var(--fs-h3)/var(--lh-h3) var(--serif); }
-.toc__title a { text-decoration: none; }
-.toc__title a:hover { text-decoration: underline 1px var(--link-underline); text-underline-offset: 4px; }
-.toc__count { grid-column: 4; grid-row: 1; font: 400 var(--fs-meta)/var(--lh-h3) var(--mono); color: var(--fg-muted); text-align: right; }
-.toc__subs { grid-column: 3 / -1; font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); margin-top: 2px; }
-.toc__subs a { color: inherit; text-decoration: none; }
-.toc__subs a:hover { color: var(--fg); text-decoration: underline 1px var(--link-underline); }
-.toc__chevron { display: none; }
-.toc__part { list-style: none; }
-.toc__part-title { color: var(--fg-muted); padding: var(--s4) 0 var(--s2); }
-.toc__part + .toc__part .toc__part-title { padding-top: var(--s5); }
-.toc__sections { list-style: none; }
-.toc__subs .num { color: var(--fg-muted); }
-.toc__subs a:hover .num { color: var(--fg); }
 
 /* ---- marks ---- */
 .mark { display: inline-block; flex: none; width: 8px; height: 8px; background: var(--c); border: 1px solid var(--mark-outline); vertical-align: middle; }
@@ -153,7 +113,6 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
 
 /* ---- ledger (base; expansion rules in stream.css) ---- */
 .ledger { list-style: none; }
-.ledger--reserve { min-height: 864px; }
 .ledger__month { font: italic 400 17px/22px var(--serif); padding: var(--s4) 0 var(--s2); }
 .ledger__row { position: relative; display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; column-gap: var(--s4); padding: var(--s4) 0; border-bottom: var(--hairline); content-visibility: auto; contain-intrinsic-size: 0 172px; /* measured mean of a collapsed full row with the 2026-10-17 data */ }
 .ledger__date { font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); text-align: right; color: var(--fg-muted); padding-top: 2px; }
@@ -170,12 +129,6 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
 .ledger__more .icon { transition: transform var(--t-toggle) var(--ease); }
 .ledger__row.is-expanded .ledger__more .icon { transform: rotate(180deg); }
 .ledger__row.is-expanded .ledger__summary { display: block; -webkit-line-clamp: unset; }
-/* short rows on the landing */
-.ledger__row--short { grid-template-columns: 72px minmax(0, 1fr); column-gap: var(--s3); padding: var(--s2) 0 10px; contain-intrinsic-size: 0 72px; }
-.ledger__row--short .ledger__date { font-size: var(--fs-mono-s); }
-.ledger__row--short .ledger__dash { height: 14px; }
-.ledger__row--short .ledger__title { font-size: 17px; line-height: 22px; }
-.ledger__row--short .ledger__title .new { margin-right: 6px; vertical-align: 3px; }
 
 /* ---- drawer base (content layout in papers.css) ---- */
 .drawer { position: fixed; inset: 0 0 0 auto; margin: 0; width: 520px; max-width: 100vw; height: 100dvh; max-height: 100dvh; border: 0; padding: 0; background: var(--bg); color: var(--fg); box-shadow: var(--shadow-float); z-index: var(--z-drawer); overflow: auto; }
@@ -233,10 +186,6 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
   .masthead.is-open .masthead__links .only-sheet { display: block; }
   .masthead.is-open .masthead__links .nav__link[aria-current="page"] { text-decoration: none; font-weight: 500; }
   .masthead__sep { display: none; }
-  .span-8 { grid-column: 1 / -1; }
-  .spread { grid-template-columns: minmax(0, 1fr); row-gap: var(--s7); }
-  .spread__rule { display: none; }
-  .ledger--reserve { min-height: 0; }
   .drawer::backdrop { background: rgb(46 46 46 / .4); }
   /* tap targets: 44 px hit areas (DESIGN.md section 9) without changing the type scale. Chips and small buttons grow a
      little and extend their hit area with a pseudo-element; icon buttons become 44 px squares. */
@@ -248,8 +197,8 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
   .btn--sm { min-height: 36px; position: relative; }
   .btn--sm::before { content: ""; position: absolute; inset: -4px 0; }
   .ledger__class { gap: 10px 8px; }
-  .ledger__title a, .spread__foot a, .colophon a { position: relative; }
-  .ledger__title a::before, .spread__foot a::before, .colophon a::before { content: ""; position: absolute; inset: -8px 0; }
+  .ledger__title a, .colophon a { position: relative; }
+  .ledger__title a::before, .colophon a::before { content: ""; position: absolute; inset: -8px 0; }
   .card__ext, .sub-head__stream { position: relative; }
   .card__ext::before, .sub-head__stream::before { content: ""; position: absolute; inset: -13px 0; }
 }
@@ -257,19 +206,9 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
   :root { --margin: 16px; }
   .masthead__title .long { display: none; } .masthead__title .short { display: inline; }
   .masthead__gh { display: none; }
-  .toc__chevron { display: inline-flex; grid-column: 5; grid-row: 1; width: 44px; height: 30px; align-items: center; justify-content: center; color: var(--fg-muted); margin-right: -8px; position: relative; }
-  .toc__chevron::before { content: ""; position: absolute; inset: -7px 0; }
-  .toc__chevron .icon { transition: transform var(--t-toggle); }
-  .toc__row.is-open .toc__chevron .icon { transform: rotate(180deg); }
-  .toc__row { grid-template-columns: var(--colour-rule) 2.5rem minmax(0, 1fr) auto auto; }
-  .toc__subs { display: none; }
-  .toc__row.is-open .toc__subs { display: block; }
-  .ledger--short .ledger__row--late { display: none; }
   .ledger__row { grid-template-columns: minmax(0, 1fr) auto; }
   .ledger__row .ledger__date { grid-column: 1 / -1; text-align: left; order: -1; }
   .ledger__row .ledger__date .new { display: inline-block; margin: 0 0 0 6px; vertical-align: 1px; }
-  .ledger__row--short { grid-template-columns: 56px minmax(0, 1fr); }
-  .ledger__row--short .ledger__date { grid-column: auto; text-align: right; order: 0; }
   .drawer { width: 100vw; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -280,7 +219,7 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
 /* Windows High Contrast: keep the colour marks (they carry section, failure source and polarity, each with a text
    label beside it) and draw pressed or checked states with a system-colour outline instead of a background swap. */
 @media (forced-colors: active) {
-  .mark, .ledger__dash, .sigbar__seg, .toc__rule, .drawer__band, .live__dot, .new, .chronology__bar, .rail__row, .chip--sub, .rail__sub[aria-current="location"]::before { forced-color-adjust: none; }
+  .mark, .ledger__dash, .drawer__band, .live__dot, .new, .chronology__bar, .rail__row, .chip--sub, .rail__sub[aria-current="location"]::before { forced-color-adjust: none; }
   .chip.is-on, .chip[aria-pressed="true"], .btn--icon[aria-pressed="true"], .seg__opt input:checked + span, .facet__radio input:checked + span, .badge--cited { outline: 2px solid Highlight; outline-offset: -2px; }
   .chip.is-zero { border-style: dashed; }
 }

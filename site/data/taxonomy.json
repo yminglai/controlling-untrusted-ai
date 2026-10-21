@@ -1,13 +1,13 @@
 {
  "title": "Controlling Untrusted AI: A Survey",
- "thesis": "Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own. On the attack side the survey distinguishes three tiers: benign loss of control (the agent makes mistakes and no one is attacking), malicious external attacks (an outsider redirects the agent through what it reads, calls, or remembers), and insider threats (a person with partial access to data, weights, pipelines, credentials, or oversight, or the model itself pursuing objectives of its own). On the defence side it separates what is implemented inside the executing model (train, steer) from what is implemented outside it (constrain, observe, intervene), with verification testing either; the survey's position is that guarantees come from outside the model, while inside-the-model measures lower the base rate the outside layer must catch. Every mechanism is graded by a two-level test (does it still work if the agent is indifferent; does it still work if the agent, or an insider, is trying to defeat it and knows how it works) and by how its effectiveness interacts with the attacker's capabilities and incentives. The survey covers both sides across all five requirements, asks of every mechanism which requirement it serves, who can apply it, what it assumes, what it costs, and where it has evidence, and treats the adversarial agent as the stress test rather than the premise.",
+ "thesis": "Deployed AI agents must meet the requirements their deployer places on them, and they cannot be trusted to do so on their own. On the attack side the survey distinguishes three tiers: benign failures (the agent errs and no one is attacking), external attacks (an outsider redirects the agent through what it reads, calls, or remembers), and insider threats (a person with legitimate partial access, or the model itself pursuing objectives of its own). On the defence side it separates measures inside the executing model (training, steering) from measures outside it (constraints, monitoring, intervention), with verification testing either; its position is that guarantees come from outside the model, while measures inside it lower the base rate the outside layer must catch. For every mechanism the survey records the threat model and assumptions under which it holds, in particular whether it survives an agent or insider that actively tries to defeat it, how its effectiveness depends on the attacker's capabilities and incentives, what it costs in safety and usefulness, and what evidence supports it. The adversarial agent is the stress test, not the premise.",
  "readers": [
-  "Researchers inside one mechanism family (agent security: injection defences, isolation, information-flow control; guardrails; monitoring; control evaluation; formal enforcement; post-training; steering) who want the other families on one map with the same five questions answered.",
+  "Researchers inside one mechanism family (agent security: injection defences, isolation, information-flow control; guardrails; monitoring; control evaluation; formal enforcement; post-training; steering) who want the other families on one map with the same assessment questions answered.",
   "Teams deploying agents with real credentials who must choose and combine mechanisms for a requirement and a threat model.",
   "Evaluators, auditors, and policy staff who need to know what evidence a control claim rests on and which mechanisms satisfy which governance requirements (human oversight, logging, risk management, robustness)."
  ],
- "generated": "2026-10-19",
- "structure": "f91f5efaa064",
+ "generated": "2026-10-21",
+ "structure": "1ef18ee6f954",
  "requirements": [
   {
    "id": "correct",
@@ -53,7 +53,7 @@
  "operations": [
   {
    "id": "failures",
-   "label": "Failure Modes of Deployed Agents",
+   "label": "How Agents Fail",
    "section": "s2",
    "color": "#D95358",
    "lever": null
@@ -63,54 +63,54 @@
    "label": "Constrain",
    "section": "s4",
    "color": "#E27553",
-   "lever": "System-Level Control"
+   "lever": "Control Outside the Model"
   },
   {
-   "id": "monitor",
-   "label": "Monitor",
+   "id": "observe",
+   "label": "Observe",
    "section": "s5",
    "color": "#598DD2",
-   "lever": "System-Level Control"
+   "lever": "Control Outside the Model"
   },
   {
    "id": "intervene",
    "label": "Intervene",
    "section": "s6",
    "color": "#E09A3B",
-   "lever": "System-Level Control"
+   "lever": "Control Outside the Model"
   },
   {
    "id": "steer",
    "label": "Steer",
    "section": "s7",
    "color": "#65C2B9",
-   "lever": "Model-Level Control"
+   "lever": "Control Inside the Model"
   },
   {
    "id": "train",
    "label": "Train",
-   "section": "s7",
-   "color": "#65C2B9",
-   "lever": "Model-Level Control"
+   "section": "s8",
+   "color": "#8D86E8",
+   "lever": "Control Inside the Model"
   },
   {
-   "id": "evaluate",
-   "label": "Evaluate",
-   "section": "s8",
+   "id": "verify",
+   "label": "Verify",
+   "section": "s9",
    "color": "#62A16E",
-   "lever": "Evaluation and Assurance"
+   "lever": "Verification, Deployment, and Outlook"
   },
   {
    "id": "deploy",
    "label": "Deploy",
-   "section": "s9",
+   "section": "s10",
    "color": "#A37CAD",
-   "lever": "Evaluation and Assurance"
+   "lever": "Verification, Deployment, and Outlook"
   }
  ],
  "parts": [
   {
-   "title": "Foundations",
+   "title": "The Problem",
    "sections": [
     "s1",
     "s2",
@@ -118,7 +118,7 @@
    ]
   },
   {
-   "title": "System-Level Control",
+   "title": "Control Outside the Model",
    "sections": [
     "s4",
     "s5",
@@ -126,17 +126,18 @@
    ]
   },
   {
-   "title": "Model-Level Control",
+   "title": "Control Inside the Model",
    "sections": [
-    "s7"
+    "s7",
+    "s8"
    ]
   },
   {
-   "title": "Evaluation and Assurance",
+   "title": "Verification, Deployment, and Outlook",
    "sections": [
-    "s8",
     "s9",
-    "s10"
+    "s10",
+    "s11"
    ]
   }
  ],
@@ -203,7 +204,7 @@
   {
    "id": "s2",
    "number": 2,
-   "title": "Failure Modes of Deployed Agents",
+   "title": "How Agents Fail",
    "slug": "failures",
    "operations": [
     "failures"
@@ -226,8 +227,8 @@
     {
      "id": "s2_2",
      "number": "2.2",
-     "title": "External Attacks",
-     "slug": "external-attacks",
+     "title": "Malicious Attacks",
+     "slug": "malicious-attacks",
      "counts": {
       "primary": 95,
       "selected": 5,
@@ -252,8 +253,8 @@
   {
    "id": "s3",
    "number": 3,
-   "title": "Preliminaries",
-   "slug": "preliminaries",
+   "title": "Setting",
+   "slug": "setting",
    "operations": [],
    "color": "#7D7D7D",
    "part": 0,
@@ -267,7 +268,7 @@
       "primary": 27,
       "selected": 8,
       "cross": 66,
-      "grey": 11
+      "grey": 12
      }
     },
     {
@@ -279,7 +280,7 @@
       "primary": 27,
       "selected": 8,
       "cross": 40,
-      "grey": 13
+      "grey": 14
      }
     },
     {
@@ -291,7 +292,7 @@
       "primary": 0,
       "selected": 0,
       "cross": 0,
-      "grey": 2
+      "grey": 0
      }
     }
    ]
@@ -299,7 +300,7 @@
   {
    "id": "s4",
    "number": 4,
-   "title": "Action Constraints",
+   "title": "Constrain",
    "slug": "constrain",
    "operations": [
     "constrain"
@@ -360,10 +361,10 @@
   {
    "id": "s5",
    "number": 5,
-   "title": "Monitoring",
-   "slug": "monitor",
+   "title": "Observe",
+   "slug": "observe",
    "operations": [
-    "monitor"
+    "observe"
    ],
    "color": "#598DD2",
    "part": 1,
@@ -409,7 +410,7 @@
   {
    "id": "s6",
    "number": 6,
-   "title": "Intervention",
+   "title": "Intervene",
    "slug": "intervene",
    "operations": [
     "intervene"
@@ -458,11 +459,10 @@
   {
    "id": "s7",
    "number": 7,
-   "title": "Model-Level Methods",
-   "slug": "model",
+   "title": "Steer",
+   "slug": "steer",
    "operations": [
-    "steer",
-    "train"
+    "steer"
    ],
    "color": "#65C2B9",
    "part": 2,
@@ -470,25 +470,37 @@
     {
      "id": "s7_1",
      "number": "7.1",
-     "title": "Inference-Time Steering",
-     "slug": "inference-time-steering",
+     "title": "Instruction Hierarchies",
+     "slug": "instruction-hierarchies",
      "counts": {
-      "primary": 223,
-      "selected": 18,
+      "primary": 130,
+      "selected": 9,
       "cross": 47,
-      "grey": 11
+      "grey": 4
      }
     },
     {
      "id": "s7_2",
      "number": "7.2",
-     "title": "Training-Time Methods",
-     "slug": "training-time-methods",
+     "title": "Memory Management",
+     "slug": "memory-management",
      "counts": {
-      "primary": 356,
-      "selected": 20,
-      "cross": 31,
-      "grey": 4
+      "primary": 41,
+      "selected": 5,
+      "cross": 0,
+      "grey": 2
+     }
+    },
+    {
+     "id": "s7_3",
+     "number": "7.3",
+     "title": "Activation Steering",
+     "slug": "activation-steering",
+     "counts": {
+      "primary": 52,
+      "selected": 4,
+      "cross": 0,
+      "grey": 5
      }
     }
    ]
@@ -496,17 +508,66 @@
   {
    "id": "s8",
    "number": 8,
-   "title": "Evaluation Methodology",
-   "slug": "evaluate",
+   "title": "Train",
+   "slug": "train",
    "operations": [
-    "evaluate"
+    "train"
+   ],
+   "color": "#8D86E8",
+   "part": 2,
+   "subsections": [
+    {
+     "id": "s8_1",
+     "number": "8.1",
+     "title": "Safety Fine-Tuning",
+     "slug": "safety-fine-tuning",
+     "counts": {
+      "primary": 248,
+      "selected": 16,
+      "cross": 31,
+      "grey": 2
+     }
+    },
+    {
+     "id": "s8_2",
+     "number": "8.2",
+     "title": "Adversarial Training",
+     "slug": "adversarial-training",
+     "counts": {
+      "primary": 54,
+      "selected": 1,
+      "cross": 0,
+      "grey": 1
+     }
+    },
+    {
+     "id": "s8_3",
+     "number": "8.3",
+     "title": "Representation-Level Methods",
+     "slug": "representation-level-methods",
+     "counts": {
+      "primary": 54,
+      "selected": 3,
+      "cross": 0,
+      "grey": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "number": 9,
+   "title": "Verify",
+   "slug": "verify",
+   "operations": [
+    "verify"
    ],
    "color": "#62A16E",
    "part": 3,
    "subsections": [
     {
-     "id": "s8_1",
-     "number": "8.1",
+     "id": "s9_1",
+     "number": "9.1",
      "title": "Benchmarks",
      "slug": "benchmarks",
      "counts": {
@@ -517,8 +578,8 @@
      }
     },
     {
-     "id": "s8_2",
-     "number": "8.2",
+     "id": "s9_2",
+     "number": "9.2",
      "title": "Control Evaluations",
      "slug": "control-evaluations",
      "counts": {
@@ -529,8 +590,8 @@
      }
     },
     {
-     "id": "s8_3",
-     "number": "8.3",
+     "id": "s9_3",
+     "number": "9.3",
      "title": "Model Auditing",
      "slug": "model-auditing",
      "counts": {
@@ -543,9 +604,9 @@
    ]
   },
   {
-   "id": "s9",
-   "number": 9,
-   "title": "Composition and Assurance",
+   "id": "s10",
+   "number": 10,
+   "title": "Deployment and Assurance",
    "slug": "deploy",
    "operations": [
     "deploy"
@@ -554,55 +615,79 @@
    "part": 3,
    "subsections": [
     {
-     "id": "s9_1",
-     "number": "9.1",
+     "id": "s10_1",
+     "number": "10.1",
      "title": "Reference Architectures",
      "slug": "reference-architectures",
      "counts": {
-      "primary": 58,
-      "selected": 8,
+      "primary": 28,
+      "selected": 5,
       "cross": 45,
       "grey": 3
      }
     },
     {
-     "id": "s9_2",
-     "number": "9.2",
+     "id": "s10_2",
+     "number": "10.2",
+     "title": "Governance",
+     "slug": "governance",
+     "counts": {
+      "primary": 30,
+      "selected": 3,
+      "cross": 0,
+      "grey": 4
+     }
+    },
+    {
+     "id": "s10_3",
+     "number": "10.3",
      "title": "Safety Cases",
      "slug": "safety-cases",
      "counts": {
       "primary": 72,
       "selected": 13,
       "cross": 12,
-      "grey": 30
+      "grey": 26
      }
     }
    ]
   },
   {
-   "id": "s10",
-   "number": 10,
-   "title": "Outlook",
-   "slug": "outlook",
+   "id": "s11",
+   "number": 11,
+   "title": "Open Problems",
+   "slug": "open-problems",
    "operations": [],
    "color": "#7D7D7D",
    "part": 3,
    "subsections": [
     {
-     "id": "s10_1",
-     "number": "10.1",
-     "title": "Open Problems",
-     "slug": "open-problems",
+     "id": "s11_1",
+     "number": "11.1",
+     "title": "Gaps by Failure Tier",
+     "slug": "gaps-by-failure-tier",
      "counts": {
-      "primary": 92,
+      "primary": 73,
       "selected": 4,
       "cross": 86,
       "grey": 6
      }
     },
     {
-     "id": "s10_2",
-     "number": "10.2",
+     "id": "s11_2",
+     "number": "11.2",
+     "title": "Cost and Organisational Constraints",
+     "slug": "cost-and-organisational-constraints",
+     "counts": {
+      "primary": 19,
+      "selected": 0,
+      "cross": 0,
+      "grey": 0
+     }
+    },
+    {
+     "id": "s11_3",
+     "number": "11.3",
      "title": "Conclusion",
      "slug": "conclusion",
      "counts": {

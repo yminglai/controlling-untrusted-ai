@@ -6,7 +6,7 @@ arXiv link to come). A static site on GitHub Pages at `https://ymingl.com/contro
 The site is three things: the paper, the papers arranged by the paper's structure, and the live stream.
 
 1. **The paper collection.** Every paper the survey placed into its structure (1,788 arXiv papers and
-   164 reports and posts from outside arXiv), browsable by the paper's four parts, 10 sections and 29
+   164 reports and posts from outside arXiv), browsable by the paper's four parts, 11 sections and 35
    subsections, searchable and filterable, with a card per paper and a detail drawer with
    cross-references. 239 items are cited in the PDF; the rest are the reading list behind it.
 2. **The live stream.** News about deploying AI agents, good and bad: incidents, near misses,
@@ -20,20 +20,20 @@ typefaces (Google Fonts, with system fallbacks).
 
 ## Structure
 
-The paper has four parts and 10 sections; subsection ids are positional (`s5_2` is the second
+The paper has four parts and 11 sections; subsection ids are positional (`s5_2` is the second
 subsection of Section 5) and come from `site/data/taxonomy.json`, which also carries a fingerprint of
 its subsection list (`structure`) so that a changed outline is detected.
 
 | Part | Sections |
 |---|---|
-| Foundations | 1 Introduction · 2 Failure Modes of Deployed Agents · 3 Preliminaries |
-| System-Level Control | 4 Action Constraints · 5 Monitoring · 6 Intervention |
-| Model-Level Control | 7 Model-Level Methods |
-| Evaluation and Assurance | 8 Evaluation Methodology · 9 Composition and Assurance · 10 Outlook |
+| The Problem | 1 Introduction · 2 How Agents Fail · 3 Setting |
+| Control Outside the Model | 4 Constrain · 5 Observe · 6 Intervene |
+| Control Inside the Model | 7 Steer · 8 Train |
+| Verification, Deployment, and Outlook | 9 Verify · 10 Deployment and Assurance · 11 Open Problems |
 
-The attack tiers are benign, external and insider; the control operations are constrain, monitor,
-intervene (Sections 4 to 6), steer and train (both Section 7), evaluate (Section 8) and deploy
-(Section 9).
+The failure tiers are benign, external and insider; the control operations are the section titles:
+constrain, observe, intervene (Sections 4 to 6), steer and train (Sections 7 and 8), verify (Section 9)
+and deploy (Section 10).
 
 ## Repository layout
 
@@ -41,7 +41,7 @@ intervene (Sections 4 to 6), steer and train (both Section 7), evaluate (Section
 BRIEF.md  SCHEMA.md         the brief and the data contracts
 design/                     the front-end spec, implementation notes and screenshots (shots/)
 site/                       the published site: index.html  papers.html  stream.html  404.html
-  assets/css/               tokens.css  site.css  papers.css  stream.css
+  assets/css/               tokens.css  site.css  landing.css  papers.css  stream.css
   assets/js/                common.js  taxonomy.js  papers.js  stream.js  search.js
   assets/img/               favicon.svg, og.png
   data/                     taxonomy.json  papers.json  grey.json  stats.json  stream_recent.json  stream.json
@@ -64,11 +64,11 @@ so a 390 px capture needs a wrapper page with a 390 × 844 `<iframe>` (`design/I
 
 ## Regenerating the paper data
 
-`pipeline/build_data.py` reads the paper's repository (the read-only Overleaf clone) and rewrites
+`pipeline/build_data.py` reads the paper's tooling repository (read-only: `outline.json`, `research/`) and rewrites
 `taxonomy.json`, `papers.json`, `grey.json`, `stats.json` and `stream_recent.json` under `site/data/`.
 
 ```bash
-python3 pipeline/build_data.py --overleaf PATH --generated 2026-10-19
+python3 pipeline/build_data.py --tooling PATH --generated 2026-10-21
 python3 -m unittest discover -s pipeline/tests -v
 ```
 
@@ -121,9 +121,9 @@ Until the arXiv version appears, cite the draft as:
 
 ## No branding
 
-Published from a personal account; no logos, no employer names, no analytics. The author line is a
-placeholder (`[Authors]`) until the arXiv version appears; the status line in `site/index.html` and the
-BibTeX entry above are the places to update.
+Published from a personal account; no logos, no employer names, no analytics. The author line in the
+BibTeX entry above is a placeholder (`[Authors]`) until the arXiv version appears; the status line in
+`site/index.html` carries only the draft date until then, and both are the places to update.
 
 ## Licence
 

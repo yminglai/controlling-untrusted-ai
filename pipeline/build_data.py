@@ -5,8 +5,9 @@ Regenerate (from the project root, controlling-untrusted-ai/):
 
     python3 pipeline/build_data.py
 
-Reads the read-only Overleaf clone (default: ../overleaf-ai-control next to the
-project root; override with --overleaf PATH) and writes, under site/data/:
+Reads the paper's read-only tooling repository (PAPER_TOOLING: ../ai-control-tooling
+next to the project root, or the environment variable of that name; --tooling PATH
+overrides both) and writes, under site/data/:
 
     taxonomy.json      parts, sections, operations, subsections, counts (indent=1)
     papers.json        1,788 arXiv papers                       (indent=None)
@@ -16,7 +17,7 @@ project root; override with --overleaf PATH) and writes, under site/data/:
 
 The field names and sort orders are those of SCHEMA.md. Output is deterministic
 for a given --generated date (default: today). Pure standard library. The
-script never modifies the Overleaf clone. Anomalies found in the sources are
+script never modifies the tooling repository. Anomalies found in the sources are
 printed to stdout, one per line, prefixed "ANOMALY:"; they do not stop the build.
 """
 
@@ -26,11 +27,18 @@ import argparse
 import datetime as _dt
 import hashlib
 import json
+import os
 import re
 import sys
 import unicodedata
 from collections import Counter, OrderedDict
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+# The paper's tooling repository: outline.json and research/{corpus_full,grey_v2,labels_method_style}.json.
+# Read-only; the tests compare site/data against these files.
+PAPER_TOOLING = Path(os.environ.get("PAPER_TOOLING") or ROOT.parent / "ai-control-tooling")
 
 # --------------------------------------------------------------------------- #
 # Fixed vocabulary (BRIEF.md section map, SCHEMA.md enumerations)
@@ -52,30 +60,31 @@ COLORS = {
 
 # Section title (kebab-case) -> (operation ids, slug, colour). Keyed by title, not number, so a
 # renumbered outline cannot mislabel a section: a title missing here gets no operation, a slug
-# from its title and the neutral colour, and is reported as an anomaly. Section 7 carries both
-# model-level operations; they take the section's colour, since colour is section identity.
+# from its title and the neutral colour, and is reported as an anomaly. Operation ids are the
+# section titles of the paper; Deployment and Assurance is "deploy".
 SECTION_META = {
     "introduction": ((), "introduction", COLORS["gray"]),
-    "failure-modes-of-deployed-agents": (("failures",), "failures", COLORS["coral"]),
-    "preliminaries": ((), "preliminaries", COLORS["gray"]),
-    "action-constraints": (("constrain",), "constrain", COLORS["terracotta"]),
-    "monitoring": (("monitor",), "monitor", COLORS["blue"]),
-    "intervention": (("intervene",), "intervene", COLORS["amber"]),
-    "model-level-methods": (("steer", "train"), "model", COLORS["teal"]),
-    "evaluation-methodology": (("evaluate",), "evaluate", COLORS["forest"]),
-    "composition-and-assurance": (("deploy",), "deploy", COLORS["purple"]),
-    "outlook": ((), "outlook", COLORS["gray"]),
+    "how-agents-fail": (("failures",), "failures", COLORS["coral"]),
+    "setting": ((), "setting", COLORS["gray"]),
+    "constrain": (("constrain",), "constrain", COLORS["terracotta"]),
+    "observe": (("observe",), "observe", COLORS["blue"]),
+    "intervene": (("intervene",), "intervene", COLORS["amber"]),
+    "steer": (("steer",), "steer", COLORS["teal"]),
+    "train": (("train",), "train", COLORS["periwinkle"]),
+    "verify": (("verify",), "verify", COLORS["forest"]),
+    "deployment-and-assurance": (("deploy",), "deploy", COLORS["purple"]),
+    "open-problems": ((), "open-problems", COLORS["gray"]),
 }
 
 # Chip labels of the control operations. "failures" (section 2) is not a control
 # operation: it takes the section title as label and has no lever.
 OPERATION_LABELS = {
     "constrain": "Constrain",
-    "monitor": "Monitor",
+    "observe": "Observe",
     "intervene": "Intervene",
     "steer": "Steer",
     "train": "Train",
-    "evaluate": "Evaluate",
+    "verify": "Verify",
     "deploy": "Deploy",
 }
 
@@ -111,73 +120,26 @@ FAILURE_SOURCES = [
     },
 ]
 
-# Subsection ids of the 17 October 2026 outline (56 subsections) -> ids of the 19 October 01:13
-# outline (11 sections, 36 subsections). Identity entries are kept so the table doubles as the
-# list of ids that existed on 17 October. SID_MAP_2026_10_19 continues onto the current outline;
-# SID_MAP_FROM_2026_10_17 is the composition, used for sources still on the 17 October structure
-# (research/grey_v2.json) and by pipeline/remap_stream.py for a stream from that date.
-# Targets follow the subsection titles of outline.json as of 2026-10-19 01:13:
-#   s1 Control Problem, Scope, Methodology, Contributions; s2 Benign Failures, External Attacks,
-#   Insider Threats, Multi-Agent Failures; s3 Threat Model, Control Protocols, Assessment Criteria;
-#   s4 Confinement, Formal Enforcement, Information-Flow Control, Delegated Authority; s5
-#   Observability, Automated Monitors, Untrusted Monitors, Human Oversight; s6 Approval Gates,
-#   Resampling, Shutdown; s7 Instruction Hierarchies, Memory Management, Activation Steering;
-#   s8 Safety Fine-Tuning, Adversarial Training, Representation-Level Methods; s9 Benchmarks, Control
-#   Evaluations, Model Auditing; s10 Reference Architectures, Governance, Assurance; s11 Open
-#   Problems, Conclusion.
+# Subsection ids of the 17 October 2026 outline (11 sections, 56 subsections) -> ids of the current
+# outline (21 October 2026: 11 sections, 35 subsections). Identity entries are kept so the table
+# doubles as the list of ids that existed on 17 October. Used for sources still on that structure
+# (research/grey_v2.json) and by pipeline/remap_stream.py for the seed classification of the stream.
 SID_MAP_2026_10_17 = {
     "s1_1": "s1_1", "s1_2": "s1_1", "s1_3": "s1_2",
     "s2_1": "s2_1", "s2_2": "s2_2", "s2_3": "s2_3", "s2_4": "s2_3", "s2_5": "s3_1",
-    "s3_1": "s3_1", "s3_2": "s3_1", "s3_3": "s3_3", "s3_4": "s3_3", "s3_5": "s3_2",
+    "s3_1": "s3_1", "s3_2": "s3_1", "s3_3": "s3_3", "s3_4": "s3_2", "s3_5": "s3_1",
     "s4_1": "s4_1", "s4_2": "s4_1", "s4_3": "s4_2", "s4_4": "s4_3", "s4_5": "s4_4",
-    "s5_1": "s5_1", "s5_2": "s5_2", "s5_3": "s5_2", "s5_4": "s5_2", "s5_5": "s5_3", "s5_6": "s5_4",
+    "s5_1": "s5_1", "s5_2": "s5_1", "s5_3": "s5_1", "s5_4": "s5_1", "s5_5": "s5_2", "s5_6": "s5_3",
     "s6_1": "s6_1", "s6_2": "s6_1", "s6_3": "s6_2", "s6_4": "s6_3", "s6_5": "s6_3",
     "s7_1": "s7_1", "s7_2": "s7_2", "s7_3": "s7_1", "s7_4": "s7_3", "s7_5": "s7_3",
     "s8_1": "s8_1", "s8_2": "s8_1", "s8_3": "s8_1", "s8_4": "s8_2", "s8_5": "s8_3", "s8_6": "s8_1",
     "s9_1": "s9_1", "s9_2": "s9_1", "s9_3": "s9_2", "s9_4": "s9_2", "s9_5": "s9_3", "s9_6": "s9_1",
-    "s10_1": "s10_1", "s10_2": "s10_2", "s10_3": "s10_3", "s10_4": "s10_3", "s10_5": "s10_3",
-    "s11_1": "s11_1", "s11_2": "s11_1", "s11_3": "s11_1", "s11_4": "s11_1", "s11_5": "s11_2",
+    "s10_1": "s10_1", "s10_2": "s10_2", "s10_3": "s10_3", "s10_4": "s10_2", "s10_5": "s10_3",
+    "s11_1": "s11_1", "s11_2": "s11_1", "s11_3": "s11_1", "s11_4": "s11_2", "s11_5": "s11_3",
 }
-
-# Subsection ids of the 19 October 2026 01:13 outline (36 subsections) -> ids of the current
-# outline (19 October 2026 01:29: 10 sections, 29 subsections). The three steering and the three
-# training subsections became 7.1 Inference-Time Steering and 7.2 Training-Time Methods; 2.4
-# Multi-Agent Failures folded into 2.3 Insider Threats (the model and its peers as insiders); 5.1
-# Observability into 5.1 Automated Monitors; 10.2 Governance and 10.3 Assurance into 9.2 Safety
-# Cases; sections 9 to 11 moved up by one.
-SID_MAP_2026_10_19 = {
-    "s1_1": "s1_1", "s1_2": "s1_2", "s1_3": "s1_3", "s1_4": "s1_4",
-    "s2_1": "s2_1", "s2_2": "s2_2", "s2_3": "s2_3", "s2_4": "s2_3",
-    "s3_1": "s3_1", "s3_2": "s3_2", "s3_3": "s3_3",
-    "s4_1": "s4_1", "s4_2": "s4_2", "s4_3": "s4_3", "s4_4": "s4_4",
-    "s5_1": "s5_1", "s5_2": "s5_1", "s5_3": "s5_2", "s5_4": "s5_3",
-    "s6_1": "s6_1", "s6_2": "s6_2", "s6_3": "s6_3",
-    "s7_1": "s7_1", "s7_2": "s7_1", "s7_3": "s7_1",
-    "s8_1": "s7_2", "s8_2": "s7_2", "s8_3": "s7_2",
-    "s9_1": "s8_1", "s9_2": "s8_2", "s9_3": "s8_3",
-    "s10_1": "s9_1", "s10_2": "s9_2", "s10_3": "s9_2",
-    "s11_1": "s10_1", "s11_2": "s10_2",
-}
-
-
-def compose_maps(*maps: dict) -> dict:
-    """compose_maps(a, b)[x] == b[a[x]] for every key of a that every later map carries."""
-    out = {}
-    for key in maps[0]:
-        value = key
-        for m in maps:
-            value = m.get(value)
-            if value is None:
-                break
-        if value is not None:
-            out[key] = value
-    return out
-
-
-SID_MAP_FROM_2026_10_17 = compose_maps(SID_MAP_2026_10_17, SID_MAP_2026_10_19)   # 56 -> 29
 
 # Earlier structures a source can be filed on -> the map of its ids onto the current outline.
-STRUCTURE_MAPS = {"2026-10-17": SID_MAP_FROM_2026_10_17, "2026-10-19": SID_MAP_2026_10_19}
+STRUCTURE_MAPS = {"2026-10-17": SID_MAP_2026_10_17}
 
 # Ids from the retrieval-time outline (research/QUERIES.md) that still appear in the grey
 # sources and did not exist on 17 October, as 17 October ids (then mapped on):
@@ -189,7 +151,7 @@ STRUCTURE_MAPS = {"2026-10-17": SID_MAP_FROM_2026_10_17, "2026-10-19": SID_MAP_2
 SID_REMAP = {"s2_6": "s2_4", "s2_7": "s2_1", "s2_8": "s2_5", "s6_6": "s5_6"}
 
 # Structure of research/grey_v2.json. Its sids are read as 17 October ids and mapped through
-# SID_MAP_FROM_2026_10_17; set to "current" once the file is re-filed on the current outline.
+# SID_MAP_2026_10_17; set to "current" once the file is re-filed on the current outline.
 GREY_V2_STRUCTURE = "2026-10-17"
 
 # Cited grey items whose bib entry carries no URL. Publisher or DOI landing pages,
@@ -408,21 +370,21 @@ class Anomalies:
 
 def current_sid(sid: str) -> str | None:
     """Map a 17 October (or older) subsection id onto the current outline; None if unknown."""
-    return SID_MAP_FROM_2026_10_17.get(SID_REMAP.get(sid, sid))
+    return SID_MAP_2026_10_17.get(SID_REMAP.get(sid, sid))
 
 
 def resolve_sid(sid, sid_pos: dict, what: str, anomalies: Anomalies, structure: str = "current") -> str:
     """Return a subsection id of the current taxonomy.
 
     structure "current": the id is taken as is when the taxonomy has it; otherwise it is tried
-    as a stale id and the remap is reported. structure "2026-10-17" or "2026-10-19": the id is
-    read as an id of that outline and mapped through STRUCTURE_MAPS. In every mode an id that
+    as a stale id and the remap is reported. structure "2026-10-17": the id is read as an id of
+    that outline and mapped through STRUCTURE_MAPS. In every mode an id that
     does not land in the taxonomy is reported, so the tests catch it.
     """
     sid = (sid or "").strip()
     if structure != "current":
         table = STRUCTURE_MAPS[structure]
-        key = SID_REMAP.get(sid, sid) if structure == "2026-10-17" else sid
+        key = SID_REMAP.get(sid, sid)
         new = table.get(key)
         if new is None:
             anomalies.add(f"{what}: sid {sid!r} is not a {structure} id")
@@ -468,7 +430,7 @@ def build_parts(outline: dict, sections: list[dict], anomalies: Anomalies) -> li
 
 
 def build_operations(sections: list[dict], parts: list[dict]) -> list[dict]:
-    """One entry per operation in section order (Section 7 carries steer and train). "lever" is
+    """One entry per operation in section order. "lever" is
     the title of the operation's part, null for "failures", which is not a control operation.
     The colour is the section's: colour is section identity."""
     ops = []
@@ -835,7 +797,7 @@ def structure_fingerprint(sections: list[dict]) -> str:
 
 def source_date(corpus: dict, path: Path) -> str | None:
     """stats.source_generated: corpus_full.generated, or the file's modification date when that
-    is later (the corpus was re-filed on 19 October 2026 without a new stamp)."""
+    is later (the corpus can be re-filed without a new stamp)."""
     stamp = str(corpus.get("generated") or "")[:10] or None
     try:
         mtime = _dt.date.fromtimestamp(path.stat().st_mtime).isoformat()
@@ -930,14 +892,14 @@ def build_stats(generated: str, structure: str, source_generated: str | None, pa
 # Cross-checks that only produce anomaly lines
 # --------------------------------------------------------------------------- #
 
-def cross_checks(overleaf: Path, corpus: dict, outline: dict, labels: dict,
+def cross_checks(tooling: Path, corpus: dict, outline: dict, labels: dict,
                  papers: list[dict], grey: list[dict], anomalies: Anomalies) -> None:
     paper_keys = {p["key"] for p in papers}
     grey_keys = {g["key"] for g in grey}
 
     v2_keys = set()
     try:
-        v2_keys = {e.get("key_hint") for e in json.loads((overleaf / "research" / "grey_v2.json").read_text(encoding="utf-8")).get("entries", [])}
+        v2_keys = {e.get("key_hint") for e in json.loads((tooling / "research" / "grey_v2.json").read_text(encoding="utf-8")).get("entries", [])}
     except (OSError, ValueError):
         pass
     orphan_labels = sorted(k for k in labels if k not in paper_keys and k not in grey_keys and k not in v2_keys)
@@ -957,21 +919,6 @@ def cross_checks(overleaf: Path, corpus: dict, outline: dict, labels: dict,
     if stale:
         anomalies.add(f"corpus_full.subsections: {stale} of {len(corpus.get('subsections') or [])} titles differ from outline.json (expected; outline.json used)")
 
-    # ground truth for "cited": \citation keys in main.aux, if present
-    aux = overleaf / "main.aux"
-    if aux.exists():
-        cited_aux: set[str] = set()
-        for m in re.finditer(r"\\citation\{([^}]*)\}", aux.read_text(encoding="utf-8", errors="replace")):
-            cited_aux.update(k.strip() for k in m.group(1).split(",") if k.strip())
-        selected = {p["key"] for p in papers if p["selected"]} | {g["key"] for g in grey if g["selected"]}
-        formula = sum(1 for p in papers if p["selected"]) + sum(1 for g in grey if g["selected"])
-        extra = sorted(selected - cited_aux)
-        missing_sel = sorted(cited_aux - selected)
-        if len(cited_aux) != formula or extra or missing_sel:
-            anomalies.add(
-                f"cited: formula (selected papers + selected grey) = {formula}; main.aux has {len(cited_aux)} unique "
-                f"citation keys; selected but not cited in aux: {extra}; cited in aux but not selected: {missing_sel}"
-            )
 
 
 # --------------------------------------------------------------------------- #
@@ -990,24 +937,24 @@ def dump(path: Path, obj, indent) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    root = Path(__file__).resolve().parents[1]
+    root = ROOT
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--overleaf", type=Path, default=root.parent / "overleaf-ai-control",
-                    help="read-only Overleaf clone of the paper")
+    ap.add_argument("--tooling", type=Path, default=PAPER_TOOLING,
+                    help="read-only tooling repository of the paper (outline.json, research/)")
     ap.add_argument("--out", type=Path, default=root / "site" / "data", help="output directory")
     ap.add_argument("--generated", default=_dt.date.today().isoformat(), help="date stamp YYYY-MM-DD")
     ap.add_argument("--quiet", action="store_true", help="do not print anomalies")
     args = ap.parse_args(argv)
 
-    ov: Path = args.overleaf
-    if not (ov / "outline.json").exists():
-        print(f"error: outline.json not found under {ov}", file=sys.stderr)
+    src: Path = args.tooling
+    if not (src / "outline.json").exists():
+        print(f"error: outline.json not found under {src}", file=sys.stderr)
         return 2
 
-    outline = load_json(ov / "outline.json")
-    corpus = load_json(ov / "research" / "corpus_full.json")
-    grey_v2 = load_json(ov / "research" / "grey_v2.json")
-    labels = load_json(ov / "research" / "labels_method_style.json")
+    outline = load_json(src / "outline.json")
+    corpus = load_json(src / "research" / "corpus_full.json")
+    grey_v2 = load_json(src / "research" / "grey_v2.json")
+    labels = load_json(src / "research" / "labels_method_style.json")
 
     anomalies = Anomalies()
     sections, sid_order = build_sections(outline, anomalies)
@@ -1021,9 +968,9 @@ def main(argv: list[str] | None = None) -> int:
     grey = merge_grey_into_papers(papers, grey, sid_pos, anomalies)
     fill_counts(sections, papers, grey)
     taxonomy = build_taxonomy(outline, parts, sections, args.generated)
-    stats = build_stats(args.generated, taxonomy["structure"], source_date(corpus, ov / "research" / "corpus_full.json"),
+    stats = build_stats(args.generated, taxonomy["structure"], source_date(corpus, src / "research" / "corpus_full.json"),
                         papers, grey, sections, args.out / "stream.json", anomalies)
-    cross_checks(ov, corpus, outline, labels, papers, grey, anomalies)
+    cross_checks(src, corpus, outline, labels, papers, grey, anomalies)
 
     out: Path = args.out
     dump(out / "taxonomy.json", taxonomy, 1)

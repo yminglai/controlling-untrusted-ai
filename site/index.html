@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Controlling Untrusted AI: A Survey</title>
-<meta name="description" content="The survey Controlling Untrusted AI, its paper collection, and a live stream of agent deployments in the wild.">
-<meta name="data-version" content="2026-10-19">
+<meta name="description" content="This site holds the papers behind the survey and a live record of agents in deployment.">
+<meta name="data-version" content="2026-10-21">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#2E2E2E" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Controlling Untrusted AI: A Survey">
 <meta property="og:title" content="Controlling Untrusted AI: A Survey">
-<meta property="og:description" content="The survey Controlling Untrusted AI, its paper collection, and a live stream of agent deployments in the wild.">
+<meta property="og:description" content="This site holds the papers behind the survey and a live record of agents in deployment.">
 <meta property="og:url" content="https://ymingl.com/controlling-untrusted-ai/">
 <meta property="og:image" content="https://ymingl.com/controlling-untrusted-ai/assets/img/og.png">
-<meta property="og:image:alt" content="Controlling Untrusted AI: A Survey, with the ten-section colour bar of the paper collection">
+<meta property="og:image:alt" content="Controlling Untrusted AI: A Survey, with the colour bar of the paper collection">
 <meta name="twitter:card" content="summary_large_image">
 <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("cuai-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,30 +25,20 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..500&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono&amp;display=swap"></noscript>
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/landing.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="data/stats.json" as="fetch" crossorigin>
-<link rel="preload" href="data/taxonomy.json?v=2026-10-19" as="fetch" crossorigin>
+<link rel="preload" href="data/taxonomy.json?v=2026-10-21" as="fetch" crossorigin>
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
-  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
-  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
-  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
-  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="1"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
-  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
-  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
-  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
-  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></symbol>
 </svg>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="masthead masthead--double">
+<header class="masthead">
   <div class="wrap masthead__inner">
     <a class="masthead__title caps" href="index.html"><span class="long">Controlling Untrusted AI: A Survey</span><span class="short">Controlling Untrusted AI</span></a>
     <nav class="masthead__nav" aria-label="Site">
@@ -65,36 +55,42 @@
   </div>
 </header>
 <main id="main">
-  <div class="wrap">
-    <section class="title-block grid12" aria-labelledby="title">
-      <div class="span-8">
-        <h1 class="title-block__title" id="title">Controlling Untrusted AI:<br>A Survey</h1>
-        <p class="dek" data-bind="taxonomy.thesis|sentences:2">Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own.</p>
-        <p class="status"><span class="caps">[Authors]</span> · Draft v0.2, October 2026 · arXiv link to come</p>
-        <div class="title-block__actions">
-          <a class="btn btn--arrow" href="papers.html">Browse the Papers <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-          <a class="btn btn--arrow" href="stream.html">Open the Stream <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  <section class="hero" aria-labelledby="title">
+    <div class="wrap">
+      <div class="hero__inner">
+        <h1 class="hero__title" id="title">Controlling Untrusted AI: <br class="hero__br">A Survey</h1>
+        <p class="hero__lede">Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own.</p>
+        <div class="hero__actions">
+          <a class="pill" href="papers.html">Browse the Papers</a>
+          <a class="pill pill--outline" href="stream.html">Open the Stream</a>
+        </div>
+        <p class="hero__status">Draft, October 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="below" aria-label="Papers and stream">
+    <div class="wrap">
+      <div class="below__grid">
+        <div class="below__col">
+          <h2 class="below__head">Papers</h2>
+          <p class="below__text"><span data-bind="stats.papers">1,788</span> papers and <span data-bind="stats.grey">164</span> reports placed in the survey's structure.</p>
+          <ul class="below__list" id="parts">
+            <li><a href="papers.html#s1">The Problem</a></li>
+            <li><a href="papers.html#s4">Control Outside the Model</a></li>
+            <li><a href="papers.html#s7">Control Inside the Model</a></li>
+            <li><a href="papers.html#s9">Verification, Deployment, and Outlook</a></li>
+          </ul>
+        </div>
+        <div class="below__col">
+          <h2 class="below__head">Stream</h2>
+          <p class="below__text">News about deploying agents, good and bad, filed under the same headings.</p>
+          <p class="below__meta"><span data-bind="stats.stream_items">231</span> items · updated <span data-bind="stats.stream_updated|date">17 Oct 2026</span></p>
+          <ul class="below__list" id="recent" aria-label="Newest items"></ul>
         </div>
       </div>
-    </section>
-
-    <section class="spread" aria-label="The paper collection and the live stream">
-      <div class="spread__left" id="collection">
-        <h2 class="running-head">The Paper Collection</h2>
-        <div class="sigbar sigbar--sections" id="sigbar-sections" role="img" aria-label="Papers per section"><span class="sigbar__seg sigbar__seg--empty"></span></div>
-        <p class="countline"><span data-bind="stats.papers">1,788</span> papers · <span data-bind="stats.grey">164</span> reports and posts · <span data-bind="stats.sections">10</span> sections · <span data-bind="stats.subsections">29</span> subsections</p>
-        <ol class="toc" id="toc" aria-label="Contents"></ol>
-      </div>
-      <div class="spread__rule" role="presentation"></div>
-      <div class="spread__right" id="stream">
-        <h2 class="running-head">The Live Stream</h2>
-        <div class="sigbar sigbar--polarity" id="sigbar-polarity" role="img" aria-label="Items by polarity: good, bad, mixed"><span class="sigbar__seg sigbar__seg--empty"></span></div>
-        <p class="countline" id="stream-count"><span data-bind="stats.stream_items">231</span> items · updated <span title="2026-10-17T00:00:00Z">17 Oct 2026</span></p>
-        <ol class="ledger ledger--short ledger--reserve" id="ledger-short" aria-label="Most recent items"></ol>
-        <p class="spread__foot" id="stream-foot" hidden><a href="stream.html">All <span data-bind="stats.stream_items">231</span> items</a></p>
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </main>
 <footer class="colophon">
   <div class="wrap">
@@ -102,59 +98,25 @@
   </div>
 </footer>
 <script type="module">
-import { initPage, loadStream, fetchJSON, bindStats, renderLedgerRows, polarityBar, polarityCounts, fmtInt, fmtDateLong, onIdle, esc, icon, withinDays, ISSUE_URL } from "./assets/js/common.js";
+import { initPage, fetchJSON, fmtDate, esc, linkTo, onIdle } from "./assets/js/common.js";
 import * as T from "./assets/js/taxonomy.js";
 
 const $ = (s) => document.querySelector(s);
 const [stats, tax] = await Promise.all([initPage(), T.loadTaxonomy().catch(() => null)]);
 
-if (tax) {
-  bindStats(stats || {}, { taxonomy: tax });
-  T.renderSectionBar($("#sigbar-sections"), stats);
-  T.renderToc($("#toc"));
+/* the four parts, from taxonomy.json; each links to its first section on the papers page */
+if (tax && T.parts.every((p) => p.title && p.sections && p.sections.length)) {
+  $("#parts").innerHTML = T.parts.map((p) => `<li><a href="${esc(linkTo("papers", { hash: p.sections[0] }))}">${esc(p.title)}</a></li>`).join("");
 }
 
-/* the live stream column: the polarity bar comes from stats.json at once; the twelve rows come from
-   stream_recent.json after first paint (stream.json is the fallback when the small file is absent) */
-const ledger = $("#ledger-short"), countLine = $("#stream-count"), foot = $("#stream-foot");
-function emptyLedger() {
-  ledger.classList.remove("ledger--reserve");
-  ledger.innerHTML = "";
-  countLine.textContent = "No items yet";
-  ledger.insertAdjacentHTML("afterend", `<div class="empty">The ledger opens with the first verified sweep.<div class="empty__actions"><a class="btn btn--arrow" href="${ISSUE_URL}" target="_blank" rel="noopener">Submit an item ${icon("arrow-up-right")}</a></div></div>`);
-}
-function failedLedger() {
-  ledger.classList.remove("ledger--reserve");
-  ledger.innerHTML = "";
-  ledger.insertAdjacentHTML("afterend", `<div class="error" role="status">The stream could not be loaded.<div class="error__retry"><a class="btn btn--arrow" href="stream.html">All items ${icon("arrow-right")}</a></div></div>`);
-}
-if (!stats || !(stats.stream_items > 0)) {
-  emptyLedger();
-} else {
-  if (stats.stream_polarity) polarityBar($("#sigbar-polarity"), stats.stream_polarity);
+/* the five newest stream titles, from stream_recent.json after first paint */
+if (stats && stats.stream_items > 0) {
   onIdle(async () => {
-    const version = stats.stream_updated || stats.generated;
     let recent = null;
-    try { const r = await fetchJSON("data/stream_recent.json", { version }); if (r && Array.isArray(r.items)) recent = r; } catch (e) { recent = null; }
-    if (!recent) {
-      try {
-        const stream = await loadStream(stats);
-        if (stream && Array.isArray(stream.items)) {
-          const items = stream.items.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
-          recent = { generated: stream.generated, items: items.slice(0, 12) };
-          polarityBar($("#sigbar-polarity"), polarityCounts(items));
-        }
-      } catch (e) { recent = null; }
-    }
-    if (!recent) { failedLedger(); return; }
-    if (!recent.items.length) { emptyLedger(); return; }
-    const items = recent.items.slice(0, 12);
-    const showNew = items.some((it) => !withinDays(it.verified_on, 7));   /* when every row is new the dot says nothing */
-    ledger.replaceChildren(renderLedgerRows(items, { mode: "short", showNew }));
-    ledger.classList.remove("ledger--reserve");
-    countLine.innerHTML = `${fmtInt(stats.stream_items)} items · updated <span title="${esc(recent.generated || "")}">${esc(fmtDateLong(recent.generated || stats.stream_updated))}</span>`;
-    foot.hidden = false;
-    foot.querySelector("a").innerHTML = `All ${fmtInt(stats.stream_items)} items`;
+    try { recent = await fetchJSON("data/stream_recent.json", { version: stats.stream_updated || stats.generated }); } catch (e) { recent = null; }
+    const items = recent && Array.isArray(recent.items) ? recent.items.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)).slice(0, 5) : [];
+    if (!items.length) return;
+    $("#recent").innerHTML = items.map((it) => `<li class="below__item"><span class="below__date" title="${esc(it.date)}">${esc(fmtDate(it.date, it.date_precision || "day"))}</span><a class="clamp-2" href="${esc(linkTo("stream", { hash: "item/" + it.id }))}">${esc(it.title)}</a></li>`).join("");
   });
 }
 </script>

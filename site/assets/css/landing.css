@@ -1,0 +1,50 @@
+/* landing.css: index.html only. The first viewport holds the masthead and the hero; one quiet section follows.
+   Reads tokens and roles only; shared components stay in site.css. */
+
+/* ---- hero: fills the viewport under the 57 px masthead (56 px bar + 1 px rule) ---- */
+.hero { --masthead-h: 57px; min-height: calc(100vh - var(--masthead-h)); min-height: calc(100svh - var(--masthead-h)); display: flex; align-items: center; }
+.hero > .wrap { width: 100%; }
+.hero__inner { max-width: 62ch; margin-inline: auto; padding: var(--s8) 0; }
+.hero__title { font-size: clamp(34px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance; }
+.hero__lede { font: 400 var(--fs-label)/28px var(--serif); margin-top: var(--s5); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+.hero__status { font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); margin-top: var(--s5); }
+
+/* ---- pill buttons ---- */
+.pill { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 22px; border: 1px solid var(--fg); border-radius: 999px; background: var(--fg); color: var(--bg); font: 500 var(--fs-ui)/var(--lh-ui) var(--sans); text-decoration: none; white-space: nowrap; transition: background var(--t-hover), border-color var(--t-hover); }
+.pill:hover { background: color-mix(in srgb, var(--fg) 84%, var(--bg)); border-color: color-mix(in srgb, var(--fg) 84%, var(--bg)); }
+.pill--outline { background: transparent; color: var(--fg); border-color: var(--control-border); }
+.pill--outline:hover { background: var(--bg-panel); border-color: var(--fg); }
+.pill:focus-visible { outline-offset: 3px; }
+
+/* ---- below the fold: two short columns ---- */
+.below { padding-top: var(--s9); }
+.below__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s8); row-gap: var(--s7); max-width: 880px; margin-inline: auto; }
+.below__head { font: 400 var(--fs-h3)/var(--lh-h3) var(--serif); }
+.below__text { margin-top: var(--s2); font: 400 var(--fs-body)/var(--lh-body) var(--sans); }
+.below__meta { margin-top: var(--s1); font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); color: var(--fg-muted); }
+.below__list { list-style: none; margin-top: var(--s4); display: grid; row-gap: var(--s2); font: 400 var(--fs-body)/var(--lh-body) var(--sans); }
+.below__list a { text-decoration: none; }
+.below__list a:hover { text-decoration: underline 1px var(--link-underline); text-underline-offset: 3px; }
+.below__item { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); column-gap: var(--s3); }
+.below__date { font: 400 var(--fs-mono-s)/var(--lh-body) var(--mono); color: var(--fg-muted); }
+
+/* ---- responsive ---- */
+@media (min-width: 1024px) {
+  .pill { min-height: 36px; padding: 7px 18px; font-size: var(--fs-ui-s); line-height: var(--lh-ui-s); }
+}
+@media (max-width: 1023px) {
+  .below__list a { position: relative; }
+  .below__list a::before { content: ""; position: absolute; inset: -6px 0; }
+}
+@media (max-width: 767px) {
+  .hero__inner { padding: var(--s7) 0; }
+  .hero__br { display: none; }
+  .hero__actions { gap: var(--s2); }
+  .pill { padding: 10px 16px; }
+  .below { padding-top: var(--s8); }
+  .below__grid { grid-template-columns: minmax(0, 1fr); row-gap: var(--s8); }
+}
+@media (forced-colors: active) {
+  .pill { border-color: ButtonText; }
+}

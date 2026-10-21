@@ -151,17 +151,19 @@ class HeuristicTests(unittest.TestCase):
     def setUp(self):
         self.tax = clf.load_taxonomy()
 
-    def test_taxonomy_has_29_subsections(self):
-        self.assertEqual(len(self.tax["subsection_ids"]), 29)
+    def test_taxonomy_has_35_subsections(self):
+        self.assertEqual(len(self.tax["subsection_ids"]), 35)
         self.assertIn("s4_4", self.tax["subsection_ids"])
-        self.assertIn("s9_2", self.tax["subsection_ids"])
-        self.assertNotIn("s10_3", self.tax["subsection_ids"])
-        self.assertNotIn("s11_1", self.tax["subsection_ids"])
-        self.assertEqual(next(s for s in self.tax["sections"] if s["id"] == "s7")["operations"], ["steer", "train"])
+        self.assertIn("s10_3", self.tax["subsection_ids"])
+        self.assertIn("s11_3", self.tax["subsection_ids"])
+        self.assertNotIn("s1_5", self.tax["subsection_ids"])
+        self.assertNotIn("s11_4", self.tax["subsection_ids"])
+        self.assertEqual(next(s for s in self.tax["sections"] if s["id"] == "s7")["operations"], ["steer"])
+        self.assertEqual(next(s for s in self.tax["sections"] if s["id"] == "s8")["operations"], ["train"])
 
     def test_fallback_taxonomy_and_rules_agree(self):
         fallback_ids = {f"{sid}_{j}" for sid, _k, _t, subs in clf.FALLBACK_TAXONOMY for j in range(1, len(subs) + 1)}
-        self.assertEqual(len(fallback_ids), 29)
+        self.assertEqual(len(fallback_ids), 35)
         for sid, _pats in clf.SUBSECTION_RULES:
             self.assertIn(sid, fallback_ids, f"rule for unknown subsection {sid}")
         self.assertEqual(len({sid for sid, _ in clf.SUBSECTION_RULES}), len(clf.SUBSECTION_RULES), "one rule group per subsection")
@@ -201,13 +203,13 @@ class ValidateTests(unittest.TestCase):
         it = {"title": "t", "snippet": "s", "url": "https://x"}
         fb = clf.heuristic_classify(it, tax)
         raw = {"relevant": "true", "kind": "Incident", "polarity": "BAD", "summary": "Sentence one is here. Sentence two is here. Sentence three.",
-               "failure_sources": "external, manipulation, bogus", "operations": ["constrain", "observe", "nope"], "subsections": ["S4_2", "s99_1", "s4_5"],
+               "failure_sources": "external, manipulation, bogus", "operations": ["constrain", "monitor", "nope"], "subsections": ["S4_2", "s99_1", "s4_5"],
                "domain": "coding", "evidence": "press", "actors": {"vendor": "Acme", "model": None}, "tags": ["a", "b"], "date": "2026-10-01", "confidence": 0.9}
         r = clf.validate(raw, it, tax, fb)
         self.assertEqual(r["kind"], "incident")
         self.assertEqual(r["polarity"], "bad")
-        self.assertEqual(r["failure_sources"], ["external"])      # the old word "manipulation" is no longer accepted
-        self.assertEqual(r["operations"], ["constrain"])          # nor is "observe"
+        self.assertEqual(r["failure_sources"], ["external"])      # the 17 October word "manipulation" is not accepted
+        self.assertEqual(r["operations"], ["constrain"])          # nor the 19 October word "monitor"
         self.assertEqual(r["subsections"], ["s4_2"])
         self.assertEqual(r["summary"], "Sentence one is here. Sentence two is here.")
         self.assertEqual(r["actors"], {"vendor": "Acme", "deployer": None, "model": None})
@@ -233,7 +235,7 @@ class _FakeGateway(BaseHTTPRequestHandler):
         for i in range(1, count + 1):
             items.append({"index": i, "relevant": i != 2, "kind": "incident", "polarity": "bad",
                           "summary": "A deployed agent did something harmful. The vendor responded with a fix.",
-                          "failure_sources": ["external"], "requirements": ["in-scope"], "operations": ["constrain", "monitor"],
+                          "failure_sources": ["external"], "requirements": ["in-scope"], "operations": ["constrain", "observe"],
                           "subsections": ["s2_2", "s4_3"], "domain": "email-and-office", "evidence": "press",
                           "actors": {"vendor": "V", "deployer": None, "model": "M"}, "tags": ["prompt injection"], "date": None, "confidence": 0.8})
         body = json.dumps({"choices": [{"message": {"content": "```json\n" + json.dumps({"items": items}) + "\n```"}}]}).encode()
@@ -264,7 +266,7 @@ class LLMContractTests(unittest.TestCase):
             self.assertEqual([r["relevant"] for r in res], [True, False, True])
             self.assertEqual(res[0]["subsections"], ["s2_2", "s4_3"])
             self.assertEqual(res[0]["failure_sources"], ["external"])
-            self.assertEqual(res[0]["operations"], ["constrain", "monitor"])
+            self.assertEqual(res[0]["operations"], ["constrain", "observe"])
             self.assertEqual(res[0]["classifier"], "llm")
             self.assertFalse(res[0]["needs_review"])
             self.assertEqual(len(_FakeGateway.calls), 2)
@@ -277,9 +279,9 @@ class LLMContractTests(unittest.TestCase):
             self.assertIn("Controlling Untrusted AI", system)
             self.assertIn("s4_1 Confinement", system)
             self.assertIn("three tiers", system)
-            for word in ("benign", "external", "insider", "monitor", "evaluate"):
+            for word in ("benign", "external", "insider", "'observe'", "'verify'", "outside the model", "inside the model"):
                 self.assertIn(word, system)
-            for word in ("mistakes'", "manipulation'", "misalignment'", "'observe'", "'verify'"):
+            for word in ("mistakes'", "manipulation'", "misalignment'", "'monitor'", "'evaluate'"):
                 self.assertNotIn(word, system, f"old vocabulary {word} still in the prompt")
         finally:
             srv.shutdown()
@@ -317,7 +319,7 @@ class TaxonomyConsistencyTests(unittest.TestCase):
         rules = dict(clf.SUBSECTION_RULES)
         for sid in rules:
             self.assertIn(sid, titles, f"rule for unknown subsection {sid}")
-        self.assertEqual(titles["s2_2"], "External Attacks")
+        self.assertEqual(titles["s2_2"], "Malicious Attacks")
         self.assertEqual(titles["s2_3"], "Insider Threats")
         self.assertNotIn("s2_4", titles)
         # 2.3 covers the human insider, the model as the limiting case of an insider, and colluding agents

@@ -15,7 +15,7 @@ export const KIND_LABELS = {
 export const POLARITY_LABELS = { good: "Good", bad: "Bad", mixed: "Mixed" };
 /* tier and operation labels: the ids below are the fallback; loadTaxonomy() overwrites every label from taxonomy.json */
 export const SOURCE_LABELS = { benign: "Benign", external: "External", insider: "Insider" };
-export const OP_LABELS = { failures: "Failure Modes of Deployed Agents", constrain: "Constrain", monitor: "Monitor", intervene: "Intervene", steer: "Steer", train: "Train", evaluate: "Evaluate", deploy: "Deploy" };
+export const OP_LABELS = { failures: "How Agents Fail", constrain: "Constrain", observe: "Observe", intervene: "Intervene", steer: "Steer", train: "Train", verify: "Verify", deploy: "Deploy" };
 export const REQ_LABELS = { "correct": "Correct", "compliant": "Compliant", "in-scope": "In scope", "within-budget": "Within budget", "safe": "Safe" };
 
 /* A registry other modules fill (taxonomy.js sets registry.taxonomy) so this module can label subsection ids
@@ -105,7 +105,7 @@ export function writeState(patch, { push = false, historyState = null } = {}) {
   if (push) history.pushState(st, "", url); else history.replaceState(st, "", url);
   return url;
 }
-/** linkTo("papers", {hash: "s5_3", q: "monitor"}) -> "papers.html?q=monitor#s5_3". Page is a key of PAGES or a file name. */
+/** linkTo("papers", {hash: "s5_3", q: "observe"}) -> "papers.html?q=observe#s5_3". Page is a key of PAGES or a file name. */
 export function linkTo(page, state = {}) {
   const file = PAGES[page] || page;
   return buildURL(file, state);
@@ -255,7 +255,7 @@ export function dataAttrFor(id) {
   if (SUB_RE.test(id)) return `data-section="${id.split("_")[0]}"`;
   return `data-c="${esc(id)}"`;
 }
-/** mark({shape: "square"|"square-hollow"|"circle"|"dash"|"dash-l"|"dot", c: "s5"|"monitor"|"benign"|"bad"|"report"}) -> HTML string */
+/** mark({shape: "square"|"square-hollow"|"circle"|"dash"|"dash-l"|"dot", c: "s5"|"observe"|"benign"|"bad"|"report"}) -> HTML string */
 export function mark({ shape = "square", c = "gray", hollow = false, label = "" } = {}) {
   const cls = `mark mark--${hollow ? "square-hollow" : shape}`;
   return `<span class="${cls}" ${dataAttrFor(c)} ${label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true"'}></span>`;
@@ -292,12 +292,12 @@ export function chip({ kind = "plain", id = "", href = "", removable = false, as
   return `<span class="${cls}" ${attr} data-kind="${kind}" data-id="${esc(id)}"${t}>${inner}</span>`;
 }
 
-/* ---------- ledger rows (shared by index and stream) ---------- */
-/** renderLedgerRows(items, {mode: "short"|"full", groupBy: "date"|"verified"}) -> DocumentFragment of <li> month heads and rows.
+/* ---------- ledger rows (stream) ---------- */
+/** renderLedgerRows(items, {groupBy: "date"|"verified"}) -> DocumentFragment of <li> month heads and rows.
     Chunked callers pass {startMonth, monthCounts, startIndex}: the month head is skipped while the first items belong to
     startMonth (the month already headed by the previous chunk) and each head reads its count from monthCounts[key]
     (the whole list) instead of the slice. */
-export function renderLedgerRows(items, { mode = "full", groupBy = "date", now = Date.now(), startMonth = null, monthCounts = null, startIndex = 0, showNew = true } = {}) {
+export function renderLedgerRows(items, { groupBy = "date", now = Date.now(), startMonth = null, monthCounts = null, startIndex = 0, showNew = true } = {}) {
   const frag = document.createDocumentFragment();
   const keyOf = (x) => monthKey(groupBy === "verified" ? x.verified_on : x.date);
   let month = startMonth;
@@ -306,28 +306,18 @@ export function renderLedgerRows(items, { mode = "full", groupBy = "date", now =
     if (key !== month) {
       month = key;
       const count = monthCounts ? monthCounts[key] || 0 : items.filter((x) => keyOf(x) === key).length;
-      const late = mode === "short" && startIndex + i >= 8 ? " ledger__row--late" : "";
-      frag.appendChild(el(`<li class="ledger__month${late}"${mode === "full" ? ` id="${esc(key)}"` : ""} role="presentation">${esc(fmtMonth(key))}${groupBy === "verified" ? ' <span class="muted">· verified</span>' : ""}${mode === "full" ? ` <span class="num muted">· ${fmtInt(count)} ${count === 1 ? "item" : "items"}</span>` : ""}</li>`));
+      frag.appendChild(el(`<li class="ledger__month" id="${esc(key)}" role="presentation">${esc(fmtMonth(key))}${groupBy === "verified" ? ' <span class="muted">· verified</span>' : ""} <span class="num muted">· ${fmtInt(count)} ${count === 1 ? "item" : "items"}</span></li>`));
     }
-    frag.appendChild(renderLedgerRow(it, { mode, index: startIndex + i, groupBy, now, showNew }));
+    frag.appendChild(renderLedgerRow(it, { index: startIndex + i, groupBy, now, showNew }));
   });
   return frag;
 }
-/** renderLedgerRow(item, {mode, index}) -> <li> element. Full rows carry fields 1 to 5 of DESIGN.md 6.4 collapsed; stream.js adds expansion. */
-export function renderLedgerRow(it, { mode = "full", index = 0, groupBy = "date", now = Date.now(), showNew = true } = {}) {
+/** renderLedgerRow(item, {index}) -> <li> element. Rows carry fields 1 to 5 of DESIGN.md 6.4 collapsed; stream.js adds expansion. */
+export function renderLedgerRow(it, { index = 0, groupBy = "date", now = Date.now(), showNew = true } = {}) {
   const isNew = showNew && it.verified_on && withinDays(it.verified_on, 7, now);
   const prec = it.date_precision || "day";
   const dateTitle = prec === "month" ? ' title="date known to the month"' : prec === "year" ? ' title="date known to the year"' : ` title="${esc(it.date)}"`;
   const kind = KIND_LABELS[it.kind] || it.kind || "";
-  if (mode === "short") {
-    return el(`<li class="ledger__row ledger__row--short${index >= 8 ? " ledger__row--late" : ""}" data-polarity="${esc(it.polarity)}" data-id="${esc(it.id)}">
-      <div class="ledger__date"${dateTitle}>${esc(fmtDate(it.date, prec))}</div>
-      <div class="ledger__body">
-        <div class="ledger__kind"><span class="ledger__dash" role="img" aria-label="${esc(POLARITY_LABELS[it.polarity] || it.polarity)}"></span>${esc(kind)}</div>
-        <div class="ledger__title clamp-2">${isNew ? '<span class="new" aria-hidden="true"></span><span class="visually-hidden">new this week </span>' : ""}<a href="${esc(linkTo("stream", { hash: "item/" + it.id }))}">${esc(it.title)}</a></div>
-        <div class="ledger__publisher">${esc(it.publisher || "")}</div>
-      </div></li>`);
-  }
   const showVerified = groupBy === "verified";
   const dateCell = showVerified
     ? `<span class="caps muted">verified</span><br>${esc(fmtDate(it.verified_on, "day"))}`
@@ -349,19 +339,6 @@ export function renderLedgerRow(it, { mode = "full", index = 0, groupBy = "date"
     </div>
     <button type="button" class="btn--icon ledger__more" aria-expanded="false" aria-label="More about this item">${icon("chevron-down")}</button>
   </li>`);
-}
-/** polarityBar(el, {good, bad, mixed}) renders the 3-segment signature bar; one --rule segment when counts are empty. */
-export function polarityBar(target, counts) {
-  const total = counts ? (counts.good || 0) + (counts.bad || 0) + (counts.mixed || 0) : 0;
-  target.setAttribute("aria-label", total ? `Items by polarity: ${fmtInt(counts.good || 0)} good, ${fmtInt(counts.bad || 0)} bad, ${fmtInt(counts.mixed || 0)} mixed` : "Items by polarity: none yet");
-  if (!total) { target.innerHTML = '<span class="sigbar__seg sigbar__seg--empty"></span>'; return; }
-  target.innerHTML = ["good", "bad", "mixed"].filter((k) => counts[k] > 0)
-    .map((k) => `<span class="sigbar__seg" data-polarity="${k}" style="flex-grow:${counts[k]}" title="${POLARITY_LABELS[k]} · ${fmtInt(counts[k])}"></span>`).join("");
-}
-export function polarityCounts(items) {
-  const c = { good: 0, bad: 0, mixed: 0 };
-  for (const it of items || []) if (it.polarity in c) c[it.polarity]++;
-  return c;
 }
 
 /* ---------- drawers ---------- */
