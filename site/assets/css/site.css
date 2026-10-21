@@ -223,3 +223,6 @@ a.chip:hover, button.chip:hover { border-color: var(--fg); }
   .chip.is-on, .chip[aria-pressed="true"], .btn--icon[aria-pressed="true"], .seg__opt input:checked + span, .facet__radio input:checked + span, .badge--cited { outline: 2px solid Highlight; outline-offset: -2px; }
   .chip.is-zero { border-style: dashed; }
 }
+
+/* tablet tap target for GitHub */
+@media (min-width: 768px) and (max-width: 1023px) { .masthead__gh { display: inline-flex; align-items: center; min-height: 44px; } }

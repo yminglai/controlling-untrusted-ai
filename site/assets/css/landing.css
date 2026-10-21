@@ -13,17 +13,17 @@
 .hero__title { grid-column: 1 / span 10; grid-row: 1; font-weight: 400; }
 .hero__main {
   display: block; max-width: 12.5ch;
-  font: 400 clamp(52px, 7.2vw, 108px)/0.98 var(--serif); letter-spacing: -0.025em;
+  font: 400 clamp(52px, min(7.2vw, 14vh), 108px)/0.98 var(--serif); letter-spacing: -0.025em;
   font-optical-sizing: auto; text-wrap: balance;
 }
-.hero__sub { display: block; margin-top: 0.32em; padding-left: 0.04em; font: italic 400 clamp(26px, 3vw, 44px)/1.1 var(--serif); letter-spacing: -0.01em; color: var(--fg-muted); }
+.hero__sub { display: block; margin-top: 0.32em; padding-left: 0.1em; font: italic 400 clamp(26px, 3vw, 44px)/1.1 var(--serif); letter-spacing: -0.01em; color: var(--fg-muted); }
 
 .hero__body { grid-column: 8 / span 5; grid-row: 3; align-self: end; }
 .hero__lede { font: 400 20px/30px var(--serif); text-wrap: pretty; }
 .hero__links { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s2) var(--s6); margin-top: var(--s5); padding-top: var(--s3); border-top: var(--hairline); }
-.hero__link { display: inline-flex; align-items: center; gap: var(--s2); min-height: 44px; font: 500 var(--fs-ui)/var(--lh-ui) var(--sans); color: var(--fg); text-decoration: none; }
+.hero__link { display: inline-flex; align-items: baseline; gap: var(--s2); padding-block: 11.5px; font: 500 var(--fs-ui)/var(--lh-ui) var(--sans); color: var(--fg); text-decoration: none; }
 .hero__n { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--fg-muted); }
-.hero__link .icon { width: 16px; height: 16px; stroke-width: 1.8; transition: transform var(--t-hover) var(--ease); }
+.hero__link .icon { align-self: center; width: 16px; height: 16px; stroke-width: 1.8; transition: transform var(--t-hover) var(--ease); }
 .hero__link:hover > span:first-child { text-decoration: underline 1px var(--fg); text-underline-offset: 4px; }
 .hero__link:hover .icon { transform: translateX(3px); }
 .hero__link:focus-visible { outline-offset: 4px; }
@@ -44,10 +44,29 @@
 .below__item { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); column-gap: var(--s3); }
 .below__date { font: 400 var(--fs-mono-s)/var(--lh-body) var(--mono); color: var(--fg-muted); }
 
+/* ---- the landing's masthead: no title (the page is the title) and no Papers/Stream (the hero links are) ---- */
+.masthead--bare { position: static; border-bottom-color: transparent; }
+.masthead--bare .masthead__links, .masthead--bare .masthead__sep, .masthead--bare .menu-btn { display: none; }
+.masthead--bare .masthead__gh { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* dark: keep a second level of ink on the title page (#A2A2A2, 5.3:1 on the background) */
+[data-theme="dark"] .hero, [data-theme="dark"] .below { --fg-muted: color-mix(in srgb, var(--gray) 50%, var(--gray-mid)); }
+
+/* tall screens: stop growing at 60rem and centre, so the lede stays with the title */
+@media (min-width: 768px) {
+  .hero { align-items: center; }
+  .hero__grid { min-height: min(calc(100svh - var(--masthead-h)), 60rem); }
+}
+/* short screens */
+@media (min-width: 768px) and (max-height: 640px) {
+  .hero__grid { padding-top: var(--s7); padding-bottom: var(--s5); grid-template-rows: auto minmax(var(--s6), 1fr) auto; }
+}
+
 /* ---- responsive ---- */
 @media (max-width: 1023px) {
   .hero__title { grid-column: 1 / -1; }
-  .hero__body { grid-column: 6 / -1; }
+  .hero__body { grid-column: 5 / -1; }            /* starts well inside the title's width, not 10 px short of its end */
+  .hero__imprint { grid-column: 1 / span 4; }
   .below__col:first-child { grid-column: 1 / span 6; }
   .below__col:last-child { grid-column: 7 / -1; }
   .below__list a { position: relative; }
