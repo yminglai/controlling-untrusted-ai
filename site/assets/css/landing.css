@@ -1,25 +1,40 @@
-/* landing.css: index.html only. The first viewport holds the masthead and the hero; one quiet section follows.
-   Reads tokens and roles only; shared components stay in site.css. */
+/* landing.css: index.html only. The first screen is a title page on the 12-column site grid: the title
+   top left, the two sentences and the two ways in bottom right, the imprint bottom left. One quiet
+   section follows on the same columns. Reads tokens and roles only; shared components stay in site.css. */
 
-/* ---- hero: fills the viewport under the 57 px masthead (56 px bar + 1 px rule) ---- */
-.hero { --masthead-h: 57px; min-height: calc(100vh - var(--masthead-h)); min-height: calc(100svh - var(--masthead-h)); display: flex; align-items: center; }
-.hero > .wrap { width: 100%; }
-.hero__inner { max-width: 62ch; margin-inline: auto; padding: var(--s8) 0; }
-.hero__title { font-size: clamp(34px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance; }
-.hero__lede { font: 400 var(--fs-label)/28px var(--serif); margin-top: var(--s5); }
-.hero__actions { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
-.hero__status { font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); margin-top: var(--s5); }
+/* ---- title page: fills the viewport under the 57 px masthead (56 px bar + 1 px rule) ---- */
+.hero { --masthead-h: 57px; min-height: calc(100vh - var(--masthead-h)); min-height: calc(100svh - var(--masthead-h)); display: flex; }
+.hero__grid {
+  width: 100%;
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto minmax(var(--s8), 1fr) auto;
+  column-gap: var(--gutter);
+  padding-top: clamp(var(--s7), 11vh, var(--s10)); padding-bottom: clamp(var(--s6), 8vh, var(--s8));
+}
+.hero__title { grid-column: 1 / span 10; grid-row: 1; font-weight: 400; }
+.hero__main {
+  display: block; max-width: 12.5ch;
+  font: 400 clamp(52px, 7.2vw, 108px)/0.98 var(--serif); letter-spacing: -0.025em;
+  font-optical-sizing: auto; text-wrap: balance;
+}
+.hero__sub { display: block; margin-top: 0.32em; padding-left: 0.04em; font: italic 400 clamp(26px, 3vw, 44px)/1.1 var(--serif); letter-spacing: -0.01em; color: var(--fg-muted); }
 
-/* ---- pill buttons ---- */
-.pill { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 22px; border: 1px solid var(--fg); border-radius: 999px; background: var(--fg); color: var(--bg); font: 500 var(--fs-ui)/var(--lh-ui) var(--sans); text-decoration: none; white-space: nowrap; transition: background var(--t-hover), border-color var(--t-hover); }
-.pill:hover { background: color-mix(in srgb, var(--fg) 84%, var(--bg)); border-color: color-mix(in srgb, var(--fg) 84%, var(--bg)); }
-.pill--outline { background: transparent; color: var(--fg); border-color: var(--control-border); }
-.pill--outline:hover { background: var(--bg-panel); border-color: var(--fg); }
-.pill:focus-visible { outline-offset: 3px; }
+.hero__body { grid-column: 8 / span 5; grid-row: 3; align-self: end; }
+.hero__lede { font: 400 20px/30px var(--serif); text-wrap: pretty; }
+.hero__links { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s2) var(--s6); margin-top: var(--s5); padding-top: var(--s3); border-top: var(--hairline); }
+.hero__link { display: inline-flex; align-items: center; gap: var(--s2); min-height: 44px; font: 500 var(--fs-ui)/var(--lh-ui) var(--sans); color: var(--fg); text-decoration: none; }
+.hero__n { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--fg-muted); }
+.hero__link .icon { width: 16px; height: 16px; stroke-width: 1.8; transition: transform var(--t-hover) var(--ease); }
+.hero__link:hover > span:first-child { text-decoration: underline 1px var(--fg); text-underline-offset: 4px; }
+.hero__link:hover .icon { transform: translateX(3px); }
+.hero__link:focus-visible { outline-offset: 4px; }
 
-/* ---- below the fold: two short columns ---- */
+.hero__imprint { grid-column: 1 / span 5; grid-row: 3; align-self: end; padding-bottom: 12px; font: 400 var(--fs-meta)/var(--lh-meta) var(--sans); color: var(--fg-muted); }
+
+/* ---- below the fold: the same columns, papers under the title, stream under the text ---- */
 .below { padding-top: var(--s9); }
-.below__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s8); row-gap: var(--s7); max-width: 880px; margin-inline: auto; }
+.below__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s7); }
+.below__col:first-child { grid-column: 1 / span 5; }
+.below__col:last-child { grid-column: 8 / span 5; }
 .below__head { font: 400 var(--fs-h3)/var(--lh-h3) var(--serif); }
 .below__text { margin-top: var(--s2); font: 400 var(--fs-body)/var(--lh-body) var(--sans); }
 .below__meta { margin-top: var(--s1); font: 400 var(--fs-meta)/var(--lh-meta) var(--mono); color: var(--fg-muted); }
@@ -30,21 +45,22 @@
 .below__date { font: 400 var(--fs-mono-s)/var(--lh-body) var(--mono); color: var(--fg-muted); }
 
 /* ---- responsive ---- */
-@media (min-width: 1024px) {
-  .pill { min-height: 36px; padding: 7px 18px; font-size: var(--fs-ui-s); line-height: var(--lh-ui-s); }
-}
 @media (max-width: 1023px) {
+  .hero__title { grid-column: 1 / -1; }
+  .hero__body { grid-column: 6 / -1; }
+  .below__col:first-child { grid-column: 1 / span 6; }
+  .below__col:last-child { grid-column: 7 / -1; }
   .below__list a { position: relative; }
   .below__list a::before { content: ""; position: absolute; inset: -6px 0; }
 }
 @media (max-width: 767px) {
-  .hero__inner { padding: var(--s7) 0; }
-  .hero__br { display: none; }
-  .hero__actions { gap: var(--s2); }
-  .pill { padding: 10px 16px; }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(var(--s7), 1fr) auto auto; padding-top: var(--s7); padding-bottom: var(--s6); }
+  .hero__main { font-size: clamp(44px, 12.5vw, 56px); }
+  .hero__sub { font-size: 26px; }
+  .hero__body, .hero__imprint, .hero__title { grid-column: 1; }
+  .hero__lede { font-size: 18px; line-height: 28px; }
+  .hero__imprint { grid-row: 4; margin-top: var(--s5); padding-bottom: 0; }
   .below { padding-top: var(--s8); }
   .below__grid { grid-template-columns: minmax(0, 1fr); row-gap: var(--s8); }
-}
-@media (forced-colors: active) {
-  .pill { border-color: ButtonText; }
+  .below__col:first-child, .below__col:last-child { grid-column: 1; }
 }

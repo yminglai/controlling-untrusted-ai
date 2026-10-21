@@ -7,10 +7,10 @@
   --forest:#62A16E; --purple:#A37CAD; --gold:#D1B745; --sky:#6FCBEF; --pink:#E072AF; --sand:#C7A678; --slate:#75A4B5;
   /* sections */
   --c-s1:var(--gray); --c-s2:var(--coral); --c-s3:var(--gray); --c-s4:var(--terracotta); --c-s5:var(--blue); --c-s6:var(--amber);
-  --c-s7:var(--teal); --c-s8:var(--forest); --c-s9:var(--purple); --c-s10:var(--gray);
+  --c-s7:var(--teal); --c-s8:var(--periwinkle); --c-s9:var(--forest); --c-s10:var(--purple); --c-s11:var(--gray);
   /* operations */
-  --c-failures:var(--coral); --c-constrain:var(--terracotta); --c-monitor:var(--blue); --c-intervene:var(--amber);
-  --c-steer:var(--teal); --c-train:var(--teal); --c-evaluate:var(--forest); --c-deploy:var(--purple);
+  --c-failures:var(--coral); --c-constrain:var(--terracotta); --c-observe:var(--blue); --c-intervene:var(--amber);
+  --c-steer:var(--teal); --c-train:var(--periwinkle); --c-verify:var(--forest); --c-deploy:var(--purple);
   /* attack tiers, polarity, item classes */
   --c-benign:var(--coral); --c-external:var(--amber); --c-insider:var(--purple);
   --c-good:var(--forest); --c-bad:var(--coral); --c-mixed:var(--gold);
@@ -89,12 +89,12 @@
 /* --c from data attributes: one rule per identity */
 [data-section="s1"]{--c:var(--c-s1)} [data-section="s2"]{--c:var(--c-s2)} [data-section="s3"]{--c:var(--c-s3)} [data-section="s4"]{--c:var(--c-s4)}
 [data-section="s5"]{--c:var(--c-s5)} [data-section="s6"]{--c:var(--c-s6)} [data-section="s7"]{--c:var(--c-s7)} [data-section="s8"]{--c:var(--c-s8)}
-[data-section="s9"]{--c:var(--c-s9)} [data-section="s10"]{--c:var(--c-s10)}
-[data-op="failures"]{--c:var(--c-failures)} [data-op="constrain"]{--c:var(--c-constrain)} [data-op="monitor"]{--c:var(--c-monitor)}
+[data-section="s9"]{--c:var(--c-s9)} [data-section="s10"]{--c:var(--c-s10)} [data-section="s11"]{--c:var(--c-s11)}
+[data-op="failures"]{--c:var(--c-failures)} [data-op="constrain"]{--c:var(--c-constrain)} [data-op="observe"]{--c:var(--c-observe)}
 [data-op="intervene"]{--c:var(--c-intervene)} [data-op="steer"]{--c:var(--c-steer)} [data-op="train"]{--c:var(--c-train)}
-[data-op="evaluate"]{--c:var(--c-evaluate)} [data-op="deploy"]{--c:var(--c-deploy)}
+[data-op="verify"]{--c:var(--c-verify)} [data-op="deploy"]{--c:var(--c-deploy)}
 [data-source="benign"]{--c:var(--c-benign)} [data-source="external"]{--c:var(--c-external)} [data-source="insider"]{--c:var(--c-insider)}
 [data-polarity="good"]{--c:var(--c-good)} [data-polarity="bad"]{--c:var(--c-bad)} [data-polarity="mixed"]{--c:var(--c-mixed)}
 [data-c="report"]{--c:var(--c-report)} [data-c="verified"]{--c:var(--c-verified)} [data-c="gray"]{--c:var(--gray)} [data-c="fg"]{--c:var(--fg)}
-[data-section="s6"],[data-op="intervene"],[data-source="external"],[data-section="s7"],[data-op="steer"],[data-op="train"],[data-polarity="mixed"],[data-c="report"] { --c-text-mix:50%; }
+[data-section="s6"],[data-op="intervene"],[data-source="external"],[data-section="s7"],[data-op="steer"],[data-polarity="mixed"],[data-c="report"] { --c-text-mix:50%; }
 @media (prefers-reduced-motion: reduce) { :root { --t-hover:0ms; --t-toggle:0ms; --t-drawer:0ms; } }

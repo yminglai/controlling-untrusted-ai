@@ -32,6 +32,7 @@
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
@@ -40,7 +41,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="masthead">
   <div class="wrap masthead__inner">
-    <a class="masthead__title caps" href="index.html"><span class="long">Controlling Untrusted AI: A Survey</span><span class="short">Controlling Untrusted AI</span></a>
+    <span class="masthead__title" aria-hidden="true"></span>
     <nav class="masthead__nav" aria-label="Site">
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
       <ul class="masthead__links" id="site-links">
@@ -56,16 +57,16 @@
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="title">
-    <div class="wrap">
-      <div class="hero__inner">
-        <h1 class="hero__title" id="title">Controlling Untrusted AI: <br class="hero__br">A Survey</h1>
+    <div class="wrap hero__grid">
+      <h1 class="hero__title" id="title"><span class="hero__main">Controlling Untrusted AI</span><span class="visually-hidden">: </span><span class="hero__sub">A Survey</span></h1>
+      <div class="hero__body">
         <p class="hero__lede">Deployed AI agents must meet their operator's requirements: be correct, compliant, in scope, within budget, and safe. They cannot be trusted to meet them on their own.</p>
-        <div class="hero__actions">
-          <a class="pill" href="papers.html">Browse the Papers</a>
-          <a class="pill pill--outline" href="stream.html">Open the Stream</a>
-        </div>
-        <p class="hero__status">Draft, October 2026</p>
+        <ul class="hero__links">
+          <li><a class="hero__link" href="papers.html"><span>Papers</span><span class="hero__n" data-bind="stats.papers">1,788</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+          <li><a class="hero__link" href="stream.html"><span>Stream</span><span class="hero__n" data-bind="stats.stream_items">231</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        </ul>
       </div>
+      <p class="hero__imprint">Draft, October 2026</p>
     </div>
   </section>
 
